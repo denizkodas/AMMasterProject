@@ -47,6 +47,24 @@
 
             <ul class="customer-menu">
 
+                <!-- SIMPLE TEST -->
+                <li style="position: relative;">
+                    <button onclick="
+                        var menu = document.getElementById('testMenu');
+                        if(menu.style.display === 'block') {
+                            menu.style.display = 'none';
+                        } else {
+                            menu.style.display = 'block';
+                        }
+                    " style="padding: 10px; background: white; border: 1px solid #ccc;">
+                        TEST DİL ▼
+                    </button>
+                    <div id="testMenu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; min-width: 150px; z-index: 9999;">
+                        <a href="#" onclick="alert('Türkçe seçildi')" style="display: block; padding: 10px; text-decoration: none; color: black;">🇹🇷 Türkçe</a>
+                        <a href="#" onclick="alert('İngilizce seçildi')" style="display: block; padding: 10px; text-decoration: none; color: black;">🇺🇸 English</a>
+                    </div>
+                </li>
+
                 <!-- Language Selector -->
                 <li class="language-selector" id="languageSelector">
                     <button type="button" class="dropdown-toggle" id="languageDropdown" 
