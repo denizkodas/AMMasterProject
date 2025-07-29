@@ -474,10 +474,29 @@
 
     // Language selector dropdown functionality
     $(document).ready(function() {
-        // Toggle dropdown
-        $('#languageDropdown').on('click', function(e) {
+        console.log('🔧 Language selector script loaded');
+        
+        // Toggle dropdown with more specific event handling
+        $(document).on('click', '#languageDropdown', function(e) {
             e.preventDefault();
+            e.stopPropagation();
+            console.log('🖱️ Language dropdown clicked');
             $('#languageSelector').toggleClass('show');
+        });
+
+        // Handle language option clicks
+        $(document).on('click', '.language-option', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var selectedLang = $(this).attr('data-lang');
+            console.log('🌐 Language selected:', selectedLang);
+            
+            if (selectedLang && typeof setLanguage === 'function') {
+                setLanguage(selectedLang);
+                $('#languageSelector').removeClass('show');
+            } else {
+                console.error('❌ setLanguage function not available or language not specified');
+            }
         });
 
         // Close dropdown when clicking outside
@@ -489,10 +508,15 @@
 
         // Initialize language selector UI on page load
         setTimeout(function() {
+            console.log('🎨 Initializing language selector UI');
             if (typeof updateLanguageSelectorUI === 'function') {
                 updateLanguageSelectorUI();
+            } else {
+                console.warn('⚠️ updateLanguageSelectorUI function not available yet');
+                // Set default flag
+                $('#currentFlag').addClass('flag-icon-us');
             }
-        }, 100);
+        }, 500);
     });
 
     $(function () {
