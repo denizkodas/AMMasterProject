@@ -66,92 +66,25 @@
                 </li>
 
                 <!-- Language Selector -->
-                <li style="position: relative; display: inline-block; margin: 0 10px; z-index: 1001;" id="languageSelector">
-                    <button type="button" id="languageDropdown" 
-                            onclick="
-                                console.log('Button clicked!');
-                                var dropdown = document.getElementById('languageSelector');
-                                var menu = dropdown.querySelector('.dropdown-menu');
-                                if(dropdown.classList.contains('show')) {
-                                    dropdown.classList.remove('show');
-                                    menu.style.display = 'none';
-                                } else {
-                                    dropdown.classList.add('show');
-                                    menu.style.display = 'block';
-                                }
-                            " 
-                            style="background: white; border: 1px solid #ddd; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; border-radius: 4px; font-size: 14px;">
-                        <span style="width: 20px; height: 15px; background: #007bff; display: inline-block; border-radius: 2px;"></span>
-                        <span>🌐 Dil</span>
-                        <span>▼</span>
+                <li style="position: relative;">
+                    <button onclick="
+                        console.log('DİL BUTONU TIKLANDI!');
+                        var menu = document.getElementById('langMenu');
+                        if(menu.style.display === 'block') {
+                            menu.style.display = 'none';
+                            console.log('Menu kapatıldı');
+                        } else {
+                            menu.style.display = 'block';
+                            console.log('Menu açıldı');
+                        }
+                    " style="padding: 10px; background: white; border: 1px solid #ccc; cursor: pointer;">
+                        🌐 DİL SEÇ ▼
                     </button>
-                    <div class="dropdown-menu" style="
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        background: white;
-                        border: 1px solid #ddd;
-                        border-radius: 4px;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-                        min-width: 160px;
-                        z-index: 1002;
-                        display: none;
-                        padding: 8px 0;
-                        margin-top: 4px;
-                    ">
-                        <a href="javascript:void(0);" data-lang="en" 
-                           onclick="
-                               console.log('EN clicked');
-                               localStorage.setItem('selectedLanguage', 'en');
-                               var dropdown = document.getElementById('languageSelector');
-                               dropdown.classList.remove('show');
-                               dropdown.querySelector('.dropdown-menu').style.display = 'none';
-                               alert('İngilizce seçildi! Sayfa yenilenecek.');
-                               location.reload();
-                           "
-                           style="display: flex; align-items: center; gap: 10px; padding: 10px 15px; color: #333; text-decoration: none; cursor: pointer; transition: background-color 0.2s;">
-                            🇺🇸 English
-                        </a>
-                        <a href="javascript:void(0);" data-lang="tr"
-                           onclick="
-                               console.log('TR clicked');
-                               localStorage.setItem('selectedLanguage', 'tr');
-                               var dropdown = document.getElementById('languageSelector');
-                               dropdown.classList.remove('show');
-                               dropdown.querySelector('.dropdown-menu').style.display = 'none';
-                               alert('Türkçe seçildi! Sayfa yenilenecek.');
-                               location.reload();
-                           "
-                           style="display: flex; align-items: center; gap: 10px; padding: 10px 15px; color: #333; text-decoration: none; cursor: pointer; transition: background-color 0.2s;">
-                            🇹🇷 Türkçe
-                        </a>
-                        <a href="javascript:void(0);" data-lang="ru"
-                           onclick="
-                               console.log('RU clicked');
-                               localStorage.setItem('selectedLanguage', 'ru');
-                               var dropdown = document.getElementById('languageSelector');
-                               dropdown.classList.remove('show');
-                               dropdown.querySelector('.dropdown-menu').style.display = 'none';
-                               alert('Rusça seçildi! Sayfa yenilenecek.');
-                               location.reload();
-                           "
-                           style="display: flex; align-items: center; gap: 10px; padding: 10px 15px; color: #333; text-decoration: none; cursor: pointer; transition: background-color 0.2s;">
-                            🇷🇺 Русский
-                        </a>
-                        <a href="javascript:void(0);" data-lang="ar"
-                           onclick="
-                               console.log('AR clicked');
-                               localStorage.setItem('selectedLanguage', 'ar');
-                               var dropdown = document.getElementById('languageSelector');
-                               dropdown.classList.remove('show');
-                               dropdown.querySelector('.dropdown-menu').style.display = 'none';
-                               document.body.setAttribute('dir', 'rtl');
-                               alert('Arapça seçildi! Sayfa yenilenecek.');
-                               location.reload();
-                           "
-                           style="display: flex; align-items: center; gap: 10px; padding: 10px 15px; color: #333; text-decoration: none; cursor: pointer; transition: background-color 0.2s;">
-                            🇸🇦 العربية
-                        </a>
+                    <div id="langMenu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; min-width: 150px; z-index: 9999;">
+                        <a href="#" onclick="alert('İngilizce seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇺🇸 English</a>
+                        <a href="#" onclick="alert('Türkçe seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇹🇷 Türkçe</a>
+                        <a href="#" onclick="alert('Rusça seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇷🇺 Русский</a>
+                        <a href="#" onclick="alert('Arapça seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇸🇦 العربية</a>
                     </div>
                 </li>
 
