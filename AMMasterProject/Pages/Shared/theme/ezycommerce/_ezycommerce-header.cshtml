@@ -49,25 +49,30 @@
 
                 <!-- Language Selector -->
                 <li class="language-selector" id="languageSelector">
-                    <a href="#" class="dropdown-toggle" id="languageDropdown">
-                        <span class="flag-icon" id="currentFlag"></span>
+                    <a href="javascript:void(0);" class="dropdown-toggle" id="languageDropdown" 
+                       onclick="console.log('Direct click works!'); document.getElementById('languageSelector').classList.toggle('show');">
+                        <span class="flag-icon flag-icon-us" id="currentFlag"></span>
                         <span id="currentLanguage">English</span>
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#" class="language-option" data-lang="en">
+                        <a href="javascript:void(0);" class="language-option" data-lang="en" 
+                           onclick="console.log('EN clicked'); if(typeof setLanguage === 'function') setLanguage('en'); document.getElementById('languageSelector').classList.remove('show');">
                             <span class="flag-icon flag-icon-us"></span>
                             <span>English</span>
                         </a>
-                        <a href="#" class="language-option" data-lang="tr">
+                        <a href="javascript:void(0);" class="language-option" data-lang="tr"
+                           onclick="console.log('TR clicked'); if(typeof setLanguage === 'function') setLanguage('tr'); document.getElementById('languageSelector').classList.remove('show');">
                             <span class="flag-icon flag-icon-tr"></span>
                             <span>Türkçe</span>
                         </a>
-                        <a href="#" class="language-option" data-lang="ru">
+                        <a href="javascript:void(0);" class="language-option" data-lang="ru"
+                           onclick="console.log('RU clicked'); if(typeof setLanguage === 'function') setLanguage('ru'); document.getElementById('languageSelector').classList.remove('show');">
                             <span class="flag-icon flag-icon-ru"></span>
                             <span>Русский</span>
                         </a>
-                        <a href="#" class="language-option" data-lang="ar">
+                        <a href="javascript:void(0);" class="language-option" data-lang="ar"
+                           onclick="console.log('AR clicked'); if(typeof setLanguage === 'function') setLanguage('ar'); document.getElementById('languageSelector').classList.remove('show');">
                             <span class="flag-icon flag-icon-sa"></span>
                             <span>العربية</span>
                         </a>
@@ -472,49 +477,68 @@
 <script>
  
 
-    // Language selector dropdown functionality
-    $(document).ready(function() {
+    // Language selector dropdown functionality - Vanilla JS for better compatibility
+    document.addEventListener('DOMContentLoaded', function() {
         console.log('🔧 Language selector script loaded');
         
-        // Toggle dropdown with more specific event handling
-        $(document).on('click', '#languageDropdown', function(e) {
+        // Get elements
+        const languageSelector = document.getElementById('languageSelector');
+        const languageDropdown = document.getElementById('languageDropdown');
+        const languageOptions = document.querySelectorAll('.language-option');
+        
+        if (!languageSelector || !languageDropdown) {
+            console.error('❌ Language selector elements not found');
+            return;
+        }
+        
+        // Toggle dropdown
+        languageDropdown.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             console.log('🖱️ Language dropdown clicked');
-            $('#languageSelector').toggleClass('show');
+            languageSelector.classList.toggle('show');
         });
 
         // Handle language option clicks
-        $(document).on('click', '.language-option', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var selectedLang = $(this).attr('data-lang');
-            console.log('🌐 Language selected:', selectedLang);
-            
-            if (selectedLang && typeof setLanguage === 'function') {
-                setLanguage(selectedLang);
-                $('#languageSelector').removeClass('show');
-            } else {
-                console.error('❌ setLanguage function not available or language not specified');
-            }
+        languageOptions.forEach(function(option) {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const selectedLang = this.getAttribute('data-lang');
+                console.log('🌐 Language selected:', selectedLang);
+                
+                if (selectedLang && typeof setLanguage === 'function') {
+                    setLanguage(selectedLang);
+                    languageSelector.classList.remove('show');
+                } else {
+                    console.error('❌ setLanguage function not available or language not specified');
+                    // Fallback - reload page with language parameter
+                    window.location.href = window.location.pathname + '?lang=' + selectedLang;
+                }
+            });
         });
 
         // Close dropdown when clicking outside
-        $(document).on('click', function(e) {
-            if (!$(e.target).closest('#languageSelector').length) {
-                $('#languageSelector').removeClass('show');
+        document.addEventListener('click', function(e) {
+            if (!languageSelector.contains(e.target)) {
+                languageSelector.classList.remove('show');
             }
         });
 
         // Initialize language selector UI on page load
         setTimeout(function() {
             console.log('🎨 Initializing language selector UI');
+            
+            // Set default flag
+            const currentFlag = document.getElementById('currentFlag');
+            if (currentFlag && !currentFlag.className.includes('flag-icon-')) {
+                currentFlag.className = 'flag-icon flag-icon-us';
+            }
+            
             if (typeof updateLanguageSelectorUI === 'function') {
                 updateLanguageSelectorUI();
             } else {
                 console.warn('⚠️ updateLanguageSelectorUI function not available yet');
-                // Set default flag
-                $('#currentFlag').addClass('flag-icon-us');
             }
         }, 500);
     });
