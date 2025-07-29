@@ -1,4 +1,4 @@
-﻿
+
 @{
 
     bool ismultivendor = bool.Parse(@Context.Items["IsMultiVendor"].ToString());
@@ -47,7 +47,32 @@
 
             <ul class="customer-menu">
 
-
+                <!-- Language Selector -->
+                <li class="language-selector" id="languageSelector">
+                    <a href="#" class="dropdown-toggle" id="languageDropdown">
+                        <span class="flag-icon" id="currentFlag"></span>
+                        <span id="currentLanguage">English</span>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="language-option" data-lang="en">
+                            <span class="flag-icon flag-icon-us"></span>
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="tr">
+                            <span class="flag-icon flag-icon-tr"></span>
+                            <span>Türkçe</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ru">
+                            <span class="flag-icon flag-icon-ru"></span>
+                            <span>Русский</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <span class="flag-icon flag-icon-sa"></span>
+                            <span>العربية</span>
+                        </a>
+                    </div>
+                </li>
 
                 @if (User.Identity != null && User.Identity.IsAuthenticated)
                 {
@@ -447,8 +472,28 @@
 <script>
  
 
+    // Language selector dropdown functionality
+    $(document).ready(function() {
+        // Toggle dropdown
+        $('#languageDropdown').on('click', function(e) {
+            e.preventDefault();
+            $('#languageSelector').toggleClass('show');
+        });
 
- 
+        // Close dropdown when clicking outside
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('#languageSelector').length) {
+                $('#languageSelector').removeClass('show');
+            }
+        });
+
+        // Initialize language selector UI on page load
+        setTimeout(function() {
+            if (typeof updateLanguageSelectorUI === 'function') {
+                updateLanguageSelectorUI();
+            }
+        }, 100);
+    });
 
     $(function () {
         var header = $(".main-header");

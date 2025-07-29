@@ -1,4 +1,4 @@
-﻿
+
 
 .rtl .float-start {
     float: right !important;
@@ -231,6 +231,201 @@
 }
 .rtl  .product-home-heading .h3{
     text-align:right
+}
+
+/* Language Selector Styles */
+.language-selector {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.language-selector .dropdown-toggle {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    min-width: 120px;
+    justify-content: space-between;
+}
+
+.language-selector .dropdown-toggle:hover {
+    border-color: #bbb;
+    background-color: #f8f9fa;
+}
+
+.language-selector .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 160px;
+    z-index: 1000;
+    display: none;
+    padding: 5px 0;
+    margin-top: 2px;
+}
+
+.language-selector.show .dropdown-menu {
+    display: block;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.language-option:hover {
+    background-color: #f8f9fa;
+    text-decoration: none;
+    color: #333;
+}
+
+.language-option.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.language-option.active:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Flag Icons */
+.flag-icon {
+    width: 20px;
+    height: 15px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.flag-icon-us {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23bd3d44' d='M0 0h512v512H0z'/%3E%3Cpath stroke='%23fff' stroke-width='37' d='M0 58h512M0 137h512M0 216h512M0 295h512M0 374h512M0 453h512'/%3E%3Cpath fill='%23192f5d' d='M0 0h256v275H0z'/%3E%3C/svg%3E");
+}
+
+.flag-icon-tr {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23e30a17' d='M0 0h512v512H0z'/%3E%3Cg fill='%23fff'%3E%3Cpath d='M348.8 264c0 70.6-57.4 128-128 128s-128-57.4-128-128 57.4-128 128-128 128 57.4 128 128z'/%3E%3Cpath d='M340 264c0 61.9-50.1 112-112 112s-112-50.1-112-112 50.1-112 112-112 112 50.1 112 112z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.flag-icon-ru {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23fff' d='M0 0h512v171H0z'/%3E%3Cpath fill='%230039a6' d='M0 171h512v170H0z'/%3E%3Cpath fill='%23d52b1e' d='M0 341h512v171H0z'/%3E%3C/svg%3E");
+}
+
+.flag-icon-sa {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23006c35' d='M0 0h512v512H0z'/%3E%3Cpath fill='%23fff' d='M144 200h224v112H144z'/%3E%3C/svg%3E");
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .language-selector {
+        margin-left: 10px;
+    }
+    
+    .language-selector .dropdown-toggle {
+        padding: 4px 8px;
+        font-size: 12px;
+        min-width: 100px;
+    }
+    
+    .language-selector .dropdown-menu {
+        min-width: 140px;
+    }
+}
+
+/* RTL specific adjustments */
+body[dir="rtl"] .language-selector {
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+body[dir="rtl"] .language-selector .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+body[dir="rtl"] .language-option {
+    flex-direction: row-reverse;
+}
+
+/* RTL Text Direction Support */
+body[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+body[dir="rtl"] .container {
+    direction: rtl;
+}
+
+body[dir="rtl"] .row {
+    direction: rtl;
+}
+
+body[dir="rtl"] .dropdown-menu {
+    text-align: right;
+}
+
+body[dir="rtl"] .navbar-nav {
+    flex-direction: row-reverse;
+}
+
+body[dir="rtl"] .customer-menu {
+    flex-direction: row-reverse;
+}
+
+/* Additional RTL support for common elements */
+body[dir="rtl"] .pull-right {
+    float: left !important;
+}
+
+body[dir="rtl"] .pull-left {
+    float: right !important;
+}
+
+body[dir="rtl"] .text-left {
+    text-align: right !important;
+}
+
+body[dir="rtl"] .text-right {
+    text-align: left !important;
+}
+
+body[dir="rtl"] .margin-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+body[dir="rtl"] .margin-right {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+body[dir="rtl"] .padding-left {
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+body[dir="rtl"] .padding-right {
+    padding-right: 0;
+    padding-left: 15px;
 }
 
 @media screen and (max-width: 991px) {
