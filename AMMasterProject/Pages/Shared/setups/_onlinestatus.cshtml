@@ -1,0 +1,405 @@
+﻿@using AMMasterProject.ViewModel
+@model UserGeneralView
+
+
+
+
+<div class="user-avaibility">
+    <span class="float-end">
+
+
+
+
+    </span>
+    <h4><span class="notranslate" data-translate="onlinestatus">Online Status</span></h4>
+
+
+    <div class="d-flex">
+        <span class="notranslate" data-translate="yourcurrentstatusis">
+            Your current status is
+
+        </span>
+     
+
+        @*    if online *@
+
+
+        <div id="dvOnline" style="display:none">
+
+            <span  class="badge green-bg white-c notranslate" data-translate="online">
+            
+                Online
+            </span> <a id="aOffline" class="grey-c upp bold"> <span class="notranslate" data-translate="gooffline">Go Offline</span> </a>
+
+        </div>
+
+        @*    if online *@
+
+
+        @*    if offline *@
+
+        <div id="dvOffline" style="display:none" >
+            <span class="badge grey-bg white-c notranslate" data-translate="offline">Offline</span>
+
+
+            <a id="aOnline" class="green-c upp bold"> <span class="notranslate" data-translate="goonline">Go Online</span> </a>
+
+        </div>
+
+        @*    if offline *@
+
+
+
+
+
+
+    </div>
+
+
+
+    <ol class="margintb-15">
+        <li>
+            <span class="notranslate" data-translate="visibilityline">
+                Visibility: Your online status will be hidden from other users for a Selected period .
+
+            </span>
+          
+        </li>
+        <li>
+            <span class="notranslate" data-translate="chatandinteractionline">
+            Chat and Interaction: During this time, you won't be able to engage in chat or other interactive features on our platform.
+            </span>
+        </li>
+        <li>
+            <span class="notranslate" data-translate="privacyline">
+            Privacy: Disabling your online status enhances your privacy and allows you to browse our website without being visible to others.
+            </span>
+        </li>
+
+
+
+
+
+
+    </ol>
+
+</div>
+
+
+
+<div class="overlay-view" id="inactivestatus" style="display:none">
+    <div class="popup popup-medium">
+
+        <div class="popup-heading"> <span class="notranslate" data-translate="updatestatus">Update Status</span> </div>
+        <div class=" padding30">
+
+
+
+            <h5 class="o-margin">
+                <span class="notranslate" data-translate="goofflinefor"> Go Offline for</span>
+               </h5>
+
+            <div class="form">
+                <div class="form-group">
+                    <select id="ddlOfflineType">
+                        <option value="hour">1 Hour</option>
+                        <option value="day">1 Day</option>
+                        <option value="week">1 Week</option>
+                        <option value="month">1 Month</option>
+                        <option value="year">1 Year</option>
+                        <option value="customize">Customize Date</option>
+                        <option value="forever">Forever</option>
+                    </select>
+
+                    @* ///set online if not applied  *@
+                </div>
+                <div class="row" id="customizedate" style="display:none">
+                    <div class="col-md-6 form-group o-padding">
+                        <span class="notranslate" data-translate="startdate">Start date</span>
+                        
+                        <input type="date" id="txtStartDate" />
+                    </div>  <div class="col-md-6 form-group o-padding">
+                        <span class="notranslate" data-translate="enddate">End date</span>
+                        
+                        <input type="date" id="txtEndDate" />
+                    </div>
+                </div>
+
+                <div class="checkright margintb-15 white-smoke-bg radius padding15">
+                    <br />
+                    <h5 class="no-margin">
+                        <span class="notranslate" data-translate="availableforchat">Available for Chat</span>
+                        
+                    </h5>
+                    <div class="form-group">
+                        <p>
+                            <span class="notranslate" data-translate="availableforchatmsg">
+                            Are you able to chat during this offline period?
+                        </span></p>
+
+                        <input type="checkbox" checked="checked" id="chkIsChat" value="true">
+                        <label for="chkIsChat" data-translate="yesiamavailableforchat">Yes, I am available for Chat</label>
+
+                    </div>
+                </div>
+
+                <div class="checkright margintb-15 white-smoke-bg radius padding15">
+                    <br />
+                    <h5 class="no-margin">
+                        <span class="notranslate" data-translate="availableprofile">
+                        Available items and profile on search engine </span>
+                    </h5>
+                    <div class="form-group">
+                        <p>
+                            <span class="notranslate" data-translate="availableprofilemsg">
+                                Do you want to enable your profile and items on search for potential buyers during this offline period?
+                      </span>  </p>
+
+                        <input type="checkbox" checked="checked" id="chkIsSearch" value="true">
+                        <label for="chkIsSearch" data-translate="yesiamavailableforsearch">Yes, I am available for search</label>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <hr class="no-margin" />
+        <div class="right padding15">
+
+            @*  <a class="red-bg white-c btn " >Update</a> *@
+            <button class="red-bg white-c btn margin5" id="btnUpdate"> <span class="notranslate" data-translate="update">Update</span> </button>
+
+            <a class="grey-bg btn white-c margin5" id="aClose"> <span class="notranslate" data-translate="close">Close</span>  </a>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    function sendUserInactiveRequest() {
+        // Get values for the parameters from HTML controls
+        var offlinetype = $("#ddlOfflineType").val();
+        // var offlinedatetime;
+
+        // Set offlinedatetime based on the selected option
+
+
+        var startdate = $("#txtStartDate").val();
+        var enddate = $("#txtEndDate").val();
+        var availableforchat = $("#chkIsChat").prop("checked");
+        var availableforsearch = $("#chkIsSearch").prop("checked");
+
+        // Prepare the data to send in the AJAX request
+        var requestData = {
+
+            updatetype:'update',
+            offlinetype: offlinetype,
+
+            startdate: startdate,
+            enddate: enddate,
+            availableforchat: availableforchat,
+            availableforsearch: availableforsearch
+        };
+
+        // Make the AJAX request
+        $.ajax({
+            type: "POST",
+            url: "/controller/user/UserInactive",
+            data: requestData,
+            success: function (data) {
+                if (data.success) {
+                    // Handle success
+
+                    $("#dvOnline").hide();
+                    $("#dvOffline").show();
+
+                    $("#inactivestatus").hide();
+
+                } else {
+                    // Handle failure
+                    console.log("Error:", data.message);
+                }
+            },
+            error: function (error) {
+                // Handle the error response from the server
+                console.log("Error:", error);
+            }
+        });
+    }
+
+    function goonline() {
+        // Get values for the parameters from HTML controls
+        var offlinetype = "online";
+        // var offlinedatetime;
+
+        // Set offlinedatetime based on the selected option
+
+
+
+        // Prepare the data to send in the AJAX request
+        var requestData = {
+            updatetype:'update',
+            offlinetype: offlinetype,
+
+            startdate: '',
+            enddate: '',
+            availableforchat: ''
+        };
+
+        // Make the AJAX request
+        $.ajax({
+            type: "POST",
+            url: "/controller/user/UserInactive",
+            data: requestData,
+            success: function (data) {
+                if (data.success) {
+                    // Handle success
+                    if (data.offlinetype == "online") {
+
+                        $("#dvOnline").show();
+                        $("#dvOffline").hide();
+                    } else {
+                        $("#dvOnline").hide();
+                        $("#dvOffline").show();
+                    }
+
+                } else {
+                    // Handle failure
+                    console.log("Error:", data.message);
+                }
+            },
+            error: function (error) {
+                // Handle the error response from the server
+                console.log("Error:", error);
+            }
+        });
+    }
+
+    function govalidate(offlinetype, startdate, enddate, availableforchat, availableforsearch) {
+        // Get values for the parameters from HTML controls
+       
+        // var offlinedatetime;
+
+        // Set offlinedatetime based on the selected option
+
+       
+
+        // Prepare the data to send in the AJAX request
+        var requestData = {
+            updatetype:'validate',
+            offlinetype: offlinetype,
+
+            startdate: startdate,
+            enddate: enddate,
+            availableforchat: availableforchat,
+            availableforsearch: availableforsearch
+
+        };
+
+        // Make the AJAX request
+        $.ajax({
+            type: "POST",
+            url: "/controller/user/UserInactive",
+            data: requestData,
+            success: function (data) {
+                if (data.success) {
+                    // Handle success
+                    if (data.offlinetype == "online") {
+
+                        $("#dvOnline").show();
+                        $("#dvOffline").hide();
+                    } else {
+                        $("#dvOnline").hide();
+                        $("#dvOffline").show();
+                    }
+
+                } else {
+                    // Handle failure
+                    console.log("Error:", data.message);
+                }
+            },
+            error: function (error) {
+                // Handle the error response from the server
+                console.log("Error:", error);
+            }
+        });
+    }
+
+    // Show/hide the customized date section based on the selected option
+    $(document).ready(function () {
+        // Wait for 2 seconds before executing the code inside $(document).ready
+        setTimeout(function () {
+    @if (Model.userothermetadata != null && Model.userothermetadata.UserInactiveMetaData != null)
+    {
+        <text>
+                    govalidate(
+                        
+                        '@Model.userothermetadata.UserInactiveMetaData.OffLineType',
+                    
+                        '@Model.userothermetadata.UserInactiveMetaData.StartDate',
+                    
+                    '@Model.userothermetadata.UserInactiveMetaData.EndDate',
+                        '@Model.userothermetadata.UserInactiveMetaData.Availableforchat',
+                        '@Model.userothermetadata.UserInactiveMetaData.Availableforsearch',
+                    
+                    );
+        </text>
+    }
+
+                $("#aOffline").click(function () {
+                    $("#inactivestatus").show();
+                });
+
+            $("#aClose").click(function () {
+                $("#inactivestatus").hide();
+            });
+
+            $("#ddlOfflineType").change(function () {
+                var selectedOption = $(this).val();
+                if (selectedOption === "Customize Date") {
+                    $("#customizedate").show();
+                } else {
+                    $("#customizedate").hide();
+                }
+            });
+
+            // Call the function when the "Update" button is clicked
+            $("#btnUpdate").click(function () {
+                sendUserInactiveRequest();
+            });
+
+            $("#aOnline").click(function () {
+                goonline();
+            });
+
+            // Correct syntax for checking the condition
+    @if (Model.userothermetadata != null && Model.userothermetadata.UserInactiveMetaData != null)
+    {
+        <text>
+                 var offlineType = '@Model.userothermetadata.UserInactiveMetaData.OffLineType';
+                var offlinedate = '@Model.userothermetadata.UserInactiveMetaData.EndDate';
+
+                if (offlineType === 'online') {
+                    // Your JavaScript code here
+                    $("#dvOffline").hide();
+                    $("#dvOnline").show();
+                }
+                else {
+                    $("#dvOnline").hide();
+                    $("#dvOffline").show();
+                }
+        </text>
+    }
+    else
+    {
+        <text>
+                $("#dvOnline").show();
+                $("#dvOffline").hide();
+        </text>
+    }
+        }, 1000); // 2-second delay
+    });
+
+</script>

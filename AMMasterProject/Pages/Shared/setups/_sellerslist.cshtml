@@ -1,0 +1,122 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="seller-list">
+    <div class="container">
+        <div class="">
+            <h3 class="bold padding10">
+                <span id="sellefeatured"> </span>
+            </h3>
+            <div class="row">
+
+                <div style="position:relative">
+                    <div class="swiper-container swiper-container-seller">
+                        <div id="dvsellerview" class="swiper-wrapper">
+
+
+
+
+
+
+
+
+                        </div>
+
+
+                       
+
+                    </div>
+
+
+
+
+                 
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+
+    
+          $(document).ready(function() {
+              sellerlist();
+
+});
+    function sellerlist() {
+    ROWCOUNT = 0;
+    $('[id*=dvsellerview]').empty();
+    $.ajax({
+        type: "POST",
+        cache: false, // disable caching
+        url: "/api/global/sellerlist",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var itemsHtml = "";
+            // set attributes or content to the new div
+
+            $.each(data, function (index, item) {
+
+                ROWCOUNT++;
+                itemsHtml += '<div  class="swiper-slide">';
+
+                itemsHtml += '<a  href="' + item.shopUrlpath + '" >';
+                itemsHtml += '<div class="seller-wrapper">';
+                itemsHtml += '<img src="' + item.logo + '" />';
+                itemsHtml += '<span class="shop-detail">'
+                itemsHtml += item.shopName;
+                itemsHtml += '<span class="total-listing">'
+                itemsHtml += 'Total Listing ';
+                itemsHtml += 10000;
+                itemsHtml += '</span>';
+                itemsHtml += '</span>';
+                itemsHtml += '</div>';
+               
+                itemsHtml += '</a>';
+
+
+              
+                itemsHtml += '</div>';
+               
+                
+            });
+
+          
+
+            if (ROWCOUNT <= 0) {
+                $('[id*=dvsellerview]').empty();
+            }
+            else {
+                $('[id*=dvsellerview]').append(itemsHtml);
+
+                $("#sellefeatured").text("Featured Seller");
+                  }
+              
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+};
+
+
+
+          
+
+        
+
+
+
+
+
+</script>

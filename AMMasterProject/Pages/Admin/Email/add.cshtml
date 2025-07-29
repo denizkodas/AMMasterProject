@@ -1,0 +1,36 @@
+﻿@page  "/admin/email/content"
+@model AMMasterProject.Pages.Admin.Email.addModel
+@{
+    <title>Email Template</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+<div class="">
+    <div class="form card padding30 white-bg">
+        <h5>
+            @Model.PageName
+        </h5>
+        <div >
+<textarea asp-for="@Model.PageDetail.PageDescription">
+
+</textarea>
+        </div>
+
+            <button>Save</button>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+
+
+
+        $('#PageDetail_PageDescription').summernote({
+            
+        });
+    });
+</script>

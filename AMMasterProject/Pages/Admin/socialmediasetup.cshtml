@@ -1,0 +1,198 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.socialmediasetupModel
+@{
+    <title>Social Media Details</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<form method="post" enctype="multipart/form-data">
+<div class="card">
+    <div class=" card-body">
+
+
+
+        <div class="row">
+            <div>
+           @*      <div asp-validation-summary="All"></div> *@
+            <!-- Social Accounts add-->
+
+             
+
+                    <input asp-for="@Model.socialmedia.SocialMediaId" type="hidden" />
+                    <div class="d-flex mb-3 form">
+
+                   
+
+
+
+                 
+                <div class="flex-grow-1 row"><div class="col-md-2">
+                                <label class="btn w-100 white-bg border file-upload">
+                                    Upload Icon
+
+
+                                    <input type="file" id="fileInput" class="account-file-input" onchange="uploadFile()" />
+
+
+
+                                </label>
+
+                                <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+
+
+                             
+
+                            </div>
+                              <div class="col-md-2">
+
+                                <input type="text" maxlength="50" placeholder="Title" asp-for="@Model.socialmedia.Name">
+                                <span asp-validation-for="@Model.socialmedia.Name" class="required"></span>
+                            </div>
+
+                           
+
+
+                    <div class="col-md-4">
+
+                                <input type="text" placeholder="URL" maxlength="200" asp-for="@Model.socialmedia.Url" />
+
+                                <span asp-validation-for="@Model.socialmedia.Url" class="required"></span>
+                    </div>
+                    
+               
+                            
+                            <div class="col-md-2 checkright">
+
+                                <input type="checkbox" asp-for="@Model.socialmedia.IsPublish" checked="@Model.socialmedia.IsPublish" />
+                                <label id="ispublish" asp-for="@Model.socialmedia.IsPublish">Publish</label>
+
+                            </div>
+                    <div class="col-md-2 text-end">
+
+                                <button type="submit" class="btn margin5 float-end padding10 btn-outline-secondary">
+                                    Save</button>
+
+
+                                <img id="socialmediaicon" class="margin5" height="40" width="40px" style="display:@(Model.socialmedia.Icon == null ? "none" : "block")" src="@(Model.socialmedia.Icon != null ? Model.socialmedia.Icon  : "")"/>
+
+                                <input type="hidden" asp-for="@Model.socialmedia.Icon" />
+                               
+
+                              
+                            </div>
+                </div>
+            </div>
+           
+            <hr>
+
+            <!-- /Social Accounts loop -->
+
+            @foreach (var item in Model.Listsocialmedia)
+                {
+                    
+               
+
+            <div class="d-flex mb-3">
+                <div class="flex-shrink-0">
+                    <img src="@item.Icon" alt="@item.Name" class="me-3" height="30">
+                </div>
+                <div class="flex-grow-1 row">
+                    <div class="col-8 col-sm-7 mb-sm-0 mb-2 padding5 h5">
+
+                            <a href="@item.Url" target="_blank" class="black-c">@item.Name</a>
+                    </div>
+                    <div class="col-4 col-sm-5 text-end">
+                      
+
+                                <a href="~/admin/socialmediasetup?ID=@item.SocialMediaId" class="btn margin5 btn-icon btn-outline-danger">  <i class="bx bx-pencil"></i> </a>
+                            <a href="#@item.SocialMediaId" class="btn margin5 btn-icon btn-outline-danger">  <i class="bx bx-trash"></i>  </a>
+                      
+
+                                    <div class="overlay" id="@item.SocialMediaId">
+                                            <div class="popup-small popup ">
+                                                <div class="padding30 left">
+                                                    <h4 class="no-margin">
+                                                        Confirm Delete
+                                                    </h4>
+
+                                                    <p class="medium">
+                                                        Are you sure you want to delete this record ?
+                                                    </p>
+
+                                                    <a class="btn grey-bg white-c float-end margin5" href="#close">No</a>
+                                                       <button formnovalidate asp-page-handler="Delete" asp-route-socialmediaid="@item.SocialMediaId" class="btn theme-bg f-theme float-end margin5">Yes</button>
+                                 
+
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+                }
+            <!-- /Social Accounts loop -->
+            </div>
+        </div>
+    </div>
+</div>
+
+ </form>
+                        <script>
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+                $("#socialmediaicon").show();
+
+                $('#spanfilename').text("");
+
+                $("#socialmediaicon").attr("src", data.fileLink);
+
+                $('#socialmedia_Icon').val(data.fileLink);
+
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+                        </script>

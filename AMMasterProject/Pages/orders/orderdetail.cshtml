@@ -1,0 +1,21 @@
+﻿@page
+@model AMMasterProject.Pages.orders.orderdetailModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title>Order Details</title>
+    ViewData["Title"] = "Order Details";
+}
+<div id="dvShowItemIvnoiceViewContainer" class="order-invoice"> </div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+
+        var value = getParameterByName('invoicenumber');
+       
+        Ordershowiteminvoice(value, '@Model.usertype');
+    });
+</script>

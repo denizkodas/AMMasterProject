@@ -1,0 +1,275 @@
+﻿@page
+@model AMMasterProject.Pages.Listing.inquirylistModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title >Inquiry </title>
+}
+@if (Model != null && Model.qalist.Count > 0)
+{
+
+    <div id="dvproductdetailqalist" class="card">
+
+
+        <div class="table-responsive border">
+            <table class="table border billing" id="ListingLoad2">
+                <thead class="white-smoke-bg">
+                    <tr class="">
+                        <th>
+                            <span class="notranslate" data-translate="item">  Item  </span>
+                           </th>
+                        <th style="width:400px">
+                            <span class="notranslate" data-translate="postedinquiry">   Posted Inquiry</span>
+                            </th>
+                        <th style="width:400px">
+                            <span class="notranslate" data-translate="postedreply"> Posted Reply</span>
+
+                            </th>
+                 
+                      
+                        <th style="width:50px;" class="center">
+
+                            <span class="notranslate" data-translate="action"> Action</span>
+
+                            </th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                
+    
+        @foreach (var qa in Model.qalist)
+        {
+                        <tr>
+                            <td>
+                                <img src="@qa.ItemMetaData.Image" class="rounded-circle">
+                               
+                                 @qa.ItemMetaData.Name
+
+                                  <br/>
+                                <a target="_blank" href="/item/@qa.ItemMetaData.SEOURL-@qa.productid">
+
+                                    <span class="notranslate" data-translate="viewitem"> View Item</span>
+                                    </a>
+                            </td>
+                            <td >
+                                
+                                <p class="no-margin">
+                                  <span>
+                                        @qa.name
+                                  </span> <br/>
+                                    <label class="bold d-grey-c">Q:</label>
+                                    @qa.question <br/>
+
+                                    <span class="d-grey-c small margibrf-15">
+                                     
+                                       @qa.questiondate 
+                                    </span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="no-margin">
+                                    <span>
+                                        @qa.name  - @qa.usertype
+                                    </span> <br/>
+                                    <label class="bold d-grey-c">A:</label>
+
+
+                                    <span id="answer_@qa.QuestionId"> @qa.answer </span>
+                                    <br/>
+                                    <span class="d-grey-c small margibrf-15">
+                                    @qa.replydate  </span> 
+                                </p>
+                             
+                           
+                           
+                              
+                            </td>
+                            <td class="center">
+                                <a class="qreply" data-postedbyid="@qa.postedbyid" data-answer="@qa.answer.Replace("Pending Answer","")" data-id="@qa.QuestionId">
+
+                                    @if (@qa.answer == "Pending Answer")
+                                    {
+                                        <span class="theme-bg btn-xs radius w-100 f-theme btn notranslate" data-translate="reply"> Reply</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="grey-bg btn-xs radius w-100 white-c btn notranslate" data-translate="edit"> Edit</span>
+                                        
+                                    }
+
+
+
+
+
+
+
+                                </a>
+
+                            </td>
+                           
+                        </tr>
+
+
+                       
+        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <input type="hidden" id="hdnqaid" value="0">
+    <input type="hidden" id="hdnpostebyid" value="0">
+    <input type="hidden" id="hdnredirecturl" value="0">
+    <div id="qaanswerbox" class="overlay-view" style="display:none">
+        <div class="popup">
+            <div class="popup-heading">
+                <span class="notranslate" data-translate="reply"> Reply</span>
+          
+                <a id="qaclose" class="close-back"></a>
+            </div>
+      
+      
+     <div class="form padding30">
+      <div class="form-group">
+                    <span class="notranslate" data-translate="typeyourreplyhere">  Type Your Reply Here</span>
+    
+         
+        <textarea id="txtanswer" rows="2" cols="20" maxlength="1000" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelreply'))"></textarea>
+        <span class="" id="characterCountLabelreply"></span>
+            </div>
+            <div>
+        <label  id="lblerror" class="validation"></label>
+                <button type="button" id="btnqareply">
+
+                        <span class="notranslate" data-translate="save">  Save</span>
+
+                    </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
+}
+else
+{
+    <div class="emptydata">
+        <span class="notranslate" data-translate="emptydata">    No Record Found</span>
+      
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        // Bind a click event handler to the "Reply" links with the class "qreply"
+        $(".qreply").click(function () {
+            var questionId = $(this).data("id");
+            var answer = $(this).data("answer");
+            var postedbyid = $(this).data("postedbyid");
+            var redirecturl = $(this).data("postedbyid");
+            $("#hdnqaid").val(questionId);
+            $("#hdnpostebyid").val(postedbyid);
+            $("#hdnredirecturl").val(redirecturl);
+            
+            $("#txtanswer").val(answer);
+
+
+            $("#btnqareply").show();
+            $("#lblerror").text("");
+            $("#qaanswerbox").show();
+        });
+
+
+        $("#qaclose").click(function () {
+
+            $("#hdnqaid").val("0");
+            $("#qaanswerbox").hide();
+        });
+
+
+        $("#btnqareply").click(function () {
+
+            inquiryanswerpost();
+        });
+
+
+
+        $("#txtanswer").on("input", function () {
+            // Get the value of txtquestion
+            var inputValue = $(this).val();
+
+            // Check if the input value is not null or empty
+            if (inputValue == null && inputValue.trim() == "") {
+                // Set the text of lblvalue to a single quote
+                $("#lblerror").text("Reply is required");
+            } else {
+                // Set the text of lblvalue to an empty string
+                $("#lblerror").text("");
+            }
+        });
+
+
+
+    });
+
+
+
+    function inquiryanswerpost() {
+
+        if (@Model.loginid == "0") {
+            // var loginuserid = "1197";
+            loginview("LoginView");
+            return;
+        }
+
+        else if ($("#hdnqaid").val() === "" || $("#hdnqaid").val() == 0) {
+            $("#qaanswerbox").hide();
+            return;
+        }
+
+        else if ($("#txtanswer").val() === "") {
+            $("#lblerror").text("Reply is required");
+            return;
+        }
+
+        else {
+
+
+
+
+            $.ajax({
+                type: "POST",
+                cache: false, // disable caching
+                url: "/controller/product/PostQuestionAnswer?userid=" + @Model.loginid + "&questionid=" + $("#hdnqaid").val() + "&answer=" + $("#txtanswer").val() + "&buyerid=" + $("#hdnpostebyid").val() + "&redirecturl=" + $("#hdnredirecturl").val(),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+                success: function (data, response) {
+
+                    if (data == "success") {
+
+
+
+                        $("#btnqareply").hide();
+                        $("#lblerror").text("Reply Updated Successfully");
+                        toaster("Reply Updated Successfully", "value");
+
+                        var questionId = $("#hdnqaid").val();
+                        $("#answer_" + questionId).text($("#txtanswer").val());
+
+                    }
+                    else {
+                        $("#lblerror").text(response.responseText);
+                    }
+
+
+
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+                }
+            });
+        }
+    };
+</script>

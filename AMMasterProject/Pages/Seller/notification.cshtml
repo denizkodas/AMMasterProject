@@ -1,0 +1,22 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.notificationModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="notification">Notification </title>
+}
+
+
+<div class="">
+    <ul class="notification-list">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            var profileIdClaim = User.FindFirst("UserID");
+            if (profileIdClaim != null)
+            {
+                int profileId = Convert.ToInt32(profileIdClaim.Value);
+                @await Component.InvokeAsync("Notification", new { viewName = "/Pages/Notification/Announcement.cshtml", methodname= "announcementall", profielid=profileId })
+                ;
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,270 @@
+﻿
+
+.rtl .float-start {
+    float: right !important;
+}
+.rtl .detail .d-action-btn {
+    left: 0px;
+    right: initial;
+}
+
+.rtl .amn-h-half .show-btns {
+    text-align: left;
+}
+
+.rtl .community-back{
+    float:left;
+    left:0;
+    right:initial
+}
+
+.rtl .blog-box .date{
+    float:left
+}
+
+.rtl .detail .qrcode {
+  float:left
+}
+
+.rtl .vendor-detail-box .shop-btn{
+    float:left
+}
+
+.rtl .cart-div svg {
+    transform: rotateY(180deg);
+}
+
+.rtl .notify {
+    margin-right: -13px;
+}
+
+.rtl .cart-total {
+    right: initial;
+    left: 11px;
+    text-align: left;
+}
+
+.rtl .cart-qty input[type="number"] {
+    margin-right: 5px;
+}
+
+.rtl .cart-delete {
+    float: left;
+
+}
+
+.rtl .float-end {
+    float: left !important;
+}
+
+.rtl .cart-overview .cart-delete {
+    left: 10px;
+    right:initial
+}
+
+.rtl .cart-qty {
+    margin-left: 30px;
+    margin-right:0px 
+}
+
+.rtl .cart-overview .cart-total .heading {
+    float: left;
+}
+
+.rtl .right {
+    text-align: left !important;
+}
+
+.rtl .left {
+    text-align: right !important;
+}
+
+.rtl .payment-img {
+    float: left
+}
+
+.rtl .order-overview .totalitemcart {
+    left: 10px;
+    right:initial
+}
+
+.rtl .customer-page-menu svg {
+    margin: -6px 8px 5px 5px;
+}
+
+.rtl .customer-page-menu ul li .active {
+    border-right: 6px solid var(--theme-color);
+    border-left:0px;
+}
+
+.rtl .all-orders .total-amount{
+    float:left
+}
+
+.rtl .order-detail-btn i {
+    transform: rotateY(180deg);
+}
+.rtl .customer-page {
+    border-left: solid 0px #f5f5f5;
+    border-right: solid 15px #f5f5f5;
+}
+
+.rtl .notification-list .n-date {
+    float: left;
+}
+
+.rtl .padding-right {
+    padding-left: 10px !important;
+    padding-right: 0px
+}
+
+.rtl .padding-left {
+    padding-right: 10px !important;
+    padding-left: 0px
+}
+
+.rtl .adminlogin .col-left {
+    -webkit-clip-path: initial;
+    border-radius: 0px 20px 20px 0px;
+}
+
+
+.rtl .usernameavailable,
+.rtl .usernamenotavailable {
+    font-size: 13px;
+    float: left;
+    margin-left: 27px;
+    margin-right:0px;
+}
+
+.rtl .search-form-box{
+    left:initial;
+    right:0px
+}
+
+.rtl .search-data {
+    left: 0px;
+    right: 17%;
+}
+
+.rtl .list-grid {
+    text-align: left;
+}
+
+.rtl .checkright input[type="checkbox"] + label::before, 
+.rtl .checkright input[type="radio"] + label::before {
+    margin-left: 0.2em;
+}
+
+.rtl .searchbind .pricing-box .go-btn {
+    transform: rotateY(180deg);
+}
+
+.rtl .popup-heading .close-back {
+    float: left;
+}
+
+.rtl .popup-heading{
+    text-align:right
+}
+
+.rtl .listview .p-img {
+    float: right;
+    margin-left: 15px;
+    margin-right: 0px;
+}
+
+.rtl .listview .p-data {
+    float: right;
+}
+
+.rtl .listview .p-action-btn {
+    left: initial;
+    right: 293px;
+}
+
+.rtl .listview .p-conditional_div {
+    float: right
+}
+
+
+.rtl .detail .d-contact-detail svg {
+    margin-left: 15px;
+    margin-right: 0px;
+}
+
+.rtl .vendor-detail-box .info-icons .data {
+    float: left;
+    color: black;
+}
+
+.rtl .detail .barcode {
+    float: left;
+}
+
+.rtl .searchbind .search-btn-box{
+    text-align:right
+}
+
+.rtl .p-action-btn .p-chat,
+.rtl .p-action-btn .p-view,
+.rtl .p-action-btn .p-un-fav,
+.rtl .p-action-btn .p-un-fav:hover {
+    float: left;
+}
+
+.rtl .credit .c-other-details {
+    float: left;
+}
+
+.rtl .credit-img {
+    margin-left: 9px;
+    margin-right: 0px;
+}
+
+.rtl #searchtype {
+    float: left;
+}
+
+.rtl .required::after {
+    margin-left: -13px;
+}
+.rtl  .product-home-heading .h3{
+    text-align:right
+}
+
+@media screen and (max-width: 991px) {
+    .rtl .back-btn {
+            float: left;
+        }
+
+        .rtl .user-detail {
+            left: 45px;
+            right: 0;
+        }
+
+        .rtl .usermenu-links .mobile-menu .header-credit a {
+            float: left;
+        }
+
+        .rtl .mobile-search {
+            left: 46px;
+            right: 0;
+        }
+
+        .rtl .mobile-menu li a .navtrigger::before {
+            left: 5%;
+            right: initial;
+            transform: translate(-50%, -50%) rotate(-222deg);
+        }
+
+        .rtl .footermenu ul {
+            text-align: right;
+        }
+
+    .rtl .back-btn {
+        position: absolute;
+        right: initial;
+        left:0px 
+    }
+    }

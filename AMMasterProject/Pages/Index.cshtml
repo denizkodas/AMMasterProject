@@ -1,0 +1,60 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Rendering
+@inject IConfiguration Configuration
+
+
+
+
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+    // var productmodel = Model.productmodel;
+    var theme = Configuration["Theme"];
+
+}
+
+ 
+   <link rel="stylesheet" href="~/css/slider.css" asp-append-version="true" />
+
+@if (theme == "EzyCommerce")
+{
+    <partial name="/Pages/Shared/theme/ezycommerce/_ezycommerce-home.cshtml" />
+}
+
+
+
+
+
+
+
+<script src="~/js/slider.js" asp-append-version="true"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+     
+            herobanner();
+
+
+            productboosthome();
+
+     
+
+      
+            homepageitempagesetup();
+
+     
+            productdiscounthome();
+
+
+
+            cmsview("home");
+
+        
+    });
+
+</script>
+
+

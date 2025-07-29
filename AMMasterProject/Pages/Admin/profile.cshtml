@@ -1,0 +1,254 @@
+﻿@page "/admin/accountsetting"
+@model AMMasterProject.Pages.Admin.profileModel
+@{
+    <title>Account Setting</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+
+
+<div class=" white-bg no-padding simple-tab">
+    <div class="row no-margin">
+        <div class="col-md-2 no-padding">
+            <ul class="nav nav-pills mb-3" role="tablist">
+
+
+
+                <li class="nav-item">
+                    <button id="accountTabButton" type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#profile" aria-controls="accountsetting" aria-selected="true">
+                       Profile
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button id="accountTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#device" aria-controls="accountsetting" aria-selected="true">
+                      Connected Device
+                    </button>
+                </li>
+                @*   <li class="nav-item">
+                <button id="notificationTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#notifysetting" aria-controls="notifysetting" aria-selected="true">
+                Notification Setting
+                </button>
+                </li> *@
+
+            </ul>
+
+
+
+        </div>
+        <div class="col-md-10 no-padding">
+            <div class="tab-content padding30 form">
+                <div class="tab-pane fade active show" id="profile">
+                    <h5 class="s-bold no-margin line30">
+                        Profile
+
+                    </h5>
+
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="card">
+                            <div class="container">
+                                <div class="row">
+
+
+
+
+
+
+
+
+
+                                    <input asp-for="@Model.UserProfile.ProfileGuid" type="hidden" />
+                                    <div class="customer-page">
+
+
+                                        <div asp-validation-summary="All"></div>
+
+                                        <div class="padding15 white-bg">
+
+
+
+
+                                            <div class="div row form">
+
+                                                <div class="col-md-3">
+
+
+                                                    <div class="profile-image-add">
+                                                        <img id="profileimage" style="display:@(Model.UserProfile.ProfileImage == null ? "none" : "block")" src="@(Model.UserProfile.ProfileImage != null ? Model.UserProfile.ProfileImage : "")" />
+                                                    </div>
+                                                    <div class="margin10">
+                                                        <label class="file-upload w-100">
+                                                            <span class="btn theme-bg f-theme margintb-15 w-100"> Upload Image</span>
+                                                            <input type="file" id="fileInput" onchange="uploadFile()" />
+
+                                                            <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                                        </label>
+                                                        <p class="grey-c">
+                                                            Allowed JPG, GIF or PNG. Max size of 10 MB <br />
+                                                            <span id="spanfilename" class="required"></span>
+                                                            <input type="hidden" asp-for="@Model.UserProfile.ProfileImage" />
+
+                                                            <span asp-validation-for="@Model.UserProfile.ProfileImage" class="required"></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            <label class="form-label"> Display Name</label>
+                                                            <input type="text" maxlength="100" asp-for="@Model.UserProfile.ClientDisplayName">
+
+                                                            <span asp-validation-for="@Model.UserProfile.ClientDisplayName" class="required"></span>
+
+
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="form-label">First Name</label>
+                                                            <input type="text" maxlength="50" asp-for="@Model.UserProfile.Firstname">
+
+                                                            <span asp-validation-for="@Model.UserProfile.Firstname" class="required"></span>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="form-label">Last Name</label>
+                                                            <input type="text" maxlength="50" asp-for="@Model.UserProfile.Lastname">
+
+                                                            <span asp-validation-for="@Model.UserProfile.Lastname" class="required"></span>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="form-label">E-mail</label>
+                                                            <input type="text" maxlength="300" asp-for="@Model.UserProfile.Email">
+
+                                                            <span asp-validation-for="@Model.UserProfile.Email" class="required"></span>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="form-label"> Phone Number</label>
+                                                            <input type="text" maxlength="30" asp-for="@Model.UserProfile.Contactnumber">
+
+                                                            <span asp-validation-for="@Model.UserProfile.Contactnumber" class="required"></span>
+
+
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label class="form-label"> About Me</label>
+                                                            <textarea maxlength="500" asp-for="@Model.UserProfile.About" oninput="updateCharacterCount(this)"></textarea>
+                                                            <span id="characterCountLabel"></span>
+                                                            <span asp-validation-for="@Model.UserProfile.About" class="required"></span>
+
+
+
+
+                                                        </div>
+
+
+
+                                                        <div>
+                                                            <button type="submit" class="clickable-button">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="device">
+                
+                    <div class="row ">
+                  
+
+             @*            <partial name="/pages/shared/setups/_devicelogin.cshtml" />
+
+              *@       </div>
+                </div>
+
+
+
+            
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+                $("#profileimage").show();
+
+                $('#spanfilename').text("");
+
+                $("#profileimage").attr("src", data.fileLink);
+
+                $('#UserProfile_ProfileImage').val(data.fileLink);
+
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+</script>

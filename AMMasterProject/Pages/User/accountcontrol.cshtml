@@ -1,0 +1,78 @@
+﻿@page
+@model AMMasterProject.Pages.User.accountcontrolModel
+@{
+    ViewData["Title"] = "Account Control";
+}
+
+
+
+
+
+
+<div class="paddingtb-15 o-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="customer-page-menu">
+
+
+                <partial name="/Pages/user/_tab.cshtml" />
+            </div>
+
+
+            <div class="customer-page">
+                <h4 class="o-username box-left padding15 m-none">
+                    <span class="" >    Register </span>
+
+                    <span class="cap notranslate" data-translate="accountcontrol">
+
+
+                        Account Control</span>
+
+                </h4>
+           
+
+                <div class="row ">
+                    <partial name="/pages/shared/setups/_onlinestatus.cshtml" model="@Model.usergeneralview" />
+
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        var profileIdClaim = User.FindFirst("UserType");
+                        if (profileIdClaim?.Value != "Admin") // Use ?.Value
+                        {
+                            <div class="delete-account">
+                                <span class="float-end">
+                                    <partial name="/pages/shared/setups/_accountdelete.cshtml" />
+                                </span>
+                                <h4>
+                                    <span class="notranslate" data-translate="deletingaccount">
+
+
+                                      Deleting Account
+                                    </span>
+                                    
+                                   </h4>
+                                <p>
+                                    <span class=" notranslate" data-translate="deletingmsg">
+
+                                        Deleting your account will remove all of your information. This cannot be undone.
+
+                                     
+                                    </span>
+
+                                  
+                                </p>
+
+                            </div>
+                        }
+                    }
+
+
+                    <partial name="/pages/shared/setups/_devicelogin.cshtml" model="@Model.UserDevice" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

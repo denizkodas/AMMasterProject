@@ -1,0 +1,94 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Events.IndexModel
+@{
+    <title>Events</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/events">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/events/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/events/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+
+        <div class="table-responsive text-nowrap">
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr>
+
+
+
+                        <th >Title</th>
+                        <th style="width:150px" class="text-center">Category</th>
+                        <th style="width:100px" class="text-center">Event Date</th>
+                        <th style="width:100px" class="text-center">Status</th>
+                        <th style="width:60px" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+
+                    @foreach (var item in Model.eventlist)
+                        {
+                            
+                      
+                    @*     Loop start*@
+                    <tr>
+
+
+                        <td>
+                          
+                           @item.Title <br/>
+                            <small>  <span class="badge grey-bg white-c">@item.TotalRegistration</span> Register </small>
+
+                        </td>
+                        <td class="text-center">
+                            @item.Category
+                        </td>
+                        <td class="text-center">
+                            @item.EventStartDate
+                        </td>
+                        <td class="text-center">
+                                    @item.IsPublish
+                        </td>
+                        <td class="center">
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+
+                                            <a href="/admin/events/add?ID= @item.EventId" class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+
+
+                                            <button formnovalidate asp-page-handler="Delete" asp-route-eventid="@item.EventId" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i> Delete</button>
+
+                                            
+                                            @* <a class="dropdown-item"><i class="bx bx-trash"></i> Delete</a>*@
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    @*     Loop End*@
+                        }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</form>

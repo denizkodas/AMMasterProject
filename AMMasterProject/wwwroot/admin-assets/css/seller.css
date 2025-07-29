@@ -1,0 +1,102 @@
+﻿
+.bg-menu-theme {
+    background-color: transparent !important;
+    color: #000;
+    box-shadow: none !important;
+   
+}
+
+.menu-vertical .menu-inner > .menu-item .menu-link {
+    font-weight: 500;
+    font-size: 0.838rem;
+    margin:0px
+}
+.menu-vertical .menu-inner > .menu-item {
+    margin: 0px;
+    padding: 0px 18px;
+}
+.menu-vertical .menu-header{
+    margin:0px
+}
+.bg-menu-theme .menu-inner > .menu-item .active {
+    color: #000;
+    background-color: #fff !important;
+    box-shadow: 2px 12px 15px 0 rgba(0, 0, 0, 0.09);
+    font-weight: 600;
+}
+.menu-icon {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(20, 20, 20, 0.12), 0 0.125rem 0.25rem -0.0625rem rgba(20, 20, 20, 0.07) !important;
+    border-radius: 4px;
+    width: 27px !important;
+    height: 27px;
+    text-align: center;
+    padding: 5px;
+    background: white
+}
+.bg-menu-theme .menu-link {
+    color: #3d3d3e;
+}
+
+.bg-menu-theme .menu-inner > .menu-item .active .menu-icon {
+    background: var(--theme-color);
+    color: var(--f-theme);
+}
+
+.menu-inner .menu-header-text::after{
+    display:none
+}
+
+.seller-profile {
+    border: solid 1px #eee;
+    border-radius: 4px;
+    display:flex;
+    padding: 0px;
+    height: 120px;
+    width: 133px;
+    justify-content: center;
+    align-items: center;
+    text-align:center
+}
+
+    .seller-profile img {
+        margin: 0px;
+        float: inherit !important;
+        max-height: 120px;
+        max-width:100%;
+        object-fit:cover
+    }
+
+#videoContainer iframe {
+    width: 100%;
+    height: 350px;
+}
+
+
+
+@media screen and (max-width: 991px) {
+    .menu-header {
+        display: none
+    }
+
+    .menu-vertical .menu-inner > .menu-item .menu-link{
+        display:flex
+    }
+
+    .menu-sub {
+        display: none !important;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-item.open > .menu-sub {
+        display: flex !important;
+    }
+
+    .mobile-menu {
+    }
+}

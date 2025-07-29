@@ -1,0 +1,241 @@
+﻿@page "/admin/usermanagement/{type}"
+@model AMMasterProject.Pages.Admin.usermanagement.IndexModel
+@{
+    <title>User Management</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div class="dropdown report-dd">
+<a class="amtech-bg white-c small btn mb-2 dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="true">
+    Advance Filter 
+</a>@* <a class="amtech-bg white-c small btn mb-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Advance Filter <i class="fa fa-chevron-down  "></i>
+</a> *@
+@foreach (var queryParam in Request.Query)
+{
+    <span class="grey-bg btn cap radius30 white-c small  mb-2">
+        @queryParam.Value <a href="javascript:void(0);" class="yellow-c" onclick="removeQueryParam('@queryParam.Key', '@queryParam.Value')"><i class="fa fa-times"></i></a>
+    </span>
+}
+
+
+
+    <div class="dropdown-menu ">
+    <div class="form">
+        <div class="row">
+            <div class="col-md-2">
+
+                <select id="RegistrationByTime" onchange="onFilterChange()" asp-for="@Model.TimeFilter">
+                    <option value="All" selected>All</option>
+
+                    <option value="Today">Today</option>
+                    <option value="ThisWeek">This Week</option>
+                    <option value="ThisMonth">This Month</option>
+                    <option value="ThisYear">This Year</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="card">
+
+        @* <span class="badge margin5 radius30 cap grey-bg">
+              <a href="javascript:void(0);" class="yellow-c" onclick="clearSearches()"><i class="fa fa-times"></i></a>
+        </span>
+        <a class="white-c h5 float-end margin5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa fa-chevron-down  "></i> 
+        </a> *@
+    
+
+
+
+
+
+
+
+
+
+    <div class="table-responsive text-nowrap">
+        <table id="ListingLoad" class="table">
+            <thead class="table-secondary">
+                <tr>
+
+
+                   
+                    <th style="width:150px" >Full Name</th>
+                
+                    <th style="width:150px">Registration With</th>
+                    <th style="width:150px">Contact Details</th>
+                    <th style="width:150px">Other Details</th>
+                    <th style="width:60px" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @*     Loop start*@
+
+                @foreach (var item in Model.userList)
+                {
+                    
+              
+                <tr>
+                        <td class="">
+                      
+                                <img class="rounded-circle margin5 float-start" src="@item.Image">
+                            <p>
+                                <span class="d-block">
+                                    <strong> Full Name:   </strong>@item.FirstName @item.LastName
+                                </span>
+                                <span class="d-block">
+                                    <strong>  Display Name:   </strong>
+
+                    @item.Displayname
+                                </span> 
+                              @*  if Seller*@
+
+                                @if (@item.sellerviewmodel != null)
+                                {
+                                    <span class="d-block">
+                                        <strong>  Business Name:   </strong>  @item.sellerviewmodel.BusinessName
+                                    </span>
+                                }
+                            </p>
+                           
+                          
+                        </td>
+                        
+                        <td>
+                           <span class="d-block">
+                                @item.LoginName
+                            </span>
+                            <span class="d-block">
+                            On:    @item.InsertDate
+                            </span>
+                        </td>
+                 
+                        <td>
+                            <span class="d-block">
+                            @item.LoginChannel
+                            </span>
+                            <span class="d-block">
+                                @item.Email
+                            </span>
+                            <span class="d-block">
+                                @item.Contact
+                            </span>
+                    </td>
+                  
+                   <td >
+                       <div>
+                                <span class="badge grey-bg">@item.clientmodel.PurchaseQtyTotal</span> Item Purchased 
+                            </div>   
+                            
+                          
+                            <div>
+                                <span class="badge grey-bg">@item.CreditPurchaseModel.CreditQTY</span> Credit Purchased 
+                            </div>    <div>
+                                <span class="badge grey-bg">@item.CreditPurchaseModel.CreditUsed</span> Credit Used 
+                            </div>
+                            
+                            @if (item.Type == "Vendor")
+                            {
+                                <div>
+                                    <span class="badge grey-bg">@item.sellerviewmodel.SalesQtyTotal</span> Item Sold
+                                </div>
+
+                                <div>
+                                    <span class="badge grey-bg">@item.sellerviewmodel.ProductTotal</span> Listing
+                                </div>
+                            }
+                        </td>
+                    <td class="center">
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+
+                                    <a class="dropdown-item" href="~/admin/usermanagement/board/@item.ProfileId?routetype=@item.Type"><i class="bx bx-edit-alt me-1"></i> View</a>
+                               @* <a data-userguid="@item.ProfileGuid" class="dropdown-item"><i class="bx bx-user"></i> Get Account Access</a>
+                             *@
+
+
+                                  
+                                    <button class="dropdown-item account-access-button" data-profile-guid="@item.ProfileGuid"><i class="bx bx-user"></i> Get Account Access</button>
+                                    <a class="dropdown-item" target="_blank" href="/admin/assigncredittouser/credit/@item.ProfileGuid"><i class="bx bx-user"></i> Assign Credit To Users</a>
+                           </div>
+                        </div>
+                    </td>
+                </tr>
+
+                @*     Loop End*@
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).on("click", ".account-access-button", function () {
+        
+        var profileGuid = $(this).data("profile-guid");
+        accountaccess(profileGuid);
+    });
+
+
+    // Function to handle the change event of the dropdown list
+    function onFilterChange() {
+        // Get the selected value
+        var selectedFilter = $("#RegistrationByTime").val();
+       
+
+        // Get the current URL
+        var currentUrl = window.location.href;
+
+        // Parse the current URL to extract the existing query string parameters
+        var urlObject = new URL(currentUrl);
+        var queryParams = new URLSearchParams(urlObject.search);
+
+        // Update or add the selectedFilter parameter
+        queryParams.set("timeFilter", selectedFilter);
+
+        // Create the updated URL with the modified query string
+        var redirectUrl = `${urlObject.pathname}?${queryParams.toString()}${urlObject.hash}`;
+
+        // Redirect to the new URL
+        window.location.href = redirectUrl;
+    }
+
+    // function clearSearches() {
+    //     // Get the current URL
+    //     var currentUrl = window.location.href;
+
+    //     // Create the updated URL without any query strings
+    //     var redirectUrl = `${window.location.origin}${window.location.pathname}${window.location.hash}`;
+
+    //     // Redirect to the new URL
+    //     window.location.href = redirectUrl;
+    // }
+
+
+
+    // Function to remove a query parameter
+    function removeQueryParam(paramName, paramValue) {
+        // Get the current URL
+        var currentUrl = window.location.href;
+
+        // Parse the current URL to extract the existing query string parameters
+        var urlObject = new URL(currentUrl);
+        var queryParams = new URLSearchParams(urlObject.search);
+
+        // Remove the specified parameter
+        queryParams.delete(paramName);
+
+        // Create the updated URL with the modified query string
+        var redirectUrl = `${urlObject.pathname}?${queryParams.toString()}${urlObject.hash}`;
+
+        // Redirect to the new URL
+        window.location.href = redirectUrl;
+    }
+</script>

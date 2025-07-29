@@ -1,0 +1,162 @@
+﻿@inject IConfiguration Configuration
+@{
+
+    var theme = Configuration["Theme"];
+   
+   
+}
+
+<!DOCTYPE html>
+<html lang="en"  class="light-style layout-menu-fixed " id="mybody"  >
+<head>
+
+
+    @*----------------------//All scripts and css-----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsHeader.cshtml" />
+    @*//RTL CSS*@
+    <link href="~/css/rtl.css" rel="stylesheet" />
+
+    @*-----------------------------------------------//Title-----------------------------------------*@
+    <title>@ViewData["Title"]</title>
+
+  
+
+
+</head>
+<body >
+    <div id="body-overlay"></div>
+       
+    @*//------Theme Header-------*@
+  
+
+    @if (theme == "EzyCommerce")
+    {
+        <partial name="/Pages/Shared/theme/ezycommerce/_ezycommerce-header.cshtml" />
+    }
+
+    
+    @*//--------Toaster---------*@
+    <partial name="/Pages/Shared/_toastr.cshtml" />
+
+
+
+    @*//--------Body Content---------*@
+    <div class="body-content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+
+    @*//--------Footer---------*@
+
+    <footer>
+
+
+        <div class="container ">
+
+            <div id="dvfooterpages" >
+
+
+
+   @*  @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/FooterView.cshtml", methodname= "footer", id=0 })
+ *@
+
+
+                <!--<%-- -----------------------------Home Blog------------------------------------
+                             share > setup > _footerview
+                             Home controller  home.js auto called after 40 seconds in home.js
+                             --%>-->
+                <div id="dvFooterLinkViewContainer" class="footer-links row"></div>
+            </div>
+      
+        </div>
+
+    </footer>
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    @*Copyright*@
+                    &copy; <span class="notranslate"> @Context.Items["CompanyName"] </span> - @DateTime.Now.ToString("yyyy")
+
+                    <partial name="/Pages/Shared/setups/_designby.cshtml" />
+                </div>
+                <div class="col-md-8 no-padding region-footer">
+
+                    @*Social media icons*@
+                   @*  @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/SocialView.cshtml", methodname= "socialmediafooter", id=0 })
+ *@
+
+                    <!--<%-- -----------------------------Social Media aFooter------------------------------------
+                            share > setup > _socialmediafooter
+                            Home controller  home.js auto called after 40 seconds in home.js
+                            --%>-->
+                    <div id="dvSocialMediaFooterContainer"></div>
+
+                    @*Regional Settings*@
+                    @* @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/RegionalSetting.cshtml", methodname= "regionalsetting", id=0 })
+ *@
+
+
+
+
+                    <!--<%-- -----------------------------Regional Setting Footer------------------------------------
+                            share > setup > _regionalsettingfooter
+                            Home controller  home.js auto called after 40 seconds in home.js
+                            --%>-->
+                    <div id="dvRegionalSettingFooterContainer" class="region-footer"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    @*//--------Login Popup---------*@
+    <div id="loginFormContainer">
+    </div>
+
+
+
+    @*//--------Contact Form Popup---------*@
+    <div id="ContactFormContainer">
+    </div>
+
+
+    @*///-------Credit or subscription-------*@
+    <div id="membershipViewContainer">
+    </div>
+
+
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+
+
+        <input type="hidden" name="hdnlogin" id="hdnlogin" value="@User.FindFirst("USERID")?.Value">
+
+        <input type="hidden" name="hdnloginGUID" id="hdnloginGUID" value="@User.FindFirst("USERGUID")?.Value">
+    }
+
+
+
+
+    @*----------------------//All scripts -----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsFooter.cshtml" />
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+
+
+
+</body>
+</html>

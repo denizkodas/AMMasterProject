@@ -1,0 +1,1403 @@
+﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.Helpers
+@model ProductViewModel
+
+@{
+    var firstCategory = Model.ProductDetail.ListProductCategoryMetaData.FirstOrDefault();
+
+}
+
+@*
+
+
+<script src="~/js/skdslider.min.js"></script>
+<link href="~/css/skdslider.css" rel="stylesheet">*@
+
+@*
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+*@
+
+
+<link href="~/css/starrating.min.css" rel="stylesheet" />
+<script src="~/js/starrating.min.js"></script>
+
+
+<div class="container no-padding">
+
+    <nav aria-label="breadcrumb">
+
+
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/index">
+
+                    <span class="notranslate" data-translate="home">
+                  Home
+                    </span>
+                </a></li>
+            <li class="breadcrumb-item">
+                <a href="/item/search?categoryid=@Model.ProductDetail.CategoryId">@firstCategory.CategoryName</a>
+
+
+            </li>
+            <li class="breadcrumb-item active"> <label id="breadcrumbproductname">@Model.ProductDetail.ProductName</label></li>
+        </ol>
+    </nav>
+</div>
+
+@if (Model.ProductDetail != null)
+{
+
+    <div class="row">
+
+
+
+        <link rel="stylesheet" href="~/css/slider.css" asp-append-version="true" />
+
+        @* //Product Slider*@
+        <div class="col-md-5 center o-padding">
+
+            <div class="swiper detailslider2">
+                <div class="swiper-wrapper">
+
+
+                    @if (Model.ProductDetail.ListofImages != null)
+                    {
+                        @foreach (var item in Model.ProductDetail.ListofImages)
+                        {
+                            <div class="swiper-slide">
+                                <div class=" swiper-zoom-container">
+
+                                    @if (item.Source == "image")
+                                    {
+                                        <img src="@item.Image" />
+                                    }
+                                    else if (item.Source == "video")
+                                    {
+                                        <a class="videobtn" data-videourl="@item.Image">
+
+                                            @*   <svg viewBox="0 0 576 512">
+                            <use xlink:href="#video-icon"></use>
+                            </svg>*@
+                                            <img src="@item.Poster" />
+
+                                        </a>
+
+                                        @* <iframe src="@item.Image" frameborder="0"></iframe>*@
+                                    }
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+
+
+
+            <div thumbsSlider="" class="swiper detailslider">
+                <div class="swiper-wrapper">
+
+                    @if (Model.ProductDetail.ListofImages != null)
+                    {
+                        @foreach (var item in Model.ProductDetail.ListofImages)
+                        {
+                            <div class="swiper-slide">
+                                @if (item.Source == "image")
+                                {
+                                    <img src="@item.Image" />
+                                }
+                                else if (item.Source == "video")
+                                {
+
+
+
+
+                                    <img src="@item.Poster" />
+
+
+
+                                }
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <script src="~/js/slider.js" asp-append-version="true"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="col-md-7 no-padding">
+
+            <div class="d-action-btn">
+
+                @*  compare btn*@
+                <label id="lblcomparisionlist" class="d-compare" data-toggle="tooltip" data-placement="bottom" title="Add into Compare List">
+                    <i class="fa fa-plus"></i>    <span class="notranslate" data-translate="comparelist">
+                        Compare List
+                    </span> 
+                </label>
+
+                @*  favorite btn*@
+                <label id="lblfavorite" class="@(Model.ProductDetail.Favorite == 1 ? "p-fav" : "p-un-fav")" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist" style="cursor: pointer;" data-lblid="lblfavorite">
+                    <a href="#" id="wishlistLink">
+                        <svg viewBox="0 0 256 256"><rect fill="none"></rect><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>
+                    </a>
+
+
+
+                </label>
+
+              
+
+            </div>
+
+            @*     brand*@
+            <a href="~/item/search?q=@Model.ProductDetail.BrandName" class="type-name">@Model.ProductDetail.BrandName</a>
+
+
+            @*       used or new*@
+            <a class="type-name">
+                <span id="lblnewused"></span>
+
+                <span id="lblnewused_description" class="tooltip"></span>
+            </a>
+            @*  title*@
+            <div class="title">
+               
+               
+                <span id="lblproducttitle">@Model.ProductDetail.ProductName</span>
+
+                @if (Model.ProductDetail.ProductUnit != null)
+                {
+                    <span class="unit"> ( @Model.ProductDetail.ProductUnit )</span>
+                }
+
+             
+
+              
+             @*    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.ProductDetail.))" /> *@
+              @*   <img src="data:image/png;base64,@Convert.ToBase64String(GlobalHelper.GenerateQRCodeBytes(Model.ProductDetail.SKU ?? Model.ProductDetail.ProductId.ToString()))" alt="Barcode">
+ *@
+            </div>
+            @if (Model.ProductDetail.itemothermetadata != null)
+            {
+                @*  star rating*@
+                <div class="rating">
+
+               
+                    @if (@Model.ProductDetail.itemothermetadata.TotalReviews > 0)
+                    {
+                        <div id="dvreviews">
+                            @for (var i = 1; i <= 5; i++)
+                            {
+                                if (i <= @Model.ProductDetail.itemothermetadata.ItemAverageRating)
+                                {
+                                    <i class="fa fa-star yellow-c"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+                            }
+                        </div>
+                        <span id="lblstarrating_average">@Model.ProductDetail.itemothermetadata.ItemAverageRating.ToString("0.0")</span>
+                        <span class="sep">| </span>
+                    }
+
+
+                    <label id="lbltotalreviews">@Model.ProductDetail.itemothermetadata.TotalReviews</label>
+                    <span class="notranslate" data-translate="reviews">
+                       Reviews
+                    </span>
+
+                    
+                    <span class="sep">| </span>
+                    @*  views and clicks ccount *@
+                    @if (@Model.ProductDetail.itemothermetadata != null)
+                    {
+                        <label>@Model.ProductDetail.itemothermetadata.TotalViews</label>
+                        <span class="notranslate" data-translate="views">Views</span>     <span class="sep">| </span>
+                        <label data-bs-toggle="tooltip" data-bs-placement="bottom" title="Impressions(s)">
+
+                            @Model.ProductDetail.itemothermetadata.TotalClicks
+                        </label>
+                        <span class="notranslate" data-translate="impressions">
+                            Impressions
+                        </span>  <span class="sep">| </span>
+
+                    }
+
+
+                    <span class="sep">| </span>
+                    <span id="lbltotalorders">@Model.ProductDetail.itemothermetadata.TotalCompletedOrders</span>
+
+                    <span class="notranslate" data-translate="orders">
+                       Orders
+                    </span>
+                   
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            }
+
+            <div class="d-tags">
+                @*  listing type*@
+                <a class="badge padding5 l-green-bg l-bold white-c">
+
+                    <span id="lblproductype">@Model.ProductDetail.SellingType</span>
+
+                </a>
+                @*    selling type*@
+                <a class="badge padding5 l-blue-bg l-bold white-c">
+
+
+                    <span id="lblsellingtype">@Model.ProductDetail.ListingType</span>
+                </a>
+
+
+
+                @*   sku*@
+                <span class="badge grey-bg padding5 l-bold white-c">
+                    <span class="notranslate" data-translate="sku">
+                        SKU
+                    </span>:
+
+                    <span id="lblskunumber">@Model.ProductDetail.SKU</span>
+                </span>
+
+
+                @if (Model.ProductDetail.EANCode != null)
+                {
+                    @*   ean code*@
+                    <span class="badge grey-bg padding5 l-bold white-c">
+                        
+                        <span class="notranslate" data-translate="eancode">
+                           EAN Code
+                        </span>:
+                        <span id="lblskunumber">@Model.ProductDetail.SKU</span>
+                    </span>
+                }
+                @*   free shipping*@
+
+                @if (@Model.ProductDetail.productShippingMetaData != null)
+                {
+                    @if (@Model.ProductDetail.productShippingMetaData.IsFreeShipping == true)
+                    {
+
+
+
+                        <span id="lblfreeshipping" class="freeshipping"></span>
+
+
+                    }
+                }
+
+
+
+            </div>
+
+
+            @*   ///Video iframe*@
+            <div class="overlay-view" id="dvproductvideo" style="display:none">
+                <div class="popup popup-medium">
+                    <div class="popup-heading no-margin">
+                        <span class="notranslate" data-translate="video">
+                            Video
+                        </span>
+                        
+                        <a id="avideoclose" class="close-back" href="#close"></a>
+                    </div>
+                    <div class="padding10">
+                        <iframe allowfullscreen="" webkitallowfullscreen mozallowfullscreen class="produtc-video"
+                                id="iframecontentvideo"></iframe>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            @*   ///short descripton*@
+
+            <p class="margintb-15">
+
+                <span id="lblshortdescription">@Model.ProductDetail.ShortDescription</span>
+            </p>
+        
+           @*  ///BarCODE *@
+            <div id="barcodeContainer" class="barcode"></div>
+
+            @*   ///pricing*@
+            <div class="price">
+
+                @if (@Model.ProductDetail.IsDiscounted ==true)
+                {
+
+                    <div class="original-price" id="dvoldprice">
+                        <span class="notranslate" data-translate="before">
+                         Before
+                        </span>:
+                        <span class="currency">@Model.ProductDetail.Currency</span>
+
+
+                        <span id="lbloldprice" class="amount">@Model.ProductDetail.PriceBeforeDiscount</span>
+
+                    </div>
+                }
+                @* current price*@
+                <div>
+                    <span class="notranslate" data-translate="price">
+                      Price
+                    </span>:
+
+                   <span class="h3 bold">
+
+
+                        <span class="currency">@Model.ProductDetail.Currency</span>
+
+
+                        <span id="lblpricing" class="amount">@Model.ProductDetail.Price.ToString("N")</span>
+
+                        <span class="grey-c s-bold small d-block" id="wordprice">@GlobalHelper.ConvertPriceToWords(Model.ProductDetail.Price) @Model.ProductDetail.Currency</span>
+                    </span>
+                </div>
+
+                @if (@Model.ProductDetail.IsDiscounted ==true )
+                {
+
+@* 
+                    var amountsaved = @Model.ProductDetail.DiscountAmount - @Model.ProductDetail.Price;
+
+
+
+
+
+                    var amountSaved = Model.ProductDetail.DiscountAmount - Model.ProductDetail.Price;
+                    var percentageSaved = (Model.ProductDetail.DiscountAmount - Model.ProductDetail.Price) / Model.ProductDetail.DiscountAmount * 100;
+ *@
+
+                    var percentageSaved = (Model.ProductDetail.DiscountAmount/Model.ProductDetail.PriceBeforeDiscount) * 100;
+                    <div class="discount-price" id="dvoldpricediscount">
+                        <span class="notranslate" data-translate="yousave">
+                          You Save
+                        </span>:
+                        <span id="lblamountsave" class="amount">@Model.ProductDetail.DiscountAmount.ToString("N")</span>
+                        (<span id="lblpercentagesave" class="amount">@percentageSaved.ToString("0.##")%</span>)
+                    </div>
+                }
+
+
+            </div>
+
+
+
+
+
+
+            @* Variation list *@
+            <span id="spanVariationValidation" class="validation"></span>
+
+            @if (Model.ProductAttributeViewModel != null)
+            {
+                @foreach (var itemAttribute in Model.ProductAttributeViewModel)
+                {
+                    <div class="d-varients ">
+
+                        <p class="v-title">@itemAttribute.Question.Question</p>
+                        <div class="radiobtn" id="dvvairationRadio_@itemAttribute.Question.ProductAttributeGuid">
+                            @if (itemAttribute.Options != null)
+                            {
+
+                                @foreach (var option in itemAttribute.Options)
+                                {
+
+                                    <label>
+                                        @* <input type="radio" name="attribute_@itemAttribute.Question.ProductAttributeGuid"  value="@option.OptionText">
+                    *@
+
+                                        <input type="radio" name="attribute_@itemAttribute.Question.ProductAttributeGuid" data-actualamount="@option.ActualAttributeprice" data-attributevalue="@option.OptionText" value="@option.ConversionAttributeprice">
+
+                                        @if (option.Attributeimage != null)
+                                        {
+                                            <img src="@option.Attributeimage" alt="Option Image">
+                                        }
+                                        @if (@option.ConversionAttributeprice > 0)
+                                        {
+                                            <span id="spanoptionText"> @option.OptionText</span>
+
+                                            <span class="v-price">
+                                                @option.ConversionAttributeprice.ToString("N")
+                                            </span>
+                                        }
+                                        else
+
+                                        {
+
+                                            @option.OptionText
+                                        }
+                                        @* @option.Attributeprice *@
+
+
+
+                                    </label>
+                                }
+
+                            }
+                        </div>
+                    </div>
+
+                    <hr class="m-none" />
+                }
+
+            }
+
+
+
+
+
+            @*Cart ---  *@
+            @if (@Model.ProductDetail.SellingType == "Sell")
+            {
+                <div id="dvcart">
+                    @* <div class="row no-margin">
+            <div class="col-md-8 no-padding">
+            <div class="form">
+            Special Instruction
+
+            <textarea id="txtspecialinstruction" name="txtspecialinstruction" rows="5" cols="50" maxlength="100"></textarea>
+            </div>
+            </div>
+            </div> *@
+
+
+                    <div class="d-quatity row no-margin">
+                        <div class="d-quatity-textbox col-md-3 no-padding">
+                            <div>
+                                <span class="notranslate" data-translate="qty">
+                                    Qty
+                                </span>:
+
+
+
+                                @if (Model.ProductDetail.IsManagedInventory == true)
+                                {
+                                    <input type="number" id="txtqty" min="@Model.ProductDetail.MinQty" max="@Model.ProductDetail.MaxQty" value="@Model.ProductDetail.MinQty" onchange="validateQuantityInventory(this.value, this.min, this.max)">
+                                }
+                                else
+                                {
+                                    <input type="number" id="txtqty" min="1" value="1">
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-9">
+
+                            @if (@Model.ProductDetail.IsOutofStock == false)
+                            {
+                                @*add to cart block*@
+                                <div class="d-action" id="dvaddtocart">
+                                    <br class="m-none" />
+
+
+
+
+
+
+                                    <button type="button" id="btnbuynow" class="d-buy-now">Buy Now</button>
+
+
+
+
+                                    <button id="btnaddtocart" class="d-cart-icon" type="button">
+                                        <span class="notranslate" data-translate="addtocart">
+                                            Add to cart
+                                        </span>
+                                        
+                                    </button>
+
+
+
+                                </div>
+
+                            }
+
+                            else
+
+                            {
+                                @*   out of stock*@
+                                <div id="outofstock" class="out-of-stock">
+                                    <br />
+                                    <span class="status notranslate" data-translate="outofstock">
+                                        
+                                        OUT OF STOCK</span>
+
+                                    @*    <a Class="out-notify" data-toggle="tooltip" data-placement="bottom" title="Get notified when this item comes back in stock">
+                        <image sr="/Images/new-out-of-stock-notify.png"></image>
+                        </a> *@
+
+                                </div>
+                            }
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                    @*min qty requirement*@
+                    @if (@Model.ProductDetail.MinQty != 0 && Model.MaxQty != 0)
+                    {
+                        <span class=" small grey-c" id="spnminqty">
+                            <span class="notranslate" data-translate="min">
+                                Min
+
+                            </span>
+                            
+                            <span id="lblminqty">@Model.ProductDetail.MinQty</span>
+                            <span class="notranslate" data-translate="and">
+                               and
+
+                            </span>
+                            <span class="notranslate" data-translate="max">
+                               Max
+
+                            </span>
+                           
+                            <span id="lblmaxqty">@Model.ProductDetail.MaxQty</span>
+
+                        </span>
+                    }
+
+                </div>
+
+                <hr class="m-none" />
+            }
+
+
+            @*Auction ---- *@
+            else if (@Model.ProductDetail.SellingType == "Auction")
+            {
+
+
+                <div id="dvauction">
+                    <hr />
+                    <div class="d-auction row">
+
+                        <div class="d-auction-textbox col-xs-3 no-padding">
+
+                            <span class="notranslate" data-translate="bidamount">
+                               Bid Amount
+                            </span>:
+
+                           
+                            <textbox id="txtbidamount" Min="1" TextMode="Number"></textbox>
+
+                        </div>
+                        <div class="d-auction-btn col-xs-9">
+                            <a id="btnbidnow" class="d-bid-now">
+                                <span class="notranslate" data-translate="bidnow">
+                                Bid Now
+                                </span>
+                                </a>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+            @*Classified*@
+            else if (@Model.ProductDetail.SellingType == "Classified")
+            {
+              
+               
+
+                <div id="dvClassified">
+
+                    <div class="d-classified">
+                        <div class="no-padding">
+
+                            @*number*@
+
+                            @if (@Model.ProductDetail.itemcontact != null)
+                            {
+
+                                <input type="hidden" id="hdnnumber" value="@EncryptionHelper.encryption(@Model.ProductDetail.itemcontact)">
+                                <div class="d-contact-detail ">
+                                    <div class="box-left ">
+                                        <svg viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" /></svg>
+
+                                        <span class="numbershow" id="spanshownumber">
+                                            <span class="number-code">***********</span> <label id="itemnumber" class="number-detail"></label>
+                                            <span class="show-contact" id="number"> <span class="notranslate" data-translate="shownumbers">Show Number</span>     <span class="credit-required" id="creditdeductionNumber"></span>  </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+
+                            @*Email*@
+                            @if (@Model.ProductDetail.itememail != null)
+                            {
+                                <input type="hidden" id="hdnemail" value="@EncryptionHelper.encryption(@Model.ProductDetail.itememail)">
+                                <div class="d-contact-detail ">
+                                    <div class="box-left ">
+                                        <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M40 8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 8L24 26 8 16v-4l16 10 16-10v4z" /><path d="M0 0h48v48H0z" fill="none" /></svg>
+                                        <span class="emailshow" id="spanshowemail">
+                                            <span class="email-code">***********</span> <label id="itememail" class="email-detail"></label>
+                                            <span class="show-contact" id="email">
+                                                <span class="notranslate" data-translate="showemail">Show Email </span>
+
+                                                                             <span class="credit-required" id="creditdeductionEmail"></span></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                            @*address*@
+                            @if (@Model.ProductDetail.itemaddress != null)
+                            {
+                                <input type="hidden" id="hdnaddress" value="@EncryptionHelper.encryption(@Model.ProductDetail.itemaddress)">
+                                <div class="d-contact-detail ">
+                                    <div class="box-left ">
+                                        <svg viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" /></svg>
+
+                                        <span class="addressshow" id="spanshowaddress">
+                                            <span class="address-code">***********</span>  <label id="itemaddress" class="address-detail"></label>
+                                            <span class="show-contact" id="address">
+                                                <span class="notranslate" data-translate="showaddress">Show Address</span>
+                                                
+                                                  <span class="credit-required" id="creditdeductionAddress"></span>  </span>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                    </div>
+
+
+
+                </div>
+
+                <hr class="m-none" />
+            }
+
+
+
+
+
+            @*  //<button id="btnGetSelectedValue" type="button">Get Selected Value</button> *@
+
+            @* QR Code *@
+            <div id="qrcodeContainer" class="qrcode"></div>
+
+            @* shipping cost *@
+
+            @if (@Model.ProductDetail.productShippingMetaData != null)
+            {
+                @if (@Model.ProductDetail.productShippingMetaData.IsFreeShipping == false)
+                {
+
+
+
+
+                    <div class="d-shipping">
+                        <p class="no-margin">
+
+
+                            <span class="d-shipping-title notranslate" data-translate="shipto">
+                                Ship to
+                            </span>:<span class="d-shipping-data">  <img id="countryflag" src="" />  <span id="spancountrycode"></span> </span>
+
+
+                        </p>
+                        <p>
+                            <span class="d-shipping-title notranslate" data-translate="estimatedshippingfees">Estimated Shipping Fees</span>:
+
+                            <span class="d-shipping-data">@Model.ProductDetail.Currency   @Model.ProductDetail.productShippingMetaData.ShippingAddOnCharges </span>
+
+                        </p>
+
+
+
+
+                    </div>
+
+
+                }
+            }
+
+     
+            @* Social Media Sharing Btn *@
+            <partial id="_pquickview" name="/Pages/shared/_socialsharing.cshtml" />
+
+
+
+        </div>
+
+    </div>
+
+    @*  @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+
+
+        <input type="hidden" name="hdnlogin" id="hdnlogin" value="@User.FindFirst("USERID")?.Value">
+    }*@
+
+
+    <input type="hidden" name="hdnsellerguid" id="hdnsellerguid" value="">
+    <input type="hidden" name="hdnproductid" id="hdnproductid" value="@Model.ProductDetail.ProductId">
+
+    <div id="wishlistContainer"></div>
+}
+
+
+<script>
+
+
+
+    var productAttributeViewModel = @Html.Raw(Json.Serialize(Model.ProductAttributeViewModel));
+    // Convert selectedValues to JSON string
+    var selectedValuesJSON;
+
+    ///on each radiobutton select it sums of selected prices
+
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(function (radioButton) {
+        radioButton.addEventListener('change', updateSumAndSelection);
+    });
+
+
+    // Function to calculate and update the sum and selection class
+    function updateSumAndSelection() {
+        var selectedSum = 0;
+        radioButtons.forEach(function (radioButton) {
+            var label = radioButton.closest('label'); // Find the label associated with the radio button
+            if (radioButton.checked) {
+                label.classList.add('selected'); // Add "selected" class to the label
+                var value = parseFloat(radioButton.value);
+                if (!isNaN(value)) {
+                    selectedSum += value;
+                }
+            } else {
+                label.classList.remove('selected'); // Remove "selected" class from the label
+            }
+        });
+        // Display the sum in the designated <div>
+        //alert('Sum: $' + selectedSum.toFixed(2));
+
+        // Calculate the total price with variation
+        var modelPrice = @Model.ProductDetail.Price;
+        var totalpricewithVariation = modelPrice + selectedSum;
+
+        // alert(totalpricewithVariation);
+        $("#lblpricing").text(totalpricewithVariation.toFixed(2));
+        $("#lblpricing").addClass("flash");
+
+
+
+        ///change numberword counting
+
+        numbertowords(totalpricewithVariation)
+            .then(function (result) {
+                console.log('Returned result:', result); // Use the result here
+                $("#wordprice").text(result);
+
+            })
+            .catch(function (error) {
+                console.error('Error:', error); // Handle errors here
+            });
+
+
+        setTimeout(function () {
+            $("#lblpricing").removeClass("flash");
+        }, 2000); // 2000 milliseconds (2 seconds) for the flashing effect
+
+    }
+
+
+    ///this fires on button click and send it order funciton
+    function getVariationSelectedList(callback) {
+        $("#spanVariationValidation").text("");
+
+
+
+        var selectedValues = [];
+        var parentListCount = @Model.ProductAttributeViewModel.Count; // Count the number of parent lists
+
+        // Create an array to keep track of unselected parent questions
+        var unselectedParentQuestions = [];
+
+        $.each(productAttributeViewModel, function (index, itemAttribute) {
+
+            $("#dvvairationRadio_" + itemAttribute.question.productAttributeGuid).removeClass("unselected-radio-list")
+            // Get the parent question
+            var parentQuestion = itemAttribute.question.question;
+
+            // Check if a child option is selected within this parent list
+            var selectedOption = $("input[name='attribute_" + itemAttribute.question.productAttributeGuid + "']:checked");
+
+            if (selectedOption.length > 0) {
+                // If a child option is selected, get its value (option text) and price
+                var optionText = selectedOption.parent('label').text().trim();
+                var optionPrice = selectedOption.val();
+                var optionDataAttributeValue = selectedOption.data('attributevalue'); // Get the data-attributevalue
+                var optionDataActualAmount = selectedOption.data('actualamount'); // Get the data-actualamount
+
+                // Add the selected option's text and price to the selectedValues array
+                selectedValues.push({
+                    VariationName: parentQuestion + ": " + optionDataAttributeValue,
+                    ConversionAmount: parseFloat(optionPrice),
+                    ActualAmount: parseFloat(optionDataActualAmount)
+                  
+
+
+
+                });
+            } else {
+                // If no child option is selected, add the parent question to the unselectedParentQuestions array
+                unselectedParentQuestions.push(parentQuestion);
+                //$("input[name='attribute_" + itemAttribute.question.productAttributeGuid + "']").addClass("unselected-radio-list");
+
+
+                $("#dvvairationRadio_" + itemAttribute.question.productAttributeGuid).addClass("unselected-radio-list");
+            }
+        });
+
+
+        if (selectedValues.length === parentListCount) {
+            // If the number of selected options matches the number of parent lists, it's valid
+            var selectedValuesText = "";
+            $.each(selectedValues, function (index, item) {
+                selectedValuesText += item.VariationName + "\n"; // Fixed the syntax here
+            });
+            //alert("Selected Values:\n" + selectedValuesText);
+
+            // Convert selectedValues to JSON string
+            selectedValuesJSON = JSON.stringify(selectedValues);
+
+            // Callback with the selectedValuesJSON
+            callback(selectedValuesJSON);
+        }
+
+
+        else {
+            // If not all options are selected, show an error message with the names of unselected parent questions
+            var errorMessage = "Please select one item from each variation.\n\n";
+            errorMessage += "Unselected Variations:\n";
+            $.each(unselectedParentQuestions, function (index, question) {
+                errorMessage += question + "\n";
+            });
+
+            $("#spanVariationValidation").text(errorMessage);
+
+            // Callback with null to indicate that not all options are selected
+            callback(null);
+        }
+    }
+
+    // $(document).ready(function () {
+    //     // Attach a click event handler to the button
+    //     $('#btnGetSelectedValue').click(function () {
+    //         $("#spanVariationValidation").text("");
+    //         var selectedValues = [];
+    //         var parentListCount = @Model.ProductAttributeViewModel.Count; // Count the number of parent lists
+
+    //         // Create an array to keep track of unselected parent questions
+    //         var unselectedParentQuestions = [];
+
+    //         $.each(productAttributeViewModel, function (index, itemAttribute) {
+    //             // Get the parent question
+    //             var parentQuestion = itemAttribute.question.question;
+
+    //             // Check if a child option is selected within this parent list
+    //             var selectedOption = $("input[name='attribute_" + itemAttribute.question.productAttributeGuid + "']:checked");
+
+    //             if (selectedOption.length > 0) {
+    //                 // If a child option is selected, get its value (option text) and price
+    //                 var optionText = selectedOption.parent('label').text().trim();
+    //                 var optionPrice = selectedOption.val();
+    //                 var optionDataAttributeValue = selectedOption.data('attributevalue'); // Get the data-attributevalue
+
+    //                 // Add the selected option's text and price to the selectedValues array
+    //                 selectedValues.push({
+    //                     VariationName: parentQuestion + ": " + optionDataAttributeValue,
+    //                     ConversionVariationAmount: parseFloat(optionPrice)
+    //                 });
+    //             } else {
+    //                 // If no child option is selected, add the parent question to the unselectedParentQuestions array
+    //                 unselectedParentQuestions.push(parentQuestion);
+
+    //                 // Add a CSS class to style the unselected radio button list
+    //                 $("input[name='attribute_" + itemAttribute.question.productAttributeGuid + "']").addClass("unselected-radio-list");
+    //             }
+    //         });
+
+    //         if (selectedValues.length === parentListCount)
+    //         {
+    //             // If the number of selected options matches the number of parent lists, it's valid
+    //             var selectedValuesText = "";
+    //             $.each(selectedValues, function (index, item) {
+    //                 selectedValuesText += item.VariationName + "\n"; // Fixed the syntax here
+    //             });
+    //             alert("Selected Values:\n" + selectedValuesText);
+
+    //             // Convert selectedValues to JSON string
+    //             var selectedValuesJSON = JSON.stringify(selectedValues);
+
+    //             console.log(selectedValuesJSON);
+    //             // Call orderCreate with the JSON string
+    //             orderCreate('134', '1', '', 'item', 'purchased', 'cart', 'processing', 'buy', selectedValuesJSON);
+    //         }
+    //         else
+    //         {
+    //             // If not all options are selected, show an error message with the names of unselected parent questions
+    //             var errorMessage = "Please select one item from each variation.\n\n";
+    //             errorMessage += "Unselected Variations:\n";
+    //             $.each(unselectedParentQuestions, function (index, question) {
+    //                 errorMessage += question + "\n";
+    //             });
+
+    //             $("#spanVariationValidation").text(errorMessage);
+    //         }
+    //     });
+    // });
+
+
+    ///assign video ulr to iframe
+    $(document).ready(function () {
+        $(".videobtn").click(function (e) {
+            e.preventDefault();
+            var videoUrl = $(this).data("videourl");
+
+            $("#dvproductvideo").show();
+            // Display "Video is Loading" message in the iframe
+            $("#iframecontentvideo").attr("src", "about:blank");
+            $("#iframecontentvideo").contents().find("body").html("<p>Video is Loading...</p>");
+
+
+            $("#iframecontentvideo").attr("src", videoUrl);
+
+        });
+
+
+        // Function to close the popup and clear the video URL
+        $("#avideoclose").click(function (e) {
+            e.preventDefault();
+            $("#iframecontentvideo").attr("src", "");
+            $("#dvproductvideo").hide();
+        });
+
+    });
+
+    $("#spanshownumber").click(function () {
+        event.preventDefault();
+        var username = $('#hdnlogin').val();
+
+        if (typeof username !== "undefined" && username !== "") {
+
+
+
+
+
+
+
+            var value = creditchecked($("#hdnnumber").val(), "contact");
+
+            if (value == "login") {
+                loginview("LoginView");
+            }
+            else if (value == "insufficient") {
+                creditpackageview();
+            }
+
+            else {
+                $(".numbershow").addClass("show");
+                $("#itemnumber").text(value);
+            }
+
+
+
+
+
+        }
+        else {
+
+            loginview("LoginView");
+            //$('#loginFormContainer').load('/PartialViews/login-form.html');
+            return false;
+
+        }
+
+    });
+
+    $("#spanshowaddress").click(function () {
+        event.preventDefault();
+        var username = $('#hdnlogin').val();
+        if (typeof username !== "undefined" && username !== "") {
+
+
+
+
+
+
+            var value = creditchecked($("#hdnaddress").val(), "address");
+
+
+
+            if (value == "login") {
+                loginview("LoginView");
+            }
+            else if (value == "insufficient") {
+                creditpackageview();
+            }
+
+            else {
+                $(".addressshow").addClass("show");
+                $("#itemaddress").text(value);
+            }
+        }
+        else {
+            loginview("LoginView");
+            //$('#loginFormContainer').load('/PartialViews/login-form.html');
+            return false;
+        }
+    });
+
+
+    $("#spanshowemail").click(function () {
+        event.preventDefault();
+        var username = $('#hdnlogin').val();
+        if (typeof username !== "undefined" && username !== "") {
+
+
+
+
+
+            var value = creditchecked($("#hdnemail").val(), "email");
+
+
+            if (value == "login") {
+                loginview("LoginView");
+            }
+            else if (value == "insufficient") {
+                creditpackageview();
+            }
+            else {
+                $(".emailshow").addClass("show");
+
+                $("#itememail").text(value);
+            }
+
+        }
+        else {
+            loginview("LoginView");
+            //$('#loginFormContainer').load('/PartialViews/login-form.html');
+            return false;
+        }
+    });
+
+
+
+    ///how much credit deduction required
+
+    $(document).ready(function () {
+
+
+        var contact = creditDeductionNumber("contact");
+
+        if (contact > 0) {
+            $("#creditdeductionNumber").text(contact);
+        }
+
+        var email = creditDeductionNumber("email");
+
+        if (email > 0) {
+            $("#creditdeductionEmail").text(email);
+        }
+
+        var address = creditDeductionNumber("address");
+
+        if (address > 0) {
+            $("#creditdeductionAddress").text(address);
+        }
+    });
+
+
+
+
+    ///Add to cart
+
+    $(document).ready(function () {
+        $('#btnbuynow').click(function (e) {
+            e.preventDefault(); // Prevent the default behavior of the <a> tag
+            var loginid = $('#hdnlogin').val();
+            if (typeof loginid !== "undefined" && loginid !== "") {
+                var parentListCount = @Model.ProductAttributeViewModel.Count; // Count the number of parent lists
+
+                var productid = '@Model.ProductDetail.ProductId';
+
+                var quantity = $("#txtqty").val();
+                //var instruction = $("#txtspecialinstruction").val()
+
+                if (parentListCount > 0) {
+                    ///this means it has variation list
+
+                    // Call the function to get selected variation values asynchronously
+                    getVariationSelectedList(function (selectedValuesJSON) {
+
+
+                        if (selectedValuesJSON == null) {
+                            /// This means variation exists but the user has not selected, so do not process the order
+                            return;
+                        }
+                        else {
+                            orderCreate(productid, quantity, '', 'item', 'purchased', 'cart', 'processing', 'buy', selectedValuesJSON);
+                        }
+
+
+                    });
+
+
+                }
+                else {
+                    orderCreate(productid, quantity, '', 'item', 'purchased', 'cart', 'processing', 'buy', selectedValuesJSON);
+                }
+
+
+
+
+
+            }
+            else {
+
+                loginview("LoginView");
+                //$('#loginFormContainer').load('/PartialViews/login-form.html');
+                return false;
+
+            }
+
+
+        });
+
+
+
+
+
+        $('#btnaddtocart').click(function (e) {
+            e.preventDefault(); // Prevent the default behavior of the <a> tag
+            var loginid = $('#hdnlogin').val();
+            if (typeof loginid !== "undefined" && loginid !== "") {
+
+
+                var parentListCount = @Model.ProductAttributeViewModel.Count; // Count the number of parent lists
+
+                var productid = '@Model.ProductDetail.ProductId';
+
+                var quantity = $("#txtqty").val();
+
+
+
+                if (parentListCount > 0) {
+                    ///this means it has variation list
+
+                    // Call the function to get selected variation values asynchronously
+                    getVariationSelectedList(function (selectedValuesJSON) {
+
+
+                        if (selectedValuesJSON == null) {
+                            /// This means variation exists but the user has not selected, so do not process the order
+                            return;
+                        }
+                        else {
+
+                            $("#btnaddtocart").addClass('loadingcart');
+                            orderCreate(productid, quantity, '', 'item', 'purchased', 'cart', 'processing', 'cart', selectedValuesJSON);
+
+                            toaster('item added to cart', 'toast-success');
+
+                            setTimeout(function () {
+                                $("#btnaddtocart").removeClass('loadingcart');
+                            }, 3000);
+
+                        }
+
+
+                    });
+
+
+
+                }
+                else {
+                    $("#btnaddtocart").addClass('loadingcart');
+                    orderCreate(productid, quantity, '', 'item', 'purchased', 'cart', 'processing', 'cart', selectedValuesJSON);
+                    toaster('item added to cart', 'toast-success');
+
+                    setTimeout(function () {
+                        $("#btnaddtocart").removeClass('loadingcart');
+                    }, 3000);
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+            }
+            else {
+
+                loginview("LoginView");
+                //$('#loginFormContainer').load('/PartialViews/login-form.html');
+                return false;
+
+            }
+
+
+        });
+    });
+
+
+
+    ///wish list
+
+
+    $(document).ready(function () {
+        $('#wishlistLink').click(function (e) {
+            e.preventDefault(); // Prevent the default behavior of the <a> tag
+            e.preventDefault();
+            var username = $('#hdnlogin').val();
+
+            if (typeof username !== "undefined" && username !== "") {
+
+                var productid = '@Model.ProductDetail.ProductId';
+
+
+                $.ajax({
+                    url: '/Controller/Product/WishlistForm?productid=' + productid,
+                    type: 'GET',
+
+                    success: function (result) {
+                        // Handle the success response
+                        $('#wishlistContainer').html(result);
+                        $('#hiddenproductid').val(productid);
+
+                        $('#hdnclassid').val('#awishlistLink-' + productid);
+                    },
+                    error: function () {
+                        // Handle the error
+                    }
+                });
+
+
+
+            }
+            else {
+
+                loginview("LoginView");
+                //$('#loginFormContainer').load('/PartialViews/login-form.html');
+                return false;
+
+            }
+
+
+        });
+
+
+
+
+
+
+    });
+
+    $(document).ready(function () {
+        // Use setTimeout to wait for 2 seconds before triggering the barcode generation
+        setTimeout(function () {
+            // Call BarCodeGenerator method via AJAX  site.js
+            barcodegenerator($("#lblskunumber").text());
+
+           
+
+            qrcodegenerator('@GlobalHelper.GetCurrentUrl()');
+        }, 1000); // 2000 milliseconds (2 seconds) delay
+    });
+   
+
+</script>
+
+
+
+
+
+
+
+
+

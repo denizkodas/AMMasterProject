@@ -1,0 +1,310 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Coupons.addModel
+@{
+    <title>Coupons Setup</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+    <input asp-for="@Model.productcoupon.ProductCouponId" type="hidden" />
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/coupons">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/coupons/add"><i class="bx bx-plus me-1"></i> Add New</a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+                <div asp-validation-summary="All"></div>
+@* 
+               <div class="row">
+
+
+                <div class="col-md-3 s-bold">
+                Coupon Applied On
+                </div>
+
+                <div class="col-md-5">
+                <div class="form-group">
+
+                            Coupon Applied On
+
+                            <select asp-for="@Model.productcoupon.CouponTypeId" asp-items="@Model.CouponType" class="form-control">
+                                <option disabled selected>-- Select --</option>
+                            </select>
+                            <span asp-validation-for="@Model.productcoupon.CouponTypeId" class="required"></span>
+
+
+                        </div>
+
+
+                </div>
+                </div>
+                
+                
+                <hr> *@
+
+
+
+             
+
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Coupon Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+
+                  
+                       
+                    <div class="row">
+
+                        
+
+
+                        <div class="form-group col-md-5">
+                            Title / Coupon Code
+                                <input type="text" maxlength="100" asp-for="@Model.productcoupon.CouponName">
+                                <span asp-validation-for="@Model.productcoupon.CouponName" class="required"></span>
+                        </div>
+
+
+                        <div class="form-group col-md-10">
+                            Description
+                                <input type="text" maxlength="200" asp-for="@Model.productcoupon.CouponDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelCouponDescription'))">
+                                <span id="characterCountLabelCouponDescription"></span>
+                                <span asp-validation-for="@Model.productcoupon.CouponDescription" class="required"></span>
+
+
+                        </div>
+
+
+                        <div class="form-group col-md-10">
+                            Start Date
+                                <input type="date"  asp-for="@Model.productcoupon.StartDate">
+                                <span asp-validation-for="@Model.productcoupon.StartDate" class="required"></span>
+
+
+                        </div>
+
+                        <div class="form-group col-md-10">
+                           End Date
+                                <input type="date"  asp-for="@Model.productcoupon.EndDate">
+                                <span asp-validation-for="@Model.productcoupon.EndDate" class="required"></span>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+       
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Pricing
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="form-group row">
+                        <div class="col-md-3 padding-right">
+                           Coupon Type
+                                <select asp-for="@Model.productcoupon.DiscountType">
+
+
+                                    <option>Percentage</option>
+                                    <option>Amount</option>
+
+                                </select>
+
+                        </div>
+                    
+                    </div>
+                    @* if Amount*@
+                    <div class="form-group row">
+                      
+                        <div class="col-md-6 padding-left">
+                                <span id="discounttype"></span>
+                                <input type="number" asp-for="@Model.productcoupon.Discount">
+                                <span asp-validation-for="@Model.productcoupon.Discount" class="required"></span>
+                        </div>
+
+                    </div>
+               
+                </div>
+            </div>
+            <hr />
+
+         @*    <div class="row">
+
+                <div class="col-md-3 s-bold">
+                   Coupon Price Deduction
+                </div>
+
+                <div class="col-md-6 no-padding">
+                    <div class="form-group row">
+                        <div class="col-md-4 padding-right">
+                            Seller Percentage
+                                <input type="number" min="1" asp-for="@Model.productcoupon.SellerPercentage">
+                                <span asp-validation-for="@Model.productcoupon.SellerPercentage" class="required"></span>
+
+                        </div>
+                        <div class="col-md-4 padding-left">
+                            Admin Percentage
+                                <input type="number" min="1" asp-for="@Model.productcoupon.AdminPercentage">
+                                <span asp-validation-for="@Model.productcoupon.AdminPercentage" class="required"></span>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr> *@
+
+
+
+          
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Limitations
+                </div>
+
+                <div class="col-md-9 no-padding">
+               
+                    <div class="form-group row">
+                        <div class="col-md-6 padding-right">
+                            Number of Coupons
+                                <input type="number" min="1" asp-for="@Model.productcoupon.NoofCoupon">
+                                <span asp-validation-for="@Model.productcoupon.NoofCoupon" class="required"></span>
+
+                        </div>
+                        <div class="col-md-6 padding-left">
+                            Per Person Limitation
+                            <small>How many time one user can use this coupon?</small>
+                                <input type="number" min="1" asp-for="@Model.productcoupon.PerPersonUsed">
+                                <span asp-validation-for="@Model.productcoupon.PerPersonUsed" class="required"></span>
+
+                        </div>
+
+                    </div>
+                  
+                </div>
+            </div>
+            <hr>
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+
+
+
+                            <input type="checkbox" asp-for="@Model.productcoupon.IsPublish">
+                            <label id="isoutofstock" asp-for="@Model.productcoupon.IsPublish">Is Publish</label>
+
+
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this coupon Section</p>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <hr>   
+            
+            
+            <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button>Save</button></div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        // Set initial value on document ready
+        $('#discounttype').text($('#productcoupon_DiscountType').val());
+
+        // Bind value on selected change
+        $('#productcoupon_DiscountType').change(function () {
+            $('#discounttype').text($(this).val());
+        });
+    });
+
+
+   
+    //$(document).ready(function () {
+    //    var selectedCouponType = $('#productcoupon_CouponTypeId').val();
+
+    //    if (selectedCouponType !== '24') {
+    //        $('#dvContainerViewCouponChild').show();
+    //        getpartialview(selectedCouponType);
+    //    } else {
+    //        $('#dvContainerViewCouponChild').empty().hide();
+    //    }
+
+      
+    //    $('#productcoupon_CouponTypeId').change(function () {
+    //        var selectedValue = $(this).val();
+
+    //        if (selectedValue !== '24') {
+    //            $('#dvContainerViewCouponChild').show();
+    //            getpartialview(selectedValue);
+    //        } else {
+    //            $('#dvContainerViewCouponChild').empty().hide();
+    //        }
+    //    });
+    //});
+
+
+    //function getpartialview(couponchildtype) {
+    //    $.ajax({
+    //        type: 'GET',
+    //        url: '/Controller/Product/CouponChildView',
+    //        data: {
+    //            couponchildtype: couponchildtype
+    //        },
+    //        success: function (result) {
+    //            $('#dvContainerViewCouponChild').html(result);
+    //        },
+    //        error: function () {
+    //            alert('Error loading coupon child.');
+    //        }
+    //    });
+    //}
+    </script>

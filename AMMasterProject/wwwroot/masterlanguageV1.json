@@ -1,0 +1,1882 @@
+{
+  "about": {
+    "en": "About",
+    "ar": "حول"
+  },
+  "aboutbusiness": {
+    "en": "About Business",
+    "ar": "عن العمل"
+  },
+  "aboutme": {
+    "en": "About Me",
+    "ar": "عني"
+  },
+  "accept": {
+    "en": "Accept",
+    "ar": "قبول"
+  },
+  "accessandcontrol": {
+    "en": "Access and Control",
+    "ar": "الوصول والتحكم"
+  },
+  "account": {
+    "en": "Account",
+    "ar": "الحساب"
+  },
+  "accountcontrol": {
+    "en": "Account Control",
+    "ar": "التحكم في الحساب"
+  },
+  "accountsetting": {
+    "en": "Account Setting",
+    "ar": "إعدادات الحساب"
+  },
+  "action": {
+    "en": "Action",
+    "ar": "إجراء"
+  },
+  "add": {
+    "en": "Add",
+    "ar": "إضافة"
+  },
+  "additionalshipping": {
+    "en": "Additional Shipping",
+    "ar": "شحن إضافي"
+  },
+  "additionalshippingcharges": {
+    "en": "Additional Shipping Charges",
+    "ar": "رسوم الشحن الإضافية"
+  },
+  "addlisting": {
+    "en": "Add",
+    "ar": "إضافة"
+  },
+  "addnewaddress": {
+    "en": "Add New Address",
+    "ar": "إضافة عنوان جديد"
+  },
+  "addnewdeliveryaddress": {
+    "en": "Add New Delivery Address",
+    "ar": "إضافة عنوان تسليم جديد"
+  },
+  "addnewshippingdetails": {
+    "en": "Add New Shipping Details",
+    "ar": "إضافة تفاصيل شحن جديدة"
+  },
+  "address": {
+    "en": "Address",
+    "ar": "العنوان"
+  },
+  "addseotags": {
+    "en": "Add SEO Tags",
+    "ar": "أضف علامات SEO"
+  },
+  "addtocart": {
+    "en": "Add to cart",
+    "ar": "أضف إلى السلة"
+  },
+  "advanceseachheading": {
+    "en": "Search Your Desire Property",
+    "ar": "ابحث عن اهتمامك"
+  },
+  "allcategories": {
+    "en": "All Categories",
+    "ar": "جميع الفئات"
+  },
+  "allnotifications": {
+    "en": "All Notifications",
+    "ar": "جميع الإشعارات"
+  },
+  "allorders": {
+    "en": "All Orders",
+    "ar": "جميع الطلبات"
+  },
+  "alreadyhaveanaccount": {
+    "en": "Already have an account?",
+    "ar": "هل لديك حساب بالفعل؟"
+  },
+  "amount": {
+    "en": "Amount",
+    "ar": "المبلغ"
+  },
+  "and": {
+    "en": "and",
+    "ar": "و"
+  },
+  "andapaymentmethodof": {
+    "en": "and a payment method of",
+    "ar": "وطريقة الدفع"
+  },
+  "app": {
+    "en": "App",
+    "ar": "التطبيق"
+  },
+  "atpricedes": {
+    "en": "This price will add in product price",
+    "ar": "سيضاف هذا السعر إلى سعر المنتج"
+  },
+  "attributedes": {
+    "en": "Attribute Name eg: Color, Size etc",
+    "ar": "اسم الخاصية مثل: اللون، الحجم، إلخ"
+  },
+  "attributedetail": {
+    "en": "Attribute Detail",
+    "ar": "تفاصيل الخصائص"
+  },
+  "attributeimage": {
+    "en": "Attribute Image (optional)",
+    "ar": "صورة الخاصية (اختياري)"
+  },
+  "attributelist": {
+    "en": "Attribute List",
+    "ar": "قائمة الخصائص"
+  },
+  "attributes": {
+    "en": "Attributes",
+    "ar": "الخصائص"
+  },
+  "auctiondateprice": {
+    "en": "Auction Date & Price",
+    "ar": "تاريخ وسعر المزاد"
+  },
+  "autoschedule": {
+    "en": "Auto Schedule",
+    "ar": "الجدولة التلقائية"
+  },
+  "autoschedulemsg": {
+    "en": "Auto-schedule entails automating the scheduling or queuing of your advertisements.",
+    "ar": "الجدولة التلقائية تعني أتمتة جدولة أو ترتيب إعلاناتك."
+  },
+  "availableforchat": {
+    "en": "Available for Chat",
+    "ar": "متاح للدردشة"
+  },
+  "availableforchatmsg": {
+    "en": "Are you able to chat during this offline period?",
+    "ar": "هل يمكنك الدردشة خلال فترة عدم التواجد؟"
+  },
+  "availableprofile": {
+    "en": "Available items and profile on search engine",
+    "ar": "العناصر المتاحة والملف الشخصي على محرك البحث"
+  },
+  "availableprofilemsg": {
+    "en": "Do you want to enable your profile and items on search for potential buyers during this offline period?",
+    "ar": "هل تريد تمكين ملفك الشخصي والعناصر للبحث عن المشترين المحتملين خلال فترة عدم التواجد؟"
+  },
+  "averagerating": {
+    "en": "Average Rating",
+    "ar": "متوسط التقييم"
+  },
+  "averageresponsetime": {
+    "en": "Average response time",
+    "ar": "متوسط زمن الاستجابة"
+  },
+  "back": {
+    "en": "Back",
+    "ar": "العودة"
+  },
+  "balance": {
+    "en": "Balance",
+    "ar": "الرصيد"
+  },
+  "balancepayment": {
+    "en": "Balance Payment",
+    "ar": "دفعة الرصيد"
+  },
+  "basicinfo": {
+    "en": "Basic Info",
+    "ar": "معلومات أساسية"
+  },
+  "before": {
+    "en": "Before",
+    "ar": "قبل"
+  },
+  "bestchoice": {
+    "en": "Best Choice",
+    "ar": "أفضل خيار"
+  },
+  "bidamount": {
+    "en": "Bid Amount",
+    "ar": "مبلغ العرض"
+  },
+  "bidnow": {
+    "en": "Bid Now",
+    "ar": "المزايدة الآن"
+  },
+  "billing": {
+    "en": "Billing",
+    "ar": "الفوترة"
+  },
+  "blogs": {
+    "en": "Blogs",
+    "ar": "مدونات"
+  },
+  "boostprofile": {
+    "en": "Boost Profile",
+    "ar": "تعزيز الملف الشخصي"
+  },
+  "boostprofilemsg": {
+    "en": "Boost your profile and attract more users with enhanced visibility as a seller",
+    "ar": "عزز ملفك الشخصي واجذب المزيد من المستخدمين مع رؤية محسنة كبائع"
+  },
+  "botselection": {
+    "en": "Bot Selection",
+    "ar": "اختيار الروبوت"
+  },
+  "brand": {
+    "en": "Brand",
+    "ar": "العلامة التجارية"
+  },
+  "brandmsg": {
+    "en": "Select from list or type to create new",
+    "ar": "اختر من القائمة أو اكتب لإنشاء جديد"
+  },
+  "briefdescription": {
+    "en": "Brief Description",
+    "ar": "وصف موجز"
+  },
+  "browser": {
+    "en": "Browser",
+    "ar": "المتصفح"
+  },
+  "budgetlimits": {
+    "en": "Do you have budget limits?",
+    "ar": "هل لديك حدود الميزانية؟"
+  },
+  "businessdetails": {
+    "en": "Business Details",
+    "ar": "تفاصيل العمل"
+  },
+  "businessname": {
+    "en": "Business Name",
+    "ar": "اسم العمل"
+  },
+  "businesswebsite": {
+    "en": "Business Website",
+    "ar": "موقع العمل"
+  },
+  "buycredits": {
+    "en": "Buy Credits",
+    "ar": "شراء الاعتمادات"
+  },
+  "buycreditsmsg": {
+    "en": "Get the credits you need with just a few clicks - Purchase credits effortlessly and unlock a world of possibilities!",
+    "ar": "احصل على الاعتمادات التي تحتاجها ببضع نقرات فقط - اشترِ الاعتمادات بسهولة وافتح عالمًا من الاحتمالات!"
+  },
+  "buyer": {
+    "en": "Buyer",
+    "ar": "المشتري"
+  },
+  "buynow": {
+    "en": "Buy Now",
+    "ar": "اشتري الآن"
+  },
+  "buysubscription": {
+    "en": "Buy Subscription",
+    "ar": "شراء الاشتراك"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "ar": "إلغاء"
+  },
+  "cancellationpolicy": {
+    "en": "Cancellation Policy",
+    "ar": "سياسة الإلغاء"
+  },
+  "cancelled": {
+    "en": "Cancelled",
+    "ar": "ملغاة"
+  },
+  "cancelledmsgone": {
+    "en": "Order has been cancelled",
+    "ar": "تم إلغاء الطلب"
+  },
+  "cancelledmsgtwo": {
+    "en": "Funds have been added to wallet",
+    "ar": "تمت إضافة الأموال إلى المحفظة"
+  },
+  "cancelledorders": {
+    "en": "Cancelled Orders",
+    "ar": "الطلبات الملغاة"
+  },
+  "cart": {
+    "en": "Cart",
+    "ar": "سلة التسوق"
+  },
+  "categories": {
+    "en": "Categories",
+    "ar": "الفئات"
+  },
+  "category": {
+    "en": "Category",
+    "ar": "الفئة"
+  },
+  "certificatename": {
+    "en": "Certificate Name",
+    "ar": "اسم الشهادة"
+  },
+  "changepassword": {
+    "en": "Change Password",
+    "ar": "تغيير كلمة المرور"
+  },
+  "changeplan": {
+    "en": "Change Plan",
+    "ar": "تغيير الخطة"
+  },
+  "chat": {
+    "en": "Chat",
+    "ar": "دردشة"
+  },
+  "chatandinteractionline": {
+    "en": "Chat and Interaction: During this time, you won't be able to engage in chat or other interactive features on our platform.",
+    "ar": "الدردشة والتفاعل: خلال هذا الوقت، لن تتمكن من المشاركة في الدردشة أو الميزات التفاعلية الأخرى على منصتنا."
+  },
+  "chatwith": {
+    "en": "Chat with",
+    "ar": "الدردشة مع"
+  },
+  "checked": {
+    "en": "Checked",
+    "ar": "تم التحقق"
+  },
+  "checkout": {
+    "en": "checkout",
+    "ar": "الدفع"
+  },
+  "checkunnCheckall": {
+    "en": "Check/UnCheck All",
+    "ar": "تحديد / إلغاء تحديد الكل"
+  },
+  "chooseacountry": {
+    "en": "choose a country",
+    "ar": "اختر دولة"
+  },
+  "chooseacurrency": {
+    "en": "Choose a currency",
+    "ar": "اختر عملة"
+  },
+  "choosealanguage": {
+    "en": "Choose a language",
+    "ar": "اختر لغة"
+  },
+  "chooseavatar": {
+    "en": "Choose Avatar",
+    "ar": "اختر الصورة الرمزية"
+  },
+  "chooseyourplan": {
+    "en": "Choose Your Plan",
+    "ar": "اختر خطتك"
+  },
+  "chooseyourplanmsg": {
+    "en": "Select from a range of tailored options to suit your needs and unlock an exceptional experience",
+    "ar": "اختر من مجموعة من الخيارات المخصصة لتناسب احتياجاتك وافتح تجربة استثنائية"
+  },
+  "close": {
+    "en": "Close",
+    "ar": "إغلاق"
+  },
+  "closed": {
+    "en": "Closed",
+    "ar": "مغلق"
+  },
+  "combineyourwishlist": {
+    "en": "Combine your wishlist item in specific groups.",
+    "ar": "اجمع عناصر قائمة الرغبات الخاصة بك في مجموعات محددة."
+  },
+  "comments": {
+    "en": "Comments",
+    "ar": "تعليقات"
+  },
+  "commission": {
+    "en": "Commission",
+    "ar": "العمولة"
+  },
+  "commissionmsg": {
+    "en": "Commission has been deducted.",
+    "ar": "تم خصم العمولة."
+  },
+  "comparelist": {
+    "en": "Compare List",
+    "ar": "قائمة المقارنة"
+  },
+  "completedorders": {
+    "en": "Completed Orders",
+    "ar": "الطلبات المكتملة"
+  },
+  "confirmdelete": {
+    "en": "Confirm Delete",
+    "ar": "تأكيد الحذف"
+  },
+  "confirmdeleteque": {
+    "en": "Are you sure you want to delete?",
+    "ar": "هل أنت متأكد أنك تريد الحذف؟"
+  },
+  "confirmnewpassword": {
+    "en": "Confirm new password",
+    "ar": "تأكيد كلمة المرور الجديدة"
+  },
+  "connecteddevice": {
+    "en": "Connected Device",
+    "ar": "الجهاز المتصل"
+  },
+  "contact": {
+    "en": "Contact",
+    "ar": "اتصال"
+  },
+  "contactdetails": {
+    "en": "Contact Details",
+    "ar": "تفاصيل الاتصال"
+  },
+  "contactme": {
+    "en": "Contact Me",
+    "ar": "اتصل بي"
+  },
+  "contactnumber": {
+    "en": "Contact Number",
+    "ar": "رقم الاتصال"
+  },
+  "contactseller": {
+    "en": "Contact Seller",
+    "ar": "الاتصال بالبائع"
+  },
+  "continue": {
+    "en": "Continue",
+    "ar": "استمر"
+  },
+  "continuewithemail": {
+    "en": "Continue with email",
+    "ar": "المتابعة عبر البريد الإلكتروني"
+  },
+  "continuewithphonenumber": {
+    "en": "Continue with phone number",
+    "ar": "المتابعة عبر رقم الهاتف"
+  },
+  "continuewithyour": {
+    "en": "Continue with your",
+    "ar": "المتابعة مع"
+  },
+  "country": {
+    "en": "Country",
+    "ar": "الدولة"
+  },
+  "coupondiscount": {
+    "en": "Coupon Discount",
+    "ar": "خصم الكوبون"
+  },
+  "coupons": {
+    "en": "Coupons",
+    "ar": "كوبونات"
+  },
+  "coursecontent": {
+    "en": "Course Content",
+    "ar": "محتوى الدورة"
+  },
+  "coverimage": {
+    "en": "Cover Image",
+    "ar": "صورة الغلاف"
+  },
+  "coverimageuploadmsg": {
+    "en": "Allowed JPG, GIF or PNG. Suggested Size 2000 by 250. MAX size 10 MB.",
+    "ar": "مسموح JPG، GIF أو PNG. الحجم المقترح 2000 × 250. الحد الأقصى للحجم 10 ميغابايت."
+  },
+  "createanewaccount": {
+    "en": "Create a new account",
+    "ar": "إنشاء حساب جديد"
+  },
+  "createnewgroup": {
+    "en": "Create New Group",
+    "ar": "إنشاء مجموعة جديدة"
+  },
+  "createteamlogin": {
+    "en": "Create login of this team member",
+    "ar": "إنشاء تسجيل دخول لهذا العضو"
+  },
+  "createteamloginmsg": {
+    "en": "Mark check if you want to create login of this team member",
+    "ar": "ضع علامة إذا كنت تريد إنشاء تسجيل دخول لهذا العضو"
+  },
+  "creditemptydata": {
+    "en": "No Credits Details Found",
+    "ar": "لم يتم العثور على تفاصيل الاعتمادات"
+  },
+  "credithistory": {
+    "en": "Credit Details",
+    "ar": "تفاصيل الاعتمادات"
+  },
+  "creditpurchase": {
+    "en": "Credit Purchase",
+    "ar": "شراء الاعتمادات"
+  },
+  "creditpurchasemsg": {
+    "en": "You have acquired additional credit for your account",
+    "ar": "لقد حصلت على ائتمان إضافي لحسابك"
+  },
+  "credits": {
+    "en": "Credits",
+    "ar": "الاعتمادات"
+  },
+  "cross": {
+    "en": "Cross",
+    "ar": "إغلاق"
+  },
+  "crosslisting": {
+    "en": "Cross Listing",
+    "ar": "إدراج متقاطع"
+  },
+  "currency": {
+    "en": "Currency",
+    "ar": "العملة"
+  },
+  "customizeschedule": {
+    "en": "Customize Schedule",
+    "ar": "تخصيص الجدول الزمني"
+  },
+  "customizeschedulemsg": {
+    "en": "In the customization options, you can choose the specific start and end dates for your ad campaign.",
+    "ar": "في خيارات التخصيص، يمكنك اختيار تواريخ البدء والانتهاء المحددة لحملة إعلاناتك."
+  },
+  "dashboard": {
+    "en": "Dashboard",
+    "ar": "لوحة القيادة"
+  },
+  "date": {
+    "en": "Date",
+    "ar": "تاريخ"
+  },
+  "dateofbirth": {
+    "en": "Date of Birth",
+    "ar": "تاريخ الميلاد"
+  },
+  "days": {
+    "en": "Day(s)",
+    "ar": "يوم (أيام)"
+  },
+  "delete": {
+    "en": "Delete",
+    "ar": "حذف"
+  },
+  "deleteaccount": {
+    "en": "Delete Account",
+    "ar": "حذف الحساب"
+  },
+  "deletemsgheading": {
+    "en": "Are you sure you want to delete this account?",
+    "ar": "هل أنت متأكد أنك تريد حذف هذا الحساب؟"
+  },
+  "deletemsgone": {
+    "en": "Please be aware that this action is irreversible and will result in the permanent removal of all data and settings",
+    "ar": "يرجى العلم أن هذا الإجراء لا رجعة فيه وسيؤدي إلى الإزالة الدائمة لجميع البيانات والإعدادات"
+  },
+  "deletemsgtwo": {
+    "en": "Once you delete account, there is no going back. Please be certain. Here's what you can expect:",
+    "ar": "بمجرد حذف الحساب، لا يمكن التراجع. يرجى التأكد. إليك ما يمكن توقعه:"
+  },
+  "deletingaccount": {
+    "en": "Deleting Account",
+    "ar": "حذف الحساب"
+  },
+  "deletingmsg": {
+    "en": "Deleting your account will remove all of your information. This cannot be undone.",
+    "ar": "حذف حسابك سيزيل كل معلوماتك. لا يمكن التراجع عن هذا."
+  },
+  "deliveredorders": {
+    "en": "Delivered Orders",
+    "ar": "الطلبات المسلمة"
+  },
+  "description": {
+    "en": "Description",
+    "ar": "وصف"
+  },
+  "designanddevelopedby": {
+    "en": "Design & Developed by",
+    "ar": "تصميم وتطوير بواسطة"
+  },
+  "details": {
+    "en": "Details",
+    "ar": "تفاصيل"
+  },
+  "digitaldetail": {
+    "en": "Digital Detail",
+    "ar": "تفاصيل رقمية"
+  },
+  "digitalfile": {
+    "en": "Digital Files",
+    "ar": "الملفات الرقمية"
+  },
+  "digitalfilemsg": {
+    "en": "(Only .zip file allowed)",
+    "ar": "(يُسمح فقط بملف .zip)"
+  },
+  "digitalmarkingrequirement": {
+    "en": "Digital Marking Requirement for Upload",
+    "ar": "متطلبات التمييز الرقمي للتحميل"
+  },
+  "digitalmarkingrequirementmsg": {
+    "en": "Please make sure the item is labeled as 'Digital' before attempting to upload it.",
+    "ar": "يرجى التأكد من تمييز العنصر كـ 'رقمي' قبل محاولة تحميله."
+  },
+  "discount": {
+    "en": "Discount",
+    "ar": "خصم"
+  },
+  "displayname": {
+    "en": "Display Name",
+    "ar": "اسم العرض"
+  },
+  "documenttype": {
+    "en": "Document Type",
+    "ar": "نوع المستند"
+  },
+  "donhaveanaccount": {
+    "en": "Don’t have an account?",
+    "ar": "ليس لديك حساب؟"
+  },
+  "downloaditem": {
+    "en": "Download Item",
+    "ar": "تحميل العنصر"
+  },
+  "downloaditemlineone": {
+    "en": "Item will be available for download once the payment is made.",
+    "ar": "سيكون العنصر متاحًا للتنزيل بمجرد إجراء الدفع."
+  },
+  "downloaditemlinetwo": {
+    "en": "If you have made the payment and item is not available please call support service.",
+    "ar": "إذا كنت قد أجريت الدفع ولم يكن العنصر متاحًا، يرجى الاتصال بخدمة الدعم."
+  },
+  "doyouhavecoupon": {
+    "en": "Do you have any Coupon Code?",
+    "ar": "هل لديك أي رمز قسيمة؟"
+  },
+  "duplicateitem": {
+    "en": "Duplicate Item",
+    "ar": "عنصر مكرر"
+  },
+  "eancode": {
+    "en": "EAN Code",
+    "ar": "رمز EAN"
+  },
+  "edit": {
+    "en": "Edit",
+    "ar": "تحرير"
+  },
+  "editprofile": {
+    "en": "Edit Profile",
+    "ar": "تعديل الملف الشخصي"
+  },
+  "egbluegreen": {
+    "en": "Eg: Blue, green",
+    "ar": "مثل: أزرق، أخضر"
+  },
+  "email": {
+    "en": "Email",
+    "ar": "البريد الإلكتروني"
+  },
+  "emptycart": {
+    "en": "Your Cart is Empty",
+    "ar": "سلة التسوق فارغة"
+  },
+  "emptydata": {
+    "en": "No Record Found",
+    "ar": "لم يتم العثور على سجل"
+  },
+  "enablediscountasalways": {
+    "en": "Enable Discount as always",
+    "ar": "تمكين الخصم كالمعتاد"
+  },
+  "enddate": {
+    "en": "End Date",
+    "ar": "تاريخ الانتهاء"
+  },
+  "endprice": {
+    "en": "End Price",
+    "ar": "سعر النهاية"
+  },
+  "enternewpassword": {
+    "en": "Enter New Password",
+    "ar": "أدخل كلمة المرور الجديدة"
+  },
+  "enterregistereddetail": {
+    "en": "Enter your registered email or phone with country code.",
+    "ar": "أدخل بريدك الإلكتروني المسجل أو الهاتف مع رمز البلد."
+  },
+  "errorheading": {
+    "en": "Error Heading",
+    "ar": "عنوان الخطأ"
+  },
+  "estimatedshippingfees": {
+    "en": "Estimated Shipping Fees",
+    "ar": "الرسوم المقدرة للشحن"
+  },
+  "experience": {
+    "en": "Experience",
+    "ar": "الخبرة"
+  },
+  "experiencemsg": {
+    "en": "Please provide details of the experiences your team member have",
+    "ar": "يرجى تقديم تفاصيل عن الخبرات التي يمتلكها عضو فريقك"
+  },
+  "expired": {
+    "en": "Expired",
+    "ar": "منتهي الصلاحية"
+  },
+  "Expiry": {
+    "en": "expiry",
+    "ar": "انتهاء الصلاحية"
+  },
+  "exporttopdf": {
+    "en": "Export to PDF",
+    "ar": "تصدير إلى PDF"
+  },
+  "faq": {
+    "en": "FAQ",
+    "ar": "الأسئلة الشائعة"
+  },
+  "featuredseller": {
+    "en": "Featured Seller",
+    "ar": "البائع المميز"
+  },
+  "file": {
+    "en": "File",
+    "ar": "ملف"
+  },
+  "filter": {
+    "en": "Filter",
+    "ar": "تصفية"
+  },
+  "firstname": {
+    "en": "First Name",
+    "ar": "الاسم الأول"
+  },
+  "flashsale": {
+    "en": "Flash Sale",
+    "ar": "تخفيضات سريعة"
+  },
+  "followers": {
+    "en": "Followers",
+    "ar": "المتابعون"
+  },
+  "following": {
+    "en": "Following",
+    "ar": "متابعة"
+  },
+  "for": {
+    "en": "For",
+    "ar": "لـ"
+  },
+  "forgotpassword": {
+    "en": "Forgot Password?",
+    "ar": "هل نسيت كلمة المرور؟"
+  },
+  "freeshipping": {
+    "en": "Free Shipping",
+    "ar": "شحن مجاني"
+  },
+  "frequentlyaskedquestion": {
+    "en": "Frequently asked question",
+    "ar": "أسئلة شائعة"
+  },
+  "from": {
+    "en": "From",
+    "ar": "من"
+  },
+  "fullname": {
+    "en": "Full Name",
+    "ar": "الاسم الكامل"
+  },
+  "goodbyemsg": {
+    "en": "You are now signed out of your account. For security purposes, it is recommended to close all browser windows. Stay safe",
+    "ar": "أنت الآن مسجل الخروج من حسابك. لأغراض الأمان، يوصى بإغلاق جميع نوافذ المتصفح. ابق آمنًا"
+  },
+  "goodbyetitle": {
+    "en": "Goodbye! See you Soon.",
+    "ar": "وداعا! نراك قريبا."
+  },
+  "gooffline": {
+    "en": "Go Offline",
+    "ar": "افصل الاتصال"
+  },
+  "goofflinefor": {
+    "en": "Go Offline for",
+    "ar": "افصل الاتصال لـ"
+  },
+  "goonline": {
+    "en": "Go Online",
+    "ar": "اتصل بالإنترنت"
+  },
+  "goto": {
+    "en": "Go to",
+    "ar": "اذهب إلى"
+  },
+  "grandtotal": {
+    "en": "Grand Total",
+    "ar": "الإجمالي الكلي"
+  },
+  "height": {
+    "en": "Height",
+    "ar": "الارتفاع"
+  },
+  "historydeletion": {
+    "en": "History Deletion:",
+    "ar": "حذف التاريخ:"
+  },
+  "historydeletionmsg": {
+    "en": "Account history, including any preferences, saved items, and browsing history, will be completely erased.",
+    "ar": "سيتم مسح سجل الحساب بالكامل، بما في ذلك أي تفضيلات، وعناصر محفوظة، وسجل التصفح."
+  },
+  "home": {
+    "en": "Home",
+    "ar": "الرئيسية"
+  },
+  "houdoyouwanttopay": {
+    "en": "How do you want to pay?",
+    "ar": "كيف تريد الدفع؟"
+  },
+  "hours": {
+    "en": "Hours",
+    "ar": "ساعات"
+  },
+  "identityproofmsg": {
+    "en": "Please scan both front and backside and upload as one image",
+    "ar": "يرجى مسح كلا الجانبين الأمامي والخلفي وتحميلهما كصورة واحدة"
+  },
+  "ifany": {
+    "en": "(if any)",
+    "ar": "(إذا وجد)"
+  },
+  "impressions": {
+    "en": "Impressions",
+    "ar": "الانطباعات"
+  },
+  "inbox": {
+    "en": "Inbox",
+    "ar": "البريد الوارد"
+  },
+  "inches": {
+    "en": "inches",
+    "ar": "بوصات"
+  },
+  "incrementamount": {
+    "en": "Increment Amount",
+    "ar": "مبلغ الزيادة"
+  },
+  "insertdate": {
+    "en": "Insert Date",
+    "ar": "تاريخ المدخل"
+  },
+  "inserttype": {
+    "en": "Insert Type",
+    "ar": "نوع المدخل"
+  },
+  "insights": {
+    "en": "Insights",
+    "ar": "أفكار"
+  },
+  "institutename": {
+    "en": "Institute Name",
+    "ar": "اسم المعهد"
+  },
+  "inventory": {
+    "en": "Inventory",
+    "ar": "المخزون"
+  },
+  "inventorymanagement": {
+    "en": "Inventory Management",
+    "ar": "إدارة المخزون"
+  },
+  "isforthe": {
+    "en": "is for the",
+    "ar": "هي لـ"
+  },
+  "item": {
+    "en": "Item",
+    "ar": "عنصر"
+  },
+  "itemincart": {
+    "en": "Item In Cart",
+    "ar": "عنصر في السلة"
+  },
+  "itemname": {
+    "en": "Item Name",
+    "ar": "اسم العنصر"
+  },
+  "itemsold": {
+    "en": "Item Sold",
+    "ar": "تم بيع العنصر"
+  },
+  "itemsoldmsg": {
+    "en": "Your item has been successfully sold",
+    "ar": "تم بيع العنصر الخاص بك بنجاح"
+  },
+  "itemtype": {
+    "en": "Item Type",
+    "ar": "نوع العنصر"
+  },
+  "Ithasalifetimeduration": {
+    "en": "It has a lifetime duration.",
+    "ar": "له مدة استمرارية مدى الحياة."
+  },
+  "ithasalifetimeduration": {
+    "en": "It has a lifetime duration.",
+    "ar": "له مدة استمرارية مدى الحياة."
+  },
+  "lastname": {
+    "en": "Last Name",
+    "ar": "اسم العائلة"
+  },
+  "lastseen": {
+    "en": "Last seen",
+    "ar": "آخر ظهور"
+  },
+  "lbs": {
+    "en": "lbs",
+    "ar": "رطل"
+  },
+  "Length": {
+    "en": "Length",
+    "ar": "الطول"
+  },
+  "lifetime": {
+    "en": "Lifetime",
+    "ar": "مدى الحياة"
+  },
+  "listing": {
+    "en": "Listing",
+    "ar": "قائمة"
+  },
+  "listingboosted": {
+    "en": "Listing Boosted",
+    "ar": "تم تعزيز القائمة"
+  },
+  "listingboostedmsg": {
+    "en": "You have boosted your listing.",
+    "ar": "لقد قمت بتعزيز قائمتك."
+  },
+  "listingdetails": {
+    "en": "Listing Details",
+    "ar": "تفاصيل القائمة"
+  },
+  "listinginquiry": {
+    "en": "Inquiry",
+    "ar": "استفسار"
+  },
+  "listings": {
+    "en": "Listings",
+    "ar": "القوائم"
+  },
+  "listingtype": {
+    "en": "Listing Type",
+    "ar": "نوع القائمة"
+  },
+  "loadmore": {
+    "en": "Load More",
+    "ar": "تحميل المزيد"
+  },
+  "login": {
+    "en": "Login",
+    "ar": "تسجيل الدخول"
+  },
+  "logout": {
+    "en": "Logout",
+    "ar": "تسجيل الخروج"
+  },
+  "lossofaccess": {
+    "en": "Loss of Access:",
+    "ar": "فقدان الوصول:"
+  },
+  "lossofaccessmsg": {
+    "en": "Access to the account will be revoked, and any linked advantages, rewards, or credits will be nullified.",
+    "ar": "سيتم إلغاء الوصول إلى الحساب، وأي مزايا أو مكافآت أو أرصدة مرتبطة ستصبح لاغية."
+  },
+  "loyaltypoints": {
+    "en": "Loyalty Points",
+    "ar": "نقاط الولاء"
+  },
+  "manageinventory": {
+    "en": "Manage Inventory",
+    "ar": "إدارة المخزون"
+  },
+  "manageinventorylineone": {
+    "en": "1. Mark Check if you want to enable an automatic inventory system in this product.",
+    "ar": "1. ضع علامة إذا كنت تريد تمكين نظام جرد تلقائي في هذا المنتج."
+  },
+  "manageinventorylinetwo": {
+    "en": "2. If enabled, and you do not have balance product in stock user cannot buy it.",
+    "ar": "2. إذا تم تفعيلها، ولم يكن لديك منتج في المخزون، فلا يمكن للمستخدم شراؤه."
+  },
+  "managelisting": {
+    "en": "Manage",
+    "ar": "إدارة"
+  },
+  "markasread": {
+    "en": "Mark as read",
+    "ar": "تحديد كمقروء"
+  },
+  "markstatus": {
+    "en": "Mark Status",
+    "ar": "علامة الحالة"
+  },
+  "markyouravailability": {
+    "en": "Mark Your Availability",
+    "ar": "حدد مدى توافرك"
+  },
+  "markyouravailabilitymsg": {
+    "en": "Your profile will be displayed according to the marked availability hours.",
+    "ar": "سيتم عرض ملفك الشخصي وفقًا لساعات التوافر المحددة."
+  },
+  "max": {
+    "en": "Max",
+    "ar": "الأقصى"
+  },
+  "maxcartqty": {
+    "en": "Max Cart Qty",
+    "ar": "الحد الأقصى للكمية في السلة"
+  },
+  "membersince": {
+    "en": "Member Since",
+    "ar": "عضو منذ"
+  },
+  "message": {
+    "en": "Message",
+    "ar": "رسالة"
+  },
+  "metadescription": {
+    "en": "Meta description",
+    "ar": "وصف الميتا"
+  },
+  "metakeywords": {
+    "en": "Meta keywords",
+    "ar": "الكلمات المفتاحية للميتا"
+  },
+  "metatitle": {
+    "en": "Meta title",
+    "ar": "عنوان الميتا"
+  },
+  "min": {
+    "en": "Min",
+    "ar": "الأدنى"
+  },
+  "mincartqty": {
+    "en": "Min Cart Qty",
+    "ar": "الحد الأدنى للكمية في السلة"
+  },
+  "mtnpaymentid": {
+    "en": "MTN Payment ID",
+    "ar": "معرف الدفع MTN"
+  },
+  "myorders": {
+    "en": "My Orders",
+    "ar": "طلباتي"
+  },
+  "myprofile": {
+    "en": "My Profile",
+    "ar": "ملفي الشخصي"
+  },
+  "name": {
+    "en": "Name",
+    "ar": "الاسم"
+  },
+  "needhelpwithyourassword": {
+    "en": "Need Help with your password?",
+    "ar": "تحتاج مساعدة بكلمة المرور؟"
+  },
+  "newpassword": {
+    "en": "New password",
+    "ar": "كلمة المرور الجديدة"
+  },
+  "nextpayment": {
+    "en": "Next payment",
+    "ar": "الدفع التالي"
+  },
+  "no": {
+    "en": "No",
+    "ar": "لا"
+  },
+  "noofrealbids": {
+    "en": "No of Real Bids",
+    "ar": "عدد العروض الحقيقية"
+  },
+  "norecordfound": {
+    "en": "Sorry, No Record Found",
+    "ar": "عذرا، لم يتم العثور على سجل"
+  },
+  "notes": {
+    "en": "Notes",
+    "ar": "ملاحظات"
+  },
+  "notification": {
+    "en": "Notification",
+    "ar": "إشعار"
+  },
+  "notificationsettings": {
+    "en": "Notification Settings",
+    "ar": "إعدادات الإشعارات"
+  },
+  "notsupportedcurrency": {
+    "en": "Not supported currency",
+    "ar": "عملة غير مدعومة"
+  },
+  "novalidaccount": {
+    "en": "No valid account information found.",
+    "ar": "لم يتم العثور على معلومات حساب صالحة."
+  },
+  "offline": {
+    "en": "Offline",
+    "ar": "غير متصل"
+  },
+  "on": {
+    "en": "on",
+    "ar": "في"
+  },
+  "online": {
+    "en": "Online",
+    "ar": "متصل"
+  },
+  "onlinestatus": {
+    "en": "Online Status",
+    "ar": "الحالة المتصلة"
+  },
+  "optional": {
+    "en": "Optional",
+    "ar": "اختياري"
+  },
+  "optionname": {
+    "en": "Option Name",
+    "ar": "اسم الخيار"
+  },
+  "or": {
+    "en": "or",
+    "ar": "أو"
+  },
+  "ordercompletion": {
+    "en": "Order Completion",
+    "ar": "إكمال الطلب"
+  },
+  "orderdetails": {
+    "en": "Order Details",
+    "ar": "تفاصيل الطلب"
+  },
+  "orderid": {
+    "en": "Order ID",
+    "ar": "معرف الطلب"
+  },
+  "orders": {
+    "en": "Orders",
+    "ar": "الطلبات"
+  },
+  "ordersummary": {
+    "en": "Order Summary",
+    "ar": "ملخص الطلب"
+  },
+  "otherimages": {
+    "en": "Other Images",
+    "ar": "صور أخرى"
+  },
+  "sellermenuaccount": {
+    "en": "Account",
+    "ar": "الحساب"
+  },
+  "sellermenuaddress": {
+    "en": "Address",
+    "ar": "العنوان"
+  },
+  "sellermenuadmanager": {
+    "en": "Ad Manager",
+    "ar": "مدير الإعلانات"
+  },
+  "sellermenuallcampaigns": {
+    "en": "All Campaigns",
+    "ar": "جميع الحملات"
+  },
+  "sellermenuallmisc": {
+    "en": "Misc",
+    "ar": "متنوع"
+  },
+  "sellermenuavailability": {
+    "en": "Availability",
+    "ar": "التوافر"
+  },
+  "sellermenubilling": {
+    "en": "Billing",
+    "ar": "الفوترة"
+  },
+  "sellermenubusiness": {
+    "en": "Business",
+    "ar": "العمل"
+  },
+  "sellermenucertificate": {
+    "en": "Certificate",
+    "ar": "الشهادة"
+  },
+  "sellermenucontact": {
+    "en": "Contact",
+    "ar": "اتصال"
+  },
+  "sellermenuhowtouse": {
+    "en": "How to use",
+    "ar": "كيفية الاستخدام"
+  },
+  "sellermenuidentityproof": {
+    "en": "Identity Proof",
+    "ar": "إثبات الهوية"
+  },
+  "sellermenunotification": {
+    "en": "Notification",
+    "ar": "إشعار"
+  },
+  "sellermenuprofile": {
+    "en": "Profile",
+    "ar": "الملف الشخصي"
+  },
+  "sellermenusettings": {
+    "en": "Settings",
+    "ar": "الإعدادات"
+  },
+  "sellermenusocialmedia": {
+    "en": "Social Media Links",
+    "ar": "روابط وسائل التواصل الاجتماعي"
+  },
+  "sellermenuteammembers": {
+    "en": "Team Members",
+    "ar": "أعضاء الفريق"
+  },
+  "sellermteammembersheading": {
+    "en": "Team Members Information",
+    "ar": "معلومات أعضاء الفريق"
+  },
+  "sellerprofileheading": {
+    "en": "Personal Info",
+    "ar": "معلومات شخصية"
+  },
+  "sellerproifleuploadmsg": {
+    "en": "Allowed JPG, GIF or PNG. Suggested Pixel 200 by 200. MAX size 10 MB.",
+    "ar": "مسموح JPG، GIF أو PNG. البكسل المقترح 200 × 200. الحد الأقصى للحجم 10 ميغابايت."
+  },
+  "sellersocialmediaheading": {
+    "en": "Social Media Links",
+    "ar": "روابط وسائل التواصل الاجتماعي"
+  },
+  "sellingtype": {
+    "en": "Selling Type",
+    "ar": "نوع البيع"
+  },
+  "sendamessage": {
+    "en": "Send a Message",
+    "ar": "أرسل رسالة"
+  },
+  "seo": {
+    "en": "SEO",
+    "ar": "تحسين محركات البحث"
+  },
+  "serviceperiod": {
+    "en": "Service period",
+    "ar": "فترة الخدمة"
+  },
+  "set": {
+    "en": "Set",
+    "ar": "تعيين"
+  },
+  "setincrement": {
+    "en": "Set Increment",
+    "ar": "تعيين الزيادة"
+  },
+  "setincrementmsg": {
+    "en": "(If unchecked, users can manually enter their bidding price during the bidding process. If checked, the bidding price will automatically increase based on user bids.)",
+    "ar": "(إذا لم يتم تحديده، يمكن للمستخدمين إدخال سعر العرض يدويًا أثناء عملية المزايدة. إذا تم تحديده، فسيزداد سعر العرض تلقائيًا بناءً على عروض المستخدمين.)"
+  },
+  "setupcustomtime": {
+    "en": "Setup Custom Time",
+    "ar": "إعداد وقت مخصص"
+  },
+  "share": {
+    "en": "Share:",
+    "ar": "شارك:"
+  },
+  "shiphere": {
+    "en": "Ship Here",
+    "ar": "اشحن هنا"
+  },
+  "shippedorders": {
+    "en": "Shipped Orders",
+    "ar": "الطلبات المشحونة"
+  },
+  "shipping": {
+    "en": "Shipping",
+    "ar": "الشحن"
+  },
+  "shippingaddress": {
+    "en": "Shipping Address",
+    "ar": "عنوان الشحن"
+  },
+  "shippingaddresstypehome": {
+    "en": "Home",
+    "ar": "منزل"
+  },
+  "shippingaddresstypeoffice": {
+    "en": "Office",
+    "ar": "مكتب"
+  },
+  "shippingcity": {
+    "en": "City",
+    "ar": "مدينة"
+  },
+  "shippingdetails": {
+    "en": "Shipping Details",
+    "ar": "تفاصيل الشحن"
+  },
+  "shippingeffectivedelivery": {
+    "en": "Address Type",
+    "ar": "نوع العنوان"
+  },
+  "shippingLandmark": {
+    "en": "Land Mark",
+    "ar": "معلم"
+  },
+  "shippingPhone": {
+    "en": "Phone Number",
+    "ar": "رقم الهاتف"
+  },
+  "shippingState": {
+    "en": "State",
+    "ar": "ولاية"
+  },
+  "shippingStreet": {
+    "en": "Street",
+    "ar": "شارع"
+  },
+  "shippingZipcode": {
+    "en": "Zipcode",
+    "ar": "الرمز البريدي"
+  },
+  "shipto": {
+    "en": "Ship to",
+    "ar": "الشحن إلى"
+  },
+  "shortdescription": {
+    "en": "Short Description",
+    "ar": "وصف مختصر"
+  },
+  "showaddress": {
+    "en": "Show Address",
+    "ar": "إظهار العنوان"
+  },
+  "showemail": {
+    "en": "Show Email",
+    "ar": "إظهار البريد الإلكتروني"
+  },
+  "shownumbers": {
+    "en": "Show Number",
+    "ar": "إظهار الرقم"
+  },
+  "signin": {
+    "en": "Sign in",
+    "ar": "تسجيل الدخول"
+  },
+  "signintoyouraccount": {
+    "en": "Sign in to your account",
+    "ar": "تسجيل الدخول إلى حسابك"
+  },
+  "signout": {
+    "en": "Sign out",
+    "ar": "تسجيل الخروج"
+  },
+  "signup": {
+    "en": "Sign up",
+    "ar": "إنشاء حساب"
+  },
+  "similar": {
+    "en": "Similar",
+    "ar": "مماثل"
+  },
+  "skip": {
+    "en": "Skip",
+    "ar": "تخطي"
+  },
+  "sku": {
+    "en": "SKU",
+    "ar": "وحدة حفظ المخزون"
+  },
+  "socialprofiles": {
+    "en": "Social profiles",
+    "ar": "الملفات الشخصية الاجتماعية"
+  },
+  "soldby": {
+    "en": "Sold by",
+    "ar": "باعها"
+  },
+  "soldquantity": {
+    "en": "Sold Quantity",
+    "ar": "الكمية المباعة"
+  },
+  "sortno": {
+    "en": "Sort #",
+    "ar": "رقم الفرز"
+  },
+  "sorttype": {
+    "en": "Sort Type",
+    "ar": "نوع الفرز"
+  },
+  "sourceurl": {
+    "en": "ID/URL Source",
+    "ar": "مصدر المعرف / الرابط"
+  },
+  "speciality": {
+    "en": "Speciality",
+    "ar": "التخصص"
+  },
+  "specialitymsg": {
+    "en": "Please provide details of the skills your team member have",
+    "ar": "يرجى تقديم تفاصيل المهارات التي يمتلكها عضو فريقك"
+  },
+  "srno": {
+    "en": "SR#",
+    "ar": "رقم تسلسلي"
+  },
+  "startdate": {
+    "en": "Start date",
+    "ar": "تاريخ البدء"
+  },
+  "startprice": {
+    "en": "Start Price",
+    "ar": "سعر البدء"
+  },
+  "status": {
+    "en": "Status",
+    "ar": "الحالة"
+  },
+  "statuses": {
+    "en": "Statuses",
+    "ar": "الحالات"
+  },
+  "statusesmsg": {
+    "en": "Mark check if you want to live it",
+    "ar": "ضع علامة إذا كنت ترغب في تجربتها"
+  },
+  "store": {
+    "en": "Store",
+    "ar": "المتجر"
+  },
+  "submit": {
+    "en": "Submit",
+    "ar": "إرسال"
+  },
+  "subscribtionhistory": {
+    "en": "Subscribtion Details",
+    "ar": "تفاصيل الاشتراك"
+  },
+  "subscription": {
+    "en": "Subscription",
+    "ar": "الاشتراك"
+  },
+  "subscriptionemptydata": {
+    "en": "No Subscription Details Found",
+    "ar": "لم يتم العثور على تفاصيل الاشتراك"
+  },
+  "subscriptionhistory": {
+    "en": "Subscription History",
+    "ar": "تاريخ الاشتراك"
+  },
+  "subscriptionmsg": {
+    "en": "You have upgraded to our premium plan.",
+    "ar": "لقد تمت ترقيتك إلى خطتنا المميزة."
+  },
+  "subtotal": {
+    "en": "Sub Total",
+    "ar": "الإجمالي الفرعي"
+  },
+  "summary": {
+    "en": "Summary",
+    "ar": "ملخص"
+  },
+  "switchtoadminpanel": {
+    "en": "Switch To Admin Panel",
+    "ar": "التحويل إلى لوحة الإدارة"
+  },
+  "switchtosellerpanel": {
+    "en": "Switch To Seller Panel",
+    "ar": "التحويل إلى لوحة البائع"
+  },
+  "teammember": {
+    "en": "Team Member",
+    "ar": "عضو الفريق"
+  },
+  "theinvoiceissettoexpireon": {
+    "en": "The invoice is set to expire on",
+    "ar": "الفاتورة ستنتهي في"
+  },
+  "theinvoicewithnumber": {
+    "en": "The invoice with number",
+    "ar": "الفاتورة ذات الرقم"
+  },
+  "thisdevice": {
+    "en": "This Device",
+    "ar": "هذا الجهاز"
+  },
+  "title": {
+    "en": "Title",
+    "ar": "العنوان"
+  },
+  "to": {
+    "en": "To",
+    "ar": "إلى"
+  },
+  "total": {
+    "en": "Total",
+    "ar": "الإجمالي"
+  },
+  "totalamount": {
+    "en": "Total Amount",
+    "ar": "المبلغ الإجمالي"
+  },
+  "transaction": {
+    "en": "Transaction",
+    "ar": "المعاملة"
+  },
+  "tryagain": {
+    "en": "Try Again",
+    "ar": "حاول مرة أخرى"
+  },
+  "type": {
+    "en": "Type",
+    "ar": "النوع"
+  },
+  "typeyourreplyhere": {
+    "en": "Type Your Reply Here",
+    "ar": "اكتب ردك هنا"
+  },
+  "unchecked": {
+    "en": "Unchecked",
+    "ar": "غير محدد"
+  },
+  "unit": {
+    "en": "Unit",
+    "ar": "الوحدة"
+  },
+  "update": {
+    "en": "Update",
+    "ar": "تحديث"
+  },
+  "updateimage": {
+    "en": "Update image",
+    "ar": "تحديث الصورة"
+  },
+  "updateprofileimage": {
+    "en": "Update Profile Image",
+    "ar": "تحديث صورة الملف الشخصي"
+  },
+  "updatestatus": {
+    "en": "Update Status",
+    "ar": "تحديث الحالة"
+  },
+  "upload": {
+    "en": "Upload",
+    "ar": "تحميل"
+  },
+  "uploadimages": {
+    "en": "Upload Images",
+    "ar": "تحميل الصور"
+  },
+  "uploadphoto": {
+    "en": "Upload Photo",
+    "ar": "تحميل الصورة"
+  },
+  "uploadphotomsg": {
+    "en": "Allowed JPG or PNG. Suggested Pixel 200 by 200. MAX size 10 MB.",
+    "ar": "مسموح JPG أو PNG. البكسل المقترح 200 × 200. الحد الأقصى للحجم 10 ميغابايت."
+  },
+  "uploadproductimage": {
+    "en": "Upload Product Image",
+    "ar": "تحميل صورة المنتج"
+  },
+  "use": {
+    "en": "Use",
+    "ar": "استخدام"
+  },
+  "usersitemap": {
+    "en": "User Site Map",
+    "ar": "خريطة موقع المستخدم"
+  },
+  "validation": {
+    "en": "Validation",
+    "ar": "التحقق"
+  },
+  "value": {
+    "en": "Value",
+    "ar": "القيمة"
+  },
+  "vendor": {
+    "en": "Vendor",
+    "ar": "البائع"
+  },
+  "verificationcode": {
+    "en": "Verification Code",
+    "ar": "رمز التحقق"
+  },
+  "verificationcodemsg": {
+    "en": "If you haven't received the verification code, please click on",
+    "ar": "إذا لم تتلقَ رمز التحقق، يرجى النقر على"
+  },
+  "verifiedstatus": {
+    "en": "Verified Status",
+    "ar": "الحالة المؤكدة"
+  },
+  "verifyyour": {
+    "en": "Verify Your",
+    "ar": "تحقق من"
+  },
+  "version": {
+    "en": "Version",
+    "ar": "الإصدار"
+  },
+  "video": {
+    "en": "Video",
+    "ar": "فيديو"
+  },
+  "videodetails": {
+    "en": "Video Details",
+    "ar": "تفاصيل الفيديو"
+  },
+  "videolist": {
+    "en": "Video List",
+    "ar": "قائمة الفيديو"
+  },
+  "videosource": {
+    "en": "Video Source",
+    "ar": "مصدر الفيديو"
+  },
+  "videourl": {
+    "en": "Video URL",
+    "ar": "رابط الفيديو"
+  },
+  "view": {
+    "en": "View",
+    "ar": "عرض"
+  },
+  "viewdetails": {
+    "en": "View details",
+    "ar": "عرض التفاصيل"
+  },
+  "viewitem": {
+    "en": "View Item",
+    "ar": "عرض العنصر"
+  },
+  "viewmore": {
+    "en": "View More",
+    "ar": "عرض المزيد"
+  },
+  "viewprofile": {
+    "en": "View Profile",
+    "ar": "عرض الملف الشخصي"
+  },
+  "views": {
+    "en": "Views",
+    "ar": "المشاهدات"
+  },
+  "visibilityline": {
+    "en": "Visibility: Your online status will be hidden from other users for a Selected period.",
+    "ar": "الرؤية: سيتم إخفاء حالتك المتصلة عن المستخدمين الآخرين لفترة محددة."
+  },
+  "wallet": {
+    "en": "Wallet",
+    "ar": "المحفظة"
+  },
+  "walletmsg": {
+    "en": "Wallet used to make purchased for Invoice number",
+    "ar": "تم استخدام المحفظة للشراء على الفاتورة رقم"
+  },
+  "walletused": {
+    "en": "Wallet Used",
+    "ar": "تم استخدام المحفظة"
+  },
+  "websiteunderconstruction": {
+    "en": "Sorry, we're doing some work on the site",
+    "ar": "عذرًا، نحن نقوم ببعض الأعمال على الموقع"
+  },
+  "weight": {
+    "en": "Weight",
+    "ar": "الوزن"
+  },
+  "welcome": {
+    "en": "Welcome",
+    "ar": "مرحبًا"
+  },
+  "weusecookies": {
+    "en": "We use cookies",
+    "ar": "نستخدم ملفات تعريف الارتباط"
+  },
+  "whichwillremainvaliduntil": {
+    "en": "which will remain valid until",
+    "ar": "التي ستظل سارية حتى"
+  },
+  "Width": {
+    "en": "Width",
+    "ar": "العرض"
+  },
+  "wishlist": {
+    "en": "Wishlist",
+    "ar": "قائمة الرغبات"
+  },
+  "withanamountof": {
+    "en": "with an amount of",
+    "ar": "بمبلغ"
+  },
+  "withdrawal": {
+    "en": "Withdrawal",
+    "ar": "السحب"
+  },
+  "withdrawalmsg": {
+    "en": "You initiated a withdrawal of funds",
+    "ar": "لقد بدأت سحب الأموال"
+  },
+  "writereview": {
+    "en": "Write Review",
+    "ar": "اكتب تقييم"
+  },
+  "yearsofexperience": {
+    "en": "Years Of Experience",
+    "ar": "سنوات الخبرة"
+  },
+  "yes": {
+    "en": "Yes",
+    "ar": "نعم"
+  },
+  "yesiamavailableforchat": {
+    "en": "Yes, I am available for Chat",
+    "ar": "نعم، أنا متاح للدردشة"
+  },
+  "yesiamavailableforsearch": {
+    "en": "Yes, I am available for search",
+    "ar": "نعم، أنا متاح للبحث"
+  },
+  "youarebeingredirectedin": {
+    "en": "You are being redirected in",
+    "ar": "سيتم إعادة توجيهك خلال"
+  },
+  "youareoffline": {
+    "en": "You're offline. Check your connection.",
+    "ar": "أنت غير متصل. تحقق من اتصالك."
+  },
+  "youhavereceived": {
+    "en": "You have received",
+    "ar": "لقد تلقيت"
+  },
+  "your": {
+    "en": "Your",
+    "ar": "خاصتك"
+  },
+  "yourcurrentstatusis": {
+    "en": "Your current status is",
+    "ar": "حالتك الحالية هي"
+  },
+  "yourpromotiondatesare": {
+    "en": "Your Promotion Dates are",
+    "ar": "تواريخ الترقية الخاصة بك هي"
+  },
+  "yourselectedpromotion": {
+    "en": "Your Selected Promotion",
+    "ar": "الترقية الذي اخترته"
+  },
+  "yousave": {
+    "en": "You Save",
+    "ar": "أنت توفر"
+  },
+  "youshedulead": {
+    "en": "You Schedule ad campaign for",
+    "ar": "قمت بجدولة حملة إعلانية لـ"
+  },
+  "recommended": {
+    "en": "Recommended",
+    "ar": "مُستَحسَن"
+  },
+  "search": {
+    "en": "Search",
+    "ar": "يبحث"
+  },
+  "viewProfile": {
+    "en": "",
+    "ar": ""
+  },
+  "sellerinformation": {
+    "en": "Agent Information",
+    "ar": "معلومات الوكيل"
+  },
+  "related": {
+    "en": "Related",
+    "ar": "متعلق ب"
+  },
+  "qa": {
+    "en": "Q/A",
+    "ar": "جواب السؤال"
+  },
+  "speaks": {
+    "en": "Speaks",
+    "ar": "يتحدث"
+  },
+  "sendmessage": {
+    "en": "Send Message",
+    "ar": "أرسل رسالة"
+  },
+  "totalemployees": {
+    "en": "Employee",
+    "ar": " موظف"
+  },
+  "foundingyear": {
+    "en": "Founding Year",
+    "ar": "سنة التأسيس"
+  },
+  "readmore": {
+    "en": "Read More",
+    "ar": "اقرأ أكثر"
+  },
+  "overview": {
+    "en": "Overview",
+    "ar": "ملخص"
+  },
+  "searchbylocation": {
+    "en": "Search by location",
+    "ar": "البحث حسب الموقع"
+  },
+  "searchbynearyou": {
+    "en": "Search by near you",
+    "ar": "البحث عن طريق بالقرب منك"
+  },
+  "price": {
+    "en": "Price",
+    "ar": "سعر"
+  },
+  "rating": {
+    "en": "Rating",
+    "ar": "تقييم"
+  },
+  "reviews": {
+    "en": "Reviews",
+    "ar": "المراجعات"
+  },
+  "otherstore": {
+    "en": "Other Store",
+    "ar": "متجر آخر"
+  },
+  "ourpartner": {
+    "en": "Our partner",
+    "ar": "شريكنا"
+  },
+  "profile": {
+    "en": "Profile",
+    "ar": "حساب تعريفي"
+  },
+  "phonenumber": {
+    "en": "Phone Number",
+    "ar": "رقم التليفون"
+  },
+  "save": {
+    "en": "Save",
+    "ar": "يحفظ"
+  },
+  "paymenthistory": {
+    "en": "Payment History",
+    "ar": "تاريخ الدفع"
+  },
+  "register": {
+    "en": "Register",
+    "ar": "يسجل"
+  }
+}

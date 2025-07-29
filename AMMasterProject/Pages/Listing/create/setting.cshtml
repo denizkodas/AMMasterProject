@@ -1,0 +1,53 @@
+﻿@page "/listing/create/setting/{ID}"
+@model AMMasterProject.Pages.Listing.create.settingModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div>
+
+
+
+
+
+    <form method="post">
+        <title>
+            @(Model.ProductBasicV2.ProductId != 0 ? "Update" : "Create")   Listing
+
+        </title>
+ 
+    <div class="row large-form">
+
+        <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+        <div class="col-md-10 l-tabs-content form">
+                <a class="skip-btn" href="~/reports/listinglist">
+                    Skip
+                </a>
+            <h5 class="l-tabs-heading">
+                Other Settings
+            </h5>
+
+            <div class="white-bg paddingtb">
+                <div class="row paddingrf-15 no-margin">
+                    <div class="form-group col-md-5 no-padding">
+                        Add Tags
+                        Meta title
+                        <input type="text" asp-for="@Model.ProductBasicV2.Producttags">
+
+
+                            <span asp-validation-for="@Model.ProductBasicV2.Producttags" class="required"></span>
+
+                    </div>
+                    <div class="form-group col-md-2 ">
+                        <br>
+                        <input type="submit" value="Search" class="w-100">
+                    </div>
+                </div>
+       
+                <hr />
+              
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+﻿@page "/page/{pagepath}"
+@model AMMasterProject.Pages.Page.IndexModel
+@{
+
+    ViewData["Title"] = Model.listpagecategory != null ? Model.listpagecategory.PageName : "";
+}
+
+
+<meta name="description" content="@Model.listpagecategory?.SEOTitle ?? string.Empty" />
+<meta name="keywords" content="@Model.listpagecategory?.SEOKeyword ?? string.Empty" />
+<meta name="description" content="@Model.listpagecategory?.SEOKeyDescription ?? string.Empty" />
+
+   <style>
+       body{
+           background:white !important
+
+       }
+   </style>
+    <div class="container">
+           
+      <div class=" ">
+
+            @if (Model.listpagecategory != null && Model.listpagecategory.PageDescription != null)
+
+            {
+               
+
+              @Html.Raw(Model.listpagecategory.PageDescription)
+
+            }
+            else
+
+            {
+                 <div class="row margintb box-center ">
+                    <div class="col-md-8 center">
+
+
+                      
+                        <br>   <br>
+                        <h2>
+
+                        <span class="notranslate" data-translate="websiteunderconstruction">
+                            Sorry, we're doing some work on the site
+                        </span>
+                         
+                        </h2>
+                    </div>
+                </div>
+            }
+         
+       
+ </div> 
+
+          <br>   <br>
+    </div>
+

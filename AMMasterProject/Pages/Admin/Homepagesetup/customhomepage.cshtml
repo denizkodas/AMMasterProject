@@ -1,0 +1,129 @@
+﻿@page "/admin/Homepagesetup/customhomepage/{ID}"
+@model AMMasterProject.Pages.Admin.Homepagesetup.customhomepageModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title>
+
+    Select Custom Item
+</title>
+<div>
+
+
+
+    <div class="row large-form">
+
+        <
+
+
+        <div class="col-md-10 l-tabs-content form">
+           
+            <h5 class="l-tabs-heading">
+                Select Item
+            </h5>
+            <div class="table-responsive text-nowrap">
+                <table id="ListingLoad" class="table">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th style="width:50px">Mark</th>
+                            <th style="width:50px">SR#</th>
+                            <th>Listing</th>
+                            <th>Category</th>
+                            <th style="width:150px">Type</th>
+
+                            <th style="width:100px">Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+
+                        @if (Model.productlist != null && Model.productlist.Count > 0)
+                        {
+                            @foreach (var products in Model.productlist)
+                            {
+                                <tr>
+                                    <td class="link-active">
+                                        @if (Model.itempagedesignchild.Any(u => u.SelecttionID == products.ProductId))
+                                        {
+                                            <a id="@products.ProductId" class="active" data-selectionid="@products.ProductId" onclick="childselection(this)">
+                                                Checked
+                                            </a>
+
+
+                                        }
+                                        else
+                                        {
+                                            <a id="@products.ProductId" class="inactive" data-selectionid="@products.ProductId" onclick="childselection(this)">
+                                                Unchecked
+                                            </a>
+                                        }
+
+
+                                    </td>
+                                    <td>SKU: @(string.IsNullOrEmpty(products.SKU) ? products.ProductId.ToString() : products.SKU)</td>
+                                    <td>
+                                        <img src="@products.ProductImage" alt="@products.ProductName" class="rounded-circle">
+                                        @products.ProductName
+                                        
+                                    </td>
+
+                                    <td>
+                                       @foreach (var itemCategory in @products.ListProductCategoryMetaData)
+                                        {
+                                            @itemCategory.CategoryName <br/>
+                                        }
+                                    </td>
+                                    <td>
+                                        @products.SellingType
+                                    </td>
+                                    <td><span class="badge bg-label-primary me-1">@products.ispublish</span></td>
+
+                                </tr>
+
+
+
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function childselection(elem) {
+        var selectionid = $(elem).data('selectionid');
+
+        $.ajax({
+            url: '/controller/product/ItemHomePageChildupsert',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                itemdesignid: '@Model.homeDesignID',
+                selectionid: selectionid,
+                selectiontype: 'item'
+            },
+            success: function (response) {
+                // handle success response
+
+                $(elem).toggleClass("active inactive");
+
+
+                if ($(elem).hasClass("active")) {
+                   $(elem).text("Checked");
+                } else {
+                   $(elem).text("UnChecked");
+                }
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+</script>

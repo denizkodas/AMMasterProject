@@ -1,0 +1,57 @@
+﻿@using AMMasterProject.ViewModel
+@model List<CouponChildViewModel>
+
+
+
+@if(Model!=null && Model.Count>0)
+{
+    <div class="table-responsive text-nowrap">
+        <table id="ListingLoad" class="table">
+            <thead class="table-secondary">
+                <tr>
+
+
+                    <th style="width:50px">Selection</th>
+                    <th style="width:50px">ID</th>
+                    <th  class="text-center">Name </th>
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @*     Loop start*@
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>    <input type="checkbox"> </td>
+                        <td>   @item.ReferenceId</td>
+                        <td>  @item.ReferenceName</td>
+                    </tr>
+
+
+
+                }
+                @*     Loop End*@
+
+
+            </tbody>
+        </table>
+    </div>
+ 
+       
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+}

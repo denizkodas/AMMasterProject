@@ -1,0 +1,109 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Coupons.CouponChildModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<form method="post">
+
+
+    <div class="table-responsive text-nowrap">
+        <table id="ListingLoad" class="table">
+            <thead class="table-secondary">
+                <tr>
+
+
+                    
+                    <th class="text-center">Name </th>
+                   
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @*     Loop start*@
+
+                @foreach (var item in Model.couponChildList)
+                {
+                    <tr>
+                        <td>
+
+
+                            @if (Model.productCouponChildren.Any(u => u.ReferenceId == item.ReferenceId))
+                            {
+                                <a id="@item.ReferenceId" class="active" data-Referenceid="@item.ReferenceId"  onclick="updateCouponChild(this)">
+                                    @item.ReferenceName
+                                </a>
+
+
+                            }
+                            else
+                            {
+                                <a id="@item.ReferenceId" class="inactive" data-Referenceid="@item.ReferenceId" onclick="updateCouponChild(this)">
+                                     @item.ReferenceName
+                                </a>
+                            }
+                        
+                        
+                        
+                        </td>
+                       
+                      
+                     
+                       
+                      
+                       
+                    </tr>
+
+
+
+                }
+                @*     Loop End*@
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+</form>
+   
+
+
+
+<script>
+
+
+    function updateCouponChild(elem) {
+        var ReferenceId = $(elem).data('referenceid');
+       
+      
+        $.ajax({
+            url: '/controller/product/CouponChild' ,
+            type: 'POST',
+            dataType: 'json',
+            data:
+            {
+                ReferenceId: ReferenceId,
+                ProductCouponId: '@Model.ProductCouponId',
+                ReferenceTypeID: '@Model.ReferenceTypeId'
+             
+            },
+            success: function (response) {
+                // handle success response
+
+                $(elem).toggleClass("active inactive");
+
+              
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+
+
+
+
+
+</script>
+

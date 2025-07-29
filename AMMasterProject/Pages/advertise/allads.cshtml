@@ -1,0 +1,126 @@
+﻿@page
+@model AMMasterProject.Pages.advertise.alladsModel
+@{
+    <title>All Campaign </title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div class="card">
+    <div class="table-responsive border">
+        <table class="table border billing" id="ListingLoad1">
+            <thead class="white-smoke-bg">
+                <tr class="">
+                    <th style="width:100px"> <span class="notranslate" data-translate="date">Date</span></th>
+                    <th><span class="notranslate" data-translate="description">Description</span></th>
+                    <th><span class="notranslate" data-translate="paidby">Paid by</span></th>
+                    <th><span class="notranslate" data-translate="insights">Insights</span></th>
+        
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @if(Model.advertiseviewmodel!=null)
+                {
+
+                    @foreach (var item in Model.advertiseviewmodel)
+                    {
+                        
+                       
+                    <tr>
+                            <td>@item.PurchaseDate</td>
+                        <td>
+
+                                <p class="v-top">
+
+                                    @if (@item.ItemMetaData.basicModel.ItemImage != "")
+                                    {
+                                        <img src="@item.ItemMetaData.basicModel.ItemImage" class="margin5">
+                                    }
+                                    <span>
+
+                                        @item.ItemMetaData.basicModel.Name
+                                        <a target="_blank" href="@item.ItemMetaData.basicModel.ItemURL">View Details</a> 
+                                     <br/>
+
+                                        <strong> @item.BoostType Boost</strong>    <br />  @item.ItemMetaData.basicModel.InvoiceNumber      <br />
+
+                                        <span class="notranslate" data-translate="from">From</span>:  <span class="setdateformat">
+                                            @item.StartDate
+                                        </span>   /
+
+
+                                        <span class="notranslate" data-translate="to">
+                                            To
+                                        </span>:
+                                        <span class="setdateformat">
+                                            @item.EndDate
+                                        </span>   
+                                        
+                                       
+                                  
+                                    <br/>
+                                        <span class="dateStatus" data-start="@item.StartDate" data-end="@item.EndDate"></span>
+                                    </span>
+                                </p>
+                        </td>
+                        <td>
+
+                                @if (@item.PaymentMetaData.PaymentMethod == "credit")
+                                {
+                                     <span class="l-yellow-bg badge white-bg "> @item.ItemMetaData.creditModel.NoOfCredit  
+                                 Credit</span>
+
+                                }
+                                else @* if (@item.ItemMetaData.PaymentReference == "payment") *@
+                                {<span class="l-green-bg badge white-bg ">
+                                    @item.PaymentMetaData.ConversionAmount @item.PaymentMetaData.ConversionCurrency
+                                    </span>
+                                }
+                                
+                        </td>
+                        <td>
+                           @if(@item.BoostMetaData!=null)
+                                {
+                                    @item.BoostMetaData.TotalViews  <span>/View(s)</span>
+                                    @item.BoostMetaData.TotalClicks  <span>/Click(s)</span>
+                                }
+                                @* 100 view / 20 Clicks *@
+                        </td>
+
+                    </tr>
+
+                    }
+                }
+                else
+                {
+                    <div class="emptydata">
+                        No Record Found
+                    </div>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $(".dateStatus").each(function () {
+            var startDate = new Date($(this).data("start"));
+            var endDate = new Date($(this).data("end"));
+            var currentDate = new Date();
+            var statusElement = $(this);
+
+            if (startDate > currentDate) {
+                // Upcoming
+                statusElement.text("Upcoming").addClass("orange-c");
+            } else if (endDate < currentDate) {
+                // Expired
+                statusElement.text("Expired").addClass("red-c");
+            } else {
+                // Ongoing
+                statusElement.text("Ongoing").addClass("green-c");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,93 @@
+﻿@using AMMasterProject.ViewModel;
+@model List<SubscriptionPackageViewModel>
+
+
+    <div class="row box-center">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 no-padding">
+
+            <div class="subscription @item.IsRecommended.ToString().Replace("True", "recom")">
+                @if (item.IsRecommended == true)
+                {
+                    <span class="tag notranslate" data-translate="bestchoice">
+                        
+                        Best Choice</span>
+                }
+                <a class="acreditSelection" data-productid="@item.RevenueSubscriptionPackageID">
+
+                    <div class="subc-heading">
+
+                       
+
+                        <img src="@(item.CreditImage == null ? "images/nocreditimage.png" : item.CreditImage)" class="sub-img" />
+                        @item.RevenuePackageName </div>
+         
+            <p class="d-grey-c">
+               @item.Description
+            </p>
+                    <hr />
+                    <div class="points">
+            <p>
+                            <span class="yes"> Point one</span>
+            </p> 
+            <p>
+                            <span class="no"> Point two</span>
+           </p>
+                    </div>
+            <hr/>
+                    <span class="subscription-price"> <span class="medium grey-c"> @item.Currency</span> @item.CreditAmount.ToString("N2")</span>     <span class="sub-duration">
+                        /
+
+
+                        @{
+                            string recurringPeriodLabel;
+
+                            switch (item.RecurringPeriodInDays)
+                            {
+                                case 30:
+                                    recurringPeriodLabel = "1 Month";
+                                    break;
+                                case 90:
+                                    recurringPeriodLabel = "3 Months";
+                                    break;
+                                case 180:
+                                    recurringPeriodLabel = "6 Months";
+                                    break;
+                                case 365:
+                                    recurringPeriodLabel = "1 Year";
+                                    break;
+                                default:
+                                    recurringPeriodLabel = "Unknown";
+                                    break;
+                            }
+                        }
+
+                        <span>@recurringPeriodLabel</span>
+                    
+                    </span>
+
+
+                    <span class="theme-bg f-theme btn w-100 notranslate" data-translate="select">
+                    
+                    Select</span>
+
+    </a>
+                </div></div>
+               
+            }
+
+</div>
+       
+<script>
+    $(document).ready(function () {
+        $('.acreditSelection').on('click', function () {
+            var productid = $(this).data('productid');
+            var quantity = 1;  // You can set the quantity as needed
+            var instruction = '';  // You can set the instruction as needed
+
+            orderCreate(productid, quantity, instruction, 'subscription', 'purchased', 'cart', 'processing');
+        });
+    });
+</script>

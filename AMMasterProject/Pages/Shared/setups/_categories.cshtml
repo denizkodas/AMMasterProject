@@ -1,0 +1,54 @@
+﻿@* @model List<CategoryMaster> *@
+@using AMMasterProject.ViewModel
+@model List<CategoryViewModel>
+
+
+
+<ul id="dvfirstlevelcategory" class="first-level-ul menu">
+    @* First level category *@
+    @foreach (var category in Model)
+    {
+        <li id="ashowmore" class="first-level-li" data-category-id="@category.CategoryId">
+            <a class="first-level-a" href="/item/search?categoryid=@category.CategoryId">
+                <span class="first-level-icon">
+                    <img src="@category.Icon" />
+                </span>
+                @category.CategoryName
+            </a>
+
+
+            @if (category.SecondLevel.Count > 0)
+            {
+                <ul class="second-level-ul submenu" id="dvsecondlevelcategory@category.CategoryId">
+                    @* Second Level Category *@
+                    @foreach (var secondcategory in category.SecondLevel)
+                    {
+                        <li class="second-level-li">
+                            <a id="asecondshowmore" class="second-level-a" href="/item/search?categoryid=@secondcategory.CategoryId" data-category-id="@secondcategory.CategoryId">
+                                @secondcategory.CategoryName
+                            </a>
+
+                            @if (secondcategory.ThirdLevel.Count > 0)
+                            {
+                                <ul class="third-level-ul submenu" id="dvthirdlevelcategory@secondcategory.CategoryId">
+                                    @* Third Level Category *@
+                                    @foreach (var thirdcategory in secondcategory.ThirdLevel)
+                                    {
+                                        <li class="third-level-li">
+                                            <a class="third-level-a" href="/item/search?categoryid=@thirdcategory.CategoryId">
+                                                @* if (document.title == "Categories") {
+                            itemsHtml += '<img src="' + item.icon + '" />';
+                            }*@
+                                                @thirdcategory.CategoryName
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>

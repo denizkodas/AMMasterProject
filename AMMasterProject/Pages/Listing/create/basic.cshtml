@@ -1,0 +1,1148 @@
+﻿@page
+@model AMMasterProject.Pages.Listing.create.basicModel
+@{
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="@Model.product.ItemGuid" type="hidden" />
+    <input asp-for="@Model.product.ItemId" type="hidden" />
+    <div>
+
+
+
+      
+
+        <div class="row large-form">
+
+            <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+
+
+            <div class="col-md-10 l-tabs-content form">
+                <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="basicinfo"> Basic Info  </span>
+                    
+                </h5>
+
+                <div class="white-bg paddingtb">
+
+
+
+
+
+                    @* <div asp-validation-summary="All"></div>*@
+
+                    @* ------Listing Type----------*@
+                    <div class="row padding15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="itemtype">  Item Type  </span>
+                          
+                        </div>
+                        <div class=" col-md-9  checkright  no-padding">
+
+
+                            <div class="form-group">
+                                <div class="slected-btn ">
+                                    @*  Sell, Classified, Auction, Penny Auction*@
+                                    @foreach (var item in Model.sellingtype)
+                                    {
+                                        <a class="sellingtype tooltip-hover" data-id="@item.ID">
+                                            @item.Name
+                                            <div class="tooltip-div">@item.Description</div>
+                                        </a>
+                                    }
+
+                                    <input id="sellingtype" type="hidden" asp-for="@Model.product.SellingType"  />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    @* ------Item Type----------*@
+                    <div class="row padding15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="listingtype">  Listing Type </span>
+
+                         
+                        </div>
+                        <div class=" col-md-9  checkright  no-padding">
+
+
+                            <div class="form-group">
+                                <div class="slected-btn">
+
+                                    @* Physical Digital Service Course*@
+                                    <div class="listing-types">
+                                    </div>
+
+                                    <input type="hidden" asp-for="@Model.product.ListingType" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+
+
+
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+
+                            @* ------Listing Image----------*@
+
+                            <div class="no-padding">
+
+
+                                <img id="productimage" class="listing-img-preview" style="display:@(Model.product.ProductImage == null ? "none" : "block")" src="@(Model.product.ProductImage != null ? Model.product.ProductImage : "")">
+                                <label class="file-upload w-100">
+                                    <span class="btn btn-default w-100 l-grey-bg notranslate" data-translate="selectfile">
+                                      Select File 
+                                      
+                                    </span>
+                                    <input type="file" id="fileInput" onchange="uploadFile()" />
+
+                                    <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                </label>
+
+
+                                <span id="spanfilename"></span>
+                                <input type="hidden" asp-for="@Model.product.ProductImage" />
+
+                                <span id="validationImage" asp-validation-for="@Model.product.ProductImage" class="required"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-9 checkright">
+                            <div class="row">
+
+
+
+
+
+
+
+                                @* ------Title----------*@
+                                <div class="form-group col-md-8">
+                                    <span class="notranslate" data-translate="itemname">  Item Name </span>
+                                    
+                                    <input type="text" maxlength="200" asp-for="@Model.product.Name">
+                                    <span asp-validation-for="@Model.product.Name" class="required"></span>
+                                </div>
+                                @* ------Unites----------*@
+                                <div class="form-group col-md-4">
+                                    <span class="notranslate" data-translate="unit">   Unit  </span>
+                                    <span class="notranslate" data-translate="ifany">   (if any) </span>
+                                    <input type="text" maxlength="20" asp-for="@Model.product.Unit">
+                                </div>
+                                @* ------Category----------*@
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="category">  Category</span>
+                                    
+                                    <div class="row box-center no-margin">
+                                        <div class="col-md-4 no-padding">
+
+
+                                            <select class="form-control" id="firstSelectBox">
+                                                <option disabled selected>-- Select Category --</option>
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-md-4 ">
+
+                                            <select id="secondSelectBox" class="form-control" style="display:none"></select>
+                                        </div>
+                                        <div class="col-md-4 no-padding">
+                                            <select id="thirdSelectBox" class="form-control" style="display:none"></select>
+
+                                        </div>
+                                    </div>
+
+                                    <span id="validationCategory" asp-validation-for="@Model.product.CategoryArray" class="required"></span>
+
+
+                                    @*  <input type="hidden" asp-for="@Model.product.CategoryId" />*@
+
+
+                                    <input type="hidden" asp-for="@Model.product.CategoryArray" />
+
+
+                                </div>
+
+                                @* ------Brand----------*@
+                                <div class="form-group col-md-7">
+                                    <span class="notranslate" data-translate="brand">    Brand </span>
+                                    <span class="notranslate" data-translate="optional">   (optional) </span>
+
+                                    <div class="small grey-c">
+                                        <span class="notranslate" data-translate="brandmsg">   Select from list or type to create new </span>
+                                        
+                                         </div>
+                                    <input type="text" autocomplete="off" asp-for="@Model.product.BrandName">
+
+
+
+
+
+
+
+
+                                </div>
+
+
+                                @* ------Short Description----------*@
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="shortdescription"> Short Description</span>
+                                    
+                                    <textarea rows="2" cols="20" maxlength="200" asp-for="@Model.product.ShortDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelProductescription'))"></textarea>
+                                    <span id="characterCountLabelProductescription"></span>
+                                    <span asp-validation-for="@Model.product.ShortDescription" class="required"></span>
+
+
+                                </div>
+
+                                @* ------Price----------*@
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <span class="notranslate" data-translate="currency"> Currency </span>
+                                        
+
+
+                                        <label asp-for="@Model.product.CurrencyId"></label>
+                                        <select asp-for="@Model.product.CurrencyId" asp-items="@Model.Currency" class="form-control">
+                                            <option disabled selected>-- Select --</option>
+                                        </select>
+
+
+
+                                        <span asp-validation-for="@Model.product.CurrencyId" class="required"></span>
+
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <span class="notranslate" data-translate="price">   Price</span>
+                                       
+                                        <input type="text" min="0" asp-for="@Model.product.Price" id="price">
+
+                                        <span asp-validation-for="@Model.product.Price" class="required"></span>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <hr />
+
+
+                    @*--------------------------------------------Conditions start-------------------------*@
+
+                    @* --------------if classified-----------------*@
+                    <div class="row paddingrf-15 no-margin" id="dvclassified" style="display:none">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="contactdetails">   Contact Details</span>
+                           
+                        </div>
+
+                        <div class="col-md-9 checkright">
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <span class="notranslate" data-translate="address"> Address </span>
+                                    
+                                    <input id="txtaddress" type="text" maxlength="300" style="width:89%" class="googleaddress" asp-for="@Model.product.Address">
+                                    @* <span asp-validation-for="@Model.product.Address" class="required"></span>
+                                    *@
+                                </div>
+
+
+                                <div class="form-group col-md-8">
+                                    <span class="notranslate" data-translate="contactnumber">  Contact Number </span>
+                                    
+                                    <input type="text" asp-for="@Model.product.ContactNumber">
+
+                                    <span asp-validation-for="@Model.product.ContactNumber" class="required"></span>
+
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <span class="notranslate" data-translate="email">   Email </span>
+                                  
+                                    <input type="text" asp-for="@Model.product.Email">
+
+                                    <span asp-validation-for="@Model.product.Email" class="required"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+                    </div>
+
+                    @* --------------if Digital-----------------*@
+                    @*
+                    depreciated and shifted to digital page
+                    product.ProductDigitalMetaDataList =  json.ProductDigitalMetaData; *@
+
+                   @*  <div class="" id="dvdigital" style="display:none">
+                        <hr />
+                        <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            Upload Digital File
+                        </div>
+                        <div class="col-md-9">
+                            <label class="file-upload">
+                                <span class="btn btn-default l-grey-bg">
+                                    Select File
+                                </span>
+                                <input type="file" id="fileInputDigital" onchange="uploadFileDigital()" />
+                            </label> <br />
+                            <progress id="fileProgressDigital" class=" margin5" style="display:none"></progress>
+                            @if (Model.product.ProductDigitalMetaDataList != null)
+                            {
+
+
+                                @foreach (var item in Model.product.ProductDigitalMetaDataList)
+                                {
+                                    <a target="_blank" id="afilelink" href="@item.DigitalLink">
+                                        <span id="spanfilenameDigital">
+
+                                            <text>@item.Name</text>
+
+                                        </span>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <span id="spanfilenameDigital">
+
+
+
+                                </span>
+                            }
+
+
+                            <input type="hidden" asp-for="@Model.product.ProductDigitalMetaData.DigitalLink" />
+                            <input type="hidden" asp-for="@Model.product.ProductDigitalMetaData.Name" />
+                            <span id="validationDigital" asp-validation-for="@Model.product.ProductDigitalMetaData.DigitalLink" class="required"></span>
+                        </div>
+
+                            <hr />
+                        </div>
+                    </div> *@
+
+                    @* --------------if Auction-----------------*@
+                    <div class="row paddingrf-15 no-margin" id="dvauction" style="display:none">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="auctiondateprice">  Auction  Date &  Price </span>
+                            
+                        </div>
+
+                        <div class="col-md-9 checkright">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <span class="notranslate" data-translate="startdate">   Start Date </span>
+                                  
+                                    <input type="datetime-local" asp-for="@Model.product.StartDate">
+                                    <span asp-validation-for="@Model.product.StartDate" class="required"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <span class="notranslate" data-translate="enddate">    End Date </span>
+                                  
+
+                                    <input type="datetime-local" asp-for="@Model.product.EndDate">
+                                    <span asp-validation-for="@Model.product.EndDate" class="required"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <span class="notranslate" data-translate="startprice"> Start Price </span>
+                                    
+                                    <input type="text" min="0" asp-for="@Model.product.StartPrice">
+                                    <span asp-validation-for="@Model.product.StartPrice" class="required"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <span class="notranslate" data-translate="endprice">   End Price </span>
+                                  
+
+                                    <input type="text" min="0" asp-for="@Model.product.EndPrice">
+                                    <span asp-validation-for="@Model.product.EndPrice" class="required"></span>
+                                </div>
+
+
+                                <div class="form-group col-md-9" id="dvincrementbyuser" style="display:none">
+
+                                    <input type="checkbox" asp-for="@Model.product.IsIncrementByUser" checked="@Model.product.IsIncrementByUser" />
+                                    <label id="IsIncrementByUser" asp-for="@Model.product.IsIncrementByUser">
+                                        <span class="notranslate" data-translate="setincrement"> Set Increment </span>
+                                        
+
+
+                                    </label>
+                                    <p class="small grey-c marginrf-15">
+                                        <span class="notranslate" data-translate="setincrementmsg">
+                                           (If unchecked, users can manually enter their bidding price during the bidding process. If checked, the bidding price will automatically increase based on user bids.)
+                                        </span>
+          
+                                    </p>
+
+                                </div>
+                                <div class="form-group col-md-4" id="dvincrementamount" style="display:none">
+                                    <span class="notranslate" data-translate="incrementamount">  Increment Amount </span>
+                                    
+                                    <input type="text" min="0" asp-for="@Model.product.IncrementAmount">
+                                    <span asp-validation-for="@Model.product.IncrementAmount" class="required"></span>
+                                </div>
+                            </div>
+
+                            @* ----Penny Auction---*@
+                            <div id="dvpennyauction" style="display:none">
+                                <div class="row">
+
+                                    <div class="form-group col-md-4">
+                                        <span class="notranslate" data-translate="noofrealbids">   No of Real Bids </span>
+                                      
+
+                                        <input type="text" asp-for="@Model.product.NoofRealBids">
+                                        <span asp-validation-for="@Model.product.NoofRealBids" class="required"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <span class="notranslate" data-translate="botselection"> Bot Selection </span>
+                                        
+                                        <input type="text">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+                    </div>
+
+
+
+
+                    @*--------------------------------------------Conditions End-------------------------*@
+
+                    @*--------------------------------------------SEO-------------------------*@
+                    <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="white-bg paddingrf-15 "> <h5 class="black-c no-magrin">
+                                <span class="notranslate" data-translate="addseotags"> Add SEO Tags </span>
+                              
+                            
+                            <i class="fa fa-angle-down float-end"></i> </h5> </div>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="row paddingrf-15 no-margin">
+                            <div class=" col-md-3 s-bold">
+                                <span class="notranslate" data-translate="seo">  SEO </span>
+                                  
+                                
+                                <span class="grey-c l-bold"> (Optional)</span>
+                            </div>
+
+                            <div class="col-md-9 checkright">
+
+
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="metatitle"> Meta title </span>
+                                        
+                                        <input type="text" asp-for="@Model.product.SeoMetaTitle">
+
+
+                                        <span asp-validation-for="@Model.product.SeoMetaTitle" class="required"></span>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="metakeywords">      Meta keywords </span>
+                                   
+                                        <input data-role="tagsinput" type="text" asp-for="@Model.product.SeoKeywords">
+
+
+                                        <span asp-validation-for="@Model.product.SeoKeywords" class="required"></span>
+
+
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="metadescription"> Meta description </span>
+                                        
+                                        <input type="text" asp-for="@Model.product.SeoMetadescription">
+
+
+                                        <span asp-validation-for="@Model.product.SeoMetadescription" class="required"></span>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <hr />
+
+                    @if (Model.listotherproperties.Count>0)
+                    {
+                        
+                            <div class="row paddingrf-15 no-margin">
+                                <div class=" col-md-3 s-bold">
+                                    <span class="notranslate" data-translate="OtherDetails">  Other Details</span>
+
+                                </div>
+
+                                <div class="col-md-9 checkright">
+                                    <div class="row">
+                        @for (int i = 0; i < Model.listotherproperties.Count; i++)
+                        {
+
+
+
+
+                                        <div class="form-group ">
+                                            <input type="text" class="no-bg no-border no-shadow no-padding grey-c" asp-for="listotherproperties[i].LabelName" readonly />
+                                            <input type="hidden" asp-for="listotherproperties[i].ID" />
+
+                                            <br/>
+
+                                            <input type="text" asp-for="listotherproperties[i].ValueName" />
+                                            <span asp-validation-for="listotherproperties[i].ValueName" class="required"></span>
+                                            </div>
+                                   
+                               
+                               
+                        
+                        } </div>
+                                </div>
+
+                                <div> </div>
+                            </div>
+                    }
+                    <span asp-validation-for="@Model.product.ProductOtherProperties" class="required"></span>
+
+                    <hr/>
+                    
+                    @*--------------------------------------------SEO-------------------------*@
+
+
+
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="statuses">  Statuses </span>
+                            
+                        </div>
+                        <div class=" col-md-9  checkright  no-padding">
+                            <div class="form-group">
+
+
+                                <input type="checkbox" asp-for="@Model.product.IsPublish" checked="@Model.product.IsPublish" />
+                                <label id="ispublish" asp-for="@Model.product.IsPublish">Publish</label>
+
+                                <p class="small grey-c paddingrf-15 marginrf-15">
+                                    <span class="notranslate" data-translate="statusesmsg">   Mark check if you want to live it</span>
+                                    </p>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right">
+                            <button type="submit">
+                                <span class="notranslate" data-translate="saveandcontinue">   Save and Continue </span>
+
+
+                            </button>
+                      @*       <input type="submit" value="@(Model.product.ItemId != 0 ? "Update" : "Create") &amp; Continue">
+                       *@  </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</form>
+
+
+
+
+<script>
+
+    ////Load On EDIT
+
+
+
+    setTimeout(function () {
+        var sellingTypeId = $('#sellingtype').val();
+        if (sellingTypeId) {
+            console.log(sellingTypeId);
+            $('.sellingtype[data-id="' + sellingTypeId + '"]').addClass('selected');
+
+            handleSellingTypeClick(sellingTypeId);
+        }
+    }, 1000); // 1000 milliseconds = 1 second
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///Assign category on page load
+
+
+
+
+
+    // Function to handle checkbox change event
+
+
+
+
+
+    var ROW = 0;
+    $('#firstSelectBox').change(function () {
+        $('#product_CategoryArray').val("");
+
+        $('#secondSelectBox').empty();
+        $('#secondSelectBox').hide();
+
+
+        $('#thirdSelectBox').empty();
+        $('#thirdSelectBox').hide();
+        var selectedCategoryId = $(this).val();
+
+        $('#product_CategoryArray').val($(this).val());
+
+        categoryoneload(selectedCategoryId);
+    });
+
+    $('#secondSelectBox').change(function () {
+        $('#product_CategoryArray').val("");
+
+        $('#thirdSelectBox').empty();
+        $('#thirdSelectBox').hide();
+        // var selectedCategoryId = $(this).val();
+
+        var firstboxvalue = $("#firstSelectBox").val();
+
+        // var currentVal = $('#product_CategoryArray').val();
+        $('#product_CategoryArray').val(firstboxvalue + "," + $(this).val());
+
+        categorytwoload($(this).val());
+    });
+
+    $('#thirdSelectBox').change(function () {
+        // var selectedCategoryId = $(this).val();
+        $('#product_CategoryArray').val("");
+
+        var firstboxvalue = $("#firstSelectBox").val();
+        var secondboxvalue = $("#secondSelectBox").val();
+
+        // var currentVal = $('#product_CategoryArray').val();
+        $('#product_CategoryArray').val(firstboxvalue + "," + secondboxvalue + "," + $(this).val());
+
+        // var currentVal = $('#product_CategoryArray').val();
+        // $('#product_CategoryArray').val(currentVal + "," + $(this).val());
+
+        $('#validationCategory').text("");
+
+    });
+
+
+
+    function CategoryLoadCondition(listingtypeid) {
+        $('#firstSelectBox').empty();
+        $('#secondSelectBox').empty();
+        $('#thirdSelectBox').empty();
+        $('#secondSelectBox').hide();
+
+        $('#thirdSelectBox').hide();
+        //var selectedTypeId = $(this).val();
+
+
+        parentcategoryload(listingtypeid);
+    }
+
+
+
+    ///selling type sale,classif auction penny auction
+    function condionaldivs(selectedTypeId) {
+        $("#dvclassified").hide();
+        $("#dvauction").hide();
+        $("#dvpennyauction").hide();
+        // $("#dvdigital").hide();
+        $("#dvcoupon").hide();
+
+        //var selectboxItemType = $('#selectboxItemType').val();
+
+
+
+        if (selectedTypeId == 0) {
+            // Sale
+        }
+        else if (selectedTypeId == 1) {
+
+            // LoadGoogleAutoComplete();
+            $("#dvclassified").show();
+        } else if (selectedTypeId == 2) {
+
+            $("#dvincrementbyuser").show();
+            $("#dvauction").show();
+        }
+        else if (selectedTypeId == 3) {
+            $("#dvincrementbyuser").hide();
+
+            $("#ProductBasicV2.IsPublish").prop("checked", false);
+
+            $("#dvauction").show();
+            $("#dvpennyauction").show();
+        }
+        else if (selectedTypeId == 4) {
+            $("#dvcoupon").show();
+        }
+        //else if (selectedTypeId == 4) {
+        //    $("#dvdigital").show();
+        //}
+
+    }
+
+
+    //Listing Type
+    function condionallistingtype(listingtype) {
+
+
+
+        // depreciated and shifted to page digital $("#dvdigital").hide();
+
+
+
+        // if (listingtype == 1) {
+        //     $("#dvdigital").show();
+        // }
+
+
+    }
+
+
+
+
+
+    //-------------------------Auction Increment Logic
+    function incrementbyuser() {
+        var isChecked = $("#product_IsIncrementByUser").is(":checked");
+
+        if (isChecked) {
+            $("#dvincrementamount").show();
+        } else {
+            $("#dvincrementamount").hide();
+        }
+    }
+    $(document).ready(function () {
+
+        $("#product_IsIncrementByUser").change(function () {
+            incrementbyuser();
+        });
+
+        // Function to handle page load event
+        incrementbyuser();
+    });
+
+    //-------------------------Auction Increment Logic
+
+
+
+
+
+    //-------------------------Listing Type
+    function handleSellingTypeClick(sellingTypeId) {
+        ///clear all categories bcs user has to select new category
+        
+
+        // Assing selected id to hidden field
+        $("#sellingtype").val(sellingTypeId);
+
+        condionaldivs(sellingTypeId);
+
+        // Remove "active" class from all sellingtype elements
+        $('.sellingtype').removeClass('selected');
+
+        // Add "active" class to the clicked element
+        $('.sellingtype[data-id="' + sellingTypeId + '"]').addClass('selected');
+
+        // Make AJAX request to fetch listing types
+        $.ajax({
+            url: '/controller/product/listingtypetypelist',
+            type: 'GET',
+            data: { sellingtypeid: sellingTypeId },
+            success: function (response) {
+                // Handle the success response here
+                var listingTypes = response;
+
+                // Clear existing listing types
+                $('.listing-types').empty();
+
+                // Append listing types to the container
+                listingTypes.forEach(function (listingType) {
+                    var listingTypeHtml = '<a class="listingtype tooltip-hover" data-id="' + listingType.id + '">' +
+                        listingType.name + '<div class="tooltip-div">' + listingType.description + '</div></a>';
+
+                    var $listingTypeElement = $(listingTypeHtml);
+
+
+                    //click event to assign class and load the category
+                    $listingTypeElement.on('click', function () {
+                        // Remove "selected" class from all listingtype elements
+                        $('.listingtype').removeClass('selected');
+
+                        // Add "selected" class to the clicked element
+                        $(this).addClass('selected');
+                        $("#product_ListingType").val(listingType.id);
+
+                        ///category conditional load
+                        CategoryLoadCondition(listingType.id);
+                        // Rest of your click event code for the listingtype element...
+
+
+
+                        ///show digital or other relavant divs
+
+                        condionallistingtype(listingType.id);
+                    });
+
+                    //if hidden field has value so assign value to class
+                    var listingTypeId = $('#product_ListingType').val();
+                    if (listingTypeId) {
+
+
+
+
+                        $('.listingtype[data-id="' + listingTypeId + '"]').addClass('selected');
+
+                        ///show digital or other relavant divs
+                        condionallistingtype(listingTypeId);
+
+                    };
+
+                    $('.listing-types').append($listingTypeElement);
+                });
+            },
+            error: function (xhr, status, error) {
+                // Handle the error response here
+                console.log(error);
+            }
+        });
+
+
+
+
+        //----------------------------ON EDIT MODE ONLY Listin TYPE Physical, Digital, Service, Courses--------------------
+
+        var listingTypeId = $('#product_ListingType').val();
+        if (listingTypeId) {
+            $('.listingtype[data-id="' + listingTypeId + '"]').addClass('selected');
+
+
+
+            ////////Bind Categories
+            //----------------------------CATEGORY ARRAY---------------------------
+
+            //var ListingTypeId = $('#product_ListingType').val();//physical, digital, course, service
+
+            parentcategoryload(listingTypeId);
+            var categoryArray = $('#product_CategoryArray').val();
+            if (categoryArray) {
+
+                console.log(categoryArray);
+                var firstCategory = categoryArray.split(',')[0];
+                var secondCategory = categoryArray.split(',')[1];
+                var thirdCategory = categoryArray.split(',')[2];
+
+
+                categoryoneload(firstCategory);
+                categorytwoload(secondCategory);
+
+
+                setTimeout(function () {
+                    $('#firstSelectBox').val(firstCategory);
+                    $('#secondSelectBox').val(secondCategory);
+                    $('#thirdSelectBox').val(thirdCategory);
+                }, 4000);
+
+
+
+            }
+
+
+
+        };
+
+    }
+
+    $(document).ready(function () {
+        // Click event handler for sellingtype elements
+        $(document).on('click', '.sellingtype', function () {
+            $('#product_CategoryArray').val("");
+            var sellingTypeId = $(this).data('id');
+            handleSellingTypeClick(sellingTypeId);
+        });
+    });
+    //-------------------------Listing Type
+
+
+
+    //-------------------------Image Upload
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png)/)) {
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                $('#spanfilename').text(fileName);
+                $("#productimage").show();
+                $("#productimage").attr("src", data.fileLink);
+                $('#product_ProductImage').val(data.fileLink);
+
+                $('#validationImage').text("");
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    //-------------------------Image Upload
+
+
+
+    //-------------------------Digital File Upload
+    function uploadFileDigital() {
+
+
+
+
+        var fileInput = $("#fileInputDigital")[0];
+        $("#fileProgressDigital").show();
+        var progressBarDigital = $("#fileProgressDigital")[0];
+        progressBarDigital.value = 60;
+
+        var file = fileInput.files[0];
+
+        // if (!file.type.match(/^application\/(?!x-msdownload)/)) {
+        //     $('#validationDigital').text("Only non-executable files are allowed.");
+        //     $("#fileProgressDigital").hide();
+        //     return;
+        // }
+
+        if (file.size > 10 * 1024 * 1024) {
+
+            $('#validationDigital').text("File size must be less than 10 MB.");
+            $("#fileProgressDigital").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+        console.log(file);
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                $('#spanfilenameDigital').text(fileName);
+
+                $('#afilelink').attr('href', data.fileLink);
+
+                $('#product_ProductDigitalMetaData_DigitalLink').val(data.fileLink);
+                $('#product_ProductDigitalMetaData_Name').val(file.name);
+
+
+                $('#validationDigital').text("");
+
+
+                $("#fileProgressDigital").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    //-------------------------Image Upload
+
+
+    //-------------------------Category Functions
+
+
+    function parentcategoryload(categorytypeid) {
+        $.ajax({
+            url: '/controller/product/categoryfirstlevel?categorytypeid=' + categorytypeid,
+            type: 'GET',
+            success: function (data) {
+                var options = '<option disabled selected>-- Select --</option>';
+                var rowCount = data.length;
+
+
+
+
+                $.each(data, function (index, item) {
+                    options += '<option value="' + item.categoryId + '">' + item.categoryName + '</option>';
+                    // console.log(item.categoryId);
+                });
+
+
+                if (rowCount > 0) {
+                    $('#firstSelectBox').show();
+                    $('#firstSelectBox').html(options);
+                } else {
+                    options = '<option disabled selected>-- No Category found in the selected type --</option>';
+
+                    $('#firstSelectBox').html(options);
+                    // $('#firstSelectBox').hide();
+                }
+            }
+        });
+    }
+
+
+
+    function categoryoneload(selectedCategoryIdTwo) {
+        $.ajax({
+            url: '/controller/product/categorysecondlevel?categoryid=' + selectedCategoryIdTwo,
+            type: 'GET',
+            success: function (data) {
+                var options = '<option disabled selected>-- Select --</option>';
+                var rowCountCat2 = data.length;
+                $.each(data, function (index, item) {
+                    options += '<option value="' + item.categoryId + '">' + item.categoryName + '</option>';
+
+                });
+
+
+
+
+                if (rowCountCat2 > 0) {
+                    $('#secondSelectBox').html(options);
+                    $('#secondSelectBox').show();
+                    $('#ProductBasicV2_CategoryId').val('0');
+                } else {
+                    $('#secondSelectBox').hide();
+                }
+            }
+        });
+    }
+
+    function categorytwoload(selectedCategoryIdThree) {
+        $.ajax({
+            url: '/controller/product/categorythirdlevel?categoryid=' + selectedCategoryIdThree,
+            type: 'GET',
+            success: function (data) {
+                var options = '<option disabled selected>-- Select --</option>';
+                var rowCountCat3 = data.length;
+                $.each(data, function (index, item) {
+                    options += '<option value="' + item.categoryId + '">' + item.categoryName + '</option>';
+
+                });
+                if (rowCountCat3 > 0) {
+                    $('#thirdSelectBox').html(options);
+                    $('#thirdSelectBox').show();
+                    $('#ProductBasicV2_CategoryId').val('0');
+                } else {
+                    $('#thirdSelectBox').hide();
+                }
+            }
+        });
+    }
+                    //-------------------------Category Functions
+
+</script>

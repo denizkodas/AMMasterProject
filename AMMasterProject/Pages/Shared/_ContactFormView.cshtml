@@ -1,0 +1,144 @@
+﻿<div class="overlay-view" id="sellercontact">
+    <div class="popup popup-medium">
+        <div class="popup-heading  ">
+
+            <div class="center h4 padding5">
+                <span class="notranslate" data-translate="sendamessage">
+
+                    Send a Message</span>      <a href="#close" id="acontactformclose" class="close-back"></a>
+            </div>
+
+
+
+        </div>
+
+
+        <div class=" white-bg m-no-border  radius form">
+            <div class="paddingrf-80">
+
+                <!--Conditional--> 
+                <div id="conditionalcontact" class="bold paddingtb-15">
+                    <label id="lbltoname">@ViewBag.Contactname</label>
+                         <input id="hdntoid" type="hidden" value="@ViewBag.ReferenceID" />
+                </div>
+
+
+
+                <label class="error-label" id="lblcontacterror"></label>
+                <div class="form-group">
+
+                    <input type="text" id="txtname" placeholder="Your Name ">
+                </div>
+                <div class="form-group">
+
+                    <input type="email" id="txtemail" placeholder="Email" name="email">
+                </div>
+                <div class="form-group">
+
+                    <input type="tel" id="txtphone" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+
+                    <input type="text" id="txtsubject" value="@ViewBag.Subject" placeholder="Subject">
+                </div>
+                <div class="form-group">
+
+                    <textarea id="txtmsg" maxlength="200" placeholder="Your Message"  rows="20">@Html.Raw(ViewBag.Message) </textarea>
+                </div>
+
+                <div class="margintb-15">
+
+                    <button type="button" class="w-100 radius30 float-none" id="btncontact">
+                        <span class="notranslate" data-translate="submit"> Submit </span>
+
+                        
+                        </button>
+                </div>
+
+                <br><br>
+
+                <!--</form>-->
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+       $("#acontactformclose").click(function () {
+        event.preventDefault();
+
+      
+        $('#ContactFormContainer').empty();
+
+    });
+
+
+       $(document).on('click', '#btncontact', function () {
+
+        event.preventDefault(); // prevent the form from submitting normally
+        // Get the values of the input fields
+        var name = $('#txtname');
+        var email = $('#txtemail');
+        var phone = $('#txtphone');
+        var subject = $('#txtsubject');
+        var message = $('#txtmsg');
+           var referenceid = $('#hdntoid');
+
+       
+        if (name.val() === "") {
+            name[0].setCustomValidity("Please enter your name.");
+            name[0].reportValidity();
+            return false;
+        }
+       
+        if (email.val() === "") {
+            email[0].setCustomValidity("Please enter your email address.");
+            email[0].reportValidity();
+            return false;
+        }
+        if (!isValidEmail(email.val())) {
+
+            $('#lblcontacterror').text('Please enter a valid email address');
+            return false;
+        }
+
+
+        if (phone.val() === "") {
+            phone[0].setCustomValidity("Please enter your phone.");
+            phone[0].reportValidity();
+            return false;
+        }
+
+
+        if (subject.val() === "") {
+            subject[0].setCustomValidity("Please enter your subject.");
+            subject[0].reportValidity();
+            return false;
+        }
+
+        if (message.val() === "") {
+            message[0].setCustomValidity("Please enter your message.");
+            message[0].reportValidity();
+            return false;
+        }
+
+      
+        $('#contactformload').empty();
+           
+            var emailbody=message.val();
+            var mobilenotification=subject.val();
+            var redirecturl="/Notification/";
+            postcontactform(referenceid.val(), 'ContactForm', emailbody, mobilenotification, redirecturl, email.val());
+           
+
+      
+
+    });
+
+</script>
+
+                   

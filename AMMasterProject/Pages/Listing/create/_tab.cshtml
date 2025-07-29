@@ -1,0 +1,225 @@
+﻿
+@{
+
+    var modelguid = new Guid("00000000-0000-0000-0000-000000000000");
+}   <div class="col-md-2 l-tabs">
+   
+
+    @if (Model == modelguid)
+    {
+        <a href="~/listing/create/basic">
+            <span class="notranslate" data-translate="basicinfo">
+
+           
+            Basic Info
+            </span>
+        </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/basic" asp-route-ID="@Model">
+            <span class="notranslate" data-translate="basicinfo">
+
+         
+                Basic Info
+            </span>
+        </a>
+    }
+
+    @if (Model ==modelguid)
+    {
+        <a>
+
+            <span class="notranslate" data-translate="description">
+                Description
+            </span>
+        </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/description" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="description">Description</span>
+            </a>
+    }
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="digitaldetail">  Digital Detail</span>
+          </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/digital" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="digitaldetail">Digital Detail</span>
+            </a>
+    }
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="returncancellation"> Return/Cancellation</span>
+           </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/policy" asp-route-ID="@Model">
+            <span class="notranslate" data-translate="returncancellation">Return/Cancellation</span>
+            </a>
+    }
+
+
+  @*  @if (Model == modelguid)
+    {
+        <a>Tax Details</a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/tax" asp-route-ID="@Model">Tax Details</a>
+    }*@
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="delete">
+                <span class="notranslate" data-translate="shipping">Shipping</span>
+                </span>
+           </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/shipping" asp-route-ID="@Model">
+            <span class="notranslate" data-translate="shipping">Shipping</span>
+            </a>
+    }
+
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="attributes">Attributes</span>
+            </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/attribute" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="attributes">Attributes</span>
+            </a>
+    }
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="inventory">Inventory</span>
+            </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/inventory" asp-route-ID="@Model">
+            <span class="notranslate" data-translate="inventory">Inventory</span>
+            </a>
+    }
+
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="otherimages">Other Images</span>
+            </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/images" asp-route-ID="@Model">
+            <span class="notranslate" data-translate="otherimages"> Other Images</span>
+           </a>
+    }
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="video">Video</span>
+            </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/video" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="video">Video</span>
+            </a>
+    }
+
+    @if (Model == modelguid)
+    {
+        <a>
+
+            <span class="notranslate" data-translate="discount">Discount</span>
+            </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/discount" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="discount">Discount</span>
+            </a>
+    }
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="relatedlisting">Related Listing</span>
+
+        </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/related" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="relatedlisting">Related Listing</span>
+            </a>
+    }
+
+
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="crosslisting"> Cross Listing</span>
+           </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/cross" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="crosslisting">Cross Listing</span>
+            </a>
+    }
+@* 
+    @if (Model == modelguid)
+    {
+        <a>
+            <span class="notranslate" data-translate="otherfields"> Other Fields</span>
+        </a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/itemotherfields" asp-route-ID="@Model">
+
+            <span class="notranslate" data-translate="otherfields">Other Fields</span>
+        </a>
+    } *@
+
+
+  @*  @if (Model == modelguid)
+    {
+        <a>Other Settings</a>
+    }
+    else
+    {
+        <a asp-page="/listing/create/setting" asp-route-ID="@Model">Other Settings</a>
+    }*@
+
+
+   
+</div>

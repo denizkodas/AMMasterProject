@@ -1,0 +1,349 @@
+﻿@page
+@model AMMasterProject.Pages.User.profileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<form method="post" enctype="multipart/form-data">
+<div class="paddingtb-15 o-padding">
+    <div class="container">
+        <div class="row">
+
+
+                <div class="customer-page-menu">
+
+            <partial name="/Pages/user/_tab.cshtml" />
+
+
+                </div>
+            
+
+                <input asp-for="@Model.UserProfile.ProfileGuid" type="hidden" />
+            <div class="customer-page">
+                <div class="padding15 white-bg radius m-none">
+                    <div class="h4">
+                            
+
+                            <span class="cap notranslate" data-translate="profiledetails">Profile Details</span>
+
+                    </div>
+                       @* <div asp-validation-summary="All"></div>*@
+                </div> 
+                <div class="padding15 white-bg form">
+              
+
+
+
+                        <div class="div row">
+                        
+                        <div class="col-md-3 center">
+                           
+
+                               @* <img class="preview" id="profileimage" style="display:none">
+                                @if (Model.UserProfile.ProfileImage != null)
+                                {
+                                    <img class="preview" src="@Model.UserProfile.ProfileImage">
+                                }*@
+
+                                <div class="profile-image-add">
+                                <img id="profileimage" style="display:@(Model.UserProfile.ProfileImage == null ? "none" : "block")" src="@(Model.UserProfile.ProfileImage != null ? Model.UserProfile.ProfileImage : "")"/>
+                                </div> <div class="margin10 ">
+
+
+                                    <a class="btn theme-bg f-theme" onclick="showimagepopup()">
+                                        <span class="notranslate" data-translate="updateprofileimage">
+                                            Update Profile Image
+
+                                            
+                                        </span>
+                                        
+                                       </a>
+
+                                   
+                       
+
+                                  
+                         </div>
+                        </div>
+
+                            <div class="col-md-5">
+
+
+
+
+
+
+                                <div class="form-group">
+                                    <label class="form-label notranslate" data-translate="firstname">First Name</label>
+                                    <input type="text" maxlength="50" asp-for="@Model.UserProfile.Firstname">
+
+                                    <span asp-validation-for="@Model.UserProfile.Firstname" class="required"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label notranslate" data-translate="lastname">Last Name</label>
+                                    <input type="text" maxlength="50" asp-for="@Model.UserProfile.Lastname">
+
+                                    <span asp-validation-for="@Model.UserProfile.Lastname" class="required"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label notranslate" data-translate="displayname"> Display Name</label>
+                                    <input type="text" maxlength="100" asp-for="@Model.UserProfile.ClientDisplayName">
+
+                                    <span asp-validation-for="@Model.UserProfile.ClientDisplayName" class="required"></span>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label notranslate" data-translate="email">E-mail</label>
+                                    <input type="text" maxlength="300" asp-for="@Model.UserProfile.Email">
+
+                                    <span asp-validation-for="@Model.UserProfile.Email" class="required"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label notranslate" data-translate="phonenumber"> Phone Number</label>
+                                    <input type="text" maxlength="30" asp-for="@Model.UserProfile.Contactnumber">
+
+                                    <span asp-validation-for="@Model.UserProfile.Contactnumber" class="required"></span>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label notranslate" data-translate="aboutme"> About Me</label>
+                                    <textarea maxlength="500" asp-for="@Model.UserProfile.About" oninput="updateCharacterCount(this)"></textarea>
+                                    <span id="characterCountLabel"></span>
+                                    <span asp-validation-for="@Model.UserProfile.About" class="required"></span>
+
+
+
+
+                                </div>
+                                <div class="form-group sub-btn-fix">
+                                    <button type="submit" class="clickable-button">
+                                        <span class="notranslate" data-translate="save"> Save</span>
+                                        </button>
+                                </div>
+                            </div>
+                    
+                    
+                    </div>
+
+                     
+
+                    </div>
+                
+
+
+               
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+
+@* profile image popup *@
+    <div class="overlay-view" style="display:none" id="updateimage">
+        <div class="popup popup-medium">
+            <div class="popup-heading">
+                <span class="notranslate" data-translate="updateprofileimage">  Update Profile Image</span>
+
+
+                <a class="close-back" onclick="closeimagepopup()"></a>
+            </div>
+            <div class="padding10 o-padding white-smoke-bg">
+                <div class="responsive-tab">
+
+
+                    @* tabs btn *@
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="photo-tab" data-bs-toggle="tab" data-bs-target="#photottab" type="button" role="tab" aria-controls="photo" aria-selected="true">
+                                <span class="notranslate" data-translate="uploadphoto">  Upload Photo</span>
+
+                                
+                                
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="avatar-tab" data-bs-toggle="tab" data-bs-target="#avatartab" type="button" role="tab" aria-controls="avatar" aria-selected="false">
+                                
+                                <span class="notranslate" data-translate="chooseavatar">Choose Avatar</span>
+                            </button>
+                        </li>
+
+                    </ul>
+                    <div class="padding15 white-bg radius o-padding">
+
+
+
+                  
+
+                        @*     tabs *@
+
+                            <div class="tab-content" id="myTabContent">
+
+
+                             @*    upload photot tab *@
+                                <div class="tab-pane fade cap active show" id="photottab" role="tabpanel" aria-labelledby="billing-tab">
+
+
+                                    <div class="center paddingtb margintb">
+
+
+                                        <label class="file-upload w-100">
+                                            <strong class="upload-plus-btn">
+                                                +
+                                            </strong>
+
+                                        <span class="h5 notranslate" data-translate="uploadphoto">  Upload Photo</span>
+                                            <input type="file" id="fileInput" onchange="uploadFile()" />
+                                            <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                        </label>
+
+                                        <p class="grey-c">
+                                        <span class="notranslate" data-translate="uploadphotomsg">  Allowed JPG, GIF or PNG. Max size of 10 MB</span>
+                                             <br />
+                                            <span id="spanfilename" class="required"></span>
+                                            <input type="hidden" asp-for="@Model.UserProfile.ProfileImage" />
+                                            <span asp-validation-for="@Model.UserProfile.ProfileImage" class="required"></span>
+
+
+                                        </p>
+                                    </div>
+
+                                </div>
+                              
+                              @*   choose avatar tab *@
+                                
+                                <div class="tab-pane fade" id="avatartab" role="tabpanel" aria-labelledby="credit-tab">
+
+                                    <div id="dvAvatarlistcontainer">  </div>
+
+                                       
+
+                                  
+                              
+
+                                  
+                                  
+
+
+
+
+
+
+                                </div>
+                            </div>
+                   
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    @*Delete Account *@
+   @*  <partial name="/pages/shared/setups/_accountdelete.cshtml" /> *@
+</form>
+
+
+
+    <script>
+
+        function showimagepopup()
+        {
+
+        $("#updateimage").show();
+
+        }
+
+        function closeimagepopup() {
+
+        $("#updateimage").hide();
+        }
+
+        function uploadFile() {
+            var fileInput = $("#fileInput")[0];
+            $("#fileProgress").show();
+            var progressBar = $("#fileProgress")[0];
+            progressBar.value = 60;
+
+            var file = fileInput.files[0];
+
+            if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+                $('#spanfilename').text("Only jpeg or png files are allowed.");
+                $("#fileProgress").hide();
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+                $("#fileProgress").hide();
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            $.ajax({
+                url: "/Controller/Master/Upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    // console.log(data);
+
+
+                    var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                    //$('#spanfilename').text(fileName);
+                $("#profileimage").show();
+
+                $('#spanfilename').text("");
+
+                $("#profileimage").attr("src", data.fileLink);
+
+                $('#UserProfile_ProfileImage').val(data.fileLink);
+
+                 ///hide the image selection popup on selection
+                    $("#updateimage").hide();
+
+                    $("#fileProgress").hide();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+
+
+
+   
+    $(document).on('click', '#avatar-tab', function (e) {
+        e.preventDefault();
+
+
+        avatarlist();
+
+
+    });
+    </script>
+
+
+
+
+                               

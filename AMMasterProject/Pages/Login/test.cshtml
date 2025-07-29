@@ -1,0 +1,212 @@
+﻿@page
+@model AMMasterProject.Pages.Login.testModel
+@{
+}
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="1038679108687-icr09vjthvthlkia57pihh8iq3po5n7d.apps.googleusercontent.com">
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href="#" onclick="signOut();">Sign out</a>
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        asyncdefer></script>
+<script type="text/javascript">
+    var onloadCallback = function () {
+        grecaptcha.render('dvCaptcha', {
+            'sitekey': '6LcoSs8oAAAAABIf_grgp5xvokRXBS94r4p0Nacv',
+            'callback': function (response) {
+                $.ajax({
+                    type: "POST",
+                    url: '/controller/master/CaptchaValidation',
+                    data: { response: response }, // Send data as a JSON object
+                    // contentType: "application/json; charset=utf-8",
+                    // dataType: "json",
+                    success: function (captchaResponse) {
+                        if (captchaResponse.success) {
+
+                            alert("success");
+                            // Your success handling code here
+                        } else {
+                            alert("fail");
+                            // Your error handling code here
+                        }
+                    }
+                });
+            }
+        });
+    };
+</script>
+
+
+<div id="dvCaptcha">
+</div>
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<script>
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Facebook Login Button -->
+<fb:login-button scope="public_profile,email"
+                 onlogin="checkLoginState();">
+</fb:login-button>
+
+<!-- Initialize Facebook SDK -->
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1462619270551703',  // Replace with your Facebook App ID
+            cookie: true,
+            xfbml: true,
+            version: 'v17.0'      // Update to the desired Facebook API version
+        });
+
+        FB.AppEvents.logPageView();
+    };
+
+    // Load the Facebook SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // Handle the Facebook Login status
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+    // Callback to handle the Facebook Login status
+    function statusChangeCallback(response) {
+        if (response.status === 'connected') {
+            // User is logged in and has authorized your app
+            var accessToken = response.authResponse.accessToken;
+            var userID = response.authResponse.userID;
+
+            // Request user data from Facebook
+            FB.api('/me?fields=name,email,picture.type(large)', function (userData) {
+                if (userData && !userData.error) {
+                    var fullname = userData.name;
+                    var userEmail = userData.email;
+                    var id = userData.id
+                    var profilePictureUrl = userData.picture.data.url;
+
+
+                 
+                    var fullNameArray = fullname.split(' '); // Split the full name into an array of words
+
+                    var firstName = fullNameArray[0]; // The first word is typically the first name
+                    var lastName = fullNameArray.slice(1).join(' '); // The rest of the words (if any) make up the last name
+
+                    console.log('First Name: ' + firstName);
+                    console.log('Last Name: ' + lastName);
+                    // You can use this data in your application
+                    console.log('Logged in as ' + fullname + ' with access token: ' + accessToken);
+                    console.log('Email: ' + userEmail);
+                    console.log('Profile Picture URL: ' + profilePictureUrl);
+                    console.log('ID ' + id);
+
+
+                  
+                    $.ajax({
+                        type: "POST",
+                        url: "/controller/Login/FacebookLoginJs/",
+
+                        data: {
+                            givenname: firstName,
+                            surname: lastName,
+                            UserName: userEmail,
+                            userId: id,
+                           
+                        },
+
+
+
+                        success: function (response) {
+
+                            console.log("Response: " + response);
+                            if (response && response.startsWith("success")) {
+                                window.location.href = response;
+                                return;
+
+                            } else {
+                                toaster(response, "toast-success");
+
+                                // Message is returned, display it to the user
+                                // $('#lblloginerror').text(response);
+                            }
+
+
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log("Error: " + thrownError);
+                            toaster(thrownError, "toast-success");
+                            //alert(thrownError);
+
+                            //window.location.href = "/Error/ErrorPage.html";
+                        }
+                    });
+
+
+
+                }
+            });
+        } else if (response.status === 'not_authorized') {
+            // User is logged into Facebook but hasn't authorized your app
+            console.log('Not authorized');
+        } else {
+            // User is not logged into Facebook
+            console.log('Not logged into Facebook');
+        }
+    }
+</script>

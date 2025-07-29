@@ -1,0 +1,169 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Partners.addModel
+@{
+    <title>Partners</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+    <input asp-for="@Model.partner.PartnerId" type="hidden" />
+
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/partners">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/partners/add"><i class="bx bx-plus me-1"></i> Add </a>
+
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="row padding30">
+            <div class="col-md-6">
+                <div class="form">
+                        <div class="row paddingrf-15 no-margin">
+                            <div class=" col-md-3 s-bold">
+                                Icon
+                            </div>
+                            <div class="col-md-9 no-padding">
+                                Upload Image
+                                <br>
+                                <label class="file-upload">
+                                    <span class="btn btn-default l-grey-bg">
+                                        Select File
+                                    </span>
+                                    <input type="file" id="fileInputicon" onchange="uploadFileicon()" />
+
+                                    <progress id="fileProgressicon" class="w-100 margin5" style="display:none"></progress>
+                                </label>
+                                <img id="imgicon" src="@Model.partner.Image" class="preview" style="display: @(Model.partner.Image == null ? "none" : "block")">
+
+
+                                <p class="grey-c">
+                                    Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                                </p><br />
+                                <span id="spanfilenameicon" class="required"></span>
+                                <input type="hidden" asp-for="@Model.partner.Image" />
+
+                                <span asp-validation-for="@Model.partner.Image" class="required"></span>
+                            </div>
+
+
+                        </div>
+
+
+                    <div class="form-group">
+                        Partner Name
+                            <input type="text" maxlength="100" asp-for="@Model.partner.ParnerName">
+                            <span asp-validation-for="@Model.partner.ParnerName" class="required"></span>
+                    </div>
+                    <div class="form-group">
+                        URL <span class="grey-c"> ( Optional )</span>
+                            <input type="text" maxlength="100" asp-for="@Model.partner.Partnerurl" >
+                           
+                            <span asp-validation-for="@Model.partner.Partnerurl" class="required"></span>
+                    </div>
+
+                        <div class="form-group">
+                           Sort Order
+                            <input type="text" maxlength="100" asp-for="@Model.partner.Sortorder">
+
+                            <span asp-validation-for="@Model.partner.Sortorder" class="required"></span>
+                        </div>
+
+
+                        <div class="form-group checkright">
+
+
+                            <input type="checkbox" asp-for="@Model.partner.IsPublish" checked="@Model.partner.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.partner.IsPublish">Is Publish</label>
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this Section</p>
+
+
+
+                            <input type="checkbox" asp-for="@Model.partner.Isaddonhomepage" checked="@Model.partner.Isaddonhomepage" />
+                            <label id="Isaddonhomepage" asp-for="@Model.partner.Isaddonhomepage">Is Show On Home Page</label>
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox to determine whether you want to display this content on the homepage</p>
+
+
+                    </div>
+                    <div class="form-group">
+
+                           
+                            <button class="btn margin5 padding10 btn-outline-secondary clickable-button">Save</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</form>
+
+
+                            <script>
+
+    function uploadFileicon() {
+        var fileInput = $("#fileInputicon")[0];
+        $("#fileProgressicon").show();
+        var progressBar = $("#fileProgressicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenameicon').text("Only jpeg or png files are allowed.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameicon').text("File size must be less than 10 MB.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgicon").attr("src", data.fileLink);
+
+                $('#partner_Image').val(data.fileLink);
+
+                $("#imgicon").show();
+
+
+                $("#fileProgressicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+                            </script>

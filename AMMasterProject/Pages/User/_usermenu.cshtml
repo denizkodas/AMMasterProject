@@ -1,0 +1,124 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+
+
+
+<nav class="real-menu" role="navigation">
+
+
+   
+
+
+
+
+    <div class="mobile-menu">
+       @* user name --- image*@
+          @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+            <ul class="menu">
+                <li>
+                    <a>
+                        <h4 class="userfullname no-margin top-account-link">
+                            <partial name="/Pages/user/_userimage.cshtml" />  @User.FindFirst("FirstName")?.Value @User.FindFirst("LastName")?.Value
+                        </h4>
+                    </a>
+                </li>
+
+
+            </ul>
+                  }
+
+            else
+
+            {
+            <ul class="menu">
+                <li class="d-grey-bg">
+                    <a class="d-grey-c">
+                        <h4 class="userfullname no-margin padding15 top-account-link">
+                            <svg viewBox="0 0 32 32">
+                                <path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z" />
+                                <path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" />
+
+                            </svg>
+                            <span class="notranslate" data-translate="welcome">    Welcome </span>
+
+                            
+                         
+                        </h4>
+                    </a>
+                </li>
+
+
+            </ul>
+
+        }
+
+        <div class="menu-scroll">
+        @* login links *@
+
+         @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+
+        <partial name="/Pages/user/_tab.cshtml" />
+           
+            }
+
+            else
+
+            {
+
+                 <ul class="menu">
+            
+                <li class="top-account-link">
+                    <a href="~/login">
+                            <span class="notranslate" data-translate="login"> Login </span>
+                    </a>
+                </li>
+
+                <li class="top-account-link">
+                    <a href="~/register" >
+                            <span class="notranslate" data-translate="register">    Register </span>
+
+                    </a>
+                </li>
+                        </ul>
+
+
+        }
+
+
+        @* Other Links *@
+        @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/FooterView.cshtml", methodname= "footer", id=0 })
+
+
+        @* logut btn *@
+          @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+ <ul class="menu">
+            <li>
+                <a id="btnLogout" href="">
+                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
+                        <path clip-rule="evenodd" d="M2 12.5H14V11.5H2V12.5Z" fill-rule="evenodd" />
+                        <path clip-rule="evenodd" d="M5.14641 8.14645L1.64641 11.6465C1.45115 11.8417 1.45115 12.1583 1.64641 12.3536L5.14641 15.8536L5.85352 15.1465L2.70707 12L5.85352 8.85356L5.14641 8.14645Z" fill-rule="evenodd" />
+                        <path clip-rule="evenodd" d="M14.5954 5C11.9176 5 9.59182 6.54597 8.44623 8.81305L7.55371 8.36204C8.86051 5.77594 11.521 4 14.5954 4C18.967 4 22.5 7.58778 22.5 12C22.5 16.4122 18.967 20 14.5954 20C11.521 20 8.86051 18.2241 7.55371 15.638L8.44623 15.187C9.59182 17.454 11.9176 19 14.5954 19C18.4027 19 21.5 15.8721 21.5 12C21.5 8.12795 18.4027 5 14.5954 5Z" fill-rule="evenodd" />
+                    </svg>
+                            <span class="notranslate" data-translate="logout">Logout</span>
+                </a>
+            </li>
+            </ul>
+        }
+
+        else
+        {
+            
+        }
+        </div>
+    </div>
+</nav>
+

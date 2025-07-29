@@ -1,0 +1,101 @@
+﻿
+
+<style>
+    body {
+        background: white !important
+    }
+</style>
+
+
+<!--<%-- -----------------------------Hero Banner------------------------------------
+          share > setup > herobanner
+          Home controller  home.js auto called in 2 seconds in home.js
+          --%>-->
+
+<div class="homepage-banner">
+
+    <div id="dvHeroBannerContainer"></div>
+
+
+</div>
+
+
+
+<!--<%-- -----------------------------Home CMS------------------------------------
+           share > setup > _cmsview
+           Home controller  home.js auto called after 5 seconds in home.js
+           --%>-->
+
+<div id="dvCMSViewContainer"></div>
+
+
+@*  Products *@
+<div class="container" id="dvProductHomePageContainer"></div>
+
+@*  Boosted Products *@
+<div class="container">
+    <div class="homepage-p2 ">
+
+        <!--<%-- -----------------------------Boosted Products------------------------------
+
+               share > setup > _productboost
+               Home controller  home.js auto called in 4 seconds in home.js
+
+             ------ --%>-->
+
+        <div id="dvProductBoostHomeContainer"></div>
+
+    </div>
+
+
+
+
+
+</div>
+
+@*  Featured Seller *@
+@* @await Component.InvokeAsync("Seller", new { viewName = "/Pages/Shared/Global/Featuredseller.cshtml" }) *@
+
+<div class="container" id="dvFeaturedSellerHomeContainer"></div>
+@*  Blog *@
+<div class="home-blog">
+    <div class="container">
+       @*  @await Component.InvokeAsync("Blog", new { viewName = "/Pages/Blog/BlogView.cshtml", methodname="homepage", spantitle="Blog" })
+     *@
+        <!--<%-- -----------------------------Home Blog------------------------------------
+                    share > setup > _bloghome
+                    Home controller  home.js auto called after 15 seconds in home.js
+                    --%>-->
+        <div id="dvBlogHomeContainer"></div>
+    
+    </div>
+</div>
+
+@*  Partner *@
+@* @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/PartnerView.cshtml", methodname= "partner", id=0 })
+ *@
+<div class="container" id="dvPartnerHomeContainer"></div>
+@*  Home footer CMS *@
+@* @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/CMSView.cshtml" , methodname="cms", id=0, value="homefooter" })
+ *@
+<div class="container" id="dvCMSViewhomefooterContainer"></div>
+<script>
+
+
+
+    $(function () {
+        var header = $(".main-sub-menu");
+
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 500) {
+                header.addClass("main-header-classadd");
+            } else {
+                header.removeClass("main-header-classadd");
+            }
+        });
+
+    });
+
+</script>
+

@@ -1,0 +1,194 @@
+﻿<div class="input-group border l-grey-bd radius  o-padding top-search-box">
+    <input type="button" style="display:none" id="btnclear" value="" />
+    <img id="loading" style="display:none" src="~/images/loader.gif" class="search-load" />
+   @* <span data-translate="headerSearchPlaceHolder"></span>*@
+    <input type="text" id="txtsearch"  placeholder="Search" autocomplete="off" class="form-control no-border txtShowDiv">
+  
+    <span class="input-group-btn">
+        <a id="acatautoclickvendorsearch">
+
+            <svg viewBox="0 0 576 512">
+                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+
+            </svg>
+
+        </a>
+       
+    </span>
+    
+    <div class="search_opacity"> 
+       
+
+    </div>
+</div>
+    <div id="last-searches">
+
+    </div>
+   
+
+
+
+<script>
+    // Load and display the last searches badges
+    $(document).ready(function() {
+    
+    var searches = JSON.parse(localStorage.getItem("last-searches")) || [];
+    var html = "";
+    searches.forEach(function(search) {
+        // Wrap each badge in an anchor tag with the search URL
+            html += ' | ' + '<a href="/item/search?q=' + encodeURIComponent(search.toLowerCase()) + '" class="badge badge-secondary mr-1">' + search + '</a>';
+    });
+    $("#last-searches").html(html);
+
+    $('.txtShowDiv').focus(function() {
+        $('.search_opacity').fadeIn();
+    }).focusout(function() {
+        $('.search_opacity').fadeOut();
+    });
+});
+
+ 
+
+
+    function showResult(event, ui) {
+    event.preventDefault();
+    $("#txtsearch").val(ui.item.label + " " + ui.item.val);
+    $("#acatautoclickvendorsearch").attr("href", ui.item.redirecturl);
+    window.location.href = ui.item.redirecturl;
+
+        updatelastsearchinlocalstorage(ui.item.label);
+}
+
+// function updatelastsearchinlocalstorage(searchvalue)
+// {
+//         // Save the searched term to localStorage
+//         var searches = JSON.parse(localStorage.getItem("last-searches")) || [];
+//         searches.unshift(searchvalue);
+//         searches = searches.slice(0, 5); // Only keep the last 5 searches
+//         localStorage.setItem("last-searches", JSON.stringify(searches));
+
+//         // Update the last searches badges
+//         var html = "";
+//         searches.forEach(function (search) {
+//             html += ' | ' + '<span class="badge badge-secondary mr-1">' + search + '</span>';
+//         });
+//         $("#last-searches").html(html);
+// }
+
+    function updatelastsearchinlocalstorage(searchvalue) {
+        // Save the searched term to localStorage only if it does not exist
+        var searches = JSON.parse(localStorage.getItem("last-searches")) || [];
+
+        // Check if the searchvalue already exists in searches
+        if (!searches.some(search => search.toLowerCase() === searchvalue.toLowerCase())) {
+            searches.unshift(searchvalue);
+        }
+
+        searches = searches.slice(0, 5); // Only keep the last 5 searches
+        localStorage.setItem("last-searches", JSON.stringify(searches));
+
+        // Update the last searches badges
+        var html = "";
+        searches.forEach(function (search) {
+            html += ' | ' + '<span class="badge badge-secondary mr-1">' + search + '</span>';
+        });
+        $("#last-searches").html(html);
+    }
+
+//-----------------TXTBOX SEARECH SHOW BUTON-----------------------
+    var txtsearch = $("#txtsearch");
+    txtsearch.keyup(function () {
+
+
+        if (txtsearch.val() != "") {
+            $('#btnclear').show();
+        }
+
+        else {
+              $('#btnclear').hide();
+        }
+    });
+
+    $('#btnclear').click(function () {
+
+        $("#txtsearch").val("");
+         $('#btnclear').hide();
+    });
+
+
+
+
+
+
+
+
+
+
+
+    $(function () {
+        $("#txtsearch").autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $("#loading").show();
+                $.ajax({
+                    url: "/controller/product/headersearch?searchText=" + request.term,
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                val: item.type,
+                                redirecturl: item.urlpath
+                            }
+                        }));
+                        $("#loading").hide();
+                    },
+                    error: function (response) {
+                        alert(response.responseText + "error");
+                        $("#loading").hide();
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                        $("#loading").hide();
+                    }
+                });
+            },
+            select: showResult
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append('<a href="' + item.redirecturl + '" data-toggle="modal" data-target="#myModal19" title="' + item.label + '">'
+                    + '<div style=""><span id="searchkeyword">' + item.label + '</span>  <span id="searchtype">' + item.val + ' </span>     </div></a>')
+                .appendTo(ul);
+        };
+    });
+
+    ///click button to redirect user onkeyword search
+    $(document).ready(function () {
+        const $anchorTag = $("#acatautoclickvendorsearch");
+        const $inputTextBox = $("#txtsearch");
+
+        // Function to navigate to the search URL
+        function navigateToSearchUrl() {
+            const searchText = $inputTextBox.val().trim();
+            if (searchText) {
+
+                updatelastsearchinlocalstorage(searchText);
+                const searchUrl = `/item/search?q=${encodeURIComponent(searchText)}`;
+                window.location.href = searchUrl;
+            }
+        }
+
+        // Click event listener for the anchor tag
+        $anchorTag.on("click", navigateToSearchUrl);
+
+        // Keypress event listener for the input textbox
+        $inputTextBox.on("keypress", function (event) {
+            if (event.key === "Enter") {
+                navigateToSearchUrl();
+            }
+        });
+    });
+
+
+</script>

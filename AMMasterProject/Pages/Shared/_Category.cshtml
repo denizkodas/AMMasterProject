@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CategoryMaster>
+
+<ul>
+@foreach(var category in Model.Where(c => c.ParentCategoryId == 0))
+{
+        <li>@category.CategoryName</li>
+
+        if (Model.Where(c => c.ParentCategoryId == category.CategoryId) != null)
+        {
+            <ul>
+                @foreach (var secondcategory in Model.Where(c => c.ParentCategoryId == category.CategoryId))
+                {
+                    <li>@secondcategory.CategoryName</li>
+                    if (Model.Where(c => c.ParentCategoryId == secondcategory.CategoryId) != null)
+                    {
+
+                        <ul>
+                            @foreach (var thirdcategory in Model.Where(c => c.ParentCategoryId == secondcategory.CategoryId))
+                            {
+                                <li>@thirdcategory.CategoryName</li>
+                            }
+                        </ul>
+                    }
+                }
+            </ul>
+        }
+    }
+</ul>

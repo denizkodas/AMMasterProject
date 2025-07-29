@@ -1,0 +1,47 @@
+﻿@page
+@model AMMasterProject.Pages.User.NotificationsModel
+@{
+    ViewData["Title"] = "Notification";
+}
+<div class="paddingtb-15 o-padding">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="customer-page-menu">
+
+            <partial name="/Pages/user/_tab.cshtml" />
+
+            </div>
+
+            <div class="customer-page no-bg">
+                <div class="padding15  m-none">
+                    <h4>
+                        <span class="notranslate" data-translate="notification">    RegNotificationister </span>
+
+
+                    </h4>
+                </div>
+                    <div>
+                    <ul class="notification-list">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                var profileIdClaim = User.FindFirst("UserID");
+                                if (profileIdClaim != null)
+                                {
+                                    int profileId = Convert.ToInt32(profileIdClaim.Value);
+                                    @await Component.InvokeAsync("Notification", new { viewName = "/Pages/Notification/Announcement.cshtml", methodname= "announcementall", profielid=profileId });
+                                }
+                            }
+                        </ul>
+                    </div>
+             
+
+              
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

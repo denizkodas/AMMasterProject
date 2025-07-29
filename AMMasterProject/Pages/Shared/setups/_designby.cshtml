@@ -1,0 +1,25 @@
+﻿@using AMMasterProject.Helpers
+
+    <span class="companyname"></span>
+    <small id="smdesignby" class="designby" style="display:block !important">
+    @if (string.IsNullOrEmpty((string)Context.Items["LicenseKeyForBrandRemoval"]))
+    {
+        <a id="adesignby" style="display: inline-block !important;" href="https://amtechnology.info/" target="_blank"> <span class="notranslate" data-translate="designanddevelopedby">Design & Developed by</span>  <span class="am-color notranslate">AM Technology</span></a>
+    }
+
+
+    -<span class="notranslate" data-translate="version">
+        Version:
+    </span> <span id="versionnumber" class="verionnumber">@Context.Items["VersionNumber"]</span> <span id="versiondate" class="veriondate">@Context.Items["VersionDate"]</span>
+</small>
+   
+
+@if (string.IsNullOrEmpty((string)Context.Items["LicenseKey"]))
+{
+    <script>
+        window.location.href = "/license";
+    </script>
+    // Optionally, you can also add a message or other content here
+}
+
+

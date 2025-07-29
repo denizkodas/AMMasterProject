@@ -1,0 +1,112 @@
+﻿@using AMMasterProject.ViewModel
+@model UserGeneralView
+
+
+@if (Model != null)
+{
+
+    <div class=" user-profile">
+        <div class="user-profile__close  w-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 38.8 38.9">
+                <g>
+                    <path d="M2,38.9a1.9,1.9,0,0,1-1.4-.5,2.1,2.1,0,0,1,0-2.9L35.4.6a1.9,1.9,0,0,1,2.8,0,1.9,1.9,0,0,1,0,2.8L3.4,38.4A1.9,1.9,0,0,1,2,38.9Z" fill="#d87232" />
+                    <path d="M36.8,38.9a1.9,1.9,0,0,1-1.4-.5L.6,3.4A1.9,1.9,0,0,1,.6.6,1.9,1.9,0,0,1,3.4.6L38.2,35.5a2.1,2.1,0,0,1,0,2.9A1.9,1.9,0,0,1,36.8,38.9Z" fill="#d87232" />
+                </g>
+            </svg>
+        </div>
+        <div class="user-profile__wrapper">
+            @*  <div class="user-profile__avatar">
+        <img class="inboxuserimage" alt="" src="@Model.Image" loading="lazy">
+        </div>*@
+            <div class="user-profile__details mt-1">
+                <span class="user-profile__name chatmembername">
+                    <span class="notranslate" data-translate="about">
+                    
+                        About
+                    </span>
+
+                    @if(Model.sellerviewmodel!=null)
+                    {
+                        <a target="_blank" href="@Model.sellerviewmodel.BusinessUrlpath">
+                            @Model.FirstName @Model.LastName</a>
+                    }
+                    else
+                    {
+                        @Model.FirstName @Model.LastName
+                    }
+
+                </span>
+
+            </div>
+            <div class="user-profile__description">
+                <p class="chatusertagline">@Model.About</p>
+            </div>
+
+            @if (Model.userothermetadata != null)
+            {
+                <div>
+
+
+                    <p>
+                        <span class="notranslate" data-translate="from">
+                            From:
+                        </span> <span class="float-end bold">
+                            @Model.userothermetadata.Country
+                        </span>
+                    </p>
+
+                    <p>
+                        <span class="notranslate" data-translate="on">
+                            On
+                    </span>
+                         @Context.Items["CompanyName"]:
+                        <span class="float-end bold">
+                            @Model.InsertDate
+                        </span>
+                    </p>
+
+
+                    @if (Model.userothermetadata.TotalReviewsAsBuyer > 0)
+                    {
+                        <p>
+
+                            <span class="notranslate" data-translate="ratingasbuyer">Rating as Buyer</span>
+                            <span class="float-end bold">
+
+
+                                <i class="fa fa-star yellow-c"></i>
+
+                                @Model.userothermetadata.BuyerRating.ToString("0.0")
+                                <span>( @Model.userothermetadata.TotalReviewsAsBuyer )</span>
+                            </span>
+
+                        </p>
+                    }
+                    @if (Model.userothermetadata.TotalReviewsAsSeller > 0)
+                    {
+                        <p>
+                            <span class="notranslate" data-translate="ratingasseller">Rating as Seller</span>
+                            <span class="float-end bold">
+                                <i class="fa fa-star yellow-c"></i>
+
+                                @Model.userothermetadata.SellerRating.ToString("0.0")
+                                <span>( @Model.userothermetadata.TotalReviewsAsSeller )</span></span>
+                        </p>
+                    }
+                    @if (Model.userothermetadata.Followers > 0)
+                    {
+                        <p>
+                            <span class="notranslate" data-translate="followers">Followers </span>
+                            <span class="float-end bold">
+                                @Model.userothermetadata.Followers </span>
+                        </p>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+
+   
+
+}

@@ -1,0 +1,297 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.amenitiessetupModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title>Amenities Setup </title>
+}
+
+
+<div>
+
+
+
+
+
+    <div class="row large-form">
+
+      
+        <div class="col-md-10 l-tabs-content form">
+           
+            <h5 class="l-tabs-heading">
+                Setup Amenities for item
+            </h5>
+
+            <div class="white-bg paddingtb">
+
+
+                <div id="dvOptioncontainer"></div>
+                <label id="lblguid"></label>
+                <div asp-validation-summary="All"></div>
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                        Add Amenities
+                    </div>
+
+
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+                            <div class="form-group col-md-8">
+                                Amenity Name eg:
+                                <small> Maine Features, Facilities etc</small>
+
+                                <input type="hidden" id="hdnattributeid" value="@Model.productAmenitiesQuestion.ProductAmenitiesId" />
+                                <input type="text" maxlength="100" asp-for="@Model.productAmenitiesQuestion.ProductAmenitiesHeading" value="@Model.productAmenitiesQuestion.ProductAmenitiesHeading">
+                                <span asp-validation-for="@Model.productAmenitiesQuestion.ProductAmenitiesHeading" class="required"></span>
+
+
+
+                            </div>
+                           @*  <div class="form-group col-md-8">
+                                Attribute Insert Type:
+                                <label asp-for="@Model.productAmenitiesQuestion.ControlType"></label>
+                                <select asp-for="@Model.productAmenitiesQuestion.ControlType">
+                                    <option disabled>-- Select --</option>
+                                    <option value="RadioButton List" selected="@(Model.productAttributeQuestion.Type == "RadioButton List")">RadioButton List</option>
+                                    
+                                </select>
+                                <span asp-validation-for="@Model.productAttributeQuestion.Type" class="required"></span>
+
+
+                            </div> *@
+
+
+
+                            <div class="form-group col-md-8">
+                                Sort #:
+                                <input type="number" maxlength="10" asp-for="@Model.productAmenitiesQuestion.SortNumber" value="@Model.productAmenitiesQuestion.SortNumber">
+                                <span asp-validation-for="@Model.productAmenitiesQuestion.SortNumber" class="required"></span>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <hr />
+
+
+
+                <div class="row paddingrf-15">
+                    <div class=" col-md-6 checkright">
+
+
+                        <input type="checkbox" asp-for="@Model.productAmenitiesQuestion.IsPublish" checked="@Model.productAmenitiesQuestion.IsPublish" />
+                        <label id="ispublish" asp-for="@Model.productAmenitiesQuestion.IsPublish">Publish</label>
+                        
+
+                      
+
+                    </div>
+                    <div class=" col-md-6 right">
+
+                        <input type="submit" value="Save" id="saveButton">
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <hr />
+
+                <div class="padding15 margin15">
+                    <h4 class="d-grey-c">
+                        Am List
+                    </h4>
+
+                    <div class="card">
+                        <div class="table-responsive text-nowrap">
+                            <table class="table">
+                                <thead class="table-secondary">
+
+                                    <tr class="active">
+                                        <td>Sort Type</td>
+                                        <td>Question</td>
+                                       @*  <td>Type</td> *@
+
+                                        @*   <td>Is Publish</td> *@
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+
+                                @foreach (var question in Model.productAmenitiesQuestionList)
+                                {
+
+
+
+                                    <tr id="row-@question.ProductAmenitiesId">
+                                        <td> <span>@question.SortNumber</span>  </td>
+                                        <td> <span>@question.ProductAmenitiesHeading</span>  </td>
+                                     @*    <td> <span>@question.Type</span> </td> *@
+
+                                        @*   <td> <span>@question.IsPublish</span> </td> *@
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end" style="">
+                                                    <li><a class="dropdown-item" href="/admin/amenitiessetup?QuestionGUID=@question.ProductAmenitiesId">Edit</a></li>
+                                                    <li>
+
+
+
+                                                        <a class="dropdown-item attributedelete" data-attributeguid="@question.ProductAmenitiesId">Delete</a>
+
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr />
+
+      
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<input type="hidden" id="hdnattributeguid" />
+
+<script>
+
+    $(document).ready(function () {
+        $('#saveButton').click(function () {
+            var loginid = '@Model.loginid'; // Set the loginid value
+
+            
+            var question = $('#productAmenitiesQuestion_ProductAmenitiesHeading').val();
+            // var type = $('#productAmenitiesQuestion_Type').val();
+            var type = "CheckBox List";
+            var sort = $('#productAmenitiesQuestion_SortNumber').val();
+            var ispublish = $('#productAmenitiesQuestion_IsPublish').val();
+            var ProductAmenitiesId = $('#hdnattributeid').val();
+
+
+
+
+            $.ajax({
+                url: '/Controller/Product/amenitiesupsert',
+                type: 'POST',
+                data: {
+                    loginid: loginid,
+                   
+
+                    Question: question,
+                    Type: type,
+                    sort: sort,
+                    ispublish: ispublish,
+                    ProductAmenitiesId: ProductAmenitiesId
+                },
+                success: function (response) {
+                    // Handle the success response here
+
+                    $('#hdnattributeguid').val(response);
+
+
+                    console.log(response);
+                    console.log(type);
+                    if (type == "DropDown List" || type == "CheckBox List" || type == "RadioButton List") {
+
+                        optionview(response);
+                    }
+
+                    question = '';
+                    type = '';
+                    sort = '';
+
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+
+
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('.attributedelete').click(function () {
+            var attributeguid = $(this).data('attributeguid');
+            var currentRow = $('#row-' + attributeguid);
+
+            $.ajax({
+                url: '/Controller/Product/amenitydel',
+                type: 'POST',
+                data: {
+                    attributeguid: attributeguid,
+
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    currentRow.remove();
+                    toaster("Record deleted successfully", "toast-success");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+
+
+
+    function optionview(ProductAmenitiesId) {
+        $.ajax({
+            url: '/Controller/Product/Amenitiesoptionview',
+            type: 'GET',
+            data: {
+                ProductAmenitiesId: ProductAmenitiesId
+            },
+            success: function (result) {
+                // Handle the success response here
+
+                $('#dvOptioncontainer').html(result);
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                // Handle the error response here
+                console.log('AJAX request failed: ' + errorThrown);
+            },
+            complete: function (xhr, textStatus) {
+
+                console.log('AJAX request completed with status: ' + textStatus);
+            }
+        });
+    }
+
+</script>

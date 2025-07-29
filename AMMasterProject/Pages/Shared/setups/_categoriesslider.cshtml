@@ -1,0 +1,81 @@
+﻿@* @model List<CategoryMaster> *@
+@using AMMasterProject.ViewModel
+@model List<CategoryViewModel>
+
+<h3>
+    <span class="notranslate" data-translate="popularcategories">Popular Categories  </span>
+</h3>
+<div class="swiper category-slider">
+    <div class="swiper-wrapper">
+
+        @foreach (var item in Model)
+        {
+            <div class="swiper-slide">
+
+
+
+
+                <a href="/item/search?categoryid=@item.CategoryId">
+                    <img src="@item.Banner" alt="@item.CategoryName">
+
+                    <div class="category-name">
+
+                        @item.CategoryName
+
+                    </div>
+                    @* <div class="category-total">
+                        (  0)
+                    </div> *@
+
+
+
+                </a>
+
+
+
+
+            </div>
+        }
+
+       
+
+  
+
+
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+
+</div>
+
+<script>
+
+    var swiper = new Swiper(".category-slider", {
+        slidesPerView: 3,
+        spaceBetween: 2,
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+            },
+            1024: {
+                slidesPerView: 6,
+                spaceBetween: 10,
+            },
+        },
+    });
+</script>

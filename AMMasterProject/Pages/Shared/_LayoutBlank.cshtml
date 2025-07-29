@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="mybody">
+<head>
+    @*------------------//Title---------------------*@
+
+    <title>@ViewData["Title"]</title>
+
+
+    @*----------------------//All scripts and css-----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsHeader.cshtml" />
+    @*//RTL CSS*@
+    <link href="~/css/rtl.css" rel="stylesheet" />
+  
+    <style>
+        body{
+            background:white;
+        }
+
+        .body-content{
+            min-height:590px
+        }
+/*
+        .copyright{
+            position:fixed;
+            bottom:0px
+
+
+        }*/
+
+    </style>
+
+    @*-----------------------------------------------//Firebase API-----------------------------------------*@
+  @*   <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth-compat.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_Ia-RHd5bIWMLLL05tUJlDy_7DHb2--4&libraries=places" async defer></script>
+ *@
+
+</head>
+<body>
+    <div class="top-menu">
+        <span id="lblpagetitle" class="title-heading">@ViewData["Title"]</span>
+
+        <!--<%-- mobile back btn --%>-->
+        <a id="lnkback" class="back-btn">
+            <svg viewBox="0 0 32 32">
+
+                <g data-name="Layer 2" id="Layer_2"><path d="M20,25a1,1,0,0,1-.71-.29l-8-8a1,1,0,0,1,0-1.42l8-8a1,1,0,1,1,1.42,1.42L13.41,16l7.3,7.29a1,1,0,0,1,0,1.42A1,1,0,0,1,20,25Z"></path></g>
+                <path d="M39.3756,48.0022l30.47-25.39a6.0035,6.0035,0,0,0-7.6878-9.223L26.1563,43.3906a6.0092,6.0092,0,0,0,0,9.2231L62.1578,82.615a6.0035,6.0035,0,0,0,7.6878-9.2231Z"></path>
+
+            </svg>
+        </a>
+
+
+
+    </div>
+    <partial name="/Pages/Shared/_toastr.cshtml" />
+
+        <div class="container">
+            <div class="row paddingtb-15">
+
+                <!--<%-- ---------Website Logo------------- --%>-->
+                <div class="web-logo col-md-2">
+                    <a href="/index">
+                    <div class="img-box">
+
+                        <partial name="/Pages/Shared/setups/_logo.cshtml" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+ 
+
+    <div class="body-content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+ 
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    @*Copyright*@
+                    &copy; <span class="notranslate"> @Context.Items["CompanyName"] </span> - @DateTime.Now.ToString("yyyy")
+
+                    <partial name="/Pages/Shared/setups/_designby.cshtml" />
+                </div>
+                <div class="col-md-8 no-padding region-footer">
+
+                    @*Social media icons*@
+                    @*  @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/SocialView.cshtml", methodname= "socialmediafooter", id=0 })
+                    *@
+
+                    <!--<%-- -----------------------------Home Blog------------------------------------
+                            share > setup > _socialmediafooter
+                            Home controller  home.js auto called after 40 seconds in home.js
+                            --%>-->
+                    <div id="dvSocialMediaFooterContainer"></div>
+
+                    @*Regional Settings*@
+                    @* @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/RegionalSetting.cshtml", methodname= "regionalsetting", id=0 })
+                    *@
+
+
+
+
+                    <!--<%-- -----------------------------Regional Setting Footer------------------------------------
+                            share > setup > _regionalsettingfooter
+                            Home controller  home.js auto called after 40 seconds in home.js
+                            --%>-->
+                    <div id="dvRegionalSettingFooterContainer" class="region-footer"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    @*----------------------//All scripts -----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsFooter.cshtml" />
+</body>
+</html>

@@ -1,0 +1,219 @@
+﻿@page "/listing/create/images/{ID}"
+@model AMMasterProject.Pages.Listing.create.imagesModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<form method="post" enctype="multipart/form-data">
+
+    <div>
+
+
+
+
+
+        <div class="row large-form">
+
+            <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+            <div class="col-md-10 l-tabs-content ">
+                <a class="skip-btn" href="~/listing/create/video/@Model.productguid">
+                    <span class="notranslate" data-translate="skip">
+
+                        Skip
+                    </span>
+                </a>
+                <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="otherimages">
+                        Other Images 
+                    </span>
+                    
+                </h5>
+
+                <div class="white-bg paddingtb">
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="uploadimages">
+                                Upload Images  
+                            </span>
+                           <br/>
+                            <label class="file-upload">
+                                <span class="btn btn-default notranslate l-grey-bg" data-translate="selectfile">
+                                    Select File
+                                </span>
+                                <input type="file" id="fileInput" onchange="uploadFile()" multiple />
+                                <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                <span id="spanfilename"></span>
+                            </label>
+                            <br/>
+                            <span asp-validation-for="@Model.product.Image" class="required"></span>
+                        </div>
+                        <div class="col-md-9 padding15">
+                          
+                        
+                            <div id="imagePreview" class="img-list row margin15"></div>
+
+                           
+                        </div>
+
+                    </div>   
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right form">
+
+                            <button type="submit" id="btnimageSubmit">
+                                <span class="notranslate" data-translate="saveandcontinue">
+                                   Save and Continue
+                                </span>
+                            </button>
+                          
+
+                        </div>
+                    </div>
+                    <hr /> <div class="row padding15">
+                        @if (Model.listproduct != null && Model.listproduct.Count > 0)
+                        {
+                            @foreach (var item in Model.listproduct)
+                            {
+                                <div class="img-list multiple-img">
+                                <img src="@item.Image" />
+                                <br/>
+                                    <a class="red-c btn padding5 btn-xs w-100 center" href="#@item.ID"><i class="bx bx-trash"></i>
+                                        <span class="notranslate" data-translate="delete">
+                                           Delete
+                                        </span>
+                                        </a>
+                                </div>
+
+                                <div class="overlay" id="@item.ID">
+                                    <div class="popup-small popup ">
+                                        <div class="padding30 left">
+                                            <h4 class="no-margin">
+                                                <span class="notranslate" data-translate="confirmdelete">
+                                                 Confirm Delete
+                                                </span>
+                                            
+                                            </h4>
+
+                                            <p class="medium">
+                                                <span class="notranslate" data-translate="confirmdeleteque">
+                                                 Are you sure you want to delete this record ?
+                                                </span>
+                                               
+                                            </p>
+
+                                            <a class="btn grey-bg white-c float-end margin5" href="#close">
+                                                <span class="notranslate" data-translate="no">
+                                                   
+                                                    No
+                                                </span>
+                                             </a>
+                                            <button formnovalidate  asp-page-handler="Delete" class="btn theme-bg f-theme float-end margin5" asp-route-imageid="@item.ID">
+                                                <span class="notranslate" data-translate="yes">
+
+                                                    Yes
+                                                </span>
+
+                                            </button>
+
+                                           
+                                            <br />
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                        <input type="hidden" asp-for="@Model.product.Image" />
+                        <input type="hidden" asp-for="@Model.product.ImageName" />
+
+                    </div>
+                 
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    function uploadFile() {
+        $("#btnimageSubmit").prop("disabled", true).addClass("btnloading");
+
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var files = fileInput.files;
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (!file.type.match(/image\/(jpeg|png)/)) {
+                $('#spanfilename').text("Only jpeg or png files are allowed.");
+                $("#fileProgress").hide();
+                return;
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                alert("File size must be less than 10 MB.");
+                $("#fileProgress").hide();
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var image = new Image();
+                image.src = event.target.result;
+                image.onload = function () {
+                    var preview = $("<div class='multiple-img'></div>").appendTo($("#imagePreview"));
+                    var imageTag = $("<img>").attr("src", image.src).appendTo(preview);
+                    var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                    var spanTag = $("<span>").text(fileName).appendTo(preview);
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        var formData = new FormData();
+        var fileNames = [];
+
+        for (var i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+            fileNames.push(files[i].name);
+        }
+
+
+
+        // Make AJAX request
+        $.ajax({
+            type: "POST",
+            url: "/Controller/Product/Image",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                //console.log(response);
+
+
+                $('#product_Image').val(response);
+              
+
+                $("#btnimageSubmit").prop("disabled", false).removeClass("loading");
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+
+
+
+        $("#fileProgress").hide();
+    }
+</script>

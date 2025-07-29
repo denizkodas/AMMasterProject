@@ -1,0 +1,51 @@
+﻿@page
+@using AMMasterProject.Helpers;
+@model AMMasterProject.Pages.Payment.successModel
+@{
+    // Layout = "/Pages/Shared/_layoutBlank.cshtml";
+    ViewData["Title"] = " Payment Success";
+
+}
+<style>
+    body {
+        background: var(--white-smoke)
+    }
+
+    .body-content {
+        bottom: 0px !important
+    }
+</style>
+
+
+
+
+<div class="container">
+    <div class="row box-center paddingtb">
+        <div class="col-md-5">
+            <div class="center white-bg radius30 shadow padding30 success">
+               
+                <svg height="512px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M256,48C141.1,48,48,141.1,48,256s93.1,208,208,208c114.9,0,208-93.1,208-208S370.9,48,256,48z M223.9,329.7   c-2.4,2.4-5.8,4.4-8.8,4.4s-6.4-2.1-8.9-4.5l-56-56l17.8-17.8l47.2,47.2l124.8-125.7l17.5,18.1L223.9,329.7z" /></g></svg>
+                <h1 class="bold">
+                    <span class="notranslate" data-translate="paymentsuccessheading"> Success </span>
+
+
+                   </h1>
+                <p class="grey-c">
+                    <span class="notranslate" data-translate="paymentsuccessmsg">  Thank you for your payment. The transaction has been successfully processed. </span>
+
+
+                  </p>
+                <a href="@GlobalHelper.GetReturnURL()" class="green-bg btn radius30 f-theme">
+                    
+                    <span class="notranslate" data-translate="continue">Continue  </span>
+
+
+                    </a>
+            
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

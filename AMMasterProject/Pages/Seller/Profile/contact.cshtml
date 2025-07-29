@@ -1,0 +1,196 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.contactModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenucontact">
+        Contact
+   </title>
+}
+<form method="post">
+
+    <input asp-for="@Model.Contact.ContactGUID" type="hidden" />
+    <input asp-for="@Model.Contact.ContactID" type="hidden" />
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+
+
+
+        <div class="card col-md-10 no-padding">
+            <div class="padding15 form">
+                <h5 class="padding15 bold no-margin">
+                    <span class="notranslate" data-translate="sellercontactheading"> Seconday Contact Info  </span>
+                    
+                    </h5>
+
+
+
+                <div class="row margintb-15">
+
+                    <div class="form-group col-md-3">
+                        <span class="notranslate" data-translate="name"> Name</span>
+                        
+                        <input asp-for="@Model.Contact.Name" type="text" maxlength="300">
+                        <span asp-validation-for="@Model.Contact.Name" class="required"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <span class="notranslate" data-translate="type">  Type</span>
+                       
+                        <select asp-for="@Model.Contact.Type">
+
+                            <option disabled selected>--Select--</option>
+                            <option>Phone</option>
+                            <option>Email</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <span class="notranslate" data-translate="contact">   Contact</span>
+                     
+                        <input asp-for="@Model.Contact.Contact" type="text" maxlength="15">
+                        <span asp-validation-for="@Model.Contact.Contact" class="required"></span>
+                    </div>
+
+
+                  
+                    <div class="col-md-1  paddingtb-15">
+                        <button type="submit" class="btn btn-primary clickable-button me-2">
+                            <span class="notranslate" data-translate="save">   Save</span>
+                            
+                            </button>
+
+                    </div>
+                </div>
+
+            </div>
+            <hr class="no-margin" />
+
+            <div class="table-responsive text-nowrap">
+                <table id="ListingLoad" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="notranslate" data-translate="name"> Name  </span>
+                                
+                                </th>
+                            <th>
+                                <span class="notranslate" data-translate="type"> Type </span>
+                                </th>
+                            <th>
+                                <span class="notranslate" data-translate="contact">  Contact </span>
+                                 </th>
+
+
+                            <th>
+                                <span class="notranslate" data-translate="action">   Action</span>
+                                </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+
+                        @foreach (var item in Model.listContact)
+                        {
+
+
+                            <tr>
+                                <td>
+
+                                    @item.Name
+                                </td>
+
+                                <td>@item.Type</td>
+                                <td>@item.Contact</td>
+
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                           
+                                                <a class="dropdown-item" href="/seller/profile/contact?ContactGUID=@item.ContactGUID"><i class="bx bx-edit-alt me-1"></i>
+
+                                                <span class="notranslate" data-translate="edit">   Edit</span>
+                                                    </a>
+                                            @if (Model.listContact.Count > 1)
+                                            {
+                                                <button formnovalidate asp-page-handler="Delete" asp-route-id="@item.ContactGUID" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i>
+                                                    <span class="notranslate" data-translate="delete">   Delete</span>
+
+                                                </button>
+                                            }
+                                           
+                                            @*<a ><i class="bx bx-trash me-1"></i> Delete</a>*@
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+<script>
+    function uploadFilecontactimage() {
+        var fileInput = $("#fileInputcontactimage")[0];
+        $("#fileProgresscontactimage").show();
+        var progressBar = $("#fileProgresscontactimage")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenamecontactimage').text("Only jpeg or png files are allowed.");
+            $("#fileProgresscontactimage").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenamecontactimage').text("File size must be less than 10 MB.");
+            $("#fileProgresscontactimage").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgcontactimage").attr("src", data.fileLink);
+
+                $('#Contact_Image').val(data.fileLink);
+
+                $("#imgcontactimage").show();
+
+
+                $("#fileProgresscontactimage").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,90 @@
+﻿@page
+@using AMMasterProject.Helpers;
+@model AMMasterProject.Pages.Admin.Advertisement.IndexModel
+@{
+    <title>Advertisement</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<form>
+
+
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+                @*   Side nave  *@
+            <a class="nav-link" href="~/admin/advertisement/">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/advertisement/add"><i class="bx bx-plus me-1"></i> Add </a>
+                @*   Side nav End *@
+        </div>
+    </div>
+    <div class="card col-md-10 no-padding">
+
+        <div class="table-responsive text-nowrap">
+
+                @*  Advertisement list  *@
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr>
+
+
+
+                        <th style="width:150px" class="text-center">  Page </th>
+                        <th style="width:100px" class="text-center">   Date</th>
+                        <th style="width:100px" class="text-center">Status</th>
+                        <th style="width:60px" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @*     Loop start*@
+                    @foreach (var item in Model.adslist)
+                        {
+                            
+                     
+                    <tr>
+
+
+                     
+                        <td class="text-center">
+
+
+                                    @Enum.GetName(typeof(AdsBannerPlacementPage), Enum.Parse(typeof(AdsBannerPlacementPage), item.AdsPageId.ToString()))
+                        </td>
+                       
+                        <td class="text-center">
+                           @item.StartDate - @item.EndDate
+                        </td>
+
+                        <td class="text-center">
+                            @item.Status
+                        </td>
+                        <td class="center">
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                            <a href="/admin/Advertisement/add?ID=@item.AdvertId" class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            <button formnovalidate asp-page-handler="Delete" asp-route-teamid="@item.AdvertId" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i> Delete</button>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                        }
+                    @*     Loop End*@
+
+
+                </tbody>
+            </table>
+
+                @*  Advertisement list End *@
+        </div>
+    </div>
+</div>
+</form>

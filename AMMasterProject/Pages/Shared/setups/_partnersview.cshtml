@@ -1,0 +1,94 @@
+﻿<div class="partner-list">
+    <div class="container">
+        <div class="">
+            <h3 class="bold padding10">
+                <span id="partnerfeatured"> </span>
+            </h3>
+            <div class=" white-bg radius padding15">
+                <div class="swiper partner-view">
+                    <div id="dvpartnerview" class="swiper-wrapper">
+                    </div>
+
+
+
+
+                </div>
+               
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    
+          $(document).ready(function() {
+             partners();
+
+});
+
+    function partners() {
+    ROWCOUNT = 0;
+    $('[id*=dvpartnerview]').empty();
+    $.ajax({
+        type: "GET",
+        cache: false, // disable caching
+        url: "/api/global/partnerslist",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var itemsHtml = "";
+            // set attributes or content to the new div
+
+            $.each(data, function (index, item) {
+
+                ROWCOUNT++;
+                itemsHtml += '<div  class="swiper-slide">';
+
+               
+                if (item.partnerurl != "") {
+                    itemsHtml += '<a  href="' + item.partnerurl + '" >';
+                    itemsHtml += '<div class="partner-wrapper">';
+                    itemsHtml += '<img src="' + item.image + '" />';
+                    itemsHtml += '</div>';
+                    itemsHtml += '</a>';
+                }
+                else {
+                    itemsHtml += '<div class="partner-wrapper">';
+                    itemsHtml += '<img src="' + item.image + '" />';
+                    itemsHtml += '</div>';
+                }
+              
+
+               
+
+
+
+                itemsHtml += '</div>';
+
+
+            });
+
+            
+
+            if (ROWCOUNT <= 0) {
+                $('[id*=dvpartnerview]').empty();
+            }
+            else {
+                $('[id*=dvpartnerview]').append(itemsHtml);
+                $("#partnerfeatured").text("Our Partner");
+              
+
+            }
+
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+};
+</script>

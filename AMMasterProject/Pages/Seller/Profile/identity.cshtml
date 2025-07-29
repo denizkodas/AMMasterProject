@@ -1,0 +1,207 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.identityModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenuidentityproof">Identity Proof </title>
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="@Model.identity.IdentityGUID" type="hidden" />
+    <input asp-for="@Model.identity.IdentityID" type="hidden" />
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+        <div class="card col-md-10 no-padding">
+            <div class="row no-margin form">
+                <h5 class="padding15 bold margintb-15">
+                    <span class="notranslate" data-translate="selleridentityproofheading">  Identity Proof Details</span>
+
+
+                    <p class="medium line20 m-bold grey-c">
+                        <span class="notranslate" data-translate="identityproofmsg">   Please scan both front and backside and upload as one image</span>
+
+                       </p>
+                </h5>
+            
+
+                <div class="row paddingrf-15">
+                    <div class="col-md-4">
+                        <span class="notranslate" data-translate="documenttype">
+                            Document Type
+                        </span>
+
+
+                        
+                    <select asp-for="@Model.identity.IdentityType">
+
+                        <option disabled selected>--Select--</option>
+                        <option>Government ID</option>
+                        <option>License</option>
+                        <option>Passport</option>
+
+                    </select>
+                    <span asp-validation-for="@Model.identity.IdentityType" class="required"></span>
+                    </div>
+
+                 
+                    <div class="col-md-4">
+                    <label class="file-upload margin5 w-100">
+                        <span class="btn btn-default l-grey-bg">
+                                <span class="notranslate" data-translate="selectfile">
+                                    Select File
+                                </span>
+
+                          </span>
+                        <input type="file" id="fileInputidentityimage" onchange="uploadFileidentityimage()" />
+
+                    </label>
+                        <p class="grey-c s-bold small">
+                            <span class="notranslate" data-translate="selectfilemsg">
+                                Select File
+                            </span>
+                          
+                        </p>
+                        <span id="spanfilenameidentityimage" class="validation"></span>
+                        <input type="hidden" asp-for="@Model.identity.IdentityProof" />
+
+                        <span asp-validation-for="@Model.identity.IdentityProof" class="required"></span>
+                    </div>
+
+
+                    <div class="col-md-4">
+                       
+                            <img id="imgidentityimage" src="@Model.identity.IdentityProof" class="preview" style="display: @(Model.identity.IdentityProof == null ? "none" : "block")" />
+                            <progress id="fileProgressidentityimage" class="w-100 margin5" style="display:none"></progress>
+                       
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <button type="submit" class="btn btn-primary clickable-button">
+                            <span class="notranslate" data-translate="save">
+                             Save
+                            </span>
+                            
+                         </button>
+                    </div>
+                   
+                </div>
+
+                <hr class="no-margin" />
+                <h5 class="padding15 bold margintb-15">List</h5>
+
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="notranslate" data-translate="type">
+                                        Type 
+                                    </span>
+                                 </th>
+                                <th>
+                                    <span class="notranslate" data-translate="file">
+                                    File
+                                    </span>
+                                    </th>
+                                <th>
+                                    <span class="notranslate" data-translate="insertdate">
+                                        Insert Date 
+                                    </span>
+                                    </th>
+                                     <th>
+                                    <span class="notranslate" data-translate="verifiedstatus">
+                                        Verified Status
+                                    </span>
+                                          </th>
+                         
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.listidentity)
+                            {
+                                
+                           
+                            <tr>
+                                <td>
+                                    
+                                   @item.IdentityType
+                                </td>
+
+                                <td><img src="@item.IdentityProof" /></td>
+                                      <td>@item.InsertDate</td>
+                                <td>@item.Status</td>
+                  
+                                <td>
+                               
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+<script>
+
+    function uploadFileidentityimage() {
+        var fileInput = $("#fileInputidentityimage")[0];
+        $("#fileProgressidentityimage").show();
+        var progressBar = $("#fileProgressidentityimage")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenameidentityimage').text("Only jpeg or png files are allowed.");
+            $("#fileProgressidentityimage").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameidentityimage').text("File size must be less than 10 MB.");
+            $("#fileProgressidentityimage").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgidentityimage").attr("src", data.fileLink);
+
+                $('#identity_IdentityProof').val(data.fileLink);
+
+                $("#imgidentityimage").show();
+
+
+                $("#fileProgressidentityimage").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+</script>

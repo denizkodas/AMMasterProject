@@ -1,0 +1,89 @@
+﻿@page "/listing/create/seo/{ID}"
+@model AMMasterProject.Pages.Listing.create.seoModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+<div>
+
+
+
+        <title>
+            SEO
+
+        </title>
+
+    <div class="row large-form">
+
+        <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+        <div class="col-md-10 l-tabs-content form">
+                <a class="skip-btn" href="~/listing/create/related/@Model.productguid">
+                    Skip
+                </a>
+            <h5 class="l-tabs-heading">
+                SEO Setup
+            </h5>
+
+            <div class="white-bg paddingtb">
+                    <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                        SEO Details
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+                            <div class="form-group col-md-8">
+                                Meta title
+                                <input type="text" asp-for="@Model.product.SeoMetaTitle">
+
+
+                                    <span asp-validation-for="@Model.product.SeoMetaTitle" class="required"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                Meta keywords
+                                    <input type="text" asp-for="@Model.product.SeoKeywords">
+
+
+                                    <span asp-validation-for="@Model.product.SeoKeywords" class="required"></span>
+
+
+                            </div>
+                            <div class="form-group col-md-8">
+                                Meta description
+                                    <input type="text" asp-for="@Model.product.SeoMetadescription">
+
+
+                                    <span asp-validation-for="@Model.product.SeoMetadescription" class="required"></span>
+
+
+                            </div>
+                      
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <hr />
+
+
+                <div class="row paddingrf-15">
+                    <div class=" col-md-6 checkright">
+                    </div>
+                    <div class=" col-md-6 right">
+
+                        <input type="submit" value="Save &amp; Continue">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</form>

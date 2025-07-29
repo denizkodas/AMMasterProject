@@ -1,0 +1,7 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.howtouseModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenuhowtouse">How to use</title>
+}
+@await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/CMSView.cshtml" , methodname="cms", id=0, value="howtousesellerpanel" })

@@ -1,0 +1,21 @@
+﻿@page
+@model AMMasterProject.Pages.User.ItemInvoiceModel
+@{
+    ViewData["Title"] = "Order Detail";
+}
+
+
+
+<div id="dvShowItemIvnoiceViewContainer" class="order-invoice"> </div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+       
+        var value = getParameterByName('invoicenumber');
+        Ordershowiteminvoice(value, 'Client');
+    });
+</script>

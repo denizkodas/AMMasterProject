@@ -1,0 +1,82 @@
+﻿@using AMMasterProject.Helpers;
+@{
+    var routeId = Context.Request.RouteValues["id"] as string;
+    var profileId = !string.IsNullOrEmpty(routeId) && int.TryParse(routeId, out int parsedId) ? parsedId : -1;
+    var userId = User.FindFirst("USERID")?.Value;
+
+    var routeType = Context.Request.Query["routetype"].ToString();
+    //var encryptedProfileId = EncryptionHelper.encryption(profileId.ToString());
+    //var encryptedUserId = EncryptionHelper.encryption(userId);
+}
+<a class="white-c radius30 small grey-bg btn" href="#deletepopup">Delete Account</a>
+
+<div class="overlay" id="deletepopup">
+    <div class="popup popup-small">
+
+        <div class="popup-heading"> <span class="notranslate" data-translate="deleteaccount"> Delete Account</span></div>
+        <div class=" padding30">
+            <h5 class="o-margin"> <span class="notranslate" data-translate="deletemsgheading"> Are you sure you want to delete this account?</span></h5>
+        <p>
+                <span class="notranslate" data-translate="deletemsgone">
+            Please be aware that this action is irreversible and will result in the permanent removal of all  data and settings
+                </span>
+            </p>
+        <p>
+                <span class="notranslate" data-translate="deletemsgtwo">
+            Once you delete  account, there is no going back. Please be certain. Here's what you can expect:
+            </span>
+        </p>
+        
+        <ul class="o-padding o-margin">
+          
+            <li>
+                    <strong>
+                        <span class="notranslate" data-translate="historydeletion">
+                            History Deletion:
+                        </span>
+                </strong>
+                    <span data-translate="historydeletionmsg">
+                Account history, including any preferences, saved items, and browsing history, will be completely erased.
+          </span>  </li>
+      
+            <li>
+
+                <strong>
+                        <span class="notranslate" data-translate="lossofaccess">  Loss of Access: </span>
+                </strong>
+                    <span class="notranslate" data-translate="lossofaccessmsg">
+                Access to the account will be revoked, and any linked advantages, rewards, or credits will be nullified.
+          </span>  </li>
+        </ul>
+
+
+        </div>
+        <hr class="no-margin"/>
+        <div class="right padding15">
+            @if (profileId != -1)
+            {
+
+
+                <a class="red-bg white-c btn " href="@Url.Action("AccountDelete", "User", new { profileid = profileId, userType = "admin", routeType=routeType })"> <span data-translate="yes">Yes</span> </a>
+            }
+            else if (!string.IsNullOrEmpty(userId))
+            {
+                <a class="red-bg white-c btn " href="@Url.Action("AccountDelete", "User", new { profileid = userId, userType=string.Empty })"> <span data-translate="yes">Yes</span></a>
+            }
+            else
+            {
+
+                <p>
+                    <span data-translate="novalidaccount">
+                        No valid account information found.
+                    </span>
+                    </p>
+            }
+            <a class="grey-bg btn white-c " href="#close">  <span data-translate="no">No</span> </a>
+        </div>
+    
+    </div>
+</div>
+
+
+

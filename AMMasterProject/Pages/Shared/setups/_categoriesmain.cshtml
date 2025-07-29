@@ -1,0 +1,27 @@
+﻿@* @model List<CategoryMaster> *@
+@using AMMasterProject.ViewModel
+@model List<CategoryViewModel>
+
+<h3>
+    <span class="notranslate" data-translate="exploreourmarketplace">
+    Explore Our Marketplace
+    </span>
+</h3>
+<ul class="first-level-ul">
+
+    @foreach (var item in Model)
+    {
+        
+  
+        <li id="ashowmore" class="first-level-li" data-category-id="@item.CategoryId">
+            <a class="first-level-a" href="/item/search?categoryid=@item.CategoryId">
+            <span class="first-level-total">13</span>
+                <span class="first-level-icon">
+                    <img src="@item.Icon">
+                </span>
+                @item.CategoryName
+            </a>
+            </li>
+    }
+
+    </ul>

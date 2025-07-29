@@ -1,0 +1,58 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.directoryModel
+@{
+    <title>Directory</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<style>
+    .layout-menu .menu-inner ul,
+    .layout-menu .menu-inner .menu-section {
+        display:none;
+    }
+
+    .layout-menu .menu-inner {
+        background: #f3f3f7
+    }
+
+    .admin-directory {
+     
+    }
+
+</style>
+
+
+<div class="card">
+
+    <div class="admin-directory">
+        
+        <div class="form admin-menu-search">
+            <!-- SEARCH BOX -->
+            <input type="text" id="the-filter" placeholder="Search" autocomplete="off" />
+        </div>
+        <div id="directorymenu">
+            <partial name="/Pages/Admin/_menu.cshtml" />
+        </div>
+    </div>
+</div>
+<script>
+    window.addEventListener("load", () => {
+        // (A) GET HTML ELEMENTS
+        var filter = document.getElementById("the-filter"), // search box
+            list = document.querySelectorAll("#directorymenu a"); // all list items
+
+        // (B) ATTACH KEY UP LISTENER TO SEARCH BOX
+        filter.onkeyup = () => {
+            // (B1) GET CURRENT SEARCH TERM
+            let search = filter.value.toLowerCase();
+
+            // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
+            for (let i of list) {
+                let item = i.innerHTML.toLowerCase();
+                if (item.indexOf(search) == -1) { i.classList.add("hide"); }
+                else { i.classList.remove("hide"); }
+            }
+        };
+    });
+</script>

@@ -1,0 +1,80 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Discounts.IndexModel
+@{
+    <title>Discounts</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/discounts">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/discounts/add"><i class="bx bx-plus me-1"></i> Add </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+
+        <div class="table-responsive text-nowrap">
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr>
+
+
+
+                        <th style="width:150px" class="text-center">Title</th>
+                        <th style="width:150px" class="text-center">Discounts % </th>
+
+                        <th style="width:100px" class="text-center">Dates</th>
+                        <th style="width:150px" class="text-center">Applied On  </th>
+                        <th style="width:100px" class="text-center">Status</th>
+                        <th style="width:60px" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @*     Loop start*@
+                    <tr>
+
+
+                        <td class="text-center">
+                            <img class="rounded-circle">
+                            title
+                        </td>
+                        <td class="text-center">
+                            Discounts %
+                        </td>
+                        <td class="text-center">
+                            Dates
+                        </td>
+                        <td class="text-center">
+                            Applied On
+                        </td>
+                        <td class="text-center">
+                            status
+                        </td>
+                        <td class="center">
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+
+                                    <a class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                    <a class="dropdown-item"><i class="bx bx-trash"></i> Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    @*     Loop End*@
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

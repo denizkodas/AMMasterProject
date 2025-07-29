@@ -1,0 +1,463 @@
+﻿@using AMMasterProject.ViewModel
+@model IEnumerable<ProductViewModel>
+
+@{
+
+    bool ismultivendor = bool.Parse(@Context.Items["IsMultiVendor"].ToString());
+}
+
+
+
+<span class="total">
+    <label id="lblshowingrecords"></label>
+    <label id="lbltotalrecords">@TempData["TotalItemCount"]</label>
+
+
+</span>
+<div class="product-box-wrapper row ">
+
+
+    @if (Model != null && Model.Count() > 0)
+    {
+
+        @foreach (var product in Model)
+        {
+            
+            @* <span>@product.ProductAttributeViewModel.Count();</span>
+ *@
+
+            <div class="col-lg-3 col-sm-4 no-padding block-item">
+                <div class="product-box">
+
+                    <a href="/item/@product.ProductSeourl">
+
+
+                        <div class="p-img">
+                            <img src="@product.ProductImage" />
+                        </div>
+
+
+                        <div class="p-data">
+
+                            <div class="p-title">
+                                @product.ProductName  
+                            </div>
+                            <div class="p-unit">@product.ProductUnit</div>
+                            <div class="p-badges">
+
+                                <span class="@product.ListingType">@product.ListingType </span>
+                                <span class="@product.SellingType"> @product.SellingType</span>
+
+
+
+
+
+                            </div>
+
+                            <div class="p-price">
+                                @product.Currency @product.Price.ToString("N2")
+
+                                @if (@product.IsDiscounted == true)
+                                {
+                                    <span class="p-old-p"> @product.PriceBeforeDiscount.ToString("N2") </span>
+
+
+                                }
+
+                                @*   free shipping*@
+                                @if (@product.productShippingMetaData != null)
+                                {
+
+                                    if (product.productShippingMetaData.IsFreeShipping == true)
+                                    {
+
+
+                                        <span id="lblfreeshipping" class="freeshipping"></span>
+
+
+                                    }
+                                }
+                            </div>
+
+
+
+
+                            <div class="p-review">
+
+                        @if (@product.itemothermetadata!=null && product.itemothermetadata.TotalReviews > 0)
+                        {
+                                    @for (var i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= @product.itemothermetadata.ItemAverageRating)
+                                        {
+                                            <i class="fa fa-star yellow-c"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                    }
+
+
+
+                                    <span>  @product.itemothermetadata.ItemAverageRating ( @product.itemothermetadata.TotalReviews )</span>
+                        }
+                            </div>
+
+
+
+                        </div>
+                    </a>
+
+
+
+
+
+                    <div class="p-action-btn">
+
+
+                        <a data-toggle="tooltip" data-placement="bottom" title="Add into Compare List" class="p-compare" id="btnproductcomparision"><i class="fa fa-plus"></i>Compare List</a>
+
+                        @if (ismultivendor == true)
+                        {
+                            <a data-toggle="tooltip" data-placement="bottom" title="Chat With Seller" class="product-chat p-chat" id="btnproductchatwithseller" data-sellerid="@product.ProfileId" onclick="startchat(@product.ProfileId)">
+                                <svg viewBox="0 0 80 81"> <path d="M44.8,4.6h-9.7C18.8,4.9,5.7,18.5,6,34.9c0.3,16,13.2,28.9,29.2,29.2h27.6l11.8,12.3v-42C74.5,18,61.2,4.7,44.8,4.6z     M71.6,68.9L64,61.1H35.2c-14.8,0-26.7-12-26.7-26.7c0-14.8,12-26.7,26.7-26.7h9.7c14.7,0,26.7,12,26.7,26.7V68.9z" /><rect height="3" width="33.1" x="23.5" y="26" /><rect height="3" width="33.1" x="23.5" y="37.7" /></svg>
+                            </a>
+                        }
+
+
+
+
+                        <a href="" data-toggle="tooltip" data-placement="bottom" title="Quick View" class="product-quickview p-view" id="btnproductquickview" data-producturl="@product.ProductSeourl">
+                            <svg viewBox="0 0 32 32"><path d="  M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" fill="none" id="XMLID_10_" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" /><circle cx="16" cy="16" fill="none" id="XMLID_12_" r="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" /></svg>
+                        </a>
+
+
+
+
+
+                        @* @if (@product.Favorite == 1)
+                {*@
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist" class="@(product.Favorite == 1 ? "product-wishlist p-fav" : "product-wishlist p-un-fav")" id="awishlistLink-@product.ProductId" data-productid="@product.ProductId">
+                            <svg viewBox="0 0 256 256"><rect fill="none" /><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /></svg>
+                        </a>
+                        @* }
+                else
+                {
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist" class="product-wishlist  p-un-fav" id="btnproductfavorite" data-productid="@product.ProductId">
+                <svg viewBox="0 0 256 256"><rect fill="none" /><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /></svg>
+                </a>
+                }*@
+
+                    </div>
+
+
+
+                    <div class="p-conditional_div">
+
+
+                        @if (@product.SellingType.ToString() == "Sell")
+                        {
+                           
+
+                            <div class="p-cart">
+                                <div class="qty">
+                                    <span class="notranslate" data-translate="qty"> Qty:</span>
+                                   
+
+
+
+                                    @if (@product.IsManagedInventory == true)
+                                    {
+
+                                        <input type="number" id="txtqty-@product.ProductId" name="txtqty" value="@product.MinQty" min="@product.MinQty" max="@product.MaxQty" data-qty="1" onchange="validateQuantityInventory(this.value, this.min, this.max)" required>
+
+
+                                    }
+                                    else
+                                    {
+
+
+                                        <input type="number" id="txtqty-@product.ProductId" name="txtqty" value="1" min="1" data-qty="1" required>
+
+
+                                    }
+
+
+                                </div>
+
+                                @if(product.IsAttributeExist>0)
+                                {
+                                   @*  <a href="" data-toggle="tooltip" data-placement="bottom" title="Buy Now" class="product-quickview p-view" id="btnproductquickview" data-producturl="@product.ProductSeourl">
+                                        <svg viewBox="0 0 32 32"><path d="  M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" fill="none" id="XMLID_10_" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" /><circle cx="16" cy="16" fill="none" id="XMLID_12_" r="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" /></svg>
+                                    </a> *@
+
+
+                                    <button data-toggle="tooltip" data-placement="bottom" title="Buy Now  - Attribute Selected Required" class="product-buynow p-buy-now product-quickview" type="button" data-producturl="@product.ProductSeourl">
+                                        <span class="notranslate" data-translate="buynow">
+                                            Buy Now
+                                        </span>
+
+                                    </button>
+
+
+                                }
+                                else
+
+                                {
+                                     <button data-toggle="tooltip" data-placement="bottom" title="Buy Now" class="product-buynow p-buy-now" type="button" onclick="buynow(this,@product.ProductId)">
+                                        <span class="notranslate" data-translate="buynow">
+                                         Buy Now
+                                        </span>
+                                     </button>
+ 
+                                }
+                              
+
+                                @* <button data-toggle="tooltip" data-placement="bottom" title="Buy Now" class="product-buynow p-buy-now" id="btnproductbuynow" type="button" data-productid="@product.ProductId">Buy Now</button> *@
+                                @*                                 <button data-toggle="tooltip" data-placement="bottom" title="Add to Cart" class="product-addtocart p-cart-icon animated-cart" id="btnproductaddtocart" type="button" data-productid="@product.ProductId"> *@
+
+                                @if (product.IsAttributeExist > 0)
+                                {
+                                    <button data-toggle="tooltip" data-placement="bottom" title="Add to Cart - Attribute Selected Required" class="product-addtocart p-cart-icon animated-cart product-quickview" type="button" data-producturl="@product.ProductSeourl">
+                                        <span><svg class="baskt" data-name="Capa 1" id="Capa_1" viewBox="0 0 20 19.84" xmlns="http://www.w3.org/2000/svg"><path d="M15.12,8.28a2,2,0,0,0-1.36-.68h-.52L11.8,4a.4.4,0,1,0-.74.28L12.39,7.6H6.17L7.49,4.24A.39.39,0,1,0,6.76,4L5.32,7.6H4.83a1.45,1.45,0,0,0-.28,0A1.94,1.94,0,0,0,3.09,10l.74,4.42A1.85,1.85,0,0,0,5.6,16h7.45a1.84,1.84,0,0,0,1.74-1.63L15.53,10a2.51,2.51,0,0,0,0-.27A2,2,0,0,0,15.12,8.28Zm-.37,1.54L14,14.28a1.08,1.08,0,0,1-1,1H5.62a1.07,1.07,0,0,1-1-1L3.87,9.79a1.14,1.14,0,0,1,.85-1.37l.14,0h8.87a1.16,1.16,0,0,1,1,1.24A.74.74,0,0,1,14.75,9.82Z"></path><path d="M6.8,10.2a.4.4,0,0,0-.39.4v2.65a.4.4,0,1,0,.79,0V10.6A.4.4,0,0,0,6.8,10.2Z"></path><path d="M9.27,10.2a.39.39,0,0,0-.39.4v2.65a.39.39,0,0,0,.39.4.4.4,0,0,0,.4-.4V10.6A.4.4,0,0,0,9.27,10.2Z"></path><path d="M11.74,10.2a.4.4,0,0,0-.4.4v2.65a.4.4,0,0,0,.4.4.39.39,0,0,0,.39-.4V10.6A.39.39,0,0,0,11.74,10.2Z"></path></svg></span>
+                                        <div class="cart">
+                                            <svg viewBox="0 0 36 26">
+                                                <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                                                <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                                            </svg>
+                                        </div>
+                                    </button>
+
+
+                                }
+                                else
+
+                                {
+                                    <button data-toggle="tooltip" data-placement="bottom" title="Add to Cart" class="product-addtocart p-cart-icon animated-cart" type="button" onclick="addToCart(this,@product.ProductId)">
+                                        <span><svg class="baskt" data-name="Capa 1" id="Capa_1" viewBox="0 0 20 19.84" xmlns="http://www.w3.org/2000/svg"><path d="M15.12,8.28a2,2,0,0,0-1.36-.68h-.52L11.8,4a.4.4,0,1,0-.74.28L12.39,7.6H6.17L7.49,4.24A.39.39,0,1,0,6.76,4L5.32,7.6H4.83a1.45,1.45,0,0,0-.28,0A1.94,1.94,0,0,0,3.09,10l.74,4.42A1.85,1.85,0,0,0,5.6,16h7.45a1.84,1.84,0,0,0,1.74-1.63L15.53,10a2.51,2.51,0,0,0,0-.27A2,2,0,0,0,15.12,8.28Zm-.37,1.54L14,14.28a1.08,1.08,0,0,1-1,1H5.62a1.07,1.07,0,0,1-1-1L3.87,9.79a1.14,1.14,0,0,1,.85-1.37l.14,0h8.87a1.16,1.16,0,0,1,1,1.24A.74.74,0,0,1,14.75,9.82Z"></path><path d="M6.8,10.2a.4.4,0,0,0-.39.4v2.65a.4.4,0,1,0,.79,0V10.6A.4.4,0,0,0,6.8,10.2Z"></path><path d="M9.27,10.2a.39.39,0,0,0-.39.4v2.65a.39.39,0,0,0,.39.4.4.4,0,0,0,.4-.4V10.6A.4.4,0,0,0,9.27,10.2Z"></path><path d="M11.74,10.2a.4.4,0,0,0-.4.4v2.65a.4.4,0,0,0,.4.4.39.39,0,0,0,.39-.4V10.6A.39.39,0,0,0,11.74,10.2Z"></path></svg></span>
+                                        <div class="cart">
+                                            <svg viewBox="0 0 36 26">
+                                                <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                                                <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                }
+                               
+
+                                  
+                            </div>
+
+                        }
+
+
+                        @if (@product.SellingType.ToString() == "Auction")
+                        {
+                            <div class="p-auction">
+                            </div>
+                        }
+
+
+
+                        @if (@product.SellingType.ToString() == "Classified")
+                        {
+                            <div class="p-classified">
+                                <div class="">
+                                    <small class="grey-c">
+                                        <span class="notranslate" data-translate="postedon">
+                                            Posted on
+                                        </span>:
+                                         </small>
+                                    <div class="product-posted-date"> @product.insertdate </div>
+                                </div>
+                                @* <a class="view-detail" href="/item/@product.ProductSeourl">View Detail</a>*@
+
+                            </div>
+                        }
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        }
+
+    }
+
+    else
+
+    {
+
+        <div id="dvproductemptydata" class="no-record-found empty-product ">
+
+            <span class="notranslate" data-translate="emptydata">
+                No Record Found
+            </span>
+           </div>
+
+    }
+</div>
+
+
+<div class="p_quick_view" id="dvproductview" style="display:none">
+    <div class="detail">
+        <a href="" id="aclosequickview" class="p-close"><i class="fa fa-times"></i></a>
+
+        <div id="productViewContainer"></div>
+    </div>
+
+</div>
+
+<div id="wishlistContainer"></div>
+
+
+<script>
+    ///quick view  --
+    $(document).on("click", ".product-quickview", function (e) {
+        e.preventDefault();
+
+        var productseourl = $(this).data('producturl');
+
+
+        $.ajax({
+            type: 'GET',
+            url: '/Controller/Product/productdetail?productseourl=' + productseourl,
+
+            success: function (result) {
+                $('#dvproductview').show();
+                $('#productViewContainer').html(result);
+            },
+            error: function () {
+                // alert('Error loading quick view.');
+            }
+        });
+
+
+    });
+
+
+
+    $(document).on("click", ".p-close", function (e) {
+        e.preventDefault();
+        $('#dvproductview').hide();
+        var productseourl = $(this).data('producturl');
+
+
+
+
+    });
+
+
+
+
+    $(document).on("click", ".product-wishlist", function (e) {
+        e.preventDefault();
+        var username = $('#hdnlogin').val();
+
+        if (typeof username !== "undefined" && username !== "") {
+
+            var productid = $(this).data('productid');
+
+
+            $.ajax({
+                url: '/Controller/Product/WishlistForm?productid=' + productid,
+                type: 'GET',
+
+                success: function (result) {
+                    // Handle the success response
+                    $('#wishlistContainer').html(result);
+                    $('#hiddenproductid').val(productid);
+
+                    $('#hdnclassid').val('#awishlistLink-' + productid);
+                },
+                error: function () {
+                    // Handle the error
+                }
+            });
+
+
+
+        }
+        else {
+
+            loginview("LoginView");
+            //$('#loginFormContainer').load('/PartialViews/login-form.html');
+            return false;
+
+        }
+
+
+
+
+    });
+
+
+
+
+    function buynow(buttonElement, productid) {
+        var loginid = $('#hdnlogin').val();
+
+        if (typeof loginid !== "undefined" && loginid !== "") {
+            var $parentLi = $(buttonElement).closest('.block-item');
+            var quantity = $parentLi.find('#txtqty-' + productid).val();
+            var instruction = '';
+
+
+           
+            orderCreate(productid, quantity, instruction, 'item', 'purchased', 'cart', 'processing', 'buy');
+            toaster('item added to cart', 'toast-success');
+
+
+        }
+        else {
+            loginview("LoginView");
+            return false;
+        }
+    }
+
+    function addToCart(buttonElement, productid) {
+        var loginid = $('#hdnlogin').val();
+
+        if (typeof loginid !== "undefined" && loginid !== "") {
+            // var quantity = '1';
+
+            var $parentLi = $(buttonElement).closest('.block-item');
+            var quantity = $parentLi.find('#txtqty-' + productid).val();
+            var instruction = '';
+
+            var $addToCartButton = $(buttonElement);
+            $addToCartButton.addClass('loadingcart');
+            orderCreate(productid, quantity, instruction, 'item', 'purchased', 'cart', 'processing', 'cart');
+            toaster('item added to cart', 'toast-success');
+
+            setTimeout(function () {
+                $addToCartButton.removeClass('loadingcart');
+            }, 3000);
+        }
+        else {
+            loginview("LoginView");
+            return false;
+        }
+    }
+
+    function startchat(sellerid) {
+        event.preventDefault();
+        var loginuserid = $("#hdnlogin").val();
+        if (typeof loginuserid !== "undefined" && loginuserid !== "") {
+
+            ///loginuserid// logged in user
+            //second property is to whom chat to do
+            createchat(loginuserid, sellerid);
+        }
+        else {
+
+            loginview("LoginView");
+        }
+    }
+
+
+
+
+</script>

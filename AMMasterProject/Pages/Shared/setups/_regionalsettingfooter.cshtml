@@ -1,0 +1,359 @@
+﻿@using AMMasterProject.ViewModel
+@model RegionalSettingViewModel
+
+@{
+    bool IsMultilingual = Model.IsMultilingual;
+    bool IsMultiCurrency = Model.IsMultiCurrency;
+    bool IsCountrySelectionEnabled = Model.IsCountrySelectionEnabled;
+}
+
+
+@* ///Lagunage js*@
+
+@* <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> *@
+@* <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&version=latest"></script> *@
+@*language popup*@
+<style>
+
+    .VIpgJd-ZVi9od-ORHb-OEVmcd,
+    .VIpgJd-ZVi9od-l4eHX-hSRGPd,
+    .VIpgJd-ZVi9od-aZ2wEe-OiiCO.VIpgJd-ZVi9od-aZ2wEe-OiiCO-ti6hGc {
+        display: none !important;
+        visibility: hidden !important
+    }
+
+    .skiptranslate {
+        color: white;
+        width: 133px;
+        font-size:0px
+    }
+
+    #google_translate_element {
+        float: left;
+        margin-left: 0px;
+        width: 0px !important;
+    }
+
+    .goog-te-gadget-simple {
+        padding: 7px 0px !important;
+        line-height: 1.428571429;
+        color: #302f2f;
+        vertical-align: middle;
+        background-color: #fff;
+        border: solid 1px #eee;
+        border-radius: 4px;
+        width: 100%;
+        float: right;
+        text-align: center;
+        margin: -3px 0px;
+    }
+
+
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            margin: 0px 3px;
+        }
+
+    .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+    }
+
+    body {
+        top: 0px !important;
+    }
+
+
+    .goog-te-gadget-icon,
+    .goog-te-menu-value img {
+        background: none !important;
+        display: none;
+        border: none !important;
+    }
+
+    .goog-te-gadget-simple .goog-te-menu-value {
+        color: var(--grey) !important;
+        font-size: 14px;
+        font-family: var(--fonts) !important;
+        padding: 0px;
+    }
+</style>
+
+@if (IsMultilingual == true)
+{
+    <li class="notranslate">
+         <a id="ashowlanguage" class="language" href="#language-div"> <i class="fa fa-globe"></i> <span id="spanlanguagecode"></span></a>
+   
+        <div id="google_translate_element"></div>
+
+
+
+        <div class="overlay " id="language-div">
+            <div class="popup popup-small padding10">
+                <div class="popup-heading d-grey-c no-margin">
+                    <span class="notranslate" data-translate="choosealanguage"> Choose a language</span>
+                    <a class="close-back" href="#close"></a>
+
+
+                </div>
+                <div class="language-list">
+                      <ul id="language-list-ul">
+                <li>
+                <a></a>
+                </li>
+                </ul>
+
+                </div>
+            </div>
+        </div>
+
+
+    </li>
+}
+
+
+@*country popup*@
+
+@if (IsCountrySelectionEnabled == true)
+{
+    <div class="notranslate">
+
+    
+    <li>
+
+        <a id="ashowcountry" class="country" href="#country-div">
+                <span class="visible-xs notranslate" data-translate="country">
+                Country
+            </span>
+            <img id="countryflag" src="" /> <span id="spancountrycode"></span>
+        </a>
+    </li>
+    <div class="overlay" id="country-div">
+        <div class="popup popup-small padding10">
+            <div class="popup-heading d-grey-c no-margin">
+                    <span class="notranslate" data-translate="chooseacountry">
+                        Choose a country
+                    </span>
+                
+                <a class="close-back" href="#close"></a>
+            </div>
+            <div class="country-list">
+                <ul id="country-list-ul">
+                    <li>
+                        <a></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+}
+
+@*currency popup*@
+@if (IsMultiCurrency == true)
+{
+    <li class="notranslate">
+        <a id="ashowcurrency" class="currency" href="#currency-div">
+            <span class="visible-xs notranslate" data-translate="currency">
+                Currency
+            </span>  <span id="spancurrencycode"></span>
+        </a>
+        <div class="overlay" id="currency-div">
+            <div class="popup popup-small padding10">
+                <div class="popup-heading d-grey-c no-margin">
+                    <span class="notranslate" data-translate="chooseacurrency"> Choose a currency</span>
+                   
+                    <a class="close-back" href="#close"></a>
+                </div>
+                <div class="currency-list">
+                    <ul id="currency-list-ul">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+}
+
+<script>
+    $('#ashowcountry').click(function (e) {
+        $('#country-div').show();
+        loadcountry();
+
+    });
+
+
+    $('#ashowcurrency').click(function (e) {
+        $('#currency-div').show();
+        loadcurrency();
+
+    });
+
+
+    $('#ashowlanguage').click(function (e) {
+        $('#language-div').show();
+        loadlanguage();
+
+    });
+
+    $(document).ready(function () {
+
+
+
+
+        getstoredCurrency();
+        getstoredLanguage();
+       
+
+        if ('@IsCountrySelectionEnabled' == 'True') {
+            getstoredCountry();
+        }
+
+    });
+
+
+    function getstoredCountry() {
+        // Get the stored countryAlpha2 code from the cookie
+        var storedCountryAlpha2 = getCookie('countrycode');
+
+        // If the stored countryAlpha2 is not empty, set it as the href of the a tag
+        if (storedCountryAlpha2) {
+            $('#spancountrycode').text(storedCountryAlpha2);
+            $('#countryflag').attr('src', '/countryflags/' + storedCountryAlpha2 + '.png');
+
+
+
+
+
+        }
+
+        else {
+
+            getcurrentcountry()
+                .then(function (result) {
+                    //console.log('Country:', result.country);
+                    //console.log('Country Code:', result.countryCode);
+
+                    var countryCode = result.countryCode;
+
+                    setCookie("countrycode", countryCode, 300);
+                    $('#spancountrycode').text(countryCode);
+                    $('#countryflag').attr('src', '/countryflags/' + countryCode + '.png');
+
+
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+            ///get auto 2 digit code and set in cookie
+            //coming regionalsetting.js
+            //usercountry2digit()
+            //    .then(function (data) {
+
+            //        var countryCode = data.countryCode;
+
+            //        setCookie("countrycode", countryCode, 300);
+            //        $('#spancountrycode').text(countryCode);
+            //        $('#countryflag').attr('src', '/countryflags/' + countryCode + '.png');
+
+
+            //    })
+            //    .catch(function (error) {
+
+            //        console.log(error);
+            //    });
+
+
+        }
+    }
+
+    function getstoredCurrency() {
+        // Get the stored currency code from the cookie
+        var storedCurrencyCode = getCookie('currencycode');
+
+        if (storedCurrencyCode) {
+            $('#spancurrencycode').text(storedCurrencyCode);
+
+
+        } else {
+            //$('#spancurrencycode').text('USD');
+
+            loadBaseCurrency();
+        }
+    }
+
+    function getstoredLanguage() {
+        // Get the stored currency code from the cookie
+        var storedLanguageCode = localStorage.getItem('languagename');
+
+        if (storedLanguageCode) {
+
+          var languageshortcode=  localStorage.getItem('languageshortcode');
+            removeAllCookiesByName('googtrans');
+            setCookie('googtrans', '/auto/' + languageshortcode, 1);
+
+            $('#spanlanguagecode').text(storedLanguageCode);
+
+            // console.log("page load language setup" + languageshortcode);
+            setLanguage(languageshortcode);
+
+
+        } else {
+
+            loadBaseLanguage();
+
+        }
+    }
+
+    
+
+
+    function googleTranslateElementInit() {
+        // console.log('googleTranslateElementInit called');
+
+        // Create the Google Translate element with default layout
+        new google.translate.TranslateElement({
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE // Use a simple layout
+        }, 'google_translate_element');
+
+        // Immediately hide the translation widget's dropdown
+        document.querySelector('.goog-te-gadget-simple').style.display = 'none';
+
+        // Attempt to retrieve the user's language preference from local storage
+        var userLang = localStorage.getItem('languageshortcode');
+        // console.log('User language preference:', userLang);
+
+        // Function to set language with retry mechanism
+        function setLanguageWithRetry() {
+            var iframe = document.querySelector('.goog-te-banner-frame');
+
+            if (iframe && iframe.contentWindow) {
+                // console.log('Setting language to:', userLang);
+                iframe.contentWindow.postMessage({ event: 'changeLang', language: userLang }, '*');
+            } else {
+                // console.log('iframe not found, retrying...');
+                setTimeout(setLanguageWithRetry, 100); // Retry after 100ms
+            }
+        }
+
+        // If a preferred language is found in local storage
+        if (userLang) {
+            setLanguage(userLang);
+            setLanguageWithRetry(); // Call the retry function
+        }
+    }
+    // setTimeout(googleTranslateElementInit, 1000);
+
+</script>
+
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" onload="googleTranslateElementInit()"></script>
+
+
+
+
+
+
+
+
+

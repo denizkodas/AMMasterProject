@@ -1,0 +1,268 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.usermanagement.profileModel
+@{
+      <title>User Profile</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+<div class="chart-svg">
+
+
+
+  
+  
+
+
+ 
+    <div class="row mb-4">
+       
+
+       @* <div class="col-lg-4">
+
+            <div class="card">
+                <div class="d-flex align-items-center row">
+                    <div class="padding10">
+                        <div class="card-body line30">
+                            <div class="float-end">
+                            </div>
+                            <div class="box-left">
+                            <img src="https://amenvato.s3.us-east-2.amazonaws.com/envatoallproject/Envatof20ee79d-4788-43b0-98c1-b91f8edc2e5b.png" alt="userimage" data-app-dark-img="illustrations/man-with-laptop-dark.png" class="avatar rounded-circle border margin5" data-app-light-img="illustrations/man-with-laptop-light.png" height="80" width="80">
+                          
+                            <div>
+
+                         
+                            <h5 class="card-title no-margin bold">
+                                First and Last Name
+                                    </h5> 
+                                    
+                   
+                                </div>
+                            </div>
+                            <p class="grey-c no-margin line20 margintb-15 paddingtb-15">
+                                Member since : <span class="">May-2023</span> <br />
+                                <span> From: <span class="">Pakistan</span>   <img src="https://ezycommerce.amtechnology.info/countryflags/PK.png" class="border" width="24px" /></span>
+
+                                <a href="javascript:;" class="btn btn-sm theme-bg f-theme float-end">Chat Now</a>
+
+                            </p>
+
+
+                           
+                          
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+         
+        
+        </div>*@
+       
+     
+      
+    
+    </div>
+  
+   
+    <div class="mb-4">
+        <div class="row ">
+
+
+            <!-- Credit system Statistics -->
+            <div class="col-md-6 col-lg-4 order-1">
+                <div class="card h-100 no-margin">
+
+
+
+                    <div class="card-header">
+                        <ul class="nav nav-pills" role="tablist">
+                            <li class="nav-item">
+                                <button id="creditTabButton" type="button" class="nav-link text-start active" role="tab" data-bs-toggle="tab" data-bs-target="#creditsales" aria-controls="creditpurchase" aria-selected="true">
+
+                                    Credit System
+                                </button>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane fade show active" id="creditsales" role="tabpanel">
+                                <div class="d-flex p-4 pt-3">
+
+                                    <div>
+                                        <small class="text-muted d-block">Total Credit Purchase</small>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0 me-1">$459.10</h6>
+
+                                        </div>
+                                    </div> <div class="paddingrf-15">
+                                        <small class="text-muted d-block">Total Credit Used</small>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0 me-1">$459.10</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="appcredit">
+                                    <div id="chart">
+                                        <apexchart type="area" height="350" :options="chartOptions" :series="series"></apexchart>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <!-- Subcribtion Overview -->
+            <div class="col-md-6 col-lg-4 order-1">
+                <div class="card h-100 no-margin">
+
+
+
+                    <div class="card-header">
+                        <ul class="nav nav-pills" role="tablist">
+                            <li class="nav-item">
+                                <button id="creditTabButton" type="button" class="nav-link text-start active" role="tab" data-bs-toggle="tab" data-bs-target="#creditsales" aria-controls="creditpurchase" aria-selected="true">
+
+                                    Subcription System
+                                </button>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane fade show active" id="Subcription" role="tabpanel">
+                                <div class="d-flex p-4 pt-3">
+
+                                    <div>
+                                        <small class="text-muted d-block">Total Subcription</small>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0 me-1">$459.10</h6>
+
+                                        </div>
+                                    </div> <div class="paddingrf-15">
+                                        <small class="text-muted d-block">Subcription Expire</small>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0 me-1">$459.10</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="appsubscription">
+                                    <div id="chart">
+                                        <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Statistics -->
+
+            <div class="col-lg-4 col-md-4 order-1">
+
+
+                <div class="card h-100 no-margin">
+                    <div class="card-header padding15 d-flex align-items-center justify-content-between pb-0">
+                        <div class="card-title mb-0">
+                            <h5 class="m-0 me-2">Community Statistics</h5>
+
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                                <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <br />
+                        <ul class="p-0 m-0">
+                            <li class="d-flex mb-4 pb-1">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class='bx bx-chevron-right'></i>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Forum</h6>
+
+                                    </div>
+                                    <div class="user-progress">
+                                        <small class="fw-semibold">82.5k</small>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="d-flex mb-4 pb-1">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class='bx bx-chevron-right'></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Events</h6>
+
+                                    </div>
+                                    <div class="user-progress">
+                                        <small class="fw-semibold">23.8k</small>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="d-flex mb-4 pb-1">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class='bx bx-chevron-right'></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Donation</h6>
+
+                                    </div>
+                                    <div class="user-progress">
+                                        <small class="fw-semibold">849k</small>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                    
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/admin-assets/js/charts.js"></script>
+

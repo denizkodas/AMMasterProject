@@ -1,0 +1,401 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Events.addModel
+@{
+    <title>Events</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post" >
+    <input asp-for="@Model.events.EventId" type="hidden" />
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/events">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/events/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/events/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Event Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+                        <div class="form-group col-md-5">
+                            Category
+                                <select asp-for="@Model.events.Categoryid" asp-items="@Model.EventCategory" class="form-control">
+                                    <option disabled selected>-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@Model.events.Categoryid" class="required"></span>
+
+
+
+
+
+                        </div>
+                        <div class="form-group col-md-10">
+                            Title
+                                <input type="text" maxlength="100" asp-for="@Model.events.Title">
+                                <span asp-validation-for="@Model.events.Title" class="required"></span>
+                        </div>
+
+
+                 
+                
+                        <div class="form-group col-md-10">
+                            External URL Optional
+                                <input type="text" maxlength="200" asp-for="@Model.events.Externalurl">
+                                <span asp-validation-for="@Model.events.Externalurl" class="required"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>   <hr /> 
+            
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Event Dates
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            Start Date
+                                <input type="date"  asp-for="@Model.events.EventStartDate">
+                                <span asp-validation-for="@Model.events.EventStartDate" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            Start Time
+                                <input type="time" asp-for="@Model.events.EventStartTime">
+                                <span asp-validation-for="@Model.events.EventStartTime" class="required"></span>
+                        </div>
+
+
+                    </div>   <div class="row">
+                        <div class="form-group col-md-5">
+                            End Date
+                                <input type="date" asp-for="@Model.events.EventEndDate">
+                                <span asp-validation-for="@Model.events.EventEndDate" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            End Time
+                                <input type="time" asp-for="@Model.events.EventEndTime">
+                                <span asp-validation-for="@Model.events.EventEndTime" class="required"></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                  Price / Seat
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                           Total Seats
+                            <input type="number" asp-for="@Model.events.TotalSeats">
+                            <span asp-validation-for="@Model.events.TotalSeats" class="required"></span>
+                        </div>
+                        <div class="form-group col-md-5">
+                            Per Seat Amount
+                            <input type="number" asp-for="@Model.events.Amount">
+                            <span asp-validation-for="@Model.events.Amount" class="required"></span>
+                        </div>
+
+                    </div>   
+                </div>
+            </div>   <hr />
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Last Date of Registreation
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                        Date
+                            <input type="date" asp-for="@Model.events.LastDateOfRegistration">
+                            <span asp-validation-for="@Model.events.LastDateOfRegistration" class="required"></span>
+                        </div>
+                        <div class="form-group col-md-5">
+                            Time
+                            <input type="time" asp-for="@Model.events.LastTimeOfRegistration">
+                            <span asp-validation-for="@Model.events.LastTimeOfRegistration" class="required"></span>
+                        </div>
+
+                    </div> 
+                </div>
+            </div>
+            <hr />
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        Description
+                    </div>
+
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+
+                            <div class="form-group col-md-9">
+                                Summary
+                                <input type="text" maxlength="1000" asp-for="@Model.events.Summary" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelSummary'))">
+                                <span id="characterCountLabelSummary"></span>
+                                <span asp-validation-for="@Model.events.Summary" class="required"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                Description
+                                <input type="text" asp-for="@Model.events.Description">
+                                <span asp-validation-for="@Model.events.Description" class="required"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            <hr>
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Image
+                </div>
+
+
+
+
+
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                        Icon
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        Upload Image
+                        <br>
+                        <label class="file-upload">
+                            <span class="btn btn-default l-grey-bg">
+                                Select File
+                            </span>
+                            <input type="file" id="fileInputicon" onchange="uploadFileicon()" />
+
+                            <progress id="fileProgressicon" class="w-100 margin5" style="display:none"></progress>
+                        </label>
+                        <img id="imgicon" src="@Model.events.EventImage" class="preview" style="display: @(Model.events.EventImage == null ? "none" : "block")">
+
+
+                        <p class="grey-c">
+                            Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                        </p><br />
+                        <span id="spanfilenameicon" class="required"></span>
+                        <input type="hidden" asp-for="@Model.events.EventImage" />
+
+                        <span asp-validation-for="@Model.events.EventImage" class="required"></span>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <hr>
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    SEO
+                </div>
+
+                <div class="col-md-6 no-padding">
+
+
+
+                    <div class="row">
+                        <div class="form-group">
+                            Search engine friendly page name
+                            <input type="text" maxlength="100" asp-for="@Model.events.SeoPageName" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelPageName'))">
+                            <span id="characterCountLabelPageName"></span>
+                            <span asp-validation-for="@Model.events.SeoPageName" class="required"></span>
+
+                        </div>
+
+                        <div class="form-group">
+                            Meta title
+
+                            <input type="text" maxlength="200" asp-for="@Model.events.SeoTitle" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetatitle'))">
+                            <span id="characterCountLabelMetatitle"></span>
+                            <span asp-validation-for="@Model.events.SeoTitle" class="required"></span>
+
+                        </div>  <div class="form-group">
+                            Meta Keywords
+                            <small>comma seperated values property, zone, classified</small>
+                            <input type="text" maxlength="200" asp-for="@Model.events.SeoKeyword" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaKeyword'))">
+                            <span id="characterCountLabelMetaKeyword"></span>
+                            <span asp-validation-for="@Model.events.SeoKeyword" class="required"></span>
+                        </div>  <div class="form-group">
+                            Meta Description
+                            <input type="text" maxlength="200" asp-for="@Model.events.SeoDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaDescription'))">
+                            <span id="characterCountLabelMetaDescription"></span>
+                            <span asp-validation-for="@Model.events.SeoDescription" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+
+                        <input type="checkbox" asp-for="@Model.events.IsPublish" checked="@Model.events.IsPublish" />
+                        <label id="ispublish" asp-for="@Model.events.IsPublish">Is Publish</label>
+
+
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this Section</p>
+
+
+
+                        <input type="checkbox" asp-for="@Model.events.Isaddonhomepage" checked="@Model.events.Isaddonhomepage" />
+                        <label id="Isaddonhomepage" asp-for="@Model.events.Isaddonhomepage">Is Show On Home Page</label>
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox to determine whether you want to display this content on the homepage</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button>Save</button></div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+
+<script>
+
+
+
+
+
+    function uploadFileicon() {
+        var fileInput = $("#fileInputicon")[0];
+        $("#fileProgressicon").show();
+        var progressBar = $("#fileProgressicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenameicon').text("Only jpeg or png files are allowed.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameicon').text("File size must be less than 10 MB.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgicon").attr("src", data.fileLink);
+
+                $('#events_EventImage').val(data.fileLink);
+
+                $("#imgicon").show();
+
+
+                $("#fileProgressicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+        $(document).ready(function () {
+            $('#events_Description').summernote();
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#events_Title').keyup(function () {
+            var title = $(this).val();
+            var seoPageName = generateSeoFriendlyText(title);
+            $('#events_SeoPageName').val(seoPageName);
+        });
+    });
+
+
+</script>

@@ -1,0 +1,36 @@
+﻿@page
+@model AMMasterProject.Pages.orders.IndexModel
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="paddingtb-15 o-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="customer-page-menu">
+
+
+            <partial name="/Pages/user/_tab.cshtml" />
+
+            </div>
+
+            <div class="customer-page no-bg">
+                <div class="padding15 white-bg radius m-none">
+                    <h4>
+                        <span class="notranslate" data-translate="allorders">
+
+                          All Orders
+                        </span>
+                    
+
+                    </h4>
+                </div>
+                   
+                    <partial name="/Pages/orders/_allorders.cshtml" model="Model.orderViewModelsList" />
+                 
+              
+            </div>
+        </div>
+    </div>
+</div>

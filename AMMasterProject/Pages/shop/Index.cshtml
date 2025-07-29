@@ -1,0 +1,681 @@
+﻿@page "/user/{businessurlpath}"
+@using AMMasterProject.Helpers;
+
+@model AMMasterProject.Pages.shop.IndexModel
+@{
+
+
+    var productmodel = Model.productmodel.ProductList;
+
+    // Define the title and meta tags
+
+
+    var description = Model.sellerview != null ? Model.sellerview.BusinessDescription ?? Model.sellerview.BusinessName : null;
+
+    // Set the page title
+    ViewData["Title"] = Model.sellerview != null ? Model.sellerview.BusinessName : null;
+
+    // Set the meta tags
+    ViewData["Description"] = description;
+    ViewData["Keywords"] = GlobalHelper.ExtractKeywords(description);
+    ViewData["ImageUrl"] = Model.sellerview != null ? Model.sellerview.Image : "";
+
+}
+<style>
+    body {
+        background: white;
+    }
+
+    .main-header.main-header-classadd {
+        position: relative
+    }
+
+</style>
+
+<div class="seller-detail">
+
+    @if (Model != null)
+    {
+
+
+
+        <div class="section-basic-info">
+            <div class="s-cover-img">
+                <img class="" src="@Model.sellerview.SellerCoverImage" />
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 no-padding">
+
+                        <div class="basic-info">
+                            <div class="position-relative">
+                                <image id="imgsellerlogo" src="@Model.sellerview.Image" class="s-logo"></image>
+
+                                <image id="imgsellerlogo" src=" https://cdn-icons-png.freepik.com/512/9807/9807089.png?uid=P21750015&ga=GA1.1.237947243.1679463420&" class="s-level-img"></image>
+                            </div>
+                            <div>
+                                <h3 class="s-name">
+                                    <label id="lblbusinessname">@Model.sellerview.BusinessName</label>
+                                    <span class="s-username">@Model.sellerview.BusinessUrlpath</span>
+                                    @if (@Model.sellerview.primaryaddressViewModel != null)
+                                    {
+                                        <img class="s-falg" src="@Model.sellerview.primaryaddressViewModel.CountryImageURL" />
+                                    }
+
+
+                                </h3>
+                                <div class="s-totals">
+                                    <span class="s-member">
+
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title /><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z" /><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" /></g></svg>
+
+                                        <span class="notranslate" data-translate="membersince">Member Since</span>:
+                                        <span data-translate="date">@Model.sellerview.InsertDate</span>
+                                    </span>
+                                    |
+                                    @if (Model.sellerview.userothermetadata != null)
+                                    {
+                                        var offlineType = Model.sellerview.userothermetadata.UserInactiveMetaData?.OffLineType;
+                                        var onlineStatusClass = offlineType == "online" ? "green-c" : "d-grey-c";
+                                        var onlineStatusText = offlineType == "online" ? "Online" : "Offline";
+
+                                        <span class="@onlineStatusClass s-bold"> • @onlineStatusText </span>
+                                    }
+                                    |  <span class="grey-c">
+                                        @if (@Model.sellerview.primaryaddressViewModel != null)
+                                        {
+                                            @GlobalHelper.GetLocalTimeByCoordinatesAsync(@Model.sellerview.primaryaddressViewModel.TimeZone) <span> local time </span>
+                                        }
+                                    </span>
+
+
+                                </div>
+                                <div class="s-totals">
+                                    <span class="s-review">
+
+                                        <svg viewBox="0 0 512 512">
+                                            <title />
+                                            <g data-name="1" id="_1"><path d="M370.24,425.59a14.89,14.89,0,0,1-7-1.72L257,368,150.74,423.87A15,15,0,0,1,129,408.06l20.3-118.32-86-83.8a15,15,0,0,1,8.31-25.59l118.81-17.26L243.55,55.43a15,15,0,0,1,26.9,0l53.13,107.66,118.8,17.26a15,15,0,0,1,8.32,25.59l-86,83.8L385,408.06a15,15,0,0,1-14.78,17.53ZM106,205.67l69.85,68.09A15,15,0,0,1,180.17,287l-16.49,96.14L250,337.78a15,15,0,0,1,14,0l86.34,45.39L333.83,287a15,15,0,0,1,4.31-13.27L408,205.67l-96.53-14a15,15,0,0,1-11.29-8.2L257,96l-43.17,87.47a15,15,0,0,1-11.3,8.2Z" /></g>
+                                        </svg>
+                                        <label class="data 1digit" id="lblselleraveragerating">@Model.sellerview.userothermetadata.SellerRating</label>
+
+
+
+                                        <span class="grey-c data 2digit comma-separate">
+                                            (@Model.sellerview.userothermetadata.TotalReviewsAsSeller
+
+                                            )
+                                        </span>
+                                        <span class="top-rated">@Model.sellerview.userothermetadata.SellerLevelName</span>
+
+                                        @*   ///Reward and Challanges System *@
+                                        @*   <span class="s-badges">
+
+                                    <img src="https://amenvato.s3.us-east-2.amazonaws.com/envatoallproject/79a7c261-5961-4ab8-bf5c-c2b11e265d17.png" />
+                                    </span> *@
+
+                                    </span>
+
+
+
+                                </div>
+                                <div class="s-totals">
+
+
+                                    <span class="s-listing">
+                                        <svg height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g id="Core" transform="translate(-128.000000, -86.000000)" fill="var(--grey)"><g id="check-circle-outline" transform="translate(128.000000, 86.000000)"><path d="M5.9,8.1 L4.5,9.5 L9,14 L19,4 L17.6,2.6 L9,11.2 L5.9,8.1 L5.9,8.1 Z M18,10 C18,14.4 14.4,18 10,18 C5.6,18 2,14.4 2,10 C2,5.6 5.6,2 10,2 C10.8,2 11.5,2.1 12.2,2.3 L13.8,0.7 C12.6,0.3 11.3,0 10,0 C4.5,0 0,4.5 0,10 C0,15.5 4.5,20 10,20 C15.5,20 20,15.5 20,10 L18,10 L18,10 Z" id="Shape"></path></g></g></g></svg>
+                                        <span class="notranslate" data-translate="listing">Listing</span>
+
+                                        <span class="s-count"> @productmodel.Count() </span>
+                                    </span>
+
+                                    <span class="s-followers">
+                                        <span class="notranslate" data-translate="followers">Followers</span>
+
+
+
+
+                                        <label id="lblsellerfollowers" class="s-count  kformat"> @Model.sellerview.userothermetadata.Followers </label>
+
+                                    </span>
+                                </div>
+
+                                @if (@Model.sellerview.BusinessType == 1)
+                                {
+
+                                    <div class="s-totals">
+                                        <span class="s-bus-yr">
+                                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+
+                                                <g data-name="Layer 15" id="Layer_15"><path class="cls-1" d="M16,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31ZM16,3A13,13,0,1,0,29,16,13,13,0,0,0,16,3Z"></path><path class="cls-1" d="M20.24,21.66l-4.95-4.95A1,1,0,0,1,15,16V8h2v7.59l4.66,4.65Z"></path></g>
+                                            </svg>
+
+
+
+
+
+
+                                            @GlobalHelper.GetNumberOfYearsInBusiness(@Model.sellerview.BusinessMetaData.FoundingYear)    Years in Business
+
+
+
+
+                                        </span>
+                                        <span class="s-bus-em">
+                                            <svg class="feather feather-users" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+
+                                            @Model.sellerview.BusinessMetaData.NoOfEmployee
+                                        </span>
+                                        <span class="badge company-badge">@Model.sellerview.BusinessTypeName </span>
+                                    </div>
+                                }
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        <header> </header>
+
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#about">
+                                        <span class="notranslate" data-translate="about">About</span>
+
+
+
+                                    </a>
+                                </li>
+                                <li><a href="#listing"><span class="notranslate" data-translate="listing">Listings</span></a></li>
+                                <li>
+                                    <a href="#reviews">
+                                        <span class="notranslate" data-translate="reviews">Reviews</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#team">
+                                        <span class="notranslate" data-translate="teammember">Team Member</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#store">
+                                        <span class="notranslate" data-translate="otherstore"> Other Info</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+
+                        <div class="paddingrf-15">
+
+                            <main class="main">
+
+
+                                <div class="section-about">
+
+
+                                    <div class="">
+                                        <div class="">
+
+
+
+                                            <div class="d-flex">
+                                                <div class="w-100">
+
+                                                    <div class="mb-4">
+
+
+                                                        <h3 id="about">
+                                                            <span class="notranslate" data-translate="about">About</span>
+                                                        </h3>   <p class="s-about">
+                                                            @Model.sellerview.BusinessDescription
+                                                        </p>
+
+
+
+                                                    </div>
+                                                    <div class="s-contact-info">
+
+                                                        <div class="mb-4">
+
+
+                                                            <h3>
+                                                                <span class="notranslate" data-translate="contactdetails"> Contact Details</span>
+
+                                                            </h3>
+
+
+                                                            <div class="s-phone">
+
+
+                                                                <svg fill="none" height="24" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18.1182 14.702L14 15.5C11.2183 14.1038 9.5 12.5 8.5 10L9.26995 5.8699L7.81452 2L4.0636 2C2.93605 2 2.04814 2.93178 2.21654 4.04668C2.63695 6.83 3.87653 11.8765 7.5 15.5C11.3052 19.3052 16.7857 20.9564 19.802 21.6127C20.9668 21.8662 22 20.9575 22 19.7655L22 16.1812L18.1182 14.702Z" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                                @Model.sellerview.Contact
+                                                            </div>
+                                                            <div class="s-email">
+
+                                                                <svg style="enable-background:new 0 0 96.311 100.241;" version="1.1" viewBox="0 0 96.311 100.241" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="mail"><path d="M93.136,24.456c-2.116-4.937-5.129-9.22-9.038-12.848c-3.91-3.628-8.616-6.469-14.117-8.525   C64.479,1.028,58.322,0,51.511,0c-4.918,0-9.604,0.615-14.057,1.844C33,3.074,28.869,4.817,25.06,7.074   c-3.809,2.258-7.265,4.988-10.369,8.192c-3.104,3.204-5.744,6.782-7.92,10.731c-2.177,3.951-3.85,8.233-5.018,12.847   C0.584,43.461,0,48.287,0,53.325c0,7.337,1.199,13.906,3.597,19.71c2.397,5.804,5.865,10.722,10.399,14.752   c4.534,4.03,10.056,7.113,16.566,9.25c6.509,2.135,13.895,3.204,22.158,3.204c4.716,0,9.039-0.354,12.968-1.058   c3.93-0.705,7.789-1.865,11.578-3.476l-3.083-7.436c-3.023,1.289-6.309,2.267-9.855,2.932c-3.547,0.665-7.457,0.998-11.729,0.998   c-6.933,0-13.13-0.867-18.591-2.6c-5.462-1.734-10.087-4.263-13.875-7.588c-3.789-3.325-6.691-7.395-8.706-12.212   c-2.016-4.816-3.023-10.308-3.023-16.475c0-6.327,1.067-12.232,3.204-17.714c2.136-5.481,5.109-10.257,8.918-14.329   c3.809-4.07,8.353-7.275,13.633-9.613c5.28-2.337,11.064-3.507,17.352-3.507c5.239,0,10.086,0.816,14.54,2.448   c4.453,1.632,8.283,3.89,11.487,6.771c3.204,2.882,5.714,6.298,7.528,10.248c1.814,3.951,2.721,8.263,2.721,12.938   c0,4.474-0.535,8.494-1.603,12.061c-1.068,3.567-2.509,6.581-4.322,9.039c-1.814,2.459-3.93,4.344-6.348,5.653   c-2.418,1.31-4.978,1.965-7.678,1.965c-1.17,0-2.016-0.322-2.539-0.967c-0.524-0.644-0.786-1.551-0.786-2.721   c0-0.927,0.13-2.045,0.393-3.355c0.262-1.309,0.574-3.028,0.937-4.761l7.799-34.9h-9.613l-1.149,5.155   c-1.935-2.095-4.132-3.59-6.59-4.678c-2.459-1.088-5.341-1.583-8.646-1.583c-3.748,0-7.296,0.912-10.641,2.685   c-3.346,1.774-6.278,4.235-8.797,7.358c-2.52,3.124-4.504,6.829-5.955,11.1c-1.451,4.273-2.177,8.911-2.177,13.909   c0,3.386,0.463,6.401,1.391,9.04c0.927,2.64,2.216,4.878,3.869,6.712c1.652,1.835,3.637,3.226,5.955,4.172   c2.317,0.948,4.846,1.421,7.587,1.421c3.224,0,6.288-0.745,9.19-2.237c2.902-1.49,5.502-3.607,7.799-6.348   c0.121,1.209,0.463,2.338,1.028,3.386c0.564,1.049,1.32,1.956,2.267,2.721c0.946,0.766,2.045,1.371,3.295,1.814   c1.249,0.444,2.6,0.665,4.051,0.665c4.272,0,8.232-0.846,11.88-2.539c3.648-1.693,6.802-4.141,9.462-7.346   c2.66-3.204,4.735-7.124,6.227-11.759c1.491-4.634,2.237-9.894,2.237-15.78C96.311,34.724,95.252,29.394,93.136,24.456z    M56.831,53.325c-0.565,2.459-1.371,4.666-2.418,6.62c-1.049,1.956-2.267,3.628-3.658,5.018c-1.391,1.391-2.932,2.459-4.625,3.204   c-1.693,0.746-3.446,1.118-5.26,1.118c-6.933,0-10.399-4.373-10.399-13.12c0-3.587,0.473-6.972,1.421-10.157   c0.946-3.183,2.207-5.964,3.779-8.343c1.572-2.378,3.395-4.262,5.471-5.653c2.075-1.39,4.241-2.086,6.499-2.086   c3.062,0,5.662,0.565,7.799,1.693c2.136,1.129,3.909,2.5,5.32,4.111L56.831,53.325z" /></g><g id="Слой_1" /></svg>
+                                                                @Model.sellerview.Email
+                                                            </div>
+                                                            <div class="s-address">
+                                                                <svg enable-background="new 0 0 32 32" id="Stock_cut" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><desc /><g><path d="M27,12   c0-6.075-4.925-11-11-11S5,5.925,5,12c0,8,11,19,11,19S27,20,27,12z" fill="none" stroke="var(--grey)" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" /><circle cx="16" cy="12" fill="none" r="4" stroke="var(--grey)" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" /></g></svg>
+                                                                @Model.sellerview.primaryaddressViewModel.Address
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <h3>
+                                                                <span class="notranslate" data-translate="hours">  Hours</span>
+
+
+                                                            </h3>
+
+                                                            <div class="s-time">
+                                                                @* ///24 hours *@
+                                                                @*   <div>
+                                                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+
+                                                            <g data-name="Layer 15" id="Layer_15"><path class="cls-1" d="M16,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31ZM16,3A13,13,0,1,0,29,16,13,13,0,0,0,16,3Z" /><path class="cls-1" d="M20.24,21.66l-4.95-4.95A1,1,0,0,1,15,16V8h2v7.59l4.66,4.65Z" /></g>
+                                                            </svg>
+
+                                                            24/7
+                                                            </div>
+                                                            *@
+                                                                @*  //days wise *@
+                                                                @foreach (var item in Model.sellerview.SellerAvailability)
+                                                                {
+                                                                    <div>
+                                                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                                                            <g data-name="Layer 15" id="Layer_15">
+                                                                                <path class="cls-1" d="M16,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31ZM16,3A13,13,0,1,0,29,16,13,13,0,0,0,16,3Z" />
+                                                                                <path class="cls-1" d="M20.24,21.66l-4.95-4.95A1,1,0,0,1,15,16V8h2v7.59l4.66,4.65Z" />
+                                                                            </g>
+                                                                        </svg>
+
+                                                                        @item.Day : <span class="float-end">
+
+                                                                            @if (!item.IsDayEnable)
+                                                                            {
+                                                                                <span>Closed</span>
+                                                                            }
+                                                                            else if (item.IsCustomTiming == true && item.IsDayEnable == true)
+                                                                            {
+                                                                                @if (item.FromTime != null && item.ToTime != null)
+                                                                                {
+                                                                                    @($"{item.FromTime} - {item.ToTime}")
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <span class="notranslate" data-translate="closed">  Closed</span>
+
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span>24/7</span>
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                }
+
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+
+
+
+
+
+
+                                                        <div class="mb-4">
+                                                            <h3>
+                                                                <span class="notranslate" data-translate="sellermenucertificate">    Certificate</span>
+
+                                                            </h3>
+
+                                                            @foreach (var item in Model.sellerview.CertificateList)
+                                                            {
+
+
+                                                                <div class="s-cer">
+                                                                    <?xml version="1.0" ?>
+                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M 16 3 C 15.375 3 14.753906 3.210938 14.21875 3.59375 L 12.5625 4.75 L 10.65625 5 L 10.625 5 L 10.59375 5.03125 C 9.320313 5.316406 8.316406 6.320313 8.03125 7.59375 L 8 7.625 L 8 7.65625 L 7.75 9.59375 L 6.59375 11.09375 L 6.5625 11.125 L 6.5625 11.15625 C 5.863281 12.273438 5.832031 13.714844 6.59375 14.78125 L 7.78125 16.4375 L 8.09375 18.15625 L 4.875 23.0625 L 3.84375 24.59375 L 8.625 24.59375 L 9.78125 27.28125 L 10.5 29 L 11.53125 27.4375 L 14.6875 22.6875 C 15.535156 23.035156 16.492188 23.066406 17.3125 22.6875 L 20.46875 27.4375 L 21.5 29 L 22.21875 27.28125 L 23.375 24.59375 L 28.15625 24.59375 L 27.125 23.0625 L 24 18.3125 L 24.25 16.4375 L 25.40625 14.78125 L 25.4375 14.75 L 25.4375 14.71875 C 26.136719 13.601563 26.167969 12.191406 25.40625 11.125 L 24.25 9.46875 L 23.875 7.59375 L 23.90625 7.59375 C 23.902344 7.570313 23.878906 7.554688 23.875 7.53125 C 23.695313 6.222656 22.660156 5.160156 21.34375 5 L 21.3125 5 L 19.4375 4.75 L 17.78125 3.59375 C 17.246094 3.210938 16.625 3 16 3 Z M 16 5.03125 C 16.230469 5.03125 16.457031 5.101563 16.625 5.21875 L 18.40625 6.5 L 18.625 6.65625 L 18.875 6.6875 L 21.0625 7 L 21.09375 7 C 21.542969 7.050781 21.855469 7.363281 21.90625 7.8125 L 21.90625 7.875 L 22.3125 10.09375 L 22.34375 10.3125 L 22.5 10.5 L 23.78125 12.28125 C 24.019531 12.613281 24.050781 13.175781 23.75 13.65625 L 22.34375 15.625 L 22.3125 15.875 L 22 18.0625 L 22 18.09375 C 21.980469 18.257813 21.925781 18.410156 21.84375 18.53125 L 21.78125 18.5625 L 21.78125 18.59375 C 21.636719 18.765625 21.4375 18.878906 21.1875 18.90625 L 21.125 18.90625 L 18.84375 19.3125 L 18.59375 19.34375 L 18.40625 19.5 L 16.625 20.78125 C 16.292969 21.019531 15.699219 21.050781 15.21875 20.75 L 13.59375 19.5 L 13.40625 19.34375 L 13.125 19.3125 L 10.9375 19 L 10.90625 19 C 10.597656 18.964844 10.359375 18.804688 10.21875 18.5625 C 10.15625 18.453125 10.109375 18.324219 10.09375 18.1875 L 10.09375 18.125 L 9.6875 15.84375 L 9.65625 15.59375 L 9.5 15.40625 L 8.21875 13.625 C 7.980469 13.292969 7.949219 12.699219 8.25 12.21875 L 9.5 10.59375 L 9.65625 10.40625 L 9.6875 10.125 L 9.96875 8.03125 C 9.972656 8.015625 9.996094 8.015625 10 8 C 10.125 7.511719 10.511719 7.125 11 7 C 11.015625 6.996094 11.015625 6.972656 11.03125 6.96875 L 13.125 6.6875 L 13.375 6.65625 L 13.59375 6.5 L 15.375 5.21875 C 15.542969 5.101563 15.769531 5.03125 16 5.03125 Z M 22.90625 20.25 L 24.4375 22.59375 L 22.03125 22.59375 L 21.78125 23.21875 L 21.09375 24.8125 L 18.96875 21.5625 L 19.4375 21.21875 L 21.40625 20.875 L 21.40625 20.90625 C 21.429688 20.902344 21.445313 20.878906 21.46875 20.875 C 22.007813 20.800781 22.496094 20.574219 22.90625 20.25 Z M 9.09375 20.28125 C 9.519531 20.664063 10.0625 20.929688 10.65625 21 C 10.667969 21 10.675781 21 10.6875 21 L 12.59375 21.25 L 13.03125 21.59375 L 10.90625 24.8125 L 10.21875 23.21875 L 9.96875 22.59375 L 7.5625 22.59375 Z" /></svg>
+                                                                    <div>
+                                                                       
+                                                                    <span>    @item.CertificateName </span>
+                                                                    <p>@item.InstituteName</p>
+                                                                    <p>@item.DateOfCompletion</p>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="section-listing">
+                                    <div class="">
+
+                                        <div class="product-box-8 seller-shop-list">
+                                            <h3 id="listing">
+                                                <span data-translate="listing"></span>
+                                            </h3>
+                                            <div class="product-box-wrapper row">
+
+
+                                                <partial name="/Pages/Listing/_ProductList.cshtml" model="productmodel" />
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="section-reviews">
+                                    <hr />
+                                    <div class="">
+                                        <div class="">
+                                            <h3 id="reviews">
+                                                <span class="notranslate" data-translate="reviews"> Reviews </span>
+
+
+
+                                            </h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="section-team">
+                                    <hr />
+                                    <div class="">
+                                        <div class="">
+                                            <h3 id="team">
+                                                <span class="notranslate" data-translate="sellermenuteammembers">  Team Members </span>
+
+                                            </h3>
+
+
+
+                                            <div class="row no-margin">
+                                                @foreach (var item in Model.sellerview.TeamList)
+                                                {
+                                                    <div class="col-md-3 no-padding">
+
+                                                        <div class=" s-team-box">
+                                                            <div class="team-img">
+                                                                <img src="@item.Image" />
+                                                            </div>
+                                                            <div class="t-prof">
+                                                               @item.Role
+                                                            </div>
+                                                            <div class="t-name">
+                                                                @item.Name
+                                                            </div>
+                                                            <div class="t-exp">
+                                                                @item.YearsOfExperience of Experinace
+                                                            </div>
+                                                            <div class="t-exp">
+                                                              Specialized in:  @item.Speciality
+                                                                </div>
+                                                            <div class="t-exp">
+                                                                @item.Experience
+                                                            </div>
+                                                          
+                                                          
+
+                                                        </div>
+
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="section-store">
+
+                                    <hr />
+
+                                    <h3 id="store">
+                                        <span class="notranslate" data-translate="otherstore"> Other Store </span>
+
+
+                                    </h3>
+                                    <div class="row no-padding no-margin">
+                                        @foreach (var item in Model.sellerview.SecondaryAddressList)
+                                        {
+                                            <div class="s-store-box col-md-6">
+
+                                                <div class="s-store-name">
+                                                    @item.Type.ToString().Replace("0", "Branch").Replace("1", "Franchise").Replace("2", "Service Location")
+
+
+                                                </div>
+
+                                                @*   <div class="box-left">
+                                        <span class="s-phone">
+
+
+                                        <svg fill="none" height="24" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18.1182 14.702L14 15.5C11.2183 14.1038 9.5 12.5 8.5 10L9.26995 5.8699L7.81452 2L4.0636 2C2.93605 2 2.04814 2.93178 2.21654 4.04668C2.63695 6.83 3.87653 11.8765 7.5 15.5C11.3052 19.3052 16.7857 20.9564 19.802 21.6127C20.9668 21.8662 22 20.9575 22 19.7655L22 16.1812L18.1182 14.702Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+                                        </span>
+                                        <span class="s-email">
+
+                                        <svg style="enable-background:new 0 0 96.311 100.241;" version="1.1" viewBox="0 0 96.311 100.241" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="mail"><path d="M93.136,24.456c-2.116-4.937-5.129-9.22-9.038-12.848c-3.91-3.628-8.616-6.469-14.117-8.525   C64.479,1.028,58.322,0,51.511,0c-4.918,0-9.604,0.615-14.057,1.844C33,3.074,28.869,4.817,25.06,7.074   c-3.809,2.258-7.265,4.988-10.369,8.192c-3.104,3.204-5.744,6.782-7.92,10.731c-2.177,3.951-3.85,8.233-5.018,12.847   C0.584,43.461,0,48.287,0,53.325c0,7.337,1.199,13.906,3.597,19.71c2.397,5.804,5.865,10.722,10.399,14.752   c4.534,4.03,10.056,7.113,16.566,9.25c6.509,2.135,13.895,3.204,22.158,3.204c4.716,0,9.039-0.354,12.968-1.058   c3.93-0.705,7.789-1.865,11.578-3.476l-3.083-7.436c-3.023,1.289-6.309,2.267-9.855,2.932c-3.547,0.665-7.457,0.998-11.729,0.998   c-6.933,0-13.13-0.867-18.591-2.6c-5.462-1.734-10.087-4.263-13.875-7.588c-3.789-3.325-6.691-7.395-8.706-12.212   c-2.016-4.816-3.023-10.308-3.023-16.475c0-6.327,1.067-12.232,3.204-17.714c2.136-5.481,5.109-10.257,8.918-14.329   c3.809-4.07,8.353-7.275,13.633-9.613c5.28-2.337,11.064-3.507,17.352-3.507c5.239,0,10.086,0.816,14.54,2.448   c4.453,1.632,8.283,3.89,11.487,6.771c3.204,2.882,5.714,6.298,7.528,10.248c1.814,3.951,2.721,8.263,2.721,12.938   c0,4.474-0.535,8.494-1.603,12.061c-1.068,3.567-2.509,6.581-4.322,9.039c-1.814,2.459-3.93,4.344-6.348,5.653   c-2.418,1.31-4.978,1.965-7.678,1.965c-1.17,0-2.016-0.322-2.539-0.967c-0.524-0.644-0.786-1.551-0.786-2.721   c0-0.927,0.13-2.045,0.393-3.355c0.262-1.309,0.574-3.028,0.937-4.761l7.799-34.9h-9.613l-1.149,5.155   c-1.935-2.095-4.132-3.59-6.59-4.678c-2.459-1.088-5.341-1.583-8.646-1.583c-3.748,0-7.296,0.912-10.641,2.685   c-3.346,1.774-6.278,4.235-8.797,7.358c-2.52,3.124-4.504,6.829-5.955,11.1c-1.451,4.273-2.177,8.911-2.177,13.909   c0,3.386,0.463,6.401,1.391,9.04c0.927,2.64,2.216,4.878,3.869,6.712c1.652,1.835,3.637,3.226,5.955,4.172   c2.317,0.948,4.846,1.421,7.587,1.421c3.224,0,6.288-0.745,9.19-2.237c2.902-1.49,5.502-3.607,7.799-6.348   c0.121,1.209,0.463,2.338,1.028,3.386c0.564,1.049,1.32,1.956,2.267,2.721c0.946,0.766,2.045,1.371,3.295,1.814   c1.249,0.444,2.6,0.665,4.051,0.665c4.272,0,8.232-0.846,11.88-2.539c3.648-1.693,6.802-4.141,9.462-7.346   c2.66-3.204,4.735-7.124,6.227-11.759c1.491-4.634,2.237-9.894,2.237-15.78C96.311,34.724,95.252,29.394,93.136,24.456z    M56.831,53.325c-0.565,2.459-1.371,4.666-2.418,6.62c-1.049,1.956-2.267,3.628-3.658,5.018c-1.391,1.391-2.932,2.459-4.625,3.204   c-1.693,0.746-3.446,1.118-5.26,1.118c-6.933,0-10.399-4.373-10.399-13.12c0-3.587,0.473-6.972,1.421-10.157   c0.946-3.183,2.207-5.964,3.779-8.343c1.572-2.378,3.395-4.262,5.471-5.653c2.075-1.39,4.241-2.086,6.499-2.086   c3.062,0,5.662,0.565,7.799,1.693c2.136,1.129,3.909,2.5,5.32,4.111L56.831,53.325z"></path></g><g id="Слой_1"></g></svg>
+
+                                        </span>
+                                        </div> *@
+
+
+
+                                                <div class="s-address">
+                                                    <svg enable-background="new 0 0 32 32" id="Stock_cut" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><desc></desc><g><path d="M27,12   c0-6.075-4.925-11-11-11S5,5.925,5,12c0,8,11,19,11,19S27,20,27,12z" fill="none" stroke="var(--grey)" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path><circle cx="16" cy="12" fill="none" r="4" stroke="var(--grey)" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></circle></g></svg>
+                                                    @item.Address , @item.City, @item.State, @item.ZipCode
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </main>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-section ">
+
+                            <div class="mb-4 s-video">
+
+                                <div id="videoContainer"></div>
+
+                                @* <iframe src="@Model.sellerview.SellerVideoURl"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            *@
+
+                            </div>
+
+                            <p class="grey-c no-margin">
+                                <span class="notranslate" data-translate="averageresponsetime"> Average response time</span>:
+                                <span class="s-bold">1 hour</span>
+
+                            </p>
+
+                            <div class="sub-bottom-fix m-padding5 white-bg">
+                                <a class="s-msg" id="achat">
+
+                                    <svg height="24" id="svg8" version="1.1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2" /><g id="g2206" style="display:inline" transform="translate(0.03440353,-450.68428)"><path d="m 3.31645,466.86324 -1.30926,4.44705 c -0.22143,0.75418 0.4737,1.45732 1.23037,1.2445 l 4.46775,-1.26367 c 3.77726,1.89322 8.36342,1.23895 11.37724,-1.77604 3.8443,-3.8448 3.8443,-10.10954 0,-13.95431 -3.84431,-3.84477 -10.4108,-3.54127 -13.82904,-0.12309 -3.41823,3.41819 -3.78311,7.65959 -1.93706,11.42556 z m 14.35204,1.23785 c -2.50656,2.50754 -6.36706,3.0309 -9.44924,1.27884 -0.23226,-0.13227 -0.50778,-0.16607 -0.76514,-0.0939 l -3.01763,0.85211 0.8839,-2.99966 c 0.0763,-0.25733 0.046,-0.53454 -0.0842,-0.76926 -1.71394,-3.0758 -1.37712,-6.70816 1.40785,-9.49329 2.78497,-2.78514 7.94442,-2.98157 11.02446,0.0991 3.08007,3.08063 3.08005,8.04563 0,11.12608 z" id="path2142" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-opacity:1" /></g></svg>
+
+                                    <span class="notranslate" data-translate="message"> Message</span>
+
+
+                                </a>
+                            </div>
+                            <a id="afollowseller" class="s-follow" data-sellerid="@Model.sellerview.ProfileId" data-loginid="@Model.loginid" href="">
+
+                                <span id="lblfollowstatus">
+                                    @Model.followstatus
+                                </span>
+                            </a>
+
+                            <a id="acontactseller" class="s-contact" href="">
+                                <svg enable-background="new 0 0 512 512" height="512px" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M189.547,324.346l87.616,176.304l223.917-490L11.137,245.793L189.547,324.346z M194.754,305.243  l-136.77-60.216L433.599,64.761L194.754,305.243z M276.436,455.383l-67.787-136.416L449.62,76.36L276.436,455.383z" /></svg>
+                                <span class="notranslate" data-translate="contactme">     Contact Me</span>
+
+
+                            </a>
+
+
+
+                            <div class="s-social">
+
+                                <h5 class="no-margin">
+                                    <span class="notranslate" data-translate="socialprofiles">Social Profiles</span>:
+
+
+                                </h5>
+
+                                @if (Model.sellerview.SocialMediaList!=null)
+                                {
+                                    @foreach (var item in Model.sellerview.SocialMediaList)
+                                    {
+                                        <a href="@item.URL" target="_blank">
+                                           <span class="@item.SocialMediaImage"></span>
+                                        </a>
+                                    }
+                                   
+
+                                  @*   <a href="" target="_blank">
+
+
+                                        <?xml version="1.0" ?>
+                                        <svg height="60px" version="1.1" viewBox="0 0 56 60" width="56px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title /><desc /><defs /><g fill="none" fill-rule="evenodd" id="People" stroke="none" stroke-width="1"><g fill="#000000" id="Icon-53" transform="translate(-2.000000, 0.000000)"><path d="M14,7 C14,4.243 11.757,2 9,2 C6.243,2 4,4.243 4,7 C4,9.757 6.243,12 9,12 C11.757,12 14,9.757 14,7 M16,7 C16,10.859 12.86,14 9,14 C5.14,14 2,10.859 2,7 C2,3.141 5.14,0 9,0 C12.86,0 16,3.141 16,7 M46,18 C40.387,18 37.607,19.79 36,21.65 L36,19 C36,18.447 35.553,18 35,18 L23,18 C22.448,18 22,18.447 22,19 L22,59 C22,59.553 22.448,60 23,60 C23.552,60 24,59.553 24,59 L24,20 L34,20 L34,25 C34,25.452 34.304,25.849 34.74,25.966 C35.183,26.086 35.64,25.893 35.865,25.501 L36.105,25.08 C37.313,22.936 38.97,20 46,20 C51.794,20 56,24.29 56,30.2 L56,58 L46,58 L46,35 C46,31.355 43.645,29 40,29 C36.299,29 34,31.299 34,35 L34,58 L27,58 C26.448,58 26,58.447 26,59 C26,59.553 26.448,60 27,60 L35,60 C35.553,60 36,59.553 36,59 L36,35 C36,32.421 37.421,31 40,31 C42.542,31 44,32.458 44,35 L44,59 C44,59.553 44.447,60 45,60 L57,60 C57.553,60 58,59.553 58,59 L58,30.2 C58,23.245 52.841,18 46,18 M16,19 L16,59 C16,59.553 15.552,60 15,60 L7,60 C6.448,60 6,59.553 6,59 C6,58.447 6.448,58 7,58 L14,58 L14,20 L4,20 L4,59 C4,59.553 3.552,60 3,60 C2.448,60 2,59.553 2,59 L2,19 C2,18.447 2.448,18 3,18 L15,18 C15.552,18 16,18.447 16,19" id="social-linkedin" /></g></g></svg>
+
+                                    </a>
+                                    <a href="" target="_blank">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve"><path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z" /></svg>
+
+                                    </a> *@
+                                }
+                               
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    }
+</div>
+<script>
+
+    $(document).ready(function () {
+        var url = '@Model.sellerview.SellerVideoURl';
+        setTimeout(function () {
+            previewvideo(url);
+        }, 1000); // 2000 milliseconds = 2 seconds
+    });
+
+    $("#afollowseller").click(function () {
+        event.preventDefault();
+
+        var loginid = $(this).data('loginid')
+
+        var sellerid = $(this).data('sellerid')
+
+        if (loginid != "0") {
+
+
+            sendfollow(loginid, sellerid);
+
+            // Get the current text of the anchor tag
+            var currentText = $(this).text().trim();
+
+            // Toggle the text between "Follow" and "UnFollow"
+            var newText = (currentText == "Follow") ? "Un Follow" : "Follow";
+            $("#lblfollowstatus").text(newText);
+
+            var totalfollowers = parseInt($("#lblsellerfollowers").text()); // Get current total followers
+
+            // Update the total followers count based on follow/unfollow action
+            if (newText === "Un Follow") {
+                totalfollowers += 1; // Decrease the counter by 1
+            } else {
+                totalfollowers -= 1; // Increase the counter by 1
+            }
+
+            $("#lblsellerfollowers").text(totalfollowers); // Update the total followers display
+
+        } else {
+            //callpopup("info-popup", "Login Required!", "You must be login to use this feature!", 5);
+            // alert("Login required");
+            loginview("LoginView");
+        }
+
+    });
+
+
+
+
+
+
+
+    $("#acontactseller").click(function (event) {
+        event.preventDefault();
+        var loginuserid = '@Model.sellerview.ProfileId';
+        var url = window.location.href;
+        contactformload('@Model.sellerview.BusinessName', loginuserid, "About Business", 'Hello, I want to know more about your', url);
+
+    });
+
+    $("#achat").click(function (event) {
+        event.preventDefault();
+        var loginuserid = $("#hdnlogin").val();
+        if (typeof loginuserid !== "undefined" && loginuserid !== "") {
+
+            ///loginuserid// logged in user
+            //second property is to whom chat to do
+            createchat(loginuserid, '@Model.sellerview.ProfileId')
+        }
+        else {
+
+            loginview("LoginView");
+        }
+    });
+
+</script>
+

@@ -1,0 +1,144 @@
+﻿@page "/listing/create/cross/{ID}"
+@model AMMasterProject.Pages.Listing.create.crossModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<div>
+
+
+
+    <div class="row large-form">
+
+        <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+
+
+        <div class="col-md-10 l-tabs-content form">
+         @*    <a class="skip-btn" href="~/listing/create/setting/@Model.productguid">
+                Skip
+            </a> *@
+            <h5 class="l-tabs-heading">
+                <span class="notranslate" data-translate="cross"> Cross </span>
+                <span class="notranslate" data-translate="listings"> Listings  </span>
+               
+            </h5>
+        <div class="table-responsive text-nowrap">
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr>
+                        <th style="width:50px">
+                                <span class="notranslate" data-translate="markstatus"> Mark Status </span>
+                            </th>
+                        <th style="width:50px">
+                                <span class="notranslate" data-translate="srno"> SR# </span>
+                            </th>
+                        <th>
+                                <span class="notranslate" data-translate="listings">  Listing</span>
+                            </th>
+                        <th style="width:150px">
+                                <span class="notranslate" data-translate="type">Type  </span>
+                            </th>
+
+                        <th style="width:100px">
+                                <span class="notranslate" data-translate="status"> Status </span>
+                            </th>
+                        
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @if (Model.productlist != null && Model.productlist.Count > 0)
+                    {
+                        @foreach (var products in Model.productlist)
+                        {
+                            <tr>
+                                    <td class="link-active">
+                                        @if (Model.relatedProductslist.Any(u => u.RelatedProductid == products.ProductId ))
+                                    {
+                                        <a id="@products.ProductId" class="active" data-relatedproductid="@products.ProductId" data-productguid="@Model.productguid" onclick="crossproduct(this)">
+
+                                                <span class="notranslate" data-translate="checked"> Checked </span>
+                                            
+                                        </a>
+
+
+                                    }
+                                    else
+                                    {
+                                        <a id="@products.ProductId" class="inactive" data-relatedproductid="@products.ProductId" data-productguid="@Model.productguid" onclick="crossproduct(this)">
+                                                <span class="notranslate" data-translate="unchecked"> Unchecked </span> 
+                                        </a>
+                                    }
+
+
+                                </td>
+                                <td>
+
+                                        <span class="notranslate" data-translate="sku"> SKU</span>:
+                                         @(string.IsNullOrEmpty(products.SKU) ? products.ProductId.ToString() : products.SKU)</td>
+                                <td>
+                                    <img src="@products.ProductImage" alt="@products.ProductName" class="rounded-circle">
+                                    @products.ProductName
+                                </td>
+                                <td>
+                                    @products.SellingType
+                                </td>
+                                <td><span class="badge bg-label-primary me-1">@products.ispublish</span></td>
+                             
+                            </tr>
+
+
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+                            <script>
+    function crossproduct(elem) {
+        var relatedproductid = $(elem).data('relatedproductid');
+      
+        var productguid = $(elem).data('productguid');
+
+        $.ajax({
+            url: '/controller/product/CrossProductupsert',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                productguid: productguid,
+                relatedproductid: relatedproductid,
+                relatedtype: 1
+                
+            },
+            success: function (response) {
+                // handle success response
+
+                $(elem).toggleClass("active inactive");
+
+
+                if ($(elem).hasClass("active")) {
+                    $(elem).text("Checked");
+                } else {
+                    $(elem).text("UnChecked");
+                }
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+</script>
+

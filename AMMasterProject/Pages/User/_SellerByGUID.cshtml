@@ -1,0 +1,160 @@
+﻿@using AMMasterProject.Helpers;
+@using AMMasterProject.ViewModel
+@model SellerViewModel
+
+
+
+@if (Model != null)
+{
+    <div class="vendor-detail-box ">
+
+        <div class="h5 center">
+            <span class="notranslate" data-translate="sellerinformation">Seller Information</span>
+        
+            </div>
+        <hr>
+
+        <div class="center">
+
+            <img src="@Model.Image" alt="@Model.BusinessName" class="b-image">
+
+
+            <div class="shop-name">
+                <label id="lblbusinessname">@Model.BusinessName</label>
+
+            </div>
+
+            <div class="vendor-detail ">
+
+
+
+
+                <p class="small grey-c">
+                    <span>@Model.BusinessDescription</span>
+
+                </p>
+                <div>
+
+
+                    <a id="acontactseller" class="contact-btn" href="">
+
+                        <span class="notranslate" data-translate="contactseller">Contact Seller</span>
+
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class=" info-icons">
+
+            <div>
+                <span class="notranslate" data-translate="membersince"> Member Since</span>
+
+               
+                <span class="data">
+
+                    <span id="lblmembersince" class="setdateformat">@Model.InsertDate</span>
+
+                </span>
+            </div>
+
+
+            <div>
+
+                <span class="notranslate" data-translate="listings">listings </span>
+
+                <span id="lblnoofproducts" class="data comma-separate">@Model.ProductTotal</span>
+
+            </div>
+
+
+
+
+            <div>
+                <span class="notranslate" data-translate="rating">rating </span>
+                
+                <span id="lbltotalrating" class="data 2digit comma-separate"> @Model.userothermetadata.SellerRating</span>
+             
+            </div>
+            <div>
+                <span class="notranslate" data-translate="followers">Followers</span>
+           
+                <span id="lblfollowers" class="data comma-separate">@Model.userothermetadata.Followers</span>
+
+            </div>
+
+
+
+        </div>
+        
+         @if(Model.userothermetadata!=null && Model.userothermetadata.UserInactiveMetaData!=null)
+         {
+
+                @if(Model.userothermetadata.UserInactiveMetaData.Availableforchat ==false)
+            {
+                <span>Not Available for chat till  <span class="setdateformat">@Model.userothermetadata.UserInactiveMetaData.EndDate</span></span>
+            }
+            else
+            {
+                <a href="" id="achat" class="chat-btn">
+                    <span class="notranslate" data-translate="chat">
+                        Chat
+                    </span>
+                    
+                   </a>
+            }
+
+
+    }
+         else
+
+        {
+            <a href="" id="achat" class="chat-btn">
+                <span class="notranslate" data-translate="chat">
+                    Chat
+                </span>
+               </a>
+        }
+
+
+        <a href="/user/@Model.BusinessUrlpath" class="shop-btn" id="ashopurlpath" data-translate="viewprofile"></a>
+
+        <br>
+        <br>
+
+    </div>
+
+
+
+
+<script>
+
+
+    $("#acontactseller").click(function(event) {
+        event.preventDefault();
+        var url = window.location.href;
+        contactformload('@Model.BusinessName', '@Model.ProfileId', $("#lblproducttitle").text(), 'Hello, I want to know more about your', url);
+
+    });
+
+    $("#achat").click(function(event) {
+        event.preventDefault();
+        var loginuserid = $("#hdnlogin").val();
+        if (typeof loginuserid !== "undefined" && loginuserid !== "") {
+            createchat(loginuserid, '@Model.ProfileId')
+        }
+        else {
+
+            loginview("LoginView");
+        }
+    });
+
+
+
+
+</script>
+
+
+}

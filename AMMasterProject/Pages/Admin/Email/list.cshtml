@@ -1,0 +1,80 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Email.listModel
+@{
+        <title>Email Templates</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<div class="card">
+<div class="table-responsive text-nowrap">
+    <table id="ListingLoad" class="table">
+        <thead class="table-secondary">
+            <tr>
+
+
+
+             
+                    <th>Channel</th>
+                    <th>Subject</th>
+                    <th class="center" style="width:100px">Action</th>
+           
+              
+               @*  <th style="width:60px" class="text-center">Actions</th> *@
+            </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+
+            @*     Loop start*@
+
+                @foreach (var item in Model.pagename)
+                {
+                    
+               
+            <tr>
+
+
+                <td>
+                            @item.PageType
+                  
+
+                           
+                </td>
+
+                        <td>
+                            @item.Name
+                           
+                        </td>
+
+                        <td class="right">
+
+                            <a href="/admin/email/content?ID=@item.PageNameId&Pagename=@item.Name&Type=Email" class="btn d-grey-bg white-c btn-xs"> Design Content</a>
+
+                            <a target="_blank" href="~/admin/email/@item.PageNameId" class="btn d-grey-bg white-c btn-xs"> Preview</a>
+                        </td>
+                
+
+            
+           @*      <td class="center">
+                    <div class="dropdown">
+                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+
+                                    <button formnovalidate asp-page-handler="Duplicate" asp-route-pagenameid="@item.PageNameId" class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> Duplicate</button>
+                                  
+                        </div>
+                    </div>
+                </td> *@
+            </tr>
+
+            @*     Loop End*@
+                }
+
+        </tbody>
+    </table>
+    </div>
+</div>
+

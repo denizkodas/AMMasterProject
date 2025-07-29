@@ -1,0 +1,14 @@
+﻿@model List<WebsiteSetupSocialMedia>
+
+@if (Model != null && Model.Count > 0)
+{
+
+   
+    <span id="dvoursocialmedia">
+
+        @foreach (var socialmedia in Model)
+        {
+            <a target="_blank" class="social-media-icon" href="@socialmedia.Url"><img src="@socialmedia.Icon"></a>
+        }
+    </span>
+}

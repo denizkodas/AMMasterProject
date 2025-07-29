@@ -1,0 +1,216 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.careers.addModel
+@{
+    <title>Jobs</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+    <input asp-for="@Model.career.CareerId" type="hidden" />
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/careers">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/careers/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/careers/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Job Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            Category
+                                <select asp-for="@Model.career.Categoryid" asp-items="@Model.CareerCategory" class="form-control">
+                                    <option disabled selected>-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@Model.career.Categoryid" class="required"></span>
+
+
+
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            Title
+                                <input type="text" maxlength="100" asp-for="@Model.career.Title">
+                                <span asp-validation-for="@Model.career.Title" class="required"></span>
+                        </div>
+
+
+                    
+                       
+                        <div class="form-group col-md-10">
+                            External URL Optional
+                                <input type="text" maxlength="200" asp-for="@Model.career.Externalurl">
+                                <span asp-validation-for="@Model.career.Externalurl" class="required"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        Description
+                    </div>
+
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+
+                            <div class="form-group col-md-9">
+                                Summary
+                                <input type="text" maxlength="1000" asp-for="@Model.career.Summary" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelSummary'))">
+                                <span id="characterCountLabelSummary"></span>
+                                <span asp-validation-for="@Model.career.Summary" class="required"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                Description
+                                <input type="text" asp-for="@Model.career.Description">
+                                <span asp-validation-for="@Model.career.Description" class="required"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+        
+            <hr>
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        SEO
+                    </div>
+
+                    <div class="col-md-6 no-padding">
+
+
+
+                        <div class="row">
+                            <div class="form-group">
+                                Search engine friendly page name
+                                <input type="text" maxlength="100" asp-for="@Model.career.SeoPageName" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelPageName'))">
+                                <span id="characterCountLabelPageName"></span>
+                                <span asp-validation-for="@Model.career.SeoPageName" class="required"></span>
+
+                            </div>
+
+                            <div class="form-group">
+                                Meta title
+
+                                <input type="text" maxlength="200" asp-for="@Model.career.SeoTitle" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetatitle'))">
+                                <span id="characterCountLabelMetatitle"></span>
+                                <span asp-validation-for="@Model.career.SeoTitle" class="required"></span>
+
+                            </div>  <div class="form-group">
+                                Meta Keywords
+                                <small>comma seperated values property, zone, classified</small>
+                                <input type="text" maxlength="200" asp-for="@Model.career.SeoKeyword" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaKeyword'))">
+                                <span id="characterCountLabelMetaKeyword"></span>
+                                <span asp-validation-for="@Model.career.SeoKeyword" class="required"></span>
+                            </div>  <div class="form-group">
+                                Meta Description
+                                <input type="text" maxlength="200" asp-for="@Model.career.SeoDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaDescription'))">
+                                <span id="characterCountLabelMetaDescription"></span>
+                                <span asp-validation-for="@Model.career.SeoDescription" class="required"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+                            <input type="checkbox" asp-for="@Model.career.IsPublish" checked="@Model.career.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.career.IsPublish">Is Publish</label>
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this Section</p>
+
+
+
+                            <input type="checkbox" asp-for="@Model.career.Isaddonhomepage" checked="@Model.career.Isaddonhomepage" />
+                            <label id="Isaddonhomepage" asp-for="@Model.career.Isaddonhomepage">Is Show On Home Page</label>
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox to determine whether you want to display this content on the homepage</p>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button>Save</button></div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+
+
+<script>
+
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+        $(document).ready(function () {
+            $('#career_Description').summernote();
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#career_Title').keyup(function () {
+            var title = $(this).val();
+            var seoPageName = generateSeoFriendlyText(title);
+            $('#career_SeoPageName').val(seoPageName);
+        });
+    });
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">

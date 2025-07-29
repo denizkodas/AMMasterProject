@@ -1,0 +1,485 @@
+﻿
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container">
+<div id="dvproducthome">
+    </div>
+
+
+    <div id="dvnorecordfound">
+    </div>
+    
+</div>
+  <input type="hidden" id="hdnCurrentPage" value="0" />
+   <input type="hidden" id="hdnNextPage" value="0" />
+
+<div id="productViewContainer"></div>
+
+
+
+
+
+ <script>
+
+         
+
+function producthome(pagename) {
+
+    $('[id*=dvproducthome]').empty();
+    $.ajax({
+        type: "GET",
+        cache: true, // disable caching
+        url: "/api/global/producthomesetting/"+pagename,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+       
+        success: function (data) {
+            var itemsHtml = "";
+            // set attributes or content to the new div
+
+            $.each(data, function(index, item) {
+
+                ///SHOW HEADER BASED ON CONDITION
+                //class=ProductBoxCount
+                if (item.showTitle == true) {
+                    itemsHtml += '<div id="dvpresetting" class="product-home-heading">';
+
+                    itemsHtml += '<div class="h3">';
+                    itemsHtml += '<span >';
+                    itemsHtml += item.title;
+                    itemsHtml += '</span>';
+
+                    itemsHtml += '</div>';
+
+                    itemsHtml += '</div>';
+                }
+
+
+                // <% --on search page make it default value - product - box4-- %>
+                // <% --and backgroundcolor white-- %>
+                itemsHtml += '<div class="product-box' + item.productBoxCount + '" style="background-color: ' + item.backgroundcolor + '"  >';
+
+                if (item.showBanner == true) {
+                    itemsHtml += '<img class="product_type_banner" src="' + item.banner + '" />';
+                }
+
+
+                //Product Data Start
+
+                if (item.productViewQty > 0) {
+                    itemsHtml += '<div class="product-box-wrapper row" id="dvproductboxwrapper' + item.websiteSetupPageId + '"></div>';
+
+                }
+                ///Product Data End
+
+
+
+                itemsHtml += '</div>';
+
+                if (pagename == "Default") { 
+                Product_list_home(item.websiteSetupPageId, pagename);
+            }
+            else if(pagename=="Search")
+            {
+                  Product_list_search(item.websiteSetupPageId, pagename);
+            }
+                   
+                
+            });
+
+
+            $('[id*=dvproducthome]').append(itemsHtml);
+
+          
+            
+
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+};
+
+
+var nextPage = 0;
+var currentPage = 0;
+var ROWCOUNT = 0;
+function Product_list_home(websitesetuppageid, pagename) {
+   
+   
+      var pagenumber = 1;  /// on home page its always 1
+            
+    // $('[id*=dvfirstlevelcategory]').empty();
+    $.ajax({
+        type: "GET",
+        cache: true, // disable caching
+         url: "/api/global/products/",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: {
+          websitesetuppageid: websitesetuppageid,
+          pagename:pagename
+         },
+       
+        success: function (data) {
+           
+
+            productUI(data, websitesetuppageid);
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+           
+
+   
+   
+};
+
+function Product_list_search(websitesetuppageid, pagename) {
+   
+    ROWCOUNT = 0;
+   
+    currentPage = parseInt($("#hdnCurrentPage").val());
+    nextPage=parseInt($("#hdnNextPage").val());
+
+    if (currentPage == 'undefined') {
+        currentPage = 0;
+    }
+      nextPage = currentPage + 1;
+
+
+
+
+      ///GEt query string values for filters
+
+var vproducttype = getParameterByName("producttype");
+var vsellingtype = getParameterByName("sellingtype");
+var minprice = getParameterByName("minprice");
+var maxprice = getParameterByName("maxprice");
+var productkeyword = getParameterByName("productkeyword");
+var vrating = getParameterByName("rating");
+var vcategoryid = getParameterByName("categoryid");
+var vproductkeyword = getParameterByName("q");
+
+    $.ajax({
+        type: "GET",
+        cache: true, // disable caching
+         url: "/api/global/products/",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+          data: {
+              websitesetuppageid: websitesetuppageid,
+          pagename:pagename,
+          vproducttype: vproducttype,
+        vsellingtype: vsellingtype,
+        minprice: minprice,
+        maxprice: maxprice,
+        productkeyword: productkeyword,
+        vrating: vrating,
+        vcategoryid: vcategoryid,
+        vproductkeyword:vproductkeyword,
+        pagenumber:nextPage
+       
+          },
+        success: function (data) {
+           
+
+            productUI(data, websitesetuppageid);
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+           
+
+   
+   
+};
+
+function Product_relatedproducts(websitesetuppageid, pagename, vproductkeyword) {
+   
+    ROWCOUNT = 0;
+   
+      nextPage =  1;
+
+
+   
+
+      ///GEt query string values for filters
+
+
+
+
+    $.ajax({
+        type: "GET",
+        cache: true, // disable caching
+         url: "/api/global/products/",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+          data: {
+              websitesetuppageid: websitesetuppageid,
+          pagename:pagename,
+         
+        vproductkeyword:vproductkeyword,
+        pagenumber:nextPage
+       
+          },
+        success: function (data) {
+           
+            
+
+            productUI(data, websitesetuppageid);
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+           
+
+   
+   
+};
+
+
+function productUI(data,websitesetuppageid) {
+     var itemsHtml = "";
+            // set attributes or content to the new div
+
+            $.each(data, function (index, item) {
+
+                ROWCOUNT++;
+                ///Product DAta
+                itemsHtml += '<div  class="col-lg-3 col-sm-4 no-padding block-item">';
+                itemsHtml += '<div  class="product-box">';
+
+                itemsHtml += '<a  href="/product/' + item.productSeourl + '">';
+
+
+                itemsHtml += '<div  class="p-img">';
+                itemsHtml += '<img  src="' + item.productImage + '" />';
+                itemsHtml += '</div>';
+
+
+                itemsHtml += '<div  class="p-data">';
+
+                itemsHtml += '<div  class="p-title">';
+                itemsHtml += item.productName;
+                itemsHtml += '</div>';
+
+              
+                itemsHtml += '<div  class="p-badges">';
+
+
+               
+                if (item.productType.generalSetupName == "Digital") {
+                    itemsHtml += '<span class="' + item.productType.generalSetupName + '">' + item.productType.generalSetupName + '</span>';
+                }
+                if (item.sellingType.generalSetupName == "") {
+                    itemsHtml += '<span class="' + item.sellingType.generalSetupName + '">' + item.sellingType.generalSetupName + '</span>';
+                }
+
+                itemsHtml += '</div>';
+
+                itemsHtml += '<div  class="p-price">';
+                itemsHtml += item.currency.currencyName + " " +  numberformat(item.price);
+                if (item.oldPrice != '0.00') { 
+                    itemsHtml += '<span class="p-old-p">' + numberformat(item.oldPrice) + '</span>';
+
+                 
+            }
+                itemsHtml += '</div>';
+
+
+                itemsHtml += '<div  class="p-review">';
+               
+                if (item.totalreviews != "0") {
+                    itemsHtml += '<i class="fa fa-star"></i>' + item.starrating_average + '(' + item.totalreviews + ')';
+                }
+                itemsHtml += '</div>';
+
+               
+
+                itemsHtml += '</div>';
+                itemsHtml += '</a>';
+                  ///Product DAta  END
+
+
+
+                ////Action button
+
+                itemsHtml += '<div  class="p-action-btn">';
+              
+                ///Button Comparision list
+                itemsHtml += '<a data-toggle="tooltip" data-placement="bottom" title="Add into Compare List" class="p-compare" id="btnproductcomparision" ><i class="fa fa-plus"></i>Compare List</button>'
+
+                ///Button Chat With SEller
+                    itemsHtml += '<a data-toggle="tooltip" data-placement="bottom" title="Chat With Seller" class="product-chat p-chat" id="btnproductchatwithseller"  data-sellerusername="' + item.profileId + '"> <svg viewBox="0 0 80 81" <g id="Layer_2"><g id="Layer_3"><path d="M44.8,4.6h-9.7C18.8,4.9,5.7,18.5,6,34.9c0.3,16,13.2,28.9,29.2,29.2h27.6l11.8,12.3v-42C74.5,18,61.2,4.7,44.8,4.6z     M71.6,68.9L64,61.1H35.2c-14.8,0-26.7-12-26.7-26.7c0-14.8,12-26.7,26.7-26.7h9.7c14.7,0,26.7,12,26.7,26.7V68.9z"/><rect height="3" width="33.1" x="23.5" y="26"/><rect height="3" width="33.1" x="23.5" y="37.7"/></g></g></svg> </a >'
+              
+                   
+
+
+                ///Button Quick View
+                    itemsHtml += '<a href="" data-toggle="tooltip" data-placement="bottom" title="Quick View" class="product-quickview p-view"  id="btnproductquickview"  data-producturl="' + item.productSeourl + '"> <svg  viewBox="0 0 32 32" ><path d="  M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" fill="none" id="XMLID_10_"  stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/><circle cx="16" cy="16" fill="none" id="XMLID_12_" r="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/></svg> </a>'
+
+
+
+                ///Button Favorite
+               
+                if (item.favorite == 1) {
+                        itemsHtml += '<a href="" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist" class="product-wishlist  p-fav" id="btnproductfavorite"  data-producturl="' + item.productSeourl + '"> <svg viewBox="0 0 256 256"><rect fill="none"/><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg></a>'
+                }
+                else {
+                    itemsHtml += '<a href="" data-toggle="tooltip" data-placement="bottom" title="Add to Wishlist" class="product-wishlist  p-un-fav" id="btnproductfavorite"  data-producturl="' + item.productSeourl + '"><svg viewBox="0 0 256 256"><rect fill="none"/><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg></a>'
+                }
+
+                itemsHtml += '</div>';
+               
+
+                 ////Action button  END
+
+                ////Conditional DIV
+                itemsHtml += '<div  class="p-conditional_div">';
+
+                /*-----------Product Conditional Div ecommerce----------------*/
+                if (item.sellingType.generalSetupName== "Sale") {
+                    itemsHtml += '<div  class="p-cart">';
+                    itemsHtml += '<div  class="qty">';
+                    itemsHtml += " Qty:" + '<input  type="number" id="txtqty" name="txtqty" value="1" min="1" data-qty="' + 1 + '" required>'
+
+
+
+                    itemsHtml += '</div>';
+
+
+                    ///Button Buy Now
+                    itemsHtml += '<button data-toggle="tooltip" data-placement="bottom" title="Buy Now" class="product-buynow p-buy-now" id="btnproductbuynow '+ item.productid +' " type="button" data-productid="' + item.productid + '">Buy Now</button>'
+
+                    ///Button Add to cart
+                    itemsHtml += '<button data-toggle="tooltip" data-placement="bottom" title="Add to Cart" class="product-addtocart p-cart-icon" id="btnproductaddtocart ' + item.productid +' " type="button" data-productid="' + item.productid + '"><img src="../Images/new_cart.png" alt="quick view" /></button>'
+                    itemsHtml += '</div>';
+
+                }
+              
+
+                /*-----------Product Conditional Div Auction----------------*/
+                if (item.sellingType.generalSetupName == "Auction") {
+                    itemsHtml += '<div  class="p-auction">';
+                    itemsHtml += '</div>';
+                }
+
+
+                /*-----------Product Conditional Div Classified----------------*/
+
+                if (item.sellingType.generalSetupName == "Classified") {
+                    itemsHtml += '<div  class="p-classified">';
+                    itemsHtml += '<div  class="">';
+                    itemsHtml += '<small class="grey-c">Posted on: </small>'
+                    itemsHtml += '<div class="product-posted-date">' + item.insertDate + '</div>';
+                    itemsHtml += '</div>';
+                    itemsHtml += '<a class="view-detail"  href="/' + item.productSeourl + '/detail">View Detail</a>';
+
+                    itemsHtml += '</div>';
+                }
+
+                itemsHtml += '</div>';
+                ///Conditional DIV End
+
+
+                itemsHtml += '</div>';
+                  itemsHtml += '</div>';
+
+
+
+            });
+           
+            
+
+            $('[id*=dvproductboxwrapper' + websitesetuppageid + ']').append(itemsHtml);
+
+            if (ROWCOUNT <= 0) {
+
+
+                if (parseInt(nextPage) > 1) {
+                     $("#btnloadmore").hide();
+                    $("#lblmsg").text("No More Item Exist. Try To Change The Filter");
+                }
+                else {
+
+                ROWCOUNT = 0;
+                $('[id*=dvproductboxwrapper' + websitesetuppageid + ']').empty();
+
+                $("#dvnorecordfound").html('<div class="no-record-found empty-product">No Record Found</div>');
+
+                $(".totalrecordfound").html("Total Results: " + ROWCOUNT  );  
+
+
+                 $("#btnloadmore").hide();
+
+                  $("#lblmsg").text("");
+                }
+            }
+
+            else {
+
+                $("#dvnorecordfound").html("");
+                    ROWCOUNT = parseInt(nextPage) * parseInt(ROWCOUNT);
+
+               
+
+                $(".totalrecordfound").html("Total Results: " + ROWCOUNT  );     
+                
+                  $("#hdnCurrentPage").val(nextPage);
+                
+                $("#btnloadmore").show();
+                        
+            }
+
+
+             console.log("Page" + nextPage);
+             console.log("Records"+ ROWCOUNT);
+};
+
+
+
+//Action 
+
+ ///quick view  --
+    $(document).on("click", ".product-quickview", function (e) {
+        e.preventDefault();
+
+        var productseourl = $(this).data('producturl');
+
+
+         $.ajax({
+        type: 'POST',
+        url: '@Url.Action("productdetail", "Product")',
+        data: { productseourl: productseourl },
+        success: function(result) {
+            $('#productViewContainer').html(result);
+           
+                    
+        },
+        error: function() {
+            alert('Error loading product view.');
+        }
+    });
+       
+
+
+     
+
+
+        //product_variation_control_type(routeValue_Product);
+
+       
+    });
+
+
+    </script>

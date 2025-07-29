@@ -1,0 +1,81 @@
+﻿@page
+@model AMMasterProject.Pages.shipping.IndexModel
+@{
+    ViewData["Title"] = "Shipping Details";
+}
+
+
+
+<form method="post">
+
+<div class="container paddingtb-15 o-padding">
+    <div class="row no-margin">
+            <div class="col-lg-8 white-bg radius padding15 ship-details o-padding">
+
+                <div class=" h3 padding10 m-none">
+                    <span class="notranslate" data-translate="shippingdetails">Shipping Details</span>
+
+                    
+                </div>
+                <div >
+                    <div id="shippingContainerList" class="row no-padding no-margin"></div>
+
+                </div>
+            </div>
+   
+        <div class="col-md-4 m-none">
+                <div class="cart-overview paddingtb-15">
+                    <div class=" h3 padding15 m-none">
+                        <span class="notranslate" data-translate="ordersummary">Order Summary</span>
+
+                        </div>
+              
+                    <div id="membershipbasketsummaryViewContainer"></div>
+                </div>
+        </div>
+        
+        </div></div>
+
+
+
+
+
+
+<div id="shippingContainerForm"></div>
+
+
+
+
+</form>
+
+
+<script>
+
+   
+    $(document).ready(function () 
+    {
+        // AJAX request on page load
+       
+        loadshippingaddresslist();
+
+
+
+        ///call basketview
+
+      
+            var ID = '@Model.Invoicenumber';
+
+
+
+            orderbasketview(ID);
+      
+
+
+
+    });
+
+
+
+
+
+</script>

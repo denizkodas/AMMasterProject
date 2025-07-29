@@ -1,0 +1,212 @@
+﻿@page
+@using Newtonsoft.Json;
+@model AMMasterProject.Pages.Admin.allinquiriesModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<div class="row paddingtb-15 form">
+
+    <div class="col-md-6 ">
+        <h3>Submitted Forms</h3>
+    </div>
+
+
+    <form method="get" action="/admin/allinquiries" id="filterForm">
+
+        @*    <div class="col-md-3">
+        <input type="text" name="keywordsearch" class="white-bg border" placeholder="Keyword Search" />
+        </div> *@
+        <div class="col-md-3">
+            <div class="white-bg border">
+                <label>
+                    <input type="radio" name="readstatus" id="readStatusTrue" value="true" /> Read
+                </label>
+                <label>
+                    <input type="radio" name="readstatus" id="readStatusFalse" value="false" checked /> UnRead
+                </label>
+            </div>
+        </div>
+        <button type="submit"><i class="bx bx-edit-alt me-1"></i> Filter</button>
+
+
+    </form>
+    <a href="/admin/allinquiries">Clear Search</a>
+
+    <div class="table-responsive border white-bg">
+        <table class="table border">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Field Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var form in Model.listformsubmitted)
+                {
+                    <tr>
+                        <td colspan="2" class="l-grey-bg">
+                            <div class="float-end">
+                                @if (@form.IsRead == false)
+                                {
+                                    <a class="btn white-bg border green-c radius30" href="/controller/master/InquiryRead?formdetailsid=@form.FormDetailsID">Mark as Read</a>
+                                }
+
+                                @if (@form.IsRead == true)
+                                {
+                                    <a class="btn white-bg border green-c radius30" href="/controller/master/InquiryRead?formdetailsid=@form.FormDetailsID">Mark as Un-Read</a>
+                                }
+
+                                <a class="btn white-bg border red-c radius30" href="/controller/master/InquiryDelete?formdetailsid=@form.FormDetailsID">Delete</a>
+
+
+                                @if (@form.ContentReply == "Pending")
+                                {
+                                    <a id="aReply" class="btn white-bg border blue-c radius30 clickable-button" data-formid="@form.FormDetailsID">Reply</a>
+                                }
+                            </div> <h4>
+                                Form Entry @form.FormDetailsID
+                                <br />
+                                <small class="grey-c small s-bold">Date: @form.SubmitDate </small>
+                            </h4>
+
+                        </td>
+
+                    </tr>
+
+                    var formDataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(form.FormContent);
+
+
+                    @foreach (var kvp in formDataDict)
+                    {
+                        <tr>
+                            <td>@kvp.Key:</td>
+                            <td>@kvp.Value</td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <td>Is Read: </td>
+                        <td>
+
+                            @if (@form.IsRead == false)
+                            {
+                                <span>Un-Read</span>
+                            }
+
+                            @if (@form.IsRead == true)
+                            {
+                                <span>Read</span>
+                            }
+
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Question Reply </td>
+                        <td>
+                            @Html.Raw(@form.ContentReply)
+                        </td>
+
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div id="dvcontentreply" class="overlay-view" style="display:none">
+        <div class="popup popup-medium">
+            <div class="popup-heading">
+                Reply  <a id="aclose" class="close-back"></a>
+            </div>
+
+            <div class="form padding15">
+                <input id="hdnFormId" type="hidden" value="0" />
+
+                @* <input type="text" asp-for="@Model.blog.Description">*@
+                <textarea id="txtContentReply"></textarea>
+                <span id="spanValidation" class="required"></span>
+                <br />
+                <button class="clickable-button" id="btncontentReply">Send</button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#txtContentReply').summernote();
+
+            $("#btncontentReply").click(function () {
+                var content = $('#txtContentReply').summernote('code'); // Get the HTML content from the summernote editor
+                if (!content) {
+                    $("#spanValidation").text("Text required");
+                } else {
+                    $("#spanValidation").text(""); // Clear the validation message
+                    $.ajax({
+                        url: '/controller/master/InquiryReply',
+                        method: 'POST',
+                        data: {
+                            formdetailsid: $("#hdnFormId").val(), // Replace with the actual FormDetailsID
+                            contentreply: content
+                        },
+                        success: function (data) {
+                            if (data === "Error") {
+                                $("#spanValidation").text("Text is required");
+                            } else {
+
+                                $("#hdnFormId").val("0"); // Set the value of the hidden field
+                                $("#dvcontentreply").hide();
+                                toaster("Reply Added Successfully", "toast-success");
+                                $("#spanValidation").text("");
+                                window.location.reload();
+                                // Success logic here, for example, redirect to another page
+                            }
+                        },
+                        error: function () {
+                            $("#spanValidation").text("Error occurred during the AJAX request");
+                        }
+                    });
+                }
+            });
+
+
+
+            $("#aReply").click(function () {
+                console.log("formcall");
+                var formId = $(this).data("formid"); // Get the data-formid attribute
+                $("#hdnFormId").val(formId); // Set the value of the hidden field
+                $("#dvcontentreply").show(); // Show the content reply section
+            });
+
+
+            $("#aclose").click(function () {
+
+                $("#hdnFormId").val("0"); // Set the value of the hidden field
+                $("#dvcontentreply").hide(); // Show the content reply section
+            });
+
+
+
+
+            const queryStringValue = getParameterByName("readstatus");
+
+            console.log(queryStringValue);
+            if (queryStringValue === "true") {
+                $("#readStatusTrue").prop("checked", true);
+            } else if (queryStringValue === "false") {
+                $("#readStatusFalse").prop("checked", true);
+            }
+
+
+        });
+    </script>

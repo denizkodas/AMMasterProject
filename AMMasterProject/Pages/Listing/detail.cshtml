@@ -1,0 +1,477 @@
+﻿@page "/item/{productseourl}"
+@using AMMasterProject.Helpers;
+
+
+@model AMMasterProject.Pages.products.detailModel
+@{
+   
+
+        var productModel = Model.productmodel;
+        // var productreviewModel = Model.productreviewmodel;
+        // var productqaModel = Model.productqamodel;
+        var sellerModel = Model.sellerview;
+
+
+
+
+        // Define the title and meta tags
+
+
+        var description = !string.IsNullOrEmpty(@Model.productmodel.ProductDetail.ShortDescription) ? @Model.productmodel.ProductDetail.ShortDescription : @Model.productmodel.ProductDetail.ProductName;
+
+        // Set the page title
+        ViewData["Title"] = @Model.productmodel.ProductDetail.ProductName;
+
+        // Set the meta tags
+        ViewData["Description"] = description;
+        //ViewData["Keywords"] = GlobalHelper.ExtractKeywords(productModel.ProductName);  //incase there is no keywords;
+        ViewData["ImageUrl"] = @Model.productmodel.ProductDetail.ProductImage;
+    
+}
+
+
+<style>
+    .main-header {
+        position: initial
+    }
+    .title-heading {
+        display:none
+    }
+
+    .top-menu{
+        background:white;
+    }
+
+    .back-btn svg{
+        fill: var(--d-grey);
+    }
+    
+</style>
+
+
+
+
+
+
+
+<div class="container ">
+    <div class="detail-page margintb-15">
+        <div class="row">
+            <div class="col-md-9 o-padding">
+
+
+
+
+
+                <section id="overview">
+
+
+                    <div class="detail">
+
+                      
+                     
+
+                        <partial id="_pquickview" name="/Pages/Listing/_product-view.cshtml" model="productModel"/>
+                     
+                       @* <div id="productDetailContainer"></div>
+*@
+                      
+                    </div>
+                    </section>
+            </div>
+
+            <div class="col-md-3">
+
+                @* In admin configuraiton if ismultivendor is true then only show seller view else do not show it *@
+                @if(Model.IsMultiVendor==true)
+                {
+                    @* Seller Details *@
+                    <partial name="/Pages/User/_SellerByGUID.cshtml" model="sellerModel" />
+
+                }
+                   
+                @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/CMSView.cshtml" , methodname="cms", id=0, value="itemdetailoverview" })
+           
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@if (Model.combinedAmenities.amenityheader.Count>0)
+{
+    <partial name="/Pages/Listing/_product-amenities.cshtml" model="Model.combinedAmenities" />
+}
+
+<div class="container mb-3">
+    <div class="r-products">
+
+        <div class="product-box-5 no-bg no-margin">
+            <h3 class="black-c bold paddingrf-15">
+
+                <span class="notranslate" data-translate="similar">Similar</span>
+                <span class="notranslate" data-translate="listing">Listing</span>
+            </h3>
+<partial name="/Pages/Listing/_ProductList.cshtml" model="Model.productotherSellerModel" />
+        </div>
+    </div>
+</div>
+<div id="sticky-anchor"></div>
+<div id="sticky" class="">
+
+    <div class="container detail-tab">
+
+        <!-- Nav tabs -->
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#productdetail" role="tab" aria-controls="productdetail" aria-selected="true">
+                 
+                    <span class="notranslate" data-translate="listing">Listing</span>
+                    <span class="notranslate" data-translate="details">Details</span>
+                    
+                </a>
+            </li>
+
+            @if(@Model.productmodel.ProductDetail.ReturnPolicy!=null)
+            {
+            <li class="nav-item" role="presentation" >
+                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#return" role="tab" aria-controls="return" aria-selected="false">
+                        <span class="notranslate" data-translate="returnpolicy">Return Policy</span>
+                    
+                   </a>
+            </li>
+            }
+
+            @if (@Model.productmodel.ProductDetail.itemothermetadata != null && Model.productmodel.ProductDetail.itemothermetadata.TotalReviews > 0)
+            {
+                <li  id="lireview" class="nav-item" role="presentation">
+                    <a class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#reviews" role="tab" aria-controls="reviews" aria-selected="false">
+
+                        <span class="notranslate" data-translate="reviews">Reviews</span>
+
+                        </a>
+            </li> 
+            }
+            @if(@Model.productmodel.ProductDetail.CancelPolicy!=null)
+            {
+            <li class="nav-item" role="presentation" >
+                <a class="nav-link" id="cancel-tab" data-bs-toggle="tab" data-bs-target="#cancel" role="tab" aria-controls="cancel" aria-selected="false">
+
+                        <span class="notranslate" data-translate="cancellationpolicy">Cancellation Policy</span>
+                    </a>
+            </li> 
+            }
+            
+            <li id="liqatab" class="nav-item" role="presentation" >
+                <a class="nav-link" id="qa-tab" data-bs-toggle="tab" data-bs-target="#qa" role="tab" aria-controls="qa" aria-selected="false">
+
+                    <span class="notranslate" data-translate="qa">Q/A</span>
+                    </a>
+            </li>
+        </ul>
+
+
+    
+
+        <!-- Tab panes -->
+
+
+    </div>
+
+</div>
+<div class="container">
+    <div class="row no-margin">
+
+        <div class="col-md-9 no-padding">
+            <div class="detail-page">
+               
+               
+                <div class="tab-content" id="myTabContent">
+                    <!-- listing details --> 
+                    
+                    <section class="tab-pane fade show first-tab active" id="productdetail" role="tabpanel" aria-labelledby="productdetail">
+                        <div class="listing-details paddingtb-15">
+
+                            <h3 class="black-c bold">
+                                <span class="notranslate" data-translate="listing">Listing</span>
+
+                                <span class="notranslate" data-translate="details"> Detail</span>
+                               
+                            </h3>
+                             <label id="lblproductdetail">
+
+                                @if (Model.productmodel.ProductDetail.DetailDescription != null)
+                                {
+                                    @Html.Raw(@Model.productmodel.ProductDetail.DetailDescription)
+                                }
+                                else
+                                {
+                                    @Model.productmodel.ProductDetail.ShortDescription
+                                }
+
+                             </label>
+
+
+                        </div>
+                    </section>
+
+                    <!-- Return Policy -->
+
+                    <section class="tab-pane fade" id="return" role="tabpanel" aria-labelledby="return">
+                        <div class="listing-details paddingtb-15">
+
+                            <h3 class="black-c bold">
+                                <span class="notranslate" data-translate="returnpolicy">
+                                    Return Policy
+                                </span>
+
+                            </h3>
+
+                        <label id="lblreturnpolicy">@Html.Raw(@Model.productmodel.ProductDetail.ReturnPolicy)</label>
+                        </div>
+                    </section>
+
+
+                    <!--  Review -->
+                    <section class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews">
+                      
+                        
+                        
+                        <div class="listing-review paddingtb-15">
+                            <div>
+                                <h3 class="black-c bold">
+                                    <span class="notranslate" data-translate="reviews">Review</span>
+
+                                </h3>
+                               
+                                <div id="dvShowReviewListViewContainer"></div>
+                              @*   <partial  name="/Pages/review/_listreview.cshtml" model="productreviewModel" /> *@
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- FAQ -->
+                    <section class="tab-pane fade" role="tabpanel" aria-labelledby="faq" id="faq">
+                        <div class="listing-details paddingtb-15">
+
+                            <h3 class="black-c bold">
+                                <span class="notranslate" data-translate="faq">FAQ</span>
+
+                                
+                            </h3>
+                        <label id="lblfaq"></label>
+                        </div>
+                    </section>
+
+
+
+                    <!--  Cancellation Policy -->
+
+                    <section class="tab-pane fade" role="tabpanel" aria-labelledby="cancel" id="cancel">
+                        <div class="listing-details paddingtb-15">
+
+                            <h3 class="black-c bold">
+                                <span class="notranslate" data-translate="cancellationpolicy">Cancellation Policy</span>
+
+                               
+                            </h3>
+
+                        <label id="lblcancellationpolicy">@Html.Raw(@Model.productmodel.ProductDetail.CancelPolicy)</label>
+                        </div>
+
+                    </section>
+
+                    <!-- Q/A -->
+                    <section class="tab-pane fade" role="tabpanel" aria-labelledby="qa" id="qa">
+
+                        <div id="dvShowQuestionAnswerViewContainer"></div>
+                      @*    <partial  name="/Pages/Listing/_product-qa.cshtml" model="productqaModel" /> *@
+
+                    </section>
+                
+                </div>
+
+
+       
+
+
+            </div>
+
+
+            <!---------------------------Cross Products --------------------- -->
+            <div class="c-product  ">
+                <div class="product-box-8">
+            
+                    <h3 class="black-c bold">
+                        <span class="notranslate" data-translate="cross">Cross</span>
+
+
+                        <span class="notranslate" data-translate="listing">Listing</span>
+                    </h3>
+
+                    <div class="row marginrf-m-15">
+
+                        <partial name="/Pages/Listing/_ProductList.cshtml" model="Model.productcrossModel" />
+                    </div>
+                </div>
+            </div>
+
+
+            <!---------------------------Detail CMS--------------------- -->
+            @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/CMSView.cshtml" , methodname="cms", id=0, value="itemdetailfooter" })
+
+
+
+        </div>
+        <!---------------------------Related listing --------------------- -->
+        <div class="col-md-3 m-none padding-left">
+            <div class="r-products product-verticle">
+                <div>
+                    <h3 class="black-c bold">
+                        <span class="notranslate" data-translate="related">Related</span>
+
+                        <span class="notranslate" data-translate="listing">Listing</span>
+                    </h3>
+
+                    <div class="row marginrf-m-15">
+
+                        <partial name="/Pages/Listing/_ProductList.cshtml" model="Model.productrelatedModel" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+    </div>
+</div>
+
+<input type="hidden" name="hdnsellerguid" id="hdnsellerguid" value="@Model.productmodel.ProductDetail.profileguid">
+<input type="hidden" name="hdnproductid" id="hdnproductid" value="@Model.productid">
+
+
+
+<script>
+
+    const div = document.getElementById("am-heigh");
+    const addBtn = document.getElementById("add-btn");
+    const removeBtn = document.getElementById("remove-btn");
+
+    addBtn.addEventListener("click", () => {
+        div.classList.add("amn-h-full");
+    });
+
+    removeBtn.addEventListener("click", () => {
+        div.classList.remove("amn-h-full");
+    });
+
+
+
+
+
+</script>
+
+
+<script>
+
+
+
+
+
+
+
+
+
+ function product_detail_QA_insert() {
+
+     if (@Model.loginid == "0") {
+         // var loginuserid = "1197";
+         loginview("LoginView");
+         return;
+     } else {
+
+
+
+
+         $.ajax({
+             type: "POST",
+             cache: false, // disable caching
+                url: "/controller/product/postquestion?userid=" + @Model.loginid + "&productid=" + @Model.productid + "&question=" + $("#txtquestion").val() + "&sellerid="+ @Model.sellerview.ProfileId,
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
+
+             success: function (data, response) {
+
+                 if (data == "success") {
+
+
+
+                     $("#txtquestion").val("");
+                     $("#lblerror").text("Question Posted Successfully");
+
+                     $('#dvShowQuestionAnswerViewContainer').empty();
+                     QAShowItemID(@Model.productid);
+                 }
+                 else {
+                     $("#lblerror").text(response.responseText);
+                 }
+
+
+
+             },
+             error: function (response) {
+                 console.log(response.responseText);
+             }
+         });
+     }
+};
+
+
+    // $(document).ready(function () {
+    //     $("#btnquestionpost").click(function (event) {
+    //         event.preventDefault();
+
+    //         if (@Model.loginid != "0") {
+    //             // var loginuserid = "1197";
+    //             product_detail_QA_insert(@Model.loginid, @Model.productid, $("#txtquestion").val());
+    //         } else {
+    //             // callpopup("info-popup", "Login Required!", "You must be login to use this feature!", 5);
+    //             // alert("login required");
+    //             loginview("LoginView");
+    //         }
+    //     });
+    // });
+   
+
+
+
+    $("#qa-tab").click(function () {
+        event.preventDefault();
+        
+        $('#dvShowQuestionAnswerViewContainer').empty();
+       
+        QAShowItemID(@Model.productid);
+
+        
+
+    });
+
+
+    $("#review-tab").click(function () {
+        event.preventDefault();
+
+        $('#dvShowReviewListViewContainer').empty();
+        ReviewShowItemID(@Model.productid, 'item');
+
+
+
+    });
+   
+
+</script>
+
+

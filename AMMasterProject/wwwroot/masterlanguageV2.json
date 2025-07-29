@@ -1,0 +1,2532 @@
+{
+  "about": {
+    "en": "About",
+    "ar": "حول",
+    "ro": "Despre"
+  },
+  "aboutbusiness": {
+    "en": "About Business",
+    "ar": "عن العمل",
+    "ro": "Despre afacere"
+  },
+  "aboutme": {
+    "en": "About Me",
+    "ar": "عني",
+    "ro": "Despre mine"
+  },
+  "accept": {
+    "en": "Accept",
+    "ar": "قبول",
+    "ro": "Accepta"
+  },
+  "accessandcontrol": {
+    "en": "Access and Control",
+    "ar": "الوصول والتحكم",
+    "ro": "Acces și control"
+  },
+  "account": {
+    "en": "Account",
+    "ar": "الحساب",
+    "ro": "Cont"
+  },
+  "accountcontrol": {
+    "en": "Account Control",
+    "ar": "التحكم في الحساب",
+    "ro": "Controlul contului"
+  },
+  "accountsetting": {
+    "en": "Account Setting",
+    "ar": "إعدادات الحساب",
+    "ro": "Setări cont"
+  },
+  "action": {
+    "en": "Action",
+    "ar": "إجراء",
+    "ro": "Acțiune"
+  },
+  "add": {
+    "en": "Add",
+    "ar": "إضافة",
+    "ro": "Adăuga"
+  },
+  "additionalshipping": {
+    "en": "Additional Shipping",
+    "ar": "شحن إضافي",
+    "ro": "Transport suplimentar"
+  },
+  "additionalshippingcharges": {
+    "en": "Additional Shipping Charges",
+    "ar": "رسوم الشحن الإضافية",
+    "ro": "Taxe suplimentare de expediere"
+  },
+  "addlisting": {
+    "en": "Add",
+    "ar": "إضافة",
+    "ro": "Adăuga"
+  },
+  "addnewaddress": {
+    "en": "Add New Address",
+    "ar": "إضافة عنوان جديد",
+    "ro": "Adăugați o adresă nouă"
+  },
+  "addnewdeliveryaddress": {
+    "en": "Add New Delivery Address",
+    "ar": "إضافة عنوان تسليم جديد",
+    "ro": "Adăugați o adresă de livrare nouă"
+  },
+  "addnewshippingdetails": {
+    "en": "Add New Shipping Details",
+    "ar": "إضافة تفاصيل شحن جديدة",
+    "ro": "Adăugați detalii noi de expediere"
+  },
+  "address": {
+    "en": "Address",
+    "ar": "العنوان",
+    "ro": "Adresă"
+  },
+  "addseotags": {
+    "en": "Add SEO Tags",
+    "ar": "أضف علامات SEO",
+    "ro": "Adăugați etichete SEO"
+  },
+  "addtocart": {
+    "en": "Add to cart",
+    "ar": "أضف إلى السلة",
+    "ro": "Adăugați în coș"
+  },
+  "advanceseachheading": {
+    "en": "Search Your Desire Property",
+    "ar": "ابحث عن اهتمامك",
+    "ro": "Căutați proprietatea dorită"
+  },
+  "allcategories": {
+    "en": "All Categories",
+    "ar": "جميع الفئات",
+    "ro": "Toate categoriile"
+  },
+  "allnotifications": {
+    "en": "All Notifications",
+    "ar": "جميع الإشعارات",
+    "ro": "Toate notificările"
+  },
+  "allorders": {
+    "en": "All Orders",
+    "ar": "جميع الطلبات",
+    "ro": "Toate comenzile"
+  },
+  "alreadyhaveanaccount": {
+    "en": "Already have an account?",
+    "ar": "هل لديك حساب بالفعل؟",
+    "ro": "Aveți deja un cont?"
+  },
+  "amount": {
+    "en": "Amount",
+    "ar": "المبلغ",
+    "ro": "Sumă"
+  },
+  "and": {
+    "en": "and",
+    "ar": "و",
+    "ro": "și"
+  },
+  "andapaymentmethodof": {
+    "en": "and a payment method of",
+    "ar": "وطريقة الدفع",
+    "ro": "și o metodă de plată de"
+  },
+  "app": {
+    "en": "App",
+    "ar": "التطبيق",
+    "ro": "Aplicație"
+  },
+  "atpricedes": {
+    "en": "This price will add in product price",
+    "ar": "سيضاف هذا السعر إلى سعر المنتج",
+    "ro": "Acest preț va fi adăugat la prețul produsului"
+  },
+  "attributedes": {
+    "en": "Attribute Name eg: Color, Size etc",
+    "ar": "اسم الخاصية مثل: اللون، الحجم، إلخ",
+    "ro": "Numele atributului ex: Culoare, Mărime etc"
+  },
+  "attributedetail": {
+    "en": "Attribute Detail",
+    "ar": "تفاصيل الخصائص",
+    "ro": "Detaliu atribut"
+  },
+  "attributeimage": {
+    "en": "Attribute Image (optional)",
+    "ar": "صورة الخاصية (اختياري)",
+    "ro": "Imagine atribut (opțional)"
+  },
+  "attributelist": {
+    "en": "Attribute List",
+    "ar": "قائمة الخصائص",
+    "ro": "Lista atributelor"
+  },
+  "attributes": {
+    "en": "Attributes",
+    "ar": "الخصائص",
+    "ro": "Atribute"
+  },
+  "auctiondateprice": {
+    "en": "Auction Date & Price",
+    "ar": "تاريخ وسعر المزاد",
+    "ro": "Data și prețul licitației"
+  },
+  "autoschedule": {
+    "en": "Auto Schedule",
+    "ar": "الجدولة التلقائية",
+    "ro": "Programare automată"
+  },
+  "autoschedulemsg": {
+    "en": "Auto-schedule entails automating the scheduling or queuing of your advertisements.",
+    "ar": "الجدولة التلقائية تعني أتمتة جدولة أو ترتيب إعلاناتك.",
+    "ro": "Programarea automată implică automatizarea programării sau cozii publicităților dvs."
+  },
+  "availableforchat": {
+    "en": "Available for Chat",
+    "ar": "متاح للدردشة",
+    "ro": "Disponibil pentru chat"
+  },
+  "availableforchatmsg": {
+    "en": "Are you able to chat during this offline period?",
+    "ar": "هل يمكنك الدردشة خلال فترة عدم التواجد؟",
+    "ro": "Puteți discuta în timpul acestei perioade offline?"
+  },
+  "availableprofile": {
+    "en": "Available items and profile on search engine",
+    "ar": "العناصر المتاحة والملف الشخصي على محرك البحث",
+    "ro": "Elemente disponibile și profil pe motorul de căutare"
+  },
+  "availableprofilemsg": {
+    "en": "Do you want to enable your profile and items on search for potential buyers during this offline period?",
+    "ar": "هل تريد تمكين ملفك الشخصي والعناصر للبحث عن المشترين المحتملين خلال فترة عدم التواجد؟",
+    "ro": "Doriți să activați profilul dvs. și elementele pentru căutare pentru cumpărători potențiali în această perioadă offline?"
+  },
+  "averagerating": {
+    "en": "Average Rating",
+    "ar": "متوسط التقييم",
+    "ro": "Evaluare medie"
+  },
+  "averageresponsetime": {
+    "en": "Average response time",
+    "ar": "متوسط زمن الاستجابة",
+    "ro": "Timp mediu de răspuns"
+  },
+  "back": {
+    "en": "Back",
+    "ar": "العودة",
+    "ro": "Înapoi"
+  },
+  "balance": {
+    "en": "Balance",
+    "ar": "الرصيد",
+    "ro": "Balanță"
+  },
+  "balancepayment": {
+    "en": "Balance Payment",
+    "ar": "دفعة الرصيد",
+    "ro": "Plata soldului"
+  },
+  "basicinfo": {
+    "en": "Basic Info",
+    "ar": "معلومات أساسية",
+    "ro": "Informații de bază"
+  },
+  "before": {
+    "en": "Before",
+    "ar": "قبل",
+    "ro": "Înainte"
+  },
+  "bestchoice": {
+    "en": "Best Choice",
+    "ar": "أفضل خيار",
+    "ro": "Cea mai bună alegere"
+  },
+  "bidamount": {
+    "en": "Bid Amount",
+    "ar": "مبلغ العرض",
+    "ro": "Suma licitată"
+  },
+  "bidnow": {
+    "en": "Bid Now",
+    "ar": "المزايدة الآن",
+    "ro": "Licită acum"
+  },
+  "billing": {
+    "en": "Billing",
+    "ar": "الفوترة",
+    "ro": "Facturare"
+  },
+  "blogs": {
+    "en": "Blogs",
+    "ar": "مدونات",
+    "ro": "Bloguri"
+  },
+  "boostprofile": {
+    "en": "Boost Profile",
+    "ar": "تعزيز الملف الشخصي",
+    "ro": "Îmbunătățește profilul"
+  },
+  "boostprofilemsg": {
+    "en": "Boost your profile and attract more users with enhanced visibility as a seller",
+    "ar": "عزز ملفك الشخصي واجذب المزيد من المستخدمين مع رؤية محسنة كبائع",
+    "ro": "Îmbunătățiți profilul și atrageți mai mulți utilizatori cu vizibilitate îmbunătățită ca vânzător"
+  },
+  "botselection": {
+    "en": "Bot Selection",
+    "ar": "اختيار الروبوت",
+    "ro": "Selecția botului"
+  },
+  "brand": {
+    "en": "Brand",
+    "ar": "العلامة التجارية",
+    "ro": "Marcă"
+  },
+  "brandmsg": {
+    "en": "Select from list or type to create new",
+    "ar": "اختر من القائمة أو اكتب لإنشاء جديد",
+    "ro": "Selectați din listă sau tastați pentru a crea unul nou"
+  },
+  "briefdescription": {
+    "en": "Brief Description",
+    "ar": "وصف موجز",
+    "ro": "Descriere scurtă"
+  },
+  "browser": {
+    "en": "Browser",
+    "ar": "المتصفح",
+    "ro": "Browser"
+  },
+  "budgetlimits": {
+    "en": "Do you have budget limits?",
+    "ar": "هل لديك حدود الميزانية؟",
+    "ro": "Aveți limite de buget?"
+  },
+  "businessdetails": {
+    "en": "Business Details",
+    "ar": "تفاصيل العمل",
+    "ro": "Detalii afacere"
+  },
+  "businessname": {
+    "en": "Business Name",
+    "ar": "اسم العمل",
+    "ro": "Numele afacerii"
+  },
+  "businesswebsite": {
+    "en": "Business Website",
+    "ar": "موقع العمل",
+    "ro": "Site-ul afacerii"
+  },
+  "buycredits": {
+    "en": "Buy Credits",
+    "ar": "شراء الاعتمادات",
+    "ro": "Cumpără credite"
+  },
+  "buycreditsmsg": {
+    "en": "Get the credits you need with just a few clicks - Purchase credits effortlessly and unlock a world of possibilities!",
+    "ar": "احصل على الاعتمادات التي تحتاجها ببضع نقرات فقط - اشترِ الاعتمادات بسهولة وافتح عالمًا من الاحتمالات!",
+    "ro": "Obțineți creditele de care aveți nevoie cu doar câteva clicuri - Cumpărați credite fără efort și descoperiți o lume de posibilități!"
+  },
+  "buyer": {
+    "en": "Buyer",
+    "ar": "المشتري",
+    "ro": "Cumpărător"
+  },
+  "buynow": {
+    "en": "Buy Now",
+    "ar": "اشتري الآن",
+    "ro": "Cumpără acum"
+  },
+  "buysubscription": {
+    "en": "Buy Subscription",
+    "ar": "شراء الاشتراك",
+    "ro": "Cumpărați abonament"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "ar": "إلغاء",
+    "ro": "Anulează"
+  },
+  "cancellationpolicy": {
+    "en": "Cancellation Policy",
+    "ar": "سياسة الإلغاء",
+    "ro": "Politica de anulare"
+  },
+  "cancelled": {
+    "en": "Cancelled",
+    "ar": "ملغاة",
+    "ro": "Anulat"
+  },
+  "cancelledmsgone": {
+    "en": "Order has been cancelled",
+    "ar": "تم إلغاء الطلب",
+    "ro": "Comanda a fost anulată"
+  },
+  "cancelledmsgtwo": {
+    "en": "Funds have been added to wallet",
+    "ar": "تمت إضافة الأموال إلى المحفظة",
+    "ro": "Fondurile au fost adăugate în portofel"
+  },
+  "cancelledorders": {
+    "en": "Cancelled Orders",
+    "ar": "الطلبات الملغاة",
+    "ro": "Comenzi anulate"
+  },
+  "cart": {
+    "en": "Cart",
+    "ar": "سلة التسوق",
+    "ro": "Coș"
+  },
+  "categories": {
+    "en": "Categories",
+    "ar": "الفئات",
+    "ro": "Categorii"
+  },
+  "category": {
+    "en": "Category",
+    "ar": "الفئة",
+    "ro": "Categorie"
+  },
+  "certificatename": {
+    "en": "Certificate Name",
+    "ar": "اسم الشهادة",
+    "ro": "Numele certificatului"
+  },
+  "changepassword": {
+    "en": "Change Password",
+    "ar": "تغيير كلمة المرور",
+    "ro": "Schimbă parola"
+  },
+  "changeplan": {
+    "en": "Change Plan",
+    "ar": "تغيير الخطة",
+    "ro": "Schimbă planul"
+  },
+  "chat": {
+    "en": "Chat",
+    "ar": "دردشة",
+    "ro": "Chat"
+  },
+  "chatandinteractionline": {
+    "en": "Chat and Interaction: During this time, you won't be able to engage in chat or other interactive features on our platform.",
+    "ar": "الدردشة والتفاعل: خلال هذا الوقت، لن تتمكن من المشاركة في الدردشة أو الميزات التفاعلية الأخرى على منصتنا.",
+    "ro": "Chat și interacțiune: În acest timp, nu veți putea participa la chat sau alte funcții interactive pe platforma noastră."
+  },
+  "chatwith": {
+    "en": "Chat with",
+    "ar": "الدردشة مع",
+    "ro": "Chat cu"
+  },
+  "checked": {
+    "en": "Checked",
+    "ar": "تم التحقق",
+    "ro": "Verificat"
+  },
+  "checkout": {
+    "en": "checkout",
+    "ar": "الدفع",
+    "ro": "Plată"
+  },
+  "checkunnCheckall": {
+    "en": "Check/UnCheck All",
+    "ar": "تحديد / إلغاء تحديد الكل",
+    "ro": "Verifică/Deverifică tot"
+  },
+  "chooseacountry": {
+    "en": "choose a country",
+    "ar": "اختر دولة",
+    "ro": "Alege o țară"
+  },
+  "chooseacurrency": {
+    "en": "Choose a currency",
+    "ar": "اختر عملة",
+    "ro": "Alege o monedă"
+  },
+  "choosealanguage": {
+    "en": "Choose a language",
+    "ar": "اختر لغة",
+    "ro": "Alege o limbă"
+  },
+  "chooseavatar": {
+    "en": "Choose Avatar",
+    "ar": "اختر الصورة الرمزية",
+    "ro": "Alegeți avatar"
+  },
+  "chooseyourplan": {
+    "en": "Choose Your Plan",
+    "ar": "اختر خطتك",
+    "ro": "Alegeți planul"
+  },
+  "chooseyourplanmsg": {
+    "en": "Select from a range of tailored options to suit your needs and unlock an exceptional experience",
+    "ar": "اختر من مجموعة من الخيارات المخصصة لتناسب احتياجاتك وافتح تجربة استثنائية",
+    "ro": "Selectați dintr-o gamă de opțiuni personalizate pentru a vă satisface nevoile și a debloca o experiență excepțională"
+  },
+  "close": {
+    "en": "Close",
+    "ar": "إغلاق",
+    "ro": "Închide"
+  },
+  "closed": {
+    "en": "Closed",
+    "ar": "مغلق",
+    "ro": "Închis"
+  },
+  "combineyourwishlist": {
+    "en": "Combine your wishlist item in specific groups.",
+    "ar": "اجمع عناصر قائمة الرغبات الخاصة بك في مجموعات محددة.",
+    "ro": "Combină elementul listei de dorințe în grupuri specifice."
+  },
+  "comments": {
+    "en": "Comments",
+    "ar": "تعليقات",
+    "ro": "Comentarii"
+  },
+  "commission": {
+    "en": "Commission",
+    "ar": "العمولة",
+    "ro": "Comision"
+  },
+  "commissionmsg": {
+    "en": "Commission has been deducted.",
+    "ar": "تم خصم العمولة.",
+    "ro": "Comisionul a fost dedus."
+  },
+  "comparelist": {
+    "en": "Compare List",
+    "ar": "قائمة المقارنة",
+    "ro": "Listează comparațiile"
+  },
+  "completedorders": {
+    "en": "Completed Orders",
+    "ar": "الطلبات المكتملة",
+    "ro": "Comenzi finalizate"
+  },
+  "confirmdelete": {
+    "en": "Confirm Delete",
+    "ar": "تأكيد الحذف",
+    "ro": "Confirmă ștergerea"
+  },
+  "confirmdeleteque": {
+    "en": "Are you sure you want to delete?",
+    "ar": "هل أنت متأكد أنك تريد الحذف؟",
+    "ro": "Sunteți sigur că doriți să ștergeți?"
+  },
+  "confirmnewpassword": {
+    "en": "Confirm new password",
+    "ar": "تأكيد كلمة المرور الجديدة",
+    "ro": "Confirmă parola nouă"
+  },
+  "connecteddevice": {
+    "en": "Connected Device",
+    "ar": "الجهاز المتصل",
+    "ro": "Dispozitiv conectat"
+  },
+  "contact": {
+    "en": "Contact",
+    "ar": "اتصال",
+    "ro": "Contact"
+  },
+  "contactdetails": {
+    "en": "Contact Details",
+    "ar": "تفاصيل الاتصال",
+    "ro": "Detalii contact"
+  },
+  "contactme": {
+    "en": "Contact Me",
+    "ar": "اتصل بي",
+    "ro": "Contactați-mă"
+  },
+  "contactnumber": {
+    "en": "Contact Number",
+    "ar": "رقم الاتصال",
+    "ro": "Număr de contact"
+  },
+  "contactseller": {
+    "en": "Contact Seller",
+    "ar": "الاتصال بالبائع",
+    "ro": "Contactați vânzătorul"
+  },
+  "continue": {
+    "en": "Continue",
+    "ar": "استمر",
+    "ro": "Continuați"
+  },
+  "continuewithemail": {
+    "en": "Continue with email",
+    "ar": "المتابعة عبر البريد الإلكتروني",
+    "ro": "Continuați cu emailul"
+  },
+  "continuewithphonenumber": {
+    "en": "Continue with phone number",
+    "ar": "المتابعة عبر رقم الهاتف",
+    "ro": "Continuați cu numărul de telefon"
+  },
+  "continuewithyour": {
+    "en": "Continue with your",
+    "ar": "المتابعة مع",
+    "ro": "Continuați cu al dvs."
+  },
+  "country": {
+    "en": "Country",
+    "ar": "الدولة",
+    "ro": "Țară"
+  },
+  "coupondiscount": {
+    "en": "Coupon Discount",
+    "ar": "خصم الكوبون",
+    "ro": "Reducere cupon"
+  },
+  "coupons": {
+    "en": "Coupons",
+    "ar": "كوبونات",
+    "ro": "Cupoane"
+  },
+  "coursecontent": {
+    "en": "Course Content",
+    "ar": "محتوى الدورة",
+    "ro": "Conținutul cursului"
+  },
+  "coverimage": {
+    "en": "Cover Image",
+    "ar": "صورة الغلاف",
+    "ro": "Imagine de copertă"
+  },
+  "coverimageuploadmsg": {
+    "en": "Allowed JPG, GIF or PNG. Suggested Size 2000 by 250. MAX size 10 MB.",
+    "ar": "مسموح JPG، GIF أو PNG. الحجم المقترح 2000 × 250. الحد الأقصى للحجم 10 ميغابايت.",
+    "ro": "Permis JPG, GIF sau PNG. Dimensiunea sugerată 2000 pe 250. Dimensiune MAX 10 MB."
+  },
+  "createanewaccount": {
+    "en": "Create a new account",
+    "ar": "إنشاء حساب جديد",
+    "ro": "Creează un cont nou"
+  },
+  "createnewgroup": {
+    "en": "Create New Group",
+    "ar": "إنشاء مجموعة جديدة",
+    "ro": "Creează un grup nou"
+  },
+  "createteamlogin": {
+    "en": "Create login of this team member",
+    "ar": "إنشاء تسجيل دخول لهذا العضو",
+    "ro": "Creează login pentru acest membru al echipei"
+  },
+  "createteamloginmsg": {
+    "en": "Mark check if you want to create login of this team member",
+    "ar": "ضع علامة إذا كنت تريد إنشاء تسجيل دخول لهذا العضو",
+    "ro": "Bifați dacă doriți să creați un login pentru acest membru al echipei"
+  },
+  "creditemptydata": {
+    "en": "No Credits Details Found",
+    "ar": "لم يتم العثور على تفاصيل الاعتمادات",
+    "ro": "Nu s-au găsit detalii despre credite"
+  },
+  "credithistory": {
+    "en": "Credit Details",
+    "ar": "تفاصيل الاعتمادات",
+    "ro": "Detalii credit"
+  },
+  "creditpurchase": {
+    "en": "Credit Purchase",
+    "ar": "شراء الاعتمادات",
+    "ro": "Cumpărați credite"
+  },
+  "creditpurchasemsg": {
+    "en": "You have acquired additional credit for your account",
+    "ar": "لقد حصلت على ائتمان إضافي لحسابك",
+    "ro": "Ați obținut credit suplimentar pentru contul dvs."
+  },
+  "credits": {
+    "en": "Credits",
+    "ar": "الاعتمادات",
+    "ro": "Credite"
+  },
+  "cross": {
+    "en": "Cross",
+    "ar": "إغلاق",
+    "ro": "Închide"
+  },
+  "crosslisting": {
+    "en": "Cross Listing",
+    "ar": "إدراج متقاطع",
+    "ro": "Listare încrucișată"
+  },
+  "currency": {
+    "en": "Currency",
+    "ar": "العملة",
+    "ro": "Monedă"
+  },
+  "customizeschedule": {
+    "en": "Customize Schedule",
+    "ar": "تخصيص الجدول الزمني",
+    "ro": "Personalizați programul"
+  },
+  "customizeschedulemsg": {
+    "en": "In the customization options, you can choose the specific start and end dates for your ad campaign.",
+    "ar": "في خيارات التخصيص، يمكنك اختيار تواريخ البدء والانتهاء المحددة لحملة إعلاناتك.",
+    "ro": "În opțiunile de personalizare, puteți alege datele specifice de început și sfârșit pentru campania dvs. publicitară."
+  },
+  "dashboard": {
+    "en": "Dashboard",
+    "ar": "لوحة القيادة",
+    "ro": "Tablou de bord"
+  },
+  "date": {
+    "en": "Date",
+    "ar": "تاريخ",
+    "ro": "Dată"
+  },
+  "dateofbirth": {
+    "en": "Date of Birth",
+    "ar": "تاريخ الميلاد",
+    "ro": "Data nașterii"
+  },
+  "days": {
+    "en": "Day(s)",
+    "ar": "يوم (أيام)",
+    "ro": "Zi(le)"
+  },
+  "delete": {
+    "en": "Delete",
+    "ar": "حذف",
+    "ro": "Șterge"
+  },
+  "deleteaccount": {
+    "en": "Delete Account",
+    "ar": "حذف الحساب",
+    "ro": "Șterge contul"
+  },
+  "deletemsgheading": {
+    "en": "Are you sure you want to delete this account?",
+    "ar": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+    "ro": "Sunteți sigur că doriți să ștergeți acest cont?"
+  },
+  "deletemsgone": {
+    "en": "Please be aware that this action is irreversible and will result in the permanent removal of all data and settings",
+    "ar": "يرجى العلم أن هذا الإجراء لا رجعة فيه وسيؤدي إلى الإزالة الدائمة لجميع البيانات والإعدادات",
+    "ro": "Vă rugăm să fiți conștienți că această acțiune este ireversibilă și va duce la eliminarea permanentă a tuturor datelor și setărilor"
+  },
+  "deletemsgtwo": {
+    "en": "Once you delete account, there is no going back. Please be certain. Here's what you can expect:",
+    "ar": "بمجرد حذف الحساب، لا يمكن التراجع. يرجى التأكد. إليك ما يمكن توقعه:",
+    "ro": "Odată ce ștergeți contul, nu mai există cale de întoarcere. Vă rugăm să fiți sigur. Iată la ce vă puteți aștepta:"
+  },
+  "deletingaccount": {
+    "en": "Deleting Account",
+    "ar": "حذف الحساب",
+    "ro": "Ștergerea contului"
+  },
+  "deletingmsg": {
+    "en": "Deleting your account will remove all of your information. This cannot be undone.",
+    "ar": "حذف حسابك سيزيل كل معلوماتك. لا يمكن التراجع عن هذا.",
+    "ro": "Ștergerea contului dvs. va elimina toate informațiile dvs. Acest lucru nu poate fi anulat."
+  },
+  "deliveredorders": {
+    "en": "Delivered Orders",
+    "ar": "الطلبات المسلمة",
+    "ro": "Comenzi livrate"
+  },
+  "description": {
+    "en": "Description",
+    "ar": "وصف",
+    "ro": "Descriere"
+  },
+  "designanddevelopedby": {
+    "en": "Design & Developed by",
+    "ar": "تصميم وتطوير بواسطة",
+    "ro": "Design și dezvoltat de"
+  },
+  "details": {
+    "en": "Details",
+    "ar": "تفاصيل",
+    "ro": "Detalii"
+  },
+  "digitaldetail": {
+    "en": "Digital Detail",
+    "ar": "تفاصيل رقمية",
+    "ro": "Detaliu digital"
+  },
+  "digitalfile": {
+    "en": "Digital Files",
+    "ar": "الملفات الرقمية",
+    "ro": "Fișiere digitale"
+  },
+  "digitalfilemsg": {
+    "en": "(Only .zip file allowed)",
+    "ar": "(يُسمح فقط بملف .zip)",
+    "ro": "(Doar fișier .zip permis)"
+  },
+  "digitalmarkingrequirement": {
+    "en": "Digital Marking Requirement for Upload",
+    "ar": "متطلبات التمييز الرقمي للتحميل",
+    "ro": "Cerința de marcare digitală pentru încărcare"
+  },
+  "digitalmarkingrequirementmsg": {
+    "en": "Please make sure the item is labeled as 'Digital' before attempting to upload it.",
+    "ar": "يرجى التأكد من تمييز العنصر كـ 'رقمي' قبل محاولة تحميله.",
+    "ro": "Vă rugăm să vă asigurați că elementul este etichetat ca „Digital” înainte de a încerca să îl încărcați."
+  },
+  "discount": {
+    "en": "Discount",
+    "ar": "خصم",
+    "ro": "Reducere"
+  },
+  "displayname": {
+    "en": "Display Name",
+    "ar": "اسم العرض",
+    "ro": "Nume afișat"
+  },
+  "documenttype": {
+    "en": "Document Type",
+    "ar": "نوع المستند",
+    "ro": "Tip document"
+  },
+  "donhaveanaccount": {
+    "en": "Don’t have an account?",
+    "ar": "ليس لديك حساب؟",
+    "ro": "Nu aveți un cont?"
+  },
+  "downloaditem": {
+    "en": "Download Item",
+    "ar": "تحميل العنصر",
+    "ro": "Descarcă elementul"
+  },
+  "downloaditemlineone": {
+    "en": "Item will be available for download once the payment is made.",
+    "ar": "سيكون العنصر متاحًا للتنزيل بمجرد إجراء الدفع.",
+    "ro": "Elementul va fi disponibil pentru descărcare odată ce plata este efectuată."
+  },
+  "downloaditemlinetwo": {
+    "en": "If you have made the payment and item is not available please call support service.",
+    "ar": "إذا كنت قد أجريت الدفع ولم يكن العنصر متاحًا، يرجى الاتصال بخدمة الدعم.",
+    "ro": "Dacă ați efectuat plata și elementul nu este disponibil, vă rugăm să sunați la serviciul de asistență."
+  },
+  "doyouhavecoupon": {
+    "en": "Do you have any Coupon Code?",
+    "ar": "هل لديك أي رمز قسيمة؟",
+    "ro": "Aveți un cod de cupon?"
+  },
+  "duplicateitem": {
+    "en": "Duplicate Item",
+    "ar": "عنصر مكرر",
+    "ro": "Element duplicat"
+  },
+  "eancode": {
+    "en": "EAN Code",
+    "ar": "رمز EAN",
+    "ro": "Cod EAN"
+  },
+  "edit": {
+    "en": "Edit",
+    "ar": "تحرير",
+    "ro": "Editați"
+  },
+  "editprofile": {
+    "en": "Edit Profile",
+    "ar": "تعديل الملف الشخصي",
+    "ro": "Editați profilul"
+  },
+  "egbluegreen": {
+    "en": "Eg: Blue, green",
+    "ar": "مثل: أزرق، أخضر",
+    "ro": "Ex: Albastru, verde"
+  },
+  "email": {
+    "en": "Email",
+    "ar": "البريد الإلكتروني",
+    "ro": "Email"
+  },
+  "emptycart": {
+    "en": "Your Cart is Empty",
+    "ar": "سلة التسوق فارغة",
+    "ro": "Coșul dvs. este gol"
+  },
+  "emptydata": {
+    "en": "No Record Found",
+    "ar": "لم يتم العثور على سجل",
+    "ro": "Nu s-a găsit niciun record"
+  },
+  "enablediscountasalways": {
+    "en": "Enable Discount as always",
+    "ar": "تمكين الخصم كالمعتاد",
+    "ro": "Activați reducerea ca întotdeauna"
+  },
+  "enddate": {
+    "en": "End Date",
+    "ar": "تاريخ الانتهاء",
+    "ro": "Data de încheiere"
+  },
+  "endprice": {
+    "en": "End Price",
+    "ar": "سعر النهاية",
+    "ro": "Preț final"
+  },
+  "enternewpassword": {
+    "en": "Enter New Password",
+    "ar": "أدخل كلمة المرور الجديدة",
+    "ro": "Introduceți parola nouă"
+  },
+  "enterregistereddetail": {
+    "en": "Enter your registered email or phone with country code.",
+    "ar": "أدخل بريدك الإلكتروني المسجل أو الهاتف مع رمز البلد.",
+    "ro": "Introduceți emailul sau telefonul înregistrat cu codul de țară."
+  },
+  "errorheading": {
+    "en": "Error Heading",
+    "ar": "عنوان الخطأ",
+    "ro": "Titlu eroare"
+  },
+  "estimatedshippingfees": {
+    "en": "Estimated Shipping Fees",
+    "ar": "الرسوم المقدرة للشحن",
+    "ro": "Taxe de expediere estimate"
+  },
+  "experience": {
+    "en": "Experience",
+    "ar": "الخبرة",
+    "ro": "Experiență"
+  },
+  "experiencemsg": {
+    "en": "Please provide details of the experiences your team member have",
+    "ar": "يرجى تقديم تفاصيل عن الخبرات التي يمتلكها عضو فريقك",
+    "ro": "Vă rugăm să furnizați detalii despre experiențele pe care le are membrul echipei dvs."
+  },
+  "expired": {
+    "en": "Expired",
+    "ar": "منتهي الصلاحية",
+    "ro": "Expirat"
+  },
+  "Expiry": {
+    "en": "expiry",
+    "ar": "انتهاء الصلاحية",
+    "ro": "expirare"
+  },
+  "exporttopdf": {
+    "en": "Export to PDF",
+    "ar": "تصدير إلى PDF",
+    "ro": "Exportă în PDF"
+  },
+  "faq": {
+    "en": "FAQ",
+    "ar": "الأسئلة الشائعة",
+    "ro": "Întrebări frecvente"
+  },
+  "featuredseller": {
+    "en": "Featured Seller",
+    "ar": "البائع المميز",
+    "ro": "Vânzător prezentat"
+  },
+  "file": {
+    "en": "File",
+    "ar": "ملف",
+    "ro": "Fișier"
+  },
+  "filter": {
+    "en": "Filter",
+    "ar": "تصفية",
+    "ro": "Filtru"
+  },
+  "firstname": {
+    "en": "First Name",
+    "ar": "الاسم الأول",
+    "ro": "Prenume"
+  },
+  "flashsale": {
+    "en": "Flash Sale",
+    "ar": "تخفيضات سريعة",
+    "ro": "Reduceri fulger"
+  },
+  "followers": {
+    "en": "Followers",
+    "ar": "المتابعون",
+    "ro": "Urmăritori"
+  },
+  "following": {
+    "en": "Following",
+    "ar": "متابعة",
+    "ro": "Urmărire"
+  },
+  "for": {
+    "en": "For",
+    "ar": "لـ",
+    "ro": "Pentru"
+  },
+  "forgotpassword": {
+    "en": "Forgot Password?",
+    "ar": "هل نسيت كلمة المرور؟",
+    "ro": "Ai uitat parola?"
+  },
+  "freeshipping": {
+    "en": "Free Shipping",
+    "ar": "شحن مجاني",
+    "ro": "Transport gratuit"
+  },
+  "frequentlyaskedquestion": {
+    "en": "Frequently asked question",
+    "ar": "أسئلة شائعة",
+    "ro": "Întrebare frecventă"
+  },
+  "from": {
+    "en": "From",
+    "ar": "من",
+    "ro": "De la"
+  },
+  "fullname": {
+    "en": "Full Name",
+    "ar": "الاسم الكامل",
+    "ro": "Numele complet"
+  },
+  "goodbyemsg": {
+    "en": "You are now signed out of your account. For security purposes, it is recommended to close all browser windows. Stay safe",
+    "ar": "أنت الآن مسجل الخروج من حسابك. لأغراض الأمان، يوصى بإغلاق جميع نوافذ المتصفح. ابق آمنًا",
+    "ro": "Acum ești deconectat din contul tău. Din motive de securitate, este recomandat să închizi toate ferestrele browserului. Rămâi în siguranță"
+  },
+  "goodbyetitle": {
+    "en": "Goodbye! See you Soon.",
+    "ar": "وداعا! نراك قريبا.",
+    "ro": "La revedere! Ne vedem curând."
+  },
+  "gooffline": {
+    "en": "Go Offline",
+    "ar": "افصل الاتصال",
+    "ro": "Ieși offline"
+  },
+  "goofflinefor": {
+    "en": "Go Offline for",
+    "ar": "افصل الاتصال لـ",
+    "ro": "Ieși offline pentru"
+  },
+  "goonline": {
+    "en": "Go Online",
+    "ar": "اتصل بالإنترنت",
+    "ro": "Conectează-te online"
+  },
+  "goto": {
+    "en": "Go to",
+    "ar": "اذهب إلى",
+    "ro": "Mergi la"
+  },
+  "grandtotal": {
+    "en": "Grand Total",
+    "ar": "الإجمالي الكلي",
+    "ro": "Total general"
+  },
+  "height": {
+    "en": "Height",
+    "ar": "الارتفاع",
+    "ro": "Înălțime"
+  },
+  "historydeletion": {
+    "en": "History Deletion:",
+    "ar": "حذف التاريخ:",
+    "ro": "Ștergerea istoricului:"
+  },
+  "historydeletionmsg": {
+    "en": "Account history, including any preferences, saved items, and browsing history, will be completely erased.",
+    "ar": "سيتم مسح سجل الحساب بالكامل، بما في ذلك أي تفضيلات، وعناصر محفوظة، وسجل التصفح.",
+    "ro": "Istoricul contului, inclusiv orice preferințe, elemente salvate și istoricul de navigare, vor fi complet șterse."
+  },
+  "home": {
+    "en": "Home",
+    "ar": "الرئيسية",
+    "ro": "Acasă"
+  },
+  "houdoyouwanttopay": {
+    "en": "How do you want to pay?",
+    "ar": "كيف تريد الدفع؟",
+    "ro": "Cum vrei să plătești?"
+  },
+  "hours": {
+    "en": "Hours",
+    "ar": "ساعات",
+    "ro": "Ore"
+  },
+  "identityproofmsg": {
+    "en": "Please scan both front and backside and upload as one image",
+    "ar": "يرجى مسح كلا الجانبين الأمامي والخلفي وتحميلهما كصورة واحدة",
+    "ro": "Te rugăm să scanezi atât partea din față, cât și pe cea din spate și să încarci ca o singură imagine"
+  },
+  "ifany": {
+    "en": "(if any)",
+    "ar": "(إذا وجد)",
+    "ro": "(dacă există)"
+  },
+  "impressions": {
+    "en": "Impressions",
+    "ar": "الانطباعات",
+    "ro": "Impresii"
+  },
+  "inbox": {
+    "en": "Inbox",
+    "ar": "البريد الوارد",
+    "ro": "Mesaje primite"
+  },
+  "inches": {
+    "en": "inches",
+    "ar": "بوصات",
+    "ro": "inci"
+  },
+  "incrementamount": {
+    "en": "Increment Amount",
+    "ar": "مبلغ الزيادة",
+    "ro": "Sumă incrementată"
+  },
+  "insertdate": {
+    "en": "Insert Date",
+    "ar": "تاريخ المدخل",
+    "ro": "Data inserării"
+  },
+  "inserttype": {
+    "en": "Insert Type",
+    "ar": "نوع المدخل",
+    "ro": "Tip inserare"
+  },
+  "insights": {
+    "en": "Insights",
+    "ar": "أفكار",
+    "ro": "Perspective"
+  },
+  "institutename": {
+    "en": "Institute Name",
+    "ar": "اسم المعهد",
+    "ro": "Numele institutului"
+  },
+  "inventory": {
+    "en": "Inventory",
+    "ar": "المخزون",
+    "ro": "Inventar"
+  },
+  "inventorymanagement": {
+    "en": "Inventory Management",
+    "ar": "إدارة المخزون",
+    "ro": "Managementul inventarului"
+  },
+  "isforthe": {
+    "en": "is for the",
+    "ar": "هي لـ",
+    "ro": "este pentru"
+  },
+  "item": {
+    "en": "Item",
+    "ar": "عنصر",
+    "ro": "Articol"
+  },
+  "itemincart": {
+    "en": "Item In Cart",
+    "ar": "عنصر في السلة",
+    "ro": "Articol în coș"
+  },
+  "itemname": {
+    "en": "Item Name",
+    "ar": "اسم العنصر",
+    "ro": "Numele articolului"
+  },
+  "itemsold": {
+    "en": "Item Sold",
+    "ar": "تم بيع العنصر",
+    "ro": "Articol vândut"
+  },
+  "itemsoldmsg": {
+    "en": "Your item has been successfully sold",
+    "ar": "تم بيع العنصر الخاص بك بنجاح",
+    "ro": "Articolul tău a fost vândut cu succes"
+  },
+  "itemtype": {
+    "en": "Item Type",
+    "ar": "نوع العنصر",
+    "ro": "Tip articol"
+  },
+  "Ithasalifetimeduration": {
+    "en": "It has a lifetime duration.",
+    "ar": "له مدة استمرارية مدى الحياة.",
+    "ro": "Are o durată de viață."
+  },
+  "ithasalifetimeduration": {
+    "en": "It has a lifetime duration.",
+    "ar": "له مدة استمرارية مدى الحياة.",
+    "ro": "Are o durată de viață."
+  },
+  "lastname": {
+    "en": "Last Name",
+    "ar": "اسم العائلة",
+    "ro": "Nume de familie"
+  },
+  "lastseen": {
+    "en": "Last seen",
+    "ar": "آخر ظهور",
+    "ro": "Ultima vizită"
+  },
+  "lbs": {
+    "en": "lbs",
+    "ar": "رطل",
+    "ro": "lbs"
+  },
+  "Length": {
+    "en": "Length",
+    "ar": "الطول",
+    "ro": "Lungime"
+  },
+  "lifetime": {
+    "en": "Lifetime",
+    "ar": "مدى الحياة",
+    "ro": "Durată de viață"
+  },
+  "listing": {
+    "en": "Listing",
+    "ar": "قائمة",
+    "ro": "Listare"
+  },
+  "listingboosted": {
+    "en": "Listing Boosted",
+    "ar": "تم تعزيز القائمة",
+    "ro": "Listare îmbunătățită"
+  },
+  "listingboostedmsg": {
+    "en": "You have boosted your listing.",
+    "ar": "لقد قمت بتعزيز قائمتك.",
+    "ro": "Ați îmbunătățit listarea dvs."
+  },
+  "listingdetails": {
+    "en": "Listing Details",
+    "ar": "تفاصيل القائمة",
+    "ro": "Detalii listare"
+  },
+  "listinginquiry": {
+    "en": "Inquiry",
+    "ar": "استفسار",
+    "ro": "Întrebare"
+  },
+  "listings": {
+    "en": "Listings",
+    "ar": "القوائم",
+    "ro": "Listări"
+  },
+  "listingtype": {
+    "en": "Listing Type",
+    "ar": "نوع القائمة",
+    "ro": "Tip listare"
+  },
+  "loadmore": {
+    "en": "Load More",
+    "ar": "تحميل المزيد",
+    "ro": "Încarcă mai mult"
+  },
+  "login": {
+    "en": "Login",
+    "ar": "تسجيل الدخول",
+    "ro": "Autentificare"
+  },
+  "logout": {
+    "en": "Logout",
+    "ar": "تسجيل الخروج",
+    "ro": "Deconectare"
+  },
+  "lossofaccess": {
+    "en": "Loss of Access:",
+    "ar": "فقدان الوصول:",
+    "ro": "Pierderea accesului:"
+  },
+  "lossofaccessmsg": {
+    "en": "Access to the account will be revoked, and any linked advantages, rewards, or credits will be nullified.",
+    "ar": "سيتم إلغاء الوصول إلى الحساب، وأي مزايا أو مكافآت أو أرصدة مرتبطة ستصبح لاغية.",
+    "ro": "Accesul la cont va fi revocat și orice avantaje, recompense sau credite legate vor fi anulate."
+  },
+  "loyaltypoints": {
+    "en": "Loyalty Points",
+    "ar": "نقاط الولاء",
+    "ro": "Puncte de loialitate"
+  },
+  "manageinventory": {
+    "en": "Manage Inventory",
+    "ar": "إدارة المخزون",
+    "ro": "Gestionează inventarul"
+  },
+  "manageinventorylineone": {
+    "en": "1. Mark Check if you want to enable an automatic inventory system in this product.",
+    "ar": "1. ضع علامة إذا كنت تريد تمكين نظام جرد تلقائي في هذا المنتج.",
+    "ro": "1. Marcați dacă doriți să activați un sistem de inventar automat în acest produs."
+  },
+  "manageinventorylinetwo": {
+    "en": "2. If enabled, and you do not have balance product in stock user cannot buy it.",
+    "ar": "2. إذا تم تفعيلها، ولم يكن لديك منتج في المخزون، فلا يمكن للمستخدم شراؤه.",
+    "ro": "2. Dacă este activat și nu aveți produs în stoc, utilizatorul nu poate cumpăra."
+  },
+  "managelisting": {
+    "en": "Manage",
+    "ar": "إدارة",
+    "ro": "Gestionare"
+  },
+  "markasread": {
+    "en": "Mark as read",
+    "ar": "تحديد كمقروء",
+    "ro": "Marchează ca citit"
+  },
+  "markstatus": {
+    "en": "Mark Status",
+    "ar": "علامة الحالة",
+    "ro": "Marchează starea"
+  },
+  "markyouravailability": {
+    "en": "Mark Your Availability",
+    "ar": "حدد مدى توافرك",
+    "ro": "Marchează disponibilitatea ta"
+  },
+  "markyouravailabilitymsg": {
+    "en": "Your profile will be displayed according to the marked availability hours.",
+    "ar": "سيتم عرض ملفك الشخصي وفقًا لساعات التوافر المحددة.",
+    "ro": "Profilul dvs. va fi afișat conform orelor de disponibilitate marcate."
+  },
+  "max": {
+    "en": "Max",
+    "ar": "الأقصى",
+    "ro": "Maxim"
+  },
+  "maxcartqty": {
+    "en": "Max Cart Qty",
+    "ar": "الحد الأقصى للكمية في السلة",
+    "ro": "Cantitate maximă în coș"
+  },
+  "membersince": {
+    "en": "Member Since",
+    "ar": "عضو منذ",
+    "ro": "Membru din"
+  },
+  "message": {
+    "en": "Message",
+    "ar": "رسالة",
+    "ro": "Mesaj"
+  },
+  "metadescription": {
+    "en": "Meta description",
+    "ar": "وصف الميتا",
+    "ro": "Descriere meta"
+  },
+  "metakeywords": {
+    "en": "Meta keywords",
+    "ar": "الكلمات المفتاحية للميتا",
+    "ro": "Cuvinte cheie meta"
+  },
+  "metatitle": {
+    "en": "Meta title",
+    "ar": "عنوان الميتا",
+    "ro": "Titlu meta"
+  },
+  "min": {
+    "en": "Min",
+    "ar": "الأدنى",
+    "ro": "Minim"
+  },
+  "mincartqty": {
+    "en": "Min Cart Qty",
+    "ar": "الحد الأدنى للكمية في السلة",
+    "ro": "Cantitate minimă în coș"
+  },
+  "mtnpaymentid": {
+    "en": "MTN Payment ID",
+    "ar": "معرف الدفع MTN",
+    "ro": "ID plată MTN"
+  },
+  "myorders": {
+    "en": "My Orders",
+    "ar": "طلباتي",
+    "ro": "Comenzile mele"
+  },
+  "myprofile": {
+    "en": "My Profile",
+    "ar": "ملفي الشخصي",
+    "ro": "Profilul meu"
+  },
+  "name": {
+    "en": "Name",
+    "ar": "الاسم",
+    "ro": "Nume"
+  },
+  "needhelpwithyourassword": {
+    "en": "Need Help with your password?",
+    "ar": "تحتاج مساعدة بكلمة المرور؟",
+    "ro": "Ai nevoie de ajutor cu parola?"
+  },
+  "newpassword": {
+    "en": "New password",
+    "ar": "كلمة المرور الجديدة",
+    "ro": "Parolă nouă"
+  },
+  "nextpayment": {
+    "en": "Next payment",
+    "ar": "الدفع التالي",
+    "ro": "Următoarea plată"
+  },
+  "no": {
+    "en": "No",
+    "ar": "لا",
+    "ro": "Nu"
+  },
+  "noofrealbids": {
+    "en": "No of Real Bids",
+    "ar": "عدد العروض الحقيقية",
+    "ro": "Număr de oferte reale"
+  },
+  "norecordfound": {
+    "en": "Sorry, No Record Found",
+    "ar": "عذرا، لم يتم العثور على سجل",
+    "ro": "Ne pare rău, nu a fost găsit niciun record"
+  },
+  "notes": {
+    "en": "Notes",
+    "ar": "ملاحظات",
+    "ro": "Note"
+  },
+  "notification": {
+    "en": "Notification",
+    "ar": "إشعار",
+    "ro": "Notificare"
+  },
+  "notificationsettings": {
+    "en": "Notification Settings",
+    "ar": "إعدادات الإشعارات",
+    "ro": "Setări notificări"
+  },
+  "notsupportedcurrency": {
+    "en": "Not supported currency",
+    "ar": "عملة غير مدعومة",
+    "ro": "Monedă nesuportată"
+  },
+  "novalidaccount": {
+    "en": "No valid account information found.",
+    "ar": "لم يتم العثور على معلومات حساب صالحة.",
+    "ro": "Nu au fost găsite informații de cont valide."
+  },
+  "offline": {
+    "en": "Offline",
+    "ar": "غير متصل",
+    "ro": "Deconectat"
+  },
+  "on": {
+    "en": "on",
+    "ar": "في",
+    "ro": "pe"
+  },
+  "online": {
+    "en": "Online",
+    "ar": "متصل",
+    "ro": "Conectat"
+  },
+  "onlinestatus": {
+    "en": "Online Status",
+    "ar": "الحالة المتصلة",
+    "ro": "Stare online"
+  },
+  "optional": {
+    "en": "Optional",
+    "ar": "اختياري",
+    "ro": "Opțional"
+  },
+  "optionname": {
+    "en": "Option Name",
+    "ar": "اسم الخيار",
+    "ro": "Nume opțiune"
+  },
+  "or": {
+    "en": "or",
+    "ar": "أو",
+    "ro": "sau"
+  },
+  "ordercompletion": {
+    "en": "Order Completion",
+    "ar": "إكمال الطلب",
+    "ro": "Finalizarea comenzii"
+  },
+  "orderdetails": {
+    "en": "Order Details",
+    "ar": "تفاصيل الطلب",
+    "ro": "Detalii comandă"
+  },
+  "orderid": {
+    "en": "Order ID",
+    "ar": "معرف الطلب",
+    "ro": "ID comandă"
+  },
+  "orders": {
+    "en": "Orders",
+    "ar": "الطلبات",
+    "ro": "Comenzi"
+  },
+  "ordersummary": {
+    "en": "Order Summary",
+    "ar": "ملخص الطلب",
+    "ro": "Sumar comandă"
+  },
+  "otherimages": {
+    "en": "Other Images",
+    "ar": "صور أخرى",
+    "ro": "Alte imagini"
+  },
+  "sellermenuaccount": {
+    "en": "Account",
+    "ar": "الحساب",
+    "ro": "Cont"
+  },
+  "sellermenuaddress": {
+    "en": "Address",
+    "ar": "العنوان",
+    "ro": "Adresă"
+  },
+  "sellermenuadmanager": {
+    "en": "Ad Manager",
+    "ar": "مدير الإعلانات",
+    "ro": "Manager de anunțuri"
+  },
+  "sellermenuallcampaigns": {
+    "en": "All Campaigns",
+    "ar": "جميع الحملات",
+    "ro": "Toate campaniile"
+  },
+  "sellermenuallmisc": {
+    "en": "Misc",
+    "ar": "متنوع",
+    "ro": "Diverse"
+  },
+  "sellermenuavailability": {
+    "en": "Availability",
+    "ar": "التوافر",
+    "ro": "Disponibilitate"
+  },
+  "sellermenubilling": {
+    "en": "Billing",
+    "ar": "الفوترة",
+    "ro": "Facturare"
+  },
+  "sellermenubusiness": {
+    "en": "Business",
+    "ar": "العمل",
+    "ro": "Afaceri"
+  },
+  "sellermenucertificate": {
+    "en": "Certificate",
+    "ar": "الشهادة",
+    "ro": "Certificat"
+  },
+  "sellermenucontact": {
+    "en": "Contact",
+    "ar": "اتصال",
+    "ro": "Contact"
+  },
+  "sellermenuhowtouse": {
+    "en": "How to use",
+    "ar": "كيفية الاستخدام",
+    "ro": "Cum să folosești"
+  },
+  "sellermenuidentityproof": {
+    "en": "Identity Proof",
+    "ar": "إثبات الهوية",
+    "ro": "Dovada identității"
+  },
+  "sellermenunotification": {
+    "en": "Notification",
+    "ar": "إشعار",
+    "ro": "Notificare"
+  },
+  "sellermenuprofile": {
+    "en": "Profile",
+    "ar": "الملف الشخصي",
+    "ro": "Profil"
+  },
+  "sellermenusettings": {
+    "en": "Settings",
+    "ar": "الإعدادات",
+    "ro": "Setări"
+  },
+  "sellermenusocialmedia": {
+    "en": "Social Media Links",
+    "ar": "روابط وسائل التواصل الاجتماعي",
+    "ro": "Linkuri social media"
+  },
+  "sellermenuteammembers": {
+    "en": "Team Members",
+    "ar": "أعضاء الفريق",
+    "ro": "Membri echipă"
+  },
+  "sellermteammembersheading": {
+    "en": "Team Members Information",
+    "ar": "معلومات أعضاء الفريق",
+    "ro": "Informații membri echipă"
+  },
+  "sellerprofileheading": {
+    "en": "Personal Info",
+    "ar": "معلومات شخصية",
+    "ro": "Informații personale"
+  },
+  "sellerproifleuploadmsg": {
+    "en": "Allowed JPG, GIF or PNG. Suggested Pixel 200 by 200. MAX size 10 MB.",
+    "ar": "مسموح JPG، GIF أو PNG. البكسل المقترح 200 × 200. الحد الأقصى للحجم 10 ميغابايت.",
+    "ro": "Sunt permise JPG, GIF sau PNG. Pixel sugerat 200 pe 200. Dimensiune MAX 10 MB."
+  },
+  "sellersocialmediaheading": {
+    "en": "Social Media Links",
+    "ar": "روابط وسائل التواصل الاجتماعي",
+    "ro": "Linkuri social media"
+  },
+  "sellingtype": {
+    "en": "Selling Type",
+    "ar": "نوع البيع",
+    "ro": "Tip vânzare"
+  },
+  "sendamessage": {
+    "en": "Send a Message",
+    "ar": "أرسل رسالة",
+    "ro": "Trimite un mesaj"
+  },
+  "seo": {
+    "en": "SEO",
+    "ar": "تحسين محركات البحث",
+    "ro": "SEO"
+  },
+  "serviceperiod": {
+    "en": "Service period",
+    "ar": "فترة الخدمة",
+    "ro": "Perioada de serviciu"
+  },
+  "set": {
+    "en": "Set",
+    "ar": "تعيين",
+    "ro": "Setează"
+  },
+  "setincrement": {
+    "en": "Set Increment",
+    "ar": "تعيين الزيادة",
+    "ro": "Setează incrementul"
+  },
+  "setincrementmsg": {
+    "en": "(If unchecked, users can manually enter their bidding price during the bidding process. If checked, the bidding price will automatically increase based on user bids.)",
+    "ar": "(إذا لم يتم تحديده، يمكن للمستخدمين إدخال سعر العرض يدويًا أثناء عملية المزايدة. إذا تم تحديده، فسيزداد سعر العرض تلقائيًا بناءً على عروض المستخدمين.)",
+    "ro": "(Dacă este debifat, utilizatorii pot introduce manual prețul de licitare în timpul procesului de licitație. Dacă este bifat, prețul de licitare va crește automat pe baza ofertelor utilizatorilor.)"
+  },
+  "setupcustomtime": {
+    "en": "Setup Custom Time",
+    "ar": "إعداد وقت مخصص",
+    "ro": "Configurează timp personalizat"
+  },
+  "share": {
+    "en": "Share:",
+    "ar": "شارك:",
+    "ro": "Distribuie:"
+  },
+  "shiphere": {
+    "en": "Ship Here",
+    "ar": "اشحن هنا",
+    "ro": "Expediază aici"
+  },
+  "shippedorders": {
+    "en": "Shipped Orders",
+    "ar": "الطلبات المشحونة",
+    "ro": "Comenzi expediate"
+  },
+  "shipping": {
+    "en": "Shipping",
+    "ar": "الشحن",
+    "ro": "Expediere"
+  },
+  "shippingaddress": {
+    "en": "Shipping Address",
+    "ar": "عنوان الشحن",
+    "ro": "Adresă de expediere"
+  },
+  "shippingaddresstypehome": {
+    "en": "Home",
+    "ar": "منزل",
+    "ro": "Acasă"
+  },
+  "shippingaddresstypeoffice": {
+    "en": "Office",
+    "ar": "مكتب",
+    "ro": "Birou"
+  },
+  "shippingcity": {
+    "en": "City",
+    "ar": "مدينة",
+    "ro": "Oraș"
+  },
+  "shippingdetails": {
+    "en": "Shipping Details",
+    "ar": "تفاصيل الشحن",
+    "ro": "Detalii expediere"
+  },
+  "shippingeffectivedelivery": {
+    "en": "Address Type",
+    "ar": "نوع العنوان",
+    "ro": "Tip adresă"
+  },
+  "shippingLandmark": {
+    "en": "Land Mark",
+    "ar": "معلم",
+    "ro": "Punct de reper"
+  },
+  "shippingPhone": {
+    "en": "Phone Number",
+    "ar": "رقم الهاتف",
+    "ro": "Număr de telefon"
+  },
+  "shippingState": {
+    "en": "State",
+    "ar": "ولاية",
+    "ro": "Stat"
+  },
+  "shippingStreet": {
+    "en": "Street",
+    "ar": "شارع",
+    "ro": "Stradă"
+  },
+  "shippingZipcode": {
+    "en": "Zipcode",
+    "ar": "الرمز البريدي",
+    "ro": "Cod poștal"
+  },
+  "shipto": {
+    "en": "Ship to",
+    "ar": "الشحن إلى",
+    "ro": "Expediază către"
+  },
+  "shortdescription": {
+    "en": "Short Description",
+    "ar": "وصف مختصر",
+    "ro": "Descriere scurtă"
+  },
+  "showaddress": {
+    "en": "Show Address",
+    "ar": "إظهار العنوان",
+    "ro": "Afișează adresa"
+  },
+  "showemail": {
+    "en": "Show Email",
+    "ar": "إظهار البريد الإلكتروني",
+    "ro": "Afișează emailul"
+  },
+  "shownumbers": {
+    "en": "Show Number",
+    "ar": "إظهار الرقم",
+    "ro": "Afișează numărul"
+  },
+  "signin": {
+    "en": "Sign in",
+    "ar": "تسجيل الدخول",
+    "ro": "Autentificare"
+  },
+  "signintoyouraccount": {
+    "en": "Sign in to your account",
+    "ar": "تسجيل الدخول إلى حسابك",
+    "ro": "Autentifică-te în contul tău"
+  },
+  "signout": {
+    "en": "Sign out",
+    "ar": "تسجيل الخروج",
+    "ro": "Deconectare"
+  },
+  "signup": {
+    "en": "Sign up",
+    "ar": "إنشاء حساب",
+    "ro": "Înregistrare"
+  },
+  "similar": {
+    "en": "Similar",
+    "ar": "مماثل",
+    "ro": "Similar"
+  },
+  "skip": {
+    "en": "Skip",
+    "ar": "تخطي",
+    "ro": "Sari"
+  },
+  "sku": {
+    "en": "SKU",
+    "ar": "وحدة حفظ المخزون",
+    "ro": "SKU"
+  },
+  "socialprofiles": {
+    "en": "Social profiles",
+    "ar": "الملفات الشخصية الاجتماعية",
+    "ro": "Profiluri sociale"
+  },
+  "soldby": {
+    "en": "Sold by",
+    "ar": "باعها",
+    "ro": "Vândut de"
+  },
+  "soldquantity": {
+    "en": "Sold Quantity",
+    "ar": "الكمية المباعة",
+    "ro": "Cantitate vândută"
+  },
+  "sortno": {
+    "en": "Sort #",
+    "ar": "رقم الفرز",
+    "ro": "Sortare #"
+  },
+  "sorttype": {
+    "en": "Sort Type",
+    "ar": "نوع الفرز",
+    "ro": "Tip sortare"
+  },
+  "sourceurl": {
+    "en": "ID/URL Source",
+    "ar": "مصدر المعرف / الرابط",
+    "ro": "Sursă ID/URL"
+  },
+  "speciality": {
+    "en": "Speciality",
+    "ar": "التخصص",
+    "ro": "Specialitate"
+  },
+  "specialitymsg": {
+    "en": "Please provide details of the skills your team member have",
+    "ar": "يرجى تقديم تفاصيل المهارات التي يمتلكها عضو فريقك",
+    "ro": "Te rugăm să furnizezi detalii despre abilitățile pe care le are membrul echipei tale"
+  },
+  "srno": {
+    "en": "SR#",
+    "ar": "رقم تسلسلي",
+    "ro": "SR#"
+  },
+  "startdate": {
+    "en": "Start date",
+    "ar": "تاريخ البدء",
+    "ro": "Data de început"
+  },
+  "startprice": {
+    "en": "Start Price",
+    "ar": "سعر البدء",
+    "ro": "Preț de început"
+  },
+  "status": {
+    "en": "Status",
+    "ar": "الحالة",
+    "ro": "Stare"
+  },
+  "statuses": {
+    "en": "Statuses",
+    "ar": "الحالات",
+    "ro": "Stări"
+  },
+  "statusesmsg": {
+    "en": "Mark check if you want to live it",
+    "ar": "ضع علامة إذا كنت ترغب في تجربتها",
+    "ro": "Marchează dacă dorești să trăiești"
+  },
+  "store": {
+    "en": "Store",
+    "ar": "المتجر",
+    "ro": "Magazin"
+  },
+  "submit": {
+    "en": "Submit",
+    "ar": "إرسال",
+    "ro": "Trimite"
+  },
+  "subscribtionhistory": {
+    "en": "Subscribtion Details",
+    "ar": "تفاصيل الاشتراك",
+    "ro": "Detalii abonament"
+  },
+  "subscription": {
+    "en": "Subscription",
+    "ar": "الاشتراك",
+    "ro": "Abonament"
+  },
+  "subscriptionemptydata": {
+    "en": "No Subscription Details Found",
+    "ar": "لم يتم العثور على تفاصيل الاشتراك",
+    "ro": "Nu au fost găsite detalii despre abonament"
+  },
+  "subscriptionhistory": {
+    "en": "Subscription History",
+    "ar": "تاريخ الاشتراك",
+    "ro": "Istoric abonamente"
+  },
+  "subscriptionmsg": {
+    "en": "You have upgraded to our premium plan.",
+    "ar": "لقد تمت ترقيتك إلى خطتنا المميزة.",
+    "ro": "Ai trecut la planul nostru premium."
+  },
+  "subtotal": {
+    "en": "Sub Total",
+    "ar": "الإجمالي الفرعي",
+    "ro": "Subtotal"
+  },
+  "summary": {
+    "en": "Summary",
+    "ar": "ملخص",
+    "ro": "Sumar"
+  },
+  "switchtoadminpanel": {
+    "en": "Switch To Admin Panel",
+    "ar": "التحويل إلى لوحة الإدارة",
+    "ro": "Comutare la panoul de administrare"
+  },
+  "switchtosellerpanel": {
+    "en": "Switch To Seller Panel",
+    "ar": "التحويل إلى لوحة البائع",
+    "ro": "Comutare la panoul vânzătorului"
+  },
+  "teammember": {
+    "en": "Team Member",
+    "ar": "عضو الفريق",
+    "ro": "Membru echipă"
+  },
+  "theinvoiceissettoexpireon": {
+    "en": "The invoice is set to expire on",
+    "ar": "الفاتورة ستنتهي في",
+    "ro": "Factura este setată să expire pe"
+  },
+  "theinvoicewithnumber": {
+    "en": "The invoice with number",
+    "ar": "الفاتورة ذات الرقم",
+    "ro": "Factura cu numărul"
+  },
+  "thisdevice": {
+    "en": "This Device",
+    "ar": "هذا الجهاز",
+    "ro": "Acest dispozitiv"
+  },
+  "title": {
+    "en": "Title",
+    "ar": "العنوان",
+    "ro": "Titlu"
+  },
+  "to": {
+    "en": "To",
+    "ar": "إلى",
+    "ro": "Către"
+  },
+  "total": {
+    "en": "Total",
+    "ar": "الإجمالي",
+    "ro": "Total"
+  },
+  "totalamount": {
+    "en": "Total Amount",
+    "ar": "المبلغ الإجمالي",
+    "ro": "Sumă totală"
+  },
+  "transaction": {
+    "en": "Transaction",
+    "ar": "المعاملة",
+    "ro": "Tranzacție"
+  },
+  "tryagain": {
+    "en": "Try Again",
+    "ar": "حاول مرة أخرى",
+    "ro": "Încearcă din nou"
+  },
+  "type": {
+    "en": "Type",
+    "ar": "النوع",
+    "ro": "Tip"
+  },
+  "typeyourreplyhere": {
+    "en": "Type Your Reply Here",
+    "ar": "اكتب ردك هنا",
+    "ro": "Tastează răspunsul tău aici"
+  },
+  "unchecked": {
+    "en": "Unchecked",
+    "ar": "غير محدد",
+    "ro": "Nespecificat"
+  },
+  "unit": {
+    "en": "Unit",
+    "ar": "الوحدة",
+    "ro": "Unitate"
+  },
+  "update": {
+    "en": "Update",
+    "ar": "تحديث",
+    "ro": "Actualizează"
+  },
+  "updateimage": {
+    "en": "Update image",
+    "ar": "تحديث الصورة",
+    "ro": "Actualizează imaginea"
+  },
+  "updateprofileimage": {
+    "en": "Update Profile Image",
+    "ar": "تحديث صورة الملف الشخصي",
+    "ro": "Actualizează imaginea profilului"
+  },
+  "updatestatus": {
+    "en": "Update Status",
+    "ar": "تحديث الحالة",
+    "ro": "Actualizează starea"
+  },
+  "upload": {
+    "en": "Upload",
+    "ar": "تحميل",
+    "ro": "Încarcă"
+  },
+  "uploadimages": {
+    "en": "Upload Images",
+    "ar": "تحميل الصور",
+    "ro": "Încarcă imagini"
+  },
+  "uploadphoto": {
+    "en": "Upload Photo",
+    "ar": "تحميل الصورة",
+    "ro": "Încarcă fotografie"
+  },
+  "uploadphotomsg": {
+    "en": "Allowed JPG or PNG. Suggested Pixel 200 by 200. MAX size 10 MB.",
+    "ar": "مسموح JPG أو PNG. البكسل المقترح 200 × 200. الحد الأقصى للحجم 10 ميغابايت.",
+    "ro": "Sunt permise JPG sau PNG. Pixel sugerat 200 pe 200. Dimensiune MAX 10 MB."
+  },
+  "uploadproductimage": {
+    "en": "Upload Product Image",
+    "ar": "تحميل صورة المنتج",
+    "ro": "Încarcă imaginea produsului"
+  },
+  "use": {
+    "en": "Use",
+    "ar": "استخدام",
+    "ro": "Folosește"
+  },
+  "usersitemap": {
+    "en": "User Site Map",
+    "ar": "خريطة موقع المستخدم",
+    "ro": "Harta site-ului utilizatorului"
+  },
+  "validation": {
+    "en": "Validation",
+    "ar": "التحقق",
+    "ro": "Validare"
+  },
+  "value": {
+    "en": "Value",
+    "ar": "القيمة",
+    "ro": "Valoare"
+  },
+  "vendor": {
+    "en": "Vendor",
+    "ar": "البائع",
+    "ro": "Furnizor"
+  },
+  "verificationcode": {
+    "en": "Verification Code",
+    "ar": "رمز التحقق",
+    "ro": "Cod de verificare"
+  },
+  "verificationcodemsg": {
+    "en": "If you haven't received the verification code, please click on",
+    "ar": "إذا لم تتلقَ رمز التحقق، يرجى النقر على",
+    "ro": "Dacă nu ați primit codul de verificare, vă rugăm să faceți clic pe"
+  },
+  "verifiedstatus": {
+    "en": "Verified Status",
+    "ar": "الحالة المؤكدة",
+    "ro": "Stare verificată"
+  },
+  "verifyyour": {
+    "en": "Verify Your",
+    "ar": "تحقق من",
+    "ro": "Verifică-ți"
+  },
+  "version": {
+    "en": "Version",
+    "ar": "الإصدار",
+    "ro": "Versiune"
+  },
+  "video": {
+    "en": "Video",
+    "ar": "فيديو",
+    "ro": "Video"
+  },
+  "videodetails": {
+    "en": "Video Details",
+    "ar": "تفاصيل الفيديو",
+    "ro": "Detalii video"
+  },
+  "videolist": {
+    "en": "Video List",
+    "ar": "قائمة الفيديو",
+    "ro": "Listă video"
+  },
+  "videosource": {
+    "en": "Video Source",
+    "ar": "مصدر الفيديو",
+    "ro": "Sursă video"
+  },
+  "videourl": {
+    "en": "Video URL",
+    "ar": "رابط الفيديو",
+    "ro": "URL video"
+  },
+  "view": {
+    "en": "View",
+    "ar": "عرض",
+    "ro": "Vizualizează"
+  },
+  "viewdetails": {
+    "en": "View details",
+    "ar": "عرض التفاصيل",
+    "ro": "Vezi detalii"
+  },
+  "viewitem": {
+    "en": "View Item",
+    "ar": "عرض العنصر",
+    "ro": "Vezi articol"
+  },
+  "viewmore": {
+    "en": "View More",
+    "ar": "عرض المزيد",
+    "ro": "Vezi mai mult"
+  },
+  "viewprofile": {
+    "en": "View Profile",
+    "ar": "عرض الملف الشخصي",
+    "ro": "Vezi profil"
+  },
+  "views": {
+    "en": "Views",
+    "ar": "المشاهدات",
+    "ro": "Vizualizări"
+  },
+  "visibilityline": {
+    "en": "Visibility: Your online status will be hidden from other users for a Selected period.",
+    "ar": "الرؤية: سيتم إخفاء حالتك المتصلة عن المستخدمين الآخرين لفترة محددة.",
+    "ro": "Vizibilitate: Starea dvs. online va fi ascunsă altor utilizatori pentru o perioadă selectată."
+  },
+  "wallet": {
+    "en": "Wallet",
+    "ar": "المحفظة",
+    "ro": "Portofel"
+  },
+  "walletmsg": {
+    "en": "Wallet used to make purchased for Invoice number",
+    "ar": "تم استخدام المحفظة للشراء على الفاتورة رقم",
+    "ro": "Portofel utilizat pentru a face achiziții pentru factura cu numărul"
+  },
+  "walletused": {
+    "en": "Wallet Used",
+    "ar": "تم استخدام المحفظة",
+    "ro": "Portofel utilizat"
+  },
+  "websiteunderconstruction": {
+    "en": "Sorry, we're doing some work on the site",
+    "ar": "عذرًا، نحن نقوم ببعض الأعمال على الموقع",
+    "ro": "Ne pare rău, lucrăm la site"
+  },
+  "weight": {
+    "en": "Weight",
+    "ar": "الوزن",
+    "ro": "Greutate"
+  },
+  "welcome": {
+    "en": "Welcome",
+    "ar": "مرحبًا",
+    "ro": "Bine ai venit"
+  },
+  "weusecookies": {
+    "en": "We use cookies",
+    "ar": "نستخدم ملفات تعريف الارتباط",
+    "ro": "Folosim cookie-uri"
+  },
+  "whichwillremainvaliduntil": {
+    "en": "which will remain valid until",
+    "ar": "التي ستظل سارية حتى",
+    "ro": "care va rămâne valabil până la"
+  },
+  "Width": {
+    "en": "Width",
+    "ar": "العرض",
+    "ro": "Lățime"
+  },
+  "wishlist": {
+    "en": "Wishlist",
+    "ar": "قائمة الرغبات",
+    "ro": "Lista de dorințe"
+  },
+  "withanamountof": {
+    "en": "with an amount of",
+    "ar": "بمبلغ",
+    "ro": "cu o sumă de"
+  },
+  "withdrawal": {
+    "en": "Withdrawal",
+    "ar": "السحب",
+    "ro": "Retragere"
+  },
+  "withdrawalmsg": {
+    "en": "You initiated a withdrawal of funds",
+    "ar": "لقد بدأت سحب الأموال",
+    "ro": "Ai inițiat o retragere de fonduri"
+  },
+  "writereview": {
+    "en": "Write Review",
+    "ar": "اكتب تقييم",
+    "ro": "Scrie o recenzie"
+  },
+  "yearsofexperience": {
+    "en": "Years Of Experience",
+    "ar": "سنوات الخبرة",
+    "ro": "Ani de experiență"
+  },
+  "yes": {
+    "en": "Yes",
+    "ar": "نعم",
+    "ro": "Da"
+  },
+  "yesiamavailableforchat": {
+    "en": "Yes, I am available for Chat",
+    "ar": "نعم، أنا متاح للدردشة",
+    "ro": "Da, sunt disponibil pentru chat"
+  },
+  "yesiamavailableforsearch": {
+    "en": "Yes, I am available for search",
+    "ar": "نعم، أنا متاح للبحث",
+    "ro": "Da, sunt disponibil pentru căutare"
+  },
+  "youarebeingredirectedin": {
+    "en": "You are being redirected in",
+    "ar": "سيتم إعادة توجيهك خلال",
+    "ro": "Ești redirecționat în"
+  },
+  "youareoffline": {
+    "en": "You're offline. Check your connection.",
+    "ar": "أنت غير متصل. تحقق من اتصالك.",
+    "ro": "Ești offline. Verifică conexiunea."
+  },
+  "youhavereceived": {
+    "en": "You have received",
+    "ar": "لقد تلقيت",
+    "ro": "Ai primit"
+  },
+  "your": {
+    "en": "Your",
+    "ar": "خاصتك",
+    "ro": "Al tău"
+  },
+  "yourcurrentstatusis": {
+    "en": "Your current status is",
+    "ar": "حالتك الحالية هي",
+    "ro": "Starea ta actuală este"
+  },
+  "yourpromotiondatesare": {
+    "en": "Your Promotion Dates are",
+    "ar": "تواريخ الترقية الخاصة بك هي",
+    "ro": "Datele tale de promovare sunt"
+  },
+  "yourselectedpromotion": {
+    "en": "Your Selected Promotion",
+    "ar": "الترقية الذي اخترته",
+    "ro": "Promovarea selectată de tine"
+  },
+  "yousave": {
+    "en": "You Save",
+    "ar": "أنت توفر",
+    "ro": "Economisești"
+  },
+  "youshedulead": {
+    "en": "You Schedule ad campaign for",
+    "ar": "قمت بجدولة حملة إعلانية لـ",
+    "ro": "Ai programat o campanie publicitară pentru"
+  },
+  "recommended": {
+    "en": "Recommended",
+    "ar": "مُستَحسَن",
+    "ro": "Recomandat"
+  },
+  "search": {
+    "en": "Search",
+    "ar": "يبحث",
+    "ro": "Căutare"
+  },
+  "viewProfile": {
+    "en": "View Profile",
+    "ar": "عرض الملف الشخصي",
+    "ro": "Vizualizare profil"
+  },
+  "sellerinformation": {
+    "en": "Agent Information",
+    "ar": "معلومات الوكيل",
+    "ro": "Informații agent"
+  },
+  "related": {
+    "en": "Related",
+    "ar": "متعلق ب",
+    "ro": "Related"
+  },
+  "qa": {
+    "en": "Q/A",
+    "ar": "جواب السؤال",
+    "ro": "Întrebări/Răspunsuri"
+  },
+  "speaks": {
+    "en": "Speaks",
+    "ar": "يتحدث",
+    "ro": "Vorbește"
+  },
+  "sendmessage": {
+    "en": "Send Message",
+    "ar": "أرسل رسالة",
+    "ro": "Trimite mesaj"
+  },
+  "totalemployees": {
+    "en": "Employee",
+    "ar": " موظف",
+    "ro": "Angajat"
+  },
+  "foundingyear": {
+    "en": "Founding Year",
+    "ar": "سنة التأسيس",
+    "ro": "Anul înființării"
+  },
+  "readmore": {
+    "en": "Read More",
+    "ar": "اقرأ أكثر",
+    "ro": "Citește mai mult"
+  },
+  "overview": {
+    "en": "Overview",
+    "ar": "ملخص",
+    "ro": "Prezentare generală"
+  },
+  "searchbylocation": {
+    "en": "Search by location",
+    "ar": "البحث حسب الموقع",
+    "ro": "Căutare după locație"
+  },
+  "searchbynearyou": {
+    "en": "Search by near you",
+    "ar": "البحث عن طريق بالقرب منك",
+    "ro": "Căutare în apropiere"
+  },
+  "price": {
+    "en": "Price",
+    "ar": "سعر",
+    "ro": "Preț"
+  },
+  "rating": {
+    "en": "Rating",
+    "ar": "تقييم",
+    "ro": "Evaluare"
+  },
+  "reviews": {
+    "en": "Reviews",
+    "ar": "المراجعات",
+    "ro": "Recenzii"
+  },
+  "otherstore": {
+    "en": "Other Store",
+    "ar": "متجر آخر",
+    "ro": "Alt magazin"
+  },
+  "ourpartner": {
+    "en": "Our partner",
+    "ar": "شريكنا",
+    "ro": "Partenerul nostru"
+  },
+  "profile": {
+    "en": "Profile",
+    "ar": "حساب تعريفي",
+    "ro": "Profil"
+  },
+  "phonenumber": {
+    "en": "Phone Number",
+    "ar": "رقم التليفون",
+    "ro": "Număr de telefon"
+  },
+  "save": {
+    "en": "Save",
+    "ar": "يحفظ",
+    "ro": "Salvează"
+  },
+  "paymenthistory": {
+    "en": "Payment History",
+    "ar": "تاريخ الدفع",
+    "ro": "Istoric plăți"
+  },
+  "register": {
+    "en": "Register",
+    "ar": "يسجل",
+    "ro": "Înregistrare"
+  },
+  "qty": {
+    "en": "QTY",
+    "ar": "كمية",
+    "ro": "Cantitate"
+  },
+  "payableamount": {
+    "en": "Payable Amount",
+    "ar": "المبلغ المستحق",
+    "ro": "Sumă de plată"
+  },
+  "proceed": {
+    "en": "Proceed",
+    "ar": "يتابع",
+    "ro": "Continuă"
+  },
+  "paymentsuccessheading": {
+    "en": "Success",
+    "ar": "نجاح",
+    "ro": "Succes"
+  },
+  "paymentsuccessmsg": {
+    "en": "Thank you for your payment. The transaction has been successfully processed.",
+    "ar": "شكرا لتسديدك. تمت معالجة المعاملة بنجاح.",
+    "ro": "Mulțumim pentru plata efectuată. Tranzacția a fost procesată cu succes."
+  },
+  "placedon": {
+    "en": "Placed On",
+    "ar": "موضوع على",
+    "ro": "Plasat pe"
+  },
+  "paymentfailedheading": {
+    "en": "Failed",
+    "ar": "فشل",
+    "ro": "Eșuat"
+  },
+  "paymentfailedmsg": {
+    "en": "Sorry, your payment was not successful.",
+    "ar": "عذرا، لم ينجح الدفع.",
+    "ro": "Ne pare rău, plata nu a fost efectuată cu succes."
+  },
+  "sellermanageaccount": {
+    "en": "Manage Account",
+    "ar": "إدارة الحساب",
+    "ro": "Gestionare cont"
+  },
+  "sales": {
+    "en": "Sales",
+    "ar": "مبيعات",
+    "ro": "Vânzări"
+  },
+  "customers": {
+    "en": "Customers",
+    "ar": "عملاء",
+    "ro": "Clienți"
+  },
+  "profilecompletion": {
+    "en": "Profile Completion",
+    "ar": "اكتمال الملف الشخصي",
+    "ro": "Completarea profilului"
+  },
+  "positiverating": {
+    "en": "Positive Rating",
+    "ar": "تقييم إيجابي",
+    "ro": "Evaluare pozitivă"
+  },
+  "processingorders": {
+    "en": "Processing Orders",
+    "ar": "تجهيز الطلبات",
+    "ro": "Procesarea comenzilor"
+  },
+  "returnedorders": {
+    "en": "Returned Orders",
+    "ar": "الطلبات المرتجعة",
+    "ro": "Comenzi returnate"
+  },
+  "returncancellation": {
+    "en": "Return/Cancellation",
+    "ar": "العودة / الإلغاء",
+    "ro": "Returnare/Anulare"
+  },
+  "selectfile": {
+    "en": "Select File",
+    "ar": "حدد ملف",
+    "ro": "Selectează fișier"
+  },
+  "preview": {
+    "en": "Preview",
+    "ar": "معاينة",
+    "ro": "Previzualizare"
+  },
+  "saveandcontinue": {
+    "en": "Save and Continue",
+    "ar": "حفظ والمتابعة",
+    "ro": "Salvează și continuă"
+  },
+  "relatedlisting": {
+    "en": "Related Listing",
+    "ar": "قائمة ذات صلة",
+    "ro": "Listare relatedă"
+  },
+  "returnpolicy": {
+    "en": "Return Policy",
+    "ar": "سياسة العائدات",
+    "ro": "Politica de returnare"
+  },
+  "length": {
+    "en": "Length",
+    "ar": "الطول",
+    "ro": "Lungime"
+  },
+  "width": {
+    "en": "Width",
+    "ar": "العرض",
+    "ro": "Lățime"
+  },
+  "outofstock": {
+    "en": "Out of stock",
+    "ar": "إنتهى من المخزن",
+    "ro": "Stoc epuizat"
+  },
+  "outofstockintruction": {
+    "en": "In this section you may create Out of Stock statuses to be displayed on the Description page when It's out of stock.",
+    "ar": "في هذا القسم، يمكنك إنشاء حالات نفاد المخزون ليتم عرضها على صفحة الوصف عندما ينفد المخزون.",
+    "ro": "În această secțiune puteți crea stări de stoc epuizat pentru a fi afișate pe pagina Descriere atunci când nu sunt pe stoc."
+  },
+  "manageinventorylindone": {
+    "en": "1. Mark Check if you want to enable an automatic inventory system in this product.",
+    "ar": "1. حدد علامة صح إذا كنت تريد تمكين نظام المخزون التلقائي في هذا المنتج.",
+    "ro": "1. Marcați dacă doriți să activați un sistem de inventar automat pentru acest produs."
+  },
+  "manageinventorylindtwo": {
+    "en": "2. If enabled, and you do not have balance product in stock user cannot buy it.",
+    "ar": "2. إذا تم تمكينه، ولم يكن لديك منتج رصيد في المخزون، فلن يتمكن المستخدم من شرائه.",
+    "ro": "2. Dacă este activat și nu aveți produs în stoc, utilizatorul nu îl poate cumpăra."
+  },
+  "quantity": {
+    "en": "Quantity",
+    "ar": "كمية",
+    "ro": "Cantitate"
+  },
+  "provider": {
+    "en": "Provider",
+    "ar": "مزود",
+    "ro": "Furnizor"
+  },
+  "poster": {
+    "en": "Poster",
+    "ar": "ملصق",
+    "ro": "Poster"
+  },
+  "selectcustomdate": {
+    "en": "Select Custom Date",
+    "ar": "حدد التاريخ المخصص",
+    "ro": "Selectați data personalizată"
+  },
+  "credit": {
+    "en": "Credit",
+    "ar": "ائتمان",
+    "ro": "Credit"
+  },
+  "history": {
+    "en": "History",
+    "ar": "تاريخ",
+    "ro": "Istorie"
+  },
+  "read": {
+    "en": "Read",
+    "ar": "يقرأ",
+    "ro": "Citește"
+  },
+  "privacyline": {
+    "en": "Privacy: Disabling your online status enhances your privacy and allows you to browse our website without being visible to others.",
+    "ar": "الخصوصية: يؤدي تعطيل حالتك على الإنترنت إلى تعزيز خصوصيتك ويسمح لك بتصفح موقعنا دون أن تكون مرئيًا للآخرين.",
+    "ro": "Confidențialitate: Dezactivarea stării dvs. online vă îmbunătățește confidențialitatea și vă permite să navigați pe site-ul nostru fără a fi vizibil altora."
+  },
+  "paidby": {
+    "en": "Paid by",
+    "ar": "تدفع بواسطة",
+    "ro": "Plătit de"
+  }
+}

@@ -1,0 +1,101 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.forum.categoryModel
+@{
+    <title>Forum</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/forum">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/forum/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10 no-padding">
+
+        <div class="form ">
+            <div class="row padding30">
+                <div class="col-md-3">
+                    <div class="form-group">
+                    Category Icon
+                        <div class="button-wrapper">
+                            <label for="upload" class="btn btn-secondary" tabindex="0">
+                                <span class="d-none d-sm-block"> Upload icon</span>
+                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                <input type="file" id="upload" class="account-file-input" accept="image/png, image/jpeg" hidden="">
+                            </label>
+                            <img src="~/images/no-image.png" class="preview no-margin" id="uploadedAvatar" width="40px">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Category Name
+                        <input type="text">
+                    </div>    
+                    
+                    
+                  
+
+                </div>
+           
+
+                <div class="col-md-1"> <br /> <button>Save</button></div>
+            </div>
+            <hr />
+            <div class="table-responsive text-nowrap ">
+                <table id="ListingLoad" class="table">
+                    <thead class="table-secondary">
+                        <tr>
+
+
+
+                            <th style="width:150px"> Title</th>
+
+                            <th style="width:100px" class="text-center">Status</th>
+                            <th style="width:60px" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+
+                        @*     Loop start*@
+                        <tr>
+
+
+                            <td>
+
+                                <img class="rounded-circle"> title
+                            </td>
+
+                            <td class="text-center">
+                                status
+                            </td>
+                            <td class="center">
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+
+                                        <a class="dropdown-item" href="~/admin/cmssetup/add"><i class="bx bx-edit-alt me-1"></i> Edit Content</a>
+                                        <a class="dropdown-item"><i class="bx bx-trash"></i> In Active</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        @*     Loop End*@
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

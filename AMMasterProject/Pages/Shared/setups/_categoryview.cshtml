@@ -1,0 +1,235 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+                      
+
+
+<div class="category_list">
+                  
+<div id="dvfirstlevelcategory" class="first-level-ul">
+
+
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    var ishovercalled = false;
+    var secondlevelcontainer = 0;
+    var thirdlevelcontainer = 0;
+
+   
+   $(document).ready(function() {
+       // if(document.title == "Index") {
+       //     if (ishovercalled == false) {
+       //         Category_FirstLevel();
+       //         ishovercalled = true;
+       //     }
+       //}
+
+       //if(document.title == "Categories") {
+       //    if (ishovercalled == false) {
+             
+       //         Category_FirstLevel();
+
+       //        ishovercalled = true;
+       //     }
+       // }
+
+     
+
+        const dropdownElement = document.querySelector('.home-page');
+
+            if (dropdownElement && ishovercalled == false) {
+              Category_FirstLevel();
+              ishovercalled = true;
+            }
+    });
+
+    $("#acategorybtnmenu").mouseenter(function () {
+
+
+        if (ishovercalled == false) {
+
+            Category_FirstLevel();
+              ishovercalled = true;
+              
+        }
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+   function Category_FirstLevel() {
+  if (!Category_FirstLevel.dataFetched) { // check if data has already been fetched
+    $('[id*=dvfirstlevelcategory]').empty();
+
+    // add caching to the AJAX request
+    $.ajax({
+      type: "GET",
+      cache: true,
+      url: "/api/global/categoryfirstlevel",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+        var itemsHtml = "";
+        // set attributes or content to the new div
+
+        $.each(data, function (index, item) {
+          itemsHtml += '<div id="ashowmore" class="first-level-li" data-category-id="' + item.categoryId + '">';
+          itemsHtml += '<a class="first-level-a" href="/products/search?categoryid=' + item.categoryId + '">';
+          itemsHtml += '<span class="first-level-icon">';
+          itemsHtml += '<img src="' + item.icon + '" />';
+          itemsHtml += '</span>';
+          itemsHtml += item.categoryName;
+          itemsHtml += '</a>';
+          itemsHtml += '<div class="second-level-ul" id="dvsecondlevelcategory' + item.categoryId + '"></div>';
+          itemsHtml += '</div>';
+
+           const dropdownElement = document.querySelector('.category-page');
+
+            if (dropdownElement ) {
+            
+            
+            Category_Second_Level(item.categoryId);
+          }
+        });
+
+        $('[id*=dvfirstlevelcategory]').append(itemsHtml);
+
+
+
+        if (document.title != "Categories") {
+          $(document).on('mouseenter', '#ashowmore', function () {
+            var categoryId = $(this).data('category-id');
+            Category_Second_Level(categoryId);
+          });
+        }
+      },
+      error: function (response) {
+        console.log(response.responseText);
+      }
+    });
+
+    Category_FirstLevel.dataFetched = true; // set flag to true to indicate that data has been fetched
+  }
+};
+
+Category_FirstLevel.dataFetched = false; // set initial flag to false
+
+
+function Category_Second_Level(categoryId) {
+
+
+    
+        
+
+        $('[id*=dvsecondlevelcategory' + secondlevelcontainer + ']').empty();
+        secondlevelcontainer = categoryId;
+        $.ajax({
+            type: "GET",
+            cache: true, // disable caching
+            url: "/api/global/categorysecondlevel/" + categoryId,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+
+                var itemsHtml = "";
+                $.each(data, function(index, item) {
+
+
+                    itemsHtml += '<div class="second-level-li">';
+                    itemsHtml += '<a id="asecondshowmore" class="second-level-a" href="/products/search?categoryid=' + item.categoryId+  '"  data-category-id="' + item.categoryId + '">';
+
+                    itemsHtml += item.categoryName;
+                    itemsHtml += '</a>';
+
+
+                    itemsHtml += '<div class="third-level-ul" id="dvthirdlevelcategory' + item.categoryId + '"></div>';
+                    itemsHtml += '</div>';
+
+
+                    Category_Third_Level(item.categoryId)
+
+                });
+                $('[id*=dvsecondlevelcategory' + categoryId + ']').empty();
+                $('[id*=dvsecondlevelcategory' + categoryId + ']').append(itemsHtml);
+
+
+
+
+            },
+            error: function(response) {
+                console.log(response.responseText);
+            }
+        });
+
+
+
+         
+   
+};
+
+function Category_Third_Level(categoryId) {
+
+
+    $('[id*=dvthirdlevelcategory' + thirdlevelcontainer + ']').empty();
+    thirdlevelcontainer = categoryId;
+
+   
+    $.ajax({
+        type: "GET",
+        cache: true, // disable caching
+      url: "/api/global/categorysecondlevel/"+categoryId,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var itemsHtml = "";
+            $.each(data, function (index, item) {
+
+
+                itemsHtml += '<div class="third-level-li">';
+                itemsHtml += '<a class="third-level-a" href="/products/search?categoryid=' + item.categoryId + '">';
+                if (document.title == "Categories") {
+                    itemsHtml += '<img src="' + item.icon + '" />';
+                }
+
+                itemsHtml += item.categoryName;
+                itemsHtml += '</a>';
+
+
+                itemsHtml += '</div>';
+            });
+
+           
+            $('[id*=dvthirdlevelcategory' + categoryId + ']').append(itemsHtml);
+           
+            
+
+
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+        });
+
+    
+};
+
+</script>

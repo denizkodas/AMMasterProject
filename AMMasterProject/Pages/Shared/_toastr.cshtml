@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<script src="~/js/toastr.js" asp-append-version="true"></script>
+
+@*////Add*@
+
+@if (TempData["submit"] != null)
+{
+
+    <script>
+        toaster('@TempData["submit"]', 'toast-submit');
+    </script>
+
+}
+
+@if(TempData["success"]!=null)
+{
+
+    <script>
+        toaster('@TempData["success"]', 'toast-success');
+    </script>
+
+}
+
+
+@*////fail*@
+@if (TempData["fail"] != null)
+{
+  
+
+    <script>
+        toaster('@TempData["fail"]', 'toast-danger');
+    </script>
+ 
+
+}
+
+@*////delete*@
+@if (TempData["warning"] != null)
+{
+
+
+ 
+
+    <script>
+        toaster('@TempData["warning"]', 'toast-warning');
+    </script>
+
+}
+
+@*////update*@
+@if (TempData["info"] != null)
+{
+
+  
+
+
+    <script>
+        toaster('@TempData["info"]', 'toast-info');
+    </script>
+
+
+}
+@*sample*@
+@*<div class="toast-container " style="display:block;">
+    <div class="toast toast-success">
+
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
+        <div class="toast-body">
+            msg       </div>
+    </div>
+</div>*@
+
+
+
+
+
+@*toast-submit  add / Save / update ( on form save button )  *@
+
+@*toast-success: ( action successfullt done/ Like orders etc) *@
+
+@*toast-info: ( like infomaton regarding login already exits etc )  *@
+
+@*toast-warning: warning / alert ( like credit and subscription end ) *@
+
+@*toast-danger:   fail / delete ( for delete of any action fail )  *@
+
+

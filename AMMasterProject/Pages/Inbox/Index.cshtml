@@ -1,0 +1,525 @@
+﻿@page
+@model AMMasterProject.Pages.inbox.IndexModel
+@{
+    var usertype = @User.FindFirst("UserType")?.Value;
+
+    if (usertype != "Client")
+    {
+        Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+
+    }
+    <title>Inbox</title>
+}
+<link href="~/css/inbox.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<div class="home-page__content messages-page">
+    <div class="container-fluid h-100">
+        <div class="row px-0 h-100">
+            <!-- start message list section  -->
+            <div class="col-12 col-md-4 col-lg-5 col-xl-3 px-0 messages-page__list-scroll">
+
+                <div class="messages-page__header mb-0">
+                    <span data-translate="lastseen" class="notranslate messages-page__title">Chats</span>
+
+                </div>
+                <div class="messages-page__search mb-0">
+                    <div class="custom-form__search-wrapper">
+                        <input type="text" class="form-control custom-form" id="inboxsearch" placeholder="Search for user" autocomplete="off">
+                        <button id="btncontactsearch" class="custom-form__search-submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon svg-icon--search" viewBox="0 0 46.6 46.6">
+                                <path d="M46.1,43.2l-9-8.9a20.9,20.9,0,1,0-2.8,2.8l8.9,9a1.9,1.9,0,0,0,1.4.5,2,2,0,0,0,1.5-.5A2.3,2.3,0,0,0,46.1,43.2ZM4,21a17,17,0,1,1,33.9,0A17.1,17.1,0,0,1,33,32.9h-.1A17,17,0,0,1,4,21Z" fill="#f68b3c" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <ul class="messages-page__list pb-5 px-1 px-md-3" id="inboxmycontacts">
+                   
+
+                    @* //Loading jquery _contactlist.cshtml from inbox folder*@
+                </ul>
+            </div>
+            <!-- end message list section  -->
+            <!-- start content section  -->
+            <div class="chat col-12 col-md-8 col-lg-7 col-xl-6 px-0 pl-md-1" id="dvchatcontainer">
+                <div class="chat__container">
+                    <div class="chat__wrapper py-2 pt-mb-2 pb-md-3">
+
+
+                        @* ///load _userimageview from user folder*@
+                        <div id="dvUserImageViewContainer"></div>
+
+
+
+                        @*  chat data*@
+                        @* //loading message list from inbox folder _messagelist.cshtml class="chat__content"*@
+
+                       @* <button type="button" class="btn " id="btnloadmore">Load More</button>*@
+                        <div class="chat__content" id="scrollable-div">
+
+
+                            <ul class="chat__list-messages">
+                                <div id="InboxMessageContainerHistory"></div>
+                                <div id="InboxMessageContainer"></div>
+                            </ul>
+                        </div>
+
+
+
+                        <!-- msg textbox -->
+                        @*  <img id="inboximage"></img>*@
+                        <label id="inboxattachment" class="attachment-label" style="display:none">
+                            <span id="spanfilename" class="filename"></span>
+                            <span id="spanremove" class="btn"><i class="fa fa-times red-c"></i></span>
+                        </label>
+                        <div class="chat__send-container px-2 px-md-3 pt-1 pt-md-3">
+
+
+
+
+                            <div class="custom-form__send-wrapper">
+                                <input class="form-control custom-form" id="inboxmessage" placeholder="Type your message" autocomplete="off">
+                                <div class="custom-form__send-img">
+                                    <lable class="file-upload">
+                                        <span>
+
+                                            <svg data-name="Layer 2" class="svg-icon svg-icon--send-img" id="Layer_2" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg"><path d="M18,34.75A11.32,11.32,0,0,1,6.69,23.45V8A7.78,7.78,0,0,1,22.25,8V22.49a4.58,4.58,0,1,1-9.15,0V9.29a1.25,1.25,0,0,1,2.5,0v13.2a2.08,2.08,0,1,0,4.15,0V8A5.28,5.28,0,0,0,9.19,8V23.45A8.82,8.82,0,0,0,18,32.25c4.6,0,7.81-3.62,7.81-8.8V9.66a1.25,1.25,0,0,1,2.5,0V23.45C28.31,30,24,34.75,18,34.75Z" /></svg>
+
+                                           @* <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 45.7 45.7">
+                                                <path d="M6.6,45.7A6.7,6.7,0,0,1,0,39.1V6.6A6.7,6.7,0,0,1,6.6,0H39.1a6.7,6.7,0,0,1,6.6,6.6V39.1h0a6.7,6.7,0,0,1-6.6,6.6ZM39,4H6.6A2.6,2.6,0,0,0,4,6.6V39.1a2.6,2.6,0,0,0,2.6,2.6H39.1a2.6,2.6,0,0,0,2.6-2.6V6.6A2.7,2.7,0,0,0,39,4Zm4.7,35.1Zm-4.6-.4H6.6a2.1,2.1,0,0,1-1.8-1.1,2,2,0,0,1,.3-2.1l8.1-10.4a1.8,1.8,0,0,1,1.5-.8,2.4,2.4,0,0,1,1.6.7l4.2,5.1,6.6-8.5a1.8,1.8,0,0,1,1.6-.8,1.8,1.8,0,0,1,1.5.8L40.7,35.5a2,2,0,0,1,.1,2.1A1.8,1.8,0,0,1,39.1,38.7Zm-17.2-4H35.1l-6.5-8.6-6.5,8.4C22,34.6,22,34.7,21.9,34.7Zm-11.2,0H19l-4.2-5.1Z" fill="#f68b3c" />
+                                            </svg>*@
+                                        </span> <input type="file" id="fileInput" onchange="uploadFile()" />
+
+                                    </lable>
+
+
+
+
+                                </div>
+
+
+
+                                <button type="submit" id="btninboxsubmit" class="custom-form__send-submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon svg-icon--send" viewBox="0 0 45.6 45.6">
+                                        <g>
+                                            <path d="M20.7,26.7a1.4,1.4,0,0,1-1.2-.6,1.6,1.6,0,0,1,0-2.4L42.6.5a1.8,1.8,0,0,1,2.5,0,1.8,1.8,0,0,1,0,2.5L21.9,26.1A1.6,1.6,0,0,1,20.7,26.7Z" fill="#d87232" />
+                                            <path d="M29.1,45.6a1.8,1.8,0,0,1-1.6-1L19.4,26.2,1,18.1a1.9,1.9,0,0,1-1-1.7,1.8,1.8,0,0,1,1.2-1.6L43.3.1a1.7,1.7,0,0,1,1.8.4,1.7,1.7,0,0,1,.4,1.8L30.8,44.4a1.8,1.8,0,0,1-1.6,1.2ZM6.5,16.7l14.9,6.6a2,2,0,0,1,.9.9l6.6,14.9L41,4.6Z" fill="#d87232" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+     
+                        </div>
+                        <progress id="fileProgress" class="margin5" style="display:none"></progress>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- end content section  -->
+            <!-- start infos section  -->
+            <div id="dvUserViewContainer" class="m-none"> </div>
+            <!-- end infos section  -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<input type="hidden" id="hdnCurrentPage" value="2" />
+<input type="hidden" id="hdnNextPage" value="0" />
+
+<input type="hidden" id="fileInputHidden" />
+
+<script>
+
+
+
+    $chat = $(".chat");
+    $profile = $(".user-profile");
+
+    /* ===================================
+        Screen resize handler
+    ====================================== */
+    const smallDevice = window.matchMedia("(max-width: 767px)");
+    const largeScreen = window.matchMedia("(max-width: 1199px)");
+    smallDevice.addEventListener("change", handleDeviceChange);
+    largeScreen.addEventListener("change", handleLargeScreenChange);
+
+    handleDeviceChange(smallDevice);
+    handleLargeScreenChange(largeScreen);
+
+    function handleDeviceChange(e) {
+        if (e.matches) chatMobile();
+        else chatDesktop();
+    }
+
+    function handleLargeScreenChange(e) {
+        if (e.matches) profileToogleOnLarge();
+        else profileExtraLarge();
+    }
+
+    function chatMobile() {
+        $chat.addClass("chat--mobile");
+    }
+
+    function chatDesktop() {
+        $chat.removeClass("chat--mobile");
+    }
+
+    function profileToogleOnLarge() {
+        $profile.addClass("user-profile--large");
+    }
+
+    function profileExtraLarge() {
+        $profile.removeClass("user-profile--large");
+    }
+
+    /* ===================================
+        Events
+    ====================================== */
+
+    $(".messaging-member").click(function() {
+        $chat.fadeIn();
+        $chat.addClass("chat--show");
+    });
+
+ 
+    $(".chat__details").click(function() {
+        $profile.fadeIn();
+        $profile.addClass("user-profile--show");
+    });
+
+    $(".user-profile__close").click(function() {
+        $profile.removeClass("user-profile--show");
+    });
+
+    $(".messages-page__dark-mode-toogler").click(function() {
+        $("body").toggleClass("dark-mode");
+    });
+
+
+
+    ///load contact list
+
+
+
+
+    $(document).ready(function() {
+
+        var loginuserid = $("#hdnlogin").val();
+        contactlistload(loginuserid);
+    });
+
+
+    var previouselectedid = 0;
+    //chat chat id
+    $(document).on("click", ".inbox-ainboxcontactselectionID", function(e) {
+
+
+
+        e.preventDefault();
+
+
+
+        //remove previous active class
+
+        ///Assign active class to selected
+        $('#licontactlist-' + previouselectedid).removeClass(" active");
+
+
+
+
+
+        $("#dvloading").addClass("loading");
+
+
+
+
+        //var username = getUserName();
+        var chatid = $(this).data('chatid');
+        var loginuserid = $("#hdnlogin").val(); //define in _layout
+        var receiverid = $(this).data('contactid');
+        var messageid = $(this).data('messageid');
+
+        //var profileid = getProfileId(username);
+
+        ///store previous selected id to remove active status
+
+        previouselectedid = receiverid;
+
+
+        //remove unread class from li if exist
+
+
+        $('#licontactlist-' + receiverid).removeClass("new");
+
+        ///Assign active class to selected
+        $('#licontactlist-' + receiverid).addClass(" active");
+
+
+
+
+
+        var url = new URL(window.location.href);
+        var params = new URLSearchParams(url.search);
+
+        // Check if the query string ID already exists
+        if (params.has('chatid')) {
+            // If it does, update the value
+            params.set('chatid', chatid);
+
+        } else {
+            // If it doesn't, add it
+            params.append('chatid', chatid);
+
+        }
+
+        // Construct the new URL with the updated query string
+        var newUrl = url.origin + url.pathname + '?' + params.toString();
+
+        // Change the URL without refreshing the page
+        history.pushState({}, '', newUrl);
+
+        $('#inboxmessage').val("");
+        setTimeout(function() {
+
+            $('#InboxMessageContainer').empty();
+            messagelistload(chatid, loginuserid, 1);
+
+            userview(receiverid);
+            userimageview(receiverid);
+            //bind the memember data
+
+
+            clearupload();
+
+        }, 100);
+
+
+        setTimeout(function() {
+            var scrollableDiv = document.getElementById("scrollable-div");
+            scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
+        }, 1000);
+
+
+
+
+        ///assign class
+
+        $("#dvchatcontainer").removeClass();
+        $("#dvchatcontainer").addClass("chat chat--mobile chat--show");
+
+
+
+    //// update last message status
+        readstatusUpdate(messageid);
+    });
+
+
+
+
+    ///send message
+
+    $(document).on('click', '#btninboxsubmit', function() {
+
+        event.preventDefault(); // prevent the form from submitting normally
+        var message = $('#inboxmessage');
+
+
+        if (message.val() === "") {
+            message[0].setCustomValidity("Message is required.");
+            message[0].reportValidity();
+            return false;
+        }
+
+
+
+
+        var fileName = "";
+        var fileLink = "";
+        var fileInputHidden = document.getElementById("fileInputHidden");
+        if (fileInputHidden.value !== "") {
+            var file = JSON.parse(fileInputHidden.value);
+            console.log(file);
+            fileName = file.fileName;
+            fileLink = file.fileLink;
+
+        }
+
+
+        var loginuserid = $("#hdnlogin").val();
+        var chatid = getParameterByName("chatid");
+        sendmessage(chatid, loginuserid, message.val(), fileLink, fileName);
+        ///make text box clear after message
+        message.val("");
+        clearupload();
+
+
+    });
+
+
+    $('#inboxsearch').on('input', function() {
+        var loginuserid = $("#hdnlogin").val();
+        contactlistload(loginuserid, $(this).val());
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert("File size must be less than 5 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Inbox/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                console.log(data);
+                var fileInputHidden = $("#fileInputHidden")[0];
+                fileInputHidden.value = JSON.stringify(data);
+                var inboxattachment = $('#inboxattachment');
+                inboxattachment.show();
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                $('#spanfilename').text("File Attached: " + fileName);
+
+                var attachmentClass = getAttachmentClass(file.name);
+                inboxattachment.attr('class', "attachment-label " + attachmentClass);
+
+                $("#fileProgress").hide();
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+
+    $(document).on('click', '#spanremove', function() {
+        clearupload();
+
+    });
+
+    function sendmessage(chatid, loginuserid, message, filelink, filename) {
+
+        $.ajax({
+            type: "POST",
+            url: "/Controller/Inbox/sendmessage?chatid=" + chatid + '&message=' + message + '&attachment=' + filelink + '&filename=' + filename + '&loginuserid=' + loginuserid,
+
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                // handle success
+            },
+            error: function(response) {
+                console.log(response.responseText);
+            }
+        });
+    }
+
+
+
+    
+
+
+    function clearupload() {
+
+
+        $('#fileInputHidden').value = "";
+
+        $('#inboxattachment').hide();
+    }
+
+
+    ////load new chats
+
+    setInterval(function() {
+
+        var chatid = getParameterByName("chatid");
+        var loginuserid = $("#hdnlogin").val(); //define in _layout
+        var receiverid = 0;
+
+
+        messagelistload(chatid, loginuserid, 1);
+    }, 3000);
+
+
+
+
+
+  var scrollableDiv = document.getElementById("scrollable-div");
+var nextPage = 0;
+var currentPage = 0;
+
+// Load more messages when user scrolls to the top
+scrollableDiv.addEventListener("scroll", function() {
+    if (scrollableDiv.scrollTop == 0) {
+        var chatid = getParameterByName("chatid");
+        var loginuserid = $("#hdnlogin").val();
+        var receiverid = $(this).data('contactid');
+
+        currentPage = parseInt($("#hdnCurrentPage").val());
+        nextPage = parseInt($("#hdnNextPage").val());
+
+        if (isNaN(currentPage)) {
+            currentPage = 0;
+        }
+
+        nextPage = currentPage + 1;
+        $("#hdnCurrentPage").val(nextPage);
+
+        messagelistloadhistory(chatid, loginuserid, nextPage, function() {
+            // This function is called when the AJAX request is successful
+            // Append new messages to the top of the div
+            // Adjust the scrollTop to maintain the previous scroll position
+            // For example, if the previous scrollTop was 500, and we added 20 messages,
+            // then the new scrollTop should be 500 + height of 20 messages.
+            var newMessagesHeight = 0; // Replace with the height of the new messages
+            scrollableDiv.scrollTop = newMessagesHeight;
+        });
+    }
+});
+
+
+    //function() {
+    //    $chat.removeClass("chat--show");
+    //}
+
+</script>
+

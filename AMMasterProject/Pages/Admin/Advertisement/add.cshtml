@@ -1,0 +1,220 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Advertisement.addModel
+@{
+    ViewData["Title"] = "Advertisement";
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title>Advertisement</title>
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="@Model.advert.AdvertId" type="hidden" />
+    <div class="row no-margin">
+        <div class="col-md-2">
+            <!-- Sidebar Navigation -->
+            <div class="nav nav-pills flex-column flex-md-row mb-3">
+                <a class="nav-link" href="~/admin/advertisement/">
+                    <i class="bx bx-list-ul me-1"></i>
+                    List
+                </a>
+                <a class="nav-link" href="~/admin/advertisement/add">
+                    <i class="bx bx-plus me-1"></i>
+                    Add
+                </a>
+            </div>
+            <!-- End Sidebar Navigation -->
+        </div>
+        <div class="card col-md-10">
+            <!-- Advertisement Insertion Form -->
+            <div class="form padding30">
+                <div class="row">
+                    <div class="col-md-3 s-bold">
+                        Placement
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                Select Page
+                                <select asp-for="@Model.advert.AdsPageId" class="form-control">
+                                    <option disabled selected>-- Select --</option>
+                                    <option value="0">Home - Hero Banner</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-3 s-bold">
+                        Image
+                    </div>
+                    <div class="form-group col-md-9">
+                        Banner
+                        <div class="div">
+                            <div class="col-md-9 no-padding">
+                                Upload Image
+                                <br />
+                                <label class="file-upload">
+                                    <span class="btn btn-default l-grey-bg">
+                                        Select File
+                                    </span>
+                                    <input type="file" id="fileInputicon" onchange="uploadFileicon()" />
+                                    <progress id="fileProgressicon" class="w-100 margin5" style="display:none"></progress>
+                                </label>
+                                <img id="imgicon" src="@Model.advert.Image" class="preview" style="display: @(Model.advert.Image == null ? "none" : "block")" />
+                                <p class="grey-c">
+                                    Allowed JPG, GIF, or PNG. Suggested Pixel 200 by 200. MAX size 10 MB.
+                                </p>
+                                <br />
+                                <span id="spanfilenameicon" class="required"></span>
+                                <input type="hidden" asp-for="@Model.advert.Image" />
+                                <span asp-validation-for="@Model.advert.Image" class="required"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-3 s-bold">
+                        Dates
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                From
+                                <input type="date" asp-for="@Model.advert.StartDate" />
+                                <span asp-validation-for="@Model.advert.StartDate" class="required"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                To
+                                <input type="date" asp-for="@Model.advert.EndDate" />
+                                <span asp-validation-for="@Model.advert.EndDate" class="required"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-3 s-bold">
+                        External URL
+                        <span class="grey-c l-bold"> Optional</span>
+                    </div>
+                    <div class="col-md-6 no-padding">
+                        <div class="form-group checkright">
+                            <input type="checkbox" asp-for="@Model.advert.IsUrl" checked="@Model.advert.IsUrl" />
+                            <label id="IsUrl" asp-for="@Model.advert.IsUrl">Is URL</label>
+                            <p class="small grey-c paddingrf-15 marginrf-15"> Mark check if you want to redirect ad on specific URL</p>
+                        </div>
+                        <div class="form-group" id="dvurl" style="display:none">
+                            Add URL
+                            <input type="text" asp-for="@Model.advert.Url" />
+                            <span asp-validation-for="@Model.advert.Url" class="required"></span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-3 s-bold">
+                        Admin Remarks
+                    </div>
+                    <div class="col-md-6 no-padding">
+                        <div class="form-group">
+                            Type Remarks
+                            <input type="text" maxlength="500" asp-for="@Model.advert.Remarks" />
+                            <span asp-validation-for="@Model.advert.Remarks" class="required"></span>
+                        </div>
+                        <div class="form-group">
+                            Select Status
+                            <select asp-for="@Model.advert.Status" class="form-control">
+                                <option disabled selected>-- Select --</option>
+                                <option value="approved">Approved</option>
+                                <option value="pending">Pending</option>
+                                <option value="reject">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row paddingrf-15 right">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <!-- Submit Button -->
+                        <button type="submit">Save</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Advertisement Insertion Form -->
+        </div>
+    </div>
+</form>
+
+<!-- File Upload Script -->
+<script>
+    function uploadFileicon() {
+        var fileInput = $("#fileInputicon")[0];
+        $("#fileProgressicon").show();
+        var progressBar = $("#fileProgressicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+            $('#spanfilenameicon').text("Only jpeg or png files are allowed.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameicon').text("File size must be less than 10 MB.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgicon").attr("src", data.fileLink);
+                $('#advert_Image').val(data.fileLink);
+                $("#imgicon").show();
+                $("#fileProgressicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        // Handler for checkbox click event
+        $("#advert_IsUrl").on("click", function () {
+            if ($(this).is(":checked")) {
+                $("#dvurl").show();
+            } else {
+                $("#dvurl").hide();
+            }
+        });
+
+        // Handler for page load
+        if ($("#advert_IsUrl").is(":checked")) {
+            $("#dvurl").show();
+        } else {
+            $("#dvurl").hide();
+        }
+    });
+</script>

@@ -1,0 +1,189 @@
+﻿@using AMMasterProject
+@using AMMasterProject.ViewModel
+@model ProfileCompletionMetaData
+
+@{
+    
+    string Liprofile = Model.sellersetting != null && Model.sellersetting.Profile ? "formcompleted" : "formrequired";
+    string Libusiness ="" ;
+    string Licontact = "";
+    string Liaddress = "";
+    string Liidentity = "";
+    string Licertificate = "";
+    string Lisocialmedia = "";
+    string Liteammember = "";
+   
+    if(Model.adminsetting.BusinessInfo ==true)
+    {
+        Libusiness = "formrequired";
+        if(Model.sellersetting!=null && Model.sellersetting.BusinessInfo ==true)
+        {
+            Libusiness = "formcompleted";
+        }
+       
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.BusinessInfo == true)
+    {
+        Libusiness = "formcompleted";
+    }
+
+    if (Model.adminsetting.SecondaryContactDetails == true)
+    {
+        Licontact = "formrequired";
+        if (Model.sellersetting != null && Model.sellersetting.SecondaryContactDetails == true)
+        {
+            Licontact = "formcompleted";
+        }
+       
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.SecondaryContactDetails == true)
+    {
+        Licontact = "formcompleted";
+    }
+
+    if (Model.adminsetting.SecondaryAddress == true)
+    {
+        Liaddress = "formrequired";
+        if (Model.sellersetting != null &&  Model.sellersetting.SecondaryAddress == true)
+        {
+            Liaddress = "formcompleted";
+        }
+       
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.SecondaryAddress == true)
+    {
+        Liaddress = "formcompleted";
+    }
+
+    if (Model.adminsetting.IdentityProof == true)
+    {
+        Liidentity = "formrequired";
+        if (Model.sellersetting != null && Model.sellersetting.IdentityProof == true)
+        {
+            Liidentity = "formcompleted";
+        }
+        
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.IdentityProof == true)
+    {
+        Liidentity = "formcompleted";
+    }
+
+    if (Model.adminsetting.Certificate == true)
+    {
+        Licertificate = "formrequired";
+        if (Model.sellersetting != null &&  Model.sellersetting.Certificate == true)
+        {
+            Licertificate = "formcompleted";
+        }
+       
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.Certificate == true)
+    {
+        Licertificate = "formcompleted";
+    }
+
+    if (Model.adminsetting.SocialMediaLink == true)
+    {
+        Lisocialmedia = "formrequired";
+        if (Model.sellersetting != null &&  Model.sellersetting.SocialMediaLink == true)
+        {
+            Lisocialmedia = "formcompleted";
+        }
+       
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.SocialMediaLink == true)
+    {
+        Lisocialmedia = "formcompleted";
+    }
+
+    if (Model.adminsetting.TeamMemmber == true)
+    {
+        Liteammember = "formrequired";
+        if (Model.sellersetting != null && Model.sellersetting.TeamMemmber == true)
+        {
+            Liteammember = "formcompleted";
+        }
+        
+    }
+    else if (Model.sellersetting != null && Model.sellersetting.TeamMemmber == true)
+    {
+        Liteammember = "formcompleted";
+    }
+}
+
+<ul class="nav nav-pills flex-column col-md-2 mb-3">
+
+ 
+   
+    <li class="nav-item @Liprofile">
+        <a class="nav-link active" href="~/Seller/profile">
+            <i class="bx bx-user me-1"></i>
+            <span class="notranslate" data-translate="sellermenuprofile">Profile</span>
+            
+            
+           
+            @*<i data-bs-toggle="tooltip" data-bs-placement="bottom"  class="bx bxs-info-circle float-end red-c formrequired"></i>*@
+        </a>
+    </li>
+    <li class="nav-item @Libusiness">
+        <a class="nav-link" href="~/Seller/profile/business"> <i class='bx bx-briefcase me-1'></i>
+
+            <span class="notranslate" data-translate="sellermenubusiness">Buisness Info</span>
+            
+
+           
+        </a>
+    </li>
+    <li class="nav-item @Licontact">
+        <a class="nav-link" href="~/Seller/profile/contact"> <i class='bx bx-phone me-1'></i>
+
+            <span class="notranslate" data-translate="sellermenucontact"> Contact</span>
+             </a>
+    </li>
+    <li class="nav-item @Liaddress">
+        <a class="nav-link" href="~/Seller/profile/address"> <i class='bx bx-map-pin me-1'></i>
+            
+            <span class="notranslate" data-translate="sellermenuaddress"> Address</span>
+            </a>
+    </li>
+    @*   Identity Proof *@
+
+    <li class="nav-item @Liidentity">
+        <a class="nav-link" href="~/Seller/profile/identity"><i class='bx bx-id-card me-1'></i> 
+            
+        
+
+                <span class="notranslate" data-translate="sellermenuidentityproof">  Identity Proof</span>
+             
+    
+        </a>
+    </li>
+    <li class="nav-item @Licertificate">
+        <a class="nav-link" href="~/Seller/profile/certificate">  <i class='bx bx-certification me-1'></i>
+
+            <span class="notranslate" data-translate="sellermenucertificate">Certificate</span>
+
+             </a>
+    </li>
+    <li class="nav-item @Lisocialmedia">
+        <a class="nav-link" href="~/Seller/profile/socialmedialinks"><i class="bx bx-link-alt me-1"></i>
+            <span class="notranslate" data-translate="sellermenusocialmedia"> Social Media Links</span>
+
+        </a>
+    </li>
+    <li class="nav-item @Liteammember">
+        <a class="nav-link" href="~/Seller/profile/team">  <i class='bx bx-user-plus me-1'></i>
+
+            <span class="notranslate" data-translate="sellermenuteammembers"> Team Members</span>
+
+             </a>
+    </li>
+    <li class="nav-item @Liteammember">
+        <a class="nav-link" href="~/Seller/profile/Availability">  <i class='bx bx-calendar me-1'></i>
+            <span class="notranslate" data-translate="sellermenuavailability"> Availability</span>
+
+
+        </a>
+    </li>
+</ul>

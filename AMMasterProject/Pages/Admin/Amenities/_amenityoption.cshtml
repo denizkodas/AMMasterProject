@@ -1,0 +1,255 @@
+﻿@model List<ProductAmenitiesOptionsV2>
+
+
+
+<div id="dvoptions" class="overlay-view">
+    <div class="popup padding15">
+
+        <div class="popup-heading">
+            Options
+
+            <a href="#" class="close-back" onclick="$('#dvoptions').hide()"></a>
+        </div>
+        <div class="options-container form">
+            @* <input type="text" maxlength="100" id="txtoptions" name="txtoptions" placeholder="Options comma separated Blue, Green" required>
+            <span class="required"></span>*@
+            <div class="form-group">
+                Options
+                <input type="text" id="txtoption" maxlength="100" placeholder="comma separated Blue, Green" value="">
+                <span class="required"></span>
+            </div>
+
+
+        </div>
+     @*    <div class="form-group">
+            Price <small>this amount will add up in your basic product price</small>
+            <div class="options-container">
+              
+                <input id="txtprice" type="text" maxlength="100" value="" inputmode="numeric">
+                <span class="required"></span>
+            </div>
+        </div> *@
+        <div class="form-group">
+
+            <button type="submit" id="attributeadd">Add </button>
+
+            <br />
+        </div>
+        <hr />
+        <h5>
+            List of option
+        </h5>
+        <div class="option-row">
+
+            <div class="card">
+
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead class="table-secondary">
+                            <tr>
+                                <td>Option</td>
+                            @*     <td>Price</td> *@
+                                <td>Image (optional)</td>
+                                <td>Action</td>
+
+                            </tr>
+
+                        </thead>
+                        @if (Model != null)
+                        {
+                            @foreach (var option in Model)
+                            {
+
+
+                                <tr>
+                                    <td>
+                                        <input type="text" class="txtoption" maxlength="100" placeholder="Options" value="@option.ProductAmenitiesName">
+                                    </td>
+                                   @*  <td>
+                                        <input class="txtprice" type="text" maxlength="100" inputmode="numeric" value="@option.Attributeprice">
+                                    </td> *@
+
+
+                                    <td>
+                                        <progress id="fileProgress_@option.ProductAmenitiesOptionId" class="w-100 margin5" style="display:none"></progress>
+                                        <span class="float-start">
+                                            <img id="attributeimage_@option.ProductAmenitiesOptionId" class="listing-img-preview attributeoptionimage" style="display:@(option.ProductAmenitiesIcon == null ? "none" : "block")" src="@(option.ProductAmenitiesIcon != null ? option.ProductAmenitiesIcon : "")">
+                                        </span>
+                                        <span class="float-end">
+                                            @* <lable class="file-upload" >
+                                                <span class="btn l-grey-bg grey-c">Select Image</span>
+
+                                    </lable>  *@ <input type="file" class="fileInput" data-rowindex="@option.ProductAmenitiesOptionId" onchange="uploadFile(this)" />
+
+                                        </span>
+
+                                        <span id="validationImage_@option.ProductAmenitiesOptionId"></span>
+                                    </td>
+                                    <td>
+                                        <a class="btn small padding5 grey-bg white-c aoptionupdate" data-optionid="@option.ProductAmenitiesOptionId">Update</a>
+                                        <a class="btn small padding5 grey-bg white-c aoptiondelete" data-optionid="@option.ProductAmenitiesOptionId">Delete</a>
+                                  
+                                    </td>
+
+
+
+
+
+
+
+                                </tr>
+                            }
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#attributeadd').click(function () {
+
+
+            var optiontext = $('#txtoption').val();
+            // var price = $('#txtprice').val();
+            var attributeguid = $('#hdnattributeguid').val();
+            var attributeoptionid = '0';
+
+            optionusert(optiontext, attributeguid, attributeoptionid);
+            
+        });
+    });
+
+
+
+    $(document).ready(function () {
+        // Use event delegation to handle clicks on '.aoptionupdate' links
+        $('.option-row').on('click', '.aoptionupdate', function () {
+            var optionRow = $(this).closest('tr');
+            var optiontext = optionRow.find('.txtoption').val();
+            // var price = optionRow.find('.txtprice').val();
+            // Find the corresponding image element and get its 'src' attribute
+            var image = optionRow.find('.attributeoptionimage').attr('src');
+
+            var attributeguid = $('#hdnattributeguid').val();
+            var attributeoptionid = $(this).data('optionid');
+
+           
+
+            optionusert(optiontext, attributeguid, attributeoptionid, image);
+
+        });
+    });
+
+    $(document).ready(function () {
+        $('.aoptiondelete').click(function () {
+            var attributeoptionid = $(this).data('optionid');
+            var attributeguid = $('#hdnattributeguid').val();
+
+            $.ajax({
+                url: '/Controller/Product/Amenityoptiondelete',
+                type: 'POST',
+                data: {
+                    attributeguid: attributeguid,
+                    attributeoptionid: attributeoptionid
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    optionview(attributeguid);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+
+
+    function optionusert(optiontext, attributeguid, attributeoptionid, image) {
+        $.ajax({
+            url: '/Controller/Product/Amenityoptionusert',
+            type: 'POST',
+            data: {
+                optiontext: optiontext,
+              
+                attributeguid: attributeguid,
+                attributeoptionid: attributeoptionid,
+                image: image
+            },
+            success: function (response) {
+                // Handle the success response here
+
+                optionview(attributeguid);
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                // Handle the error response here
+                console.log(errorThrown);
+
+
+            }
+        });
+    }
+
+
+    function uploadFile(input) {
+        var fileInput = input;
+        var rowIndex = $(fileInput).data('rowindex'); // Get the row index from data attribute
+        var progressBar = $("#fileProgress_" + rowIndex)[0]; // Use a unique ID for each progress bar
+        progressBar.style.display = "block";
+        progressBar.value = 60; // You can set the initial progress value here
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png)/)) {
+            $('#validationImage_' + rowIndex).text("Only jpeg or png files are allowed.");
+            progressBar.style.display = "none";
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            progressBar.style.display = "none";
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+
+                // Set the image source for the specific row
+                $("#attributeimage_" + rowIndex).attr("src", data.fileLink);
+                $("#attributeimage_" + rowIndex).show();
+                // Clear any validation messages for this row
+                $('#validationImage_' + rowIndex).text("");
+
+                progressBar.style.display = "none";
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+</script>

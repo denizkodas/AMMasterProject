@@ -1,0 +1,32 @@
+﻿@using AMMasterProject.ViewModel;
+@model RazorPayOptionsModel;
+
+
+<form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
+    <input type="hidden" name="key_id" value="@Model.Key" />
+    <input type="hidden" name="amount" value=@Model.AmountInSubUnits />
+    <input type="hidden" name="order_id" value="@Model.OrderId"/>
+    <input type="hidden" name="name" value="@Model.Name" />
+    <input type="hidden" name="description" value="@Model.Description" />
+    <input type="hidden" name="image" value="@Model.ImageLogUrl" />
+    <input type="hidden" name="prefill[name]" value="@Model.ProfileName" />
+    <input type="hidden" name="prefill[contact]" value="@Model.ProfileContact" />
+    <input type="hidden" name="prefill[email]" value="@Model.ProfileEmail" />
+   @*  <input type="hidden" name="notes[shipping address]" value="@Model." /> *@
+    <input type="hidden" name="callback_url" value="@Model.SuccessURL" />
+
+
+    <input type="hidden" name="cancel_url" value="@Model.CancelURL" />
+    <button id="razorpaySubmitButton" hidden>
+        <span class="notranslate" data-translate="submit">  Submit</span>
+
+        
+        </button>
+</form>
+
+<script>
+    // Automatically submit the form when the page has loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("razorpaySubmitButton").click();
+    });
+</script>

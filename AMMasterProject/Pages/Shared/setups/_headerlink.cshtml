@@ -1,0 +1,49 @@
+﻿<ul id="dvheaderlinks" class="header-pages"></ul>
+
+
+<script>
+    $(document).ready(function() {
+        // Check if the header links are already in the cache
+        var cachedData = localStorage.getItem("headerLinks");
+        if (cachedData !== null) {
+            // The data is in the cache, so parse and use it
+            var data = JSON.parse(cachedData);
+            generateHeaderLinks(data);
+        } else {
+            // The data is not in the cache, so make an AJAX call to get it
+            $.ajax({
+                url: "/api/Global/Headerlinks",
+                type: "GET",
+                dataType: "json",
+                cache: true,
+                success: function(data) {
+                    // Store the data in the cache for future use
+                    localStorage.setItem("headerLinks", JSON.stringify(data));
+                    generateHeaderLinks(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        }
+
+        // Function to generate the HTML for the header links
+        function generateHeaderLinks(data) {
+            var html = "";
+            $.each(data, function(index, item) {
+                if (item.IsURL==true) {
+                    html += '<li><a  href="' + item.url + '">' + item.pageCategory1 + '</a></li>';
+                } else {
+                    var url = item.pageCategory1 + "/" + item.pageCategory1 + "/page";
+                    html += '<li><a href="' + url + '">' + item.pageCategory1 + '</a></li>';
+                }
+            });
+            // Set the HTML of the header links container to the generated HTML
+            $("#dvheaderlinks").html(html);
+        }
+    });
+</script>
+
+
+
+

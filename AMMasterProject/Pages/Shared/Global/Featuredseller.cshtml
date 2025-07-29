@@ -1,0 +1,54 @@
+﻿@using AMMasterProject.ViewModel
+@model List<SellerViewModel>
+
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="seller-list">
+        <div class="container">
+            <div class="">
+                <h3 class="bold padding10 mobile-heading">
+                    <span id="sellefeatured" class="notranslate" data-translate="featuredseller">Featured Seller </span>
+                </h3>
+
+
+                <div class="swiper seller-view">
+                    <div class="swiper-wrapper" id="dvsellerview">
+
+                        @foreach (var sellerlist in Model)
+                        {
+                            <div class="swiper-slide">
+
+                                <a href="/user/@sellerlist.BusinessUrlpath">
+                                    <div class="seller-wrapper">
+                                        <img src="@sellerlist.Image" />
+                                        <span class="shop-detail">
+                                           @sellerlist.BusinessName
+                                            <span class="total-listing">
+                                                Total Listing
+                                                @sellerlist.ProductTotal
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                </a>
+
+
+
+                            </div>
+
+
+                        }
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+}

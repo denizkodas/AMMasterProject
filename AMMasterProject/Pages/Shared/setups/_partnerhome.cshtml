@@ -1,0 +1,90 @@
+﻿@model List<WebsitesetupPartner>
+
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <div class="partner-list">
+        <div class="container">
+            <div class="">
+                <h3 class="bold padding10 mobile-heading">
+                    <span id="partnerfeatured" class="notranslate" data-translate="ourpartner">Our Partner </span>
+                </h3>
+                <div class="">
+                    <div class="swiper partner-view">
+                        <div id="dvpartnerview" class="swiper-wrapper">
+
+                            @foreach (var partner in Model)
+                            {
+                                <div class="swiper-slide">
+
+
+                                    @if (@partner.Partnerurl != "")
+                                    {
+                                        <a href="@partner.Partnerurl">
+                                            <div class="partner-wrapper">
+                                                <img src="@partner.Image" alt="@partner.ParnerName" />
+                                            </div>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <div class="partner-wrapper">
+                                            <img src="@partner.Image" alt="@partner.ParnerName" />
+                                        </div>
+                                    }
+
+
+
+
+
+
+                                </div>
+
+
+                            }
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+<script>
+    var swiper = new Swiper(".partner-view", {
+        slidesPerView: 3.5,
+        spaceBetween: 5,
+
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 3,
+                spaceBetween: 5,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 5,
+            },
+            1024: {
+                slidesPerView: 5,
+                spaceBetween: 5,
+            },
+        },
+    });
+</script>

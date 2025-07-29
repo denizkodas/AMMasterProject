@@ -1,0 +1,64 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Loyaltypoints.IndexModel
+<title>Loyalty Points</title>
+@{
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class="form card padding30">
+    <div class="form padding30 row">
+
+        <div class="row">
+
+            <div class="col-md-5 no-padding">
+                <div class="row">
+
+
+                    <div class="form-group ">
+                        Points Conversion Rate
+                        <input type="number" asp-for="@Model.loyalpoints.PointsConversionRate">
+                        <span asp-validation-for="@Model.loyalpoints.PointsConversionRate" class="required"></span>
+                        <small class="small">(e.g., points per dollar spent).</small>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        Minimum Points to Redeem
+                        <input type="number" asp-for="@Model.loyalpoints.MinPointsRedeem">
+                        <span asp-validation-for="@Model.loyalpoints.MinPointsRedeem" class="required"></span>
+                    </div>
+
+                    <div class="form-group">
+                        Points Expiry In Days
+                        <input type="number" asp-for="@Model.loyalpoints.PointsExpiry">
+                        <span asp-validation-for="@Model.loyalpoints.PointsExpiry" class="required"></span>
+                    </div>
+
+                    <div class="form-group">
+                       
+                        <input type="checkbox" asp-for="@Model.loyalpoints.IsEnable" id="loyaltySwitchChecked" value="true">
+                        <label class="form-check-label" for="loyaltySwitchChecked"> Enable</label>
+                    </div>
+
+                    <div class="form-group">
+                        <button asp-page-handler="Loyalty">Save</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="col-md-1 m-none"></div>
+            <div class="col-md-6 m-none s-bold float-end">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</form>

@@ -1,0 +1,435 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Homepagesetup.addModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+        <title>Homepage Setting </title>
+}
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="@Model.websitesetupproductsetting.ItemDesignId" type="hidden" />
+    <div class="row no-margin">
+        <div class="col-md-2">
+            <div class="nav nav-pills flex-column flex-md-row mb-3">
+                <a class="nav-link" href="~/admin/homepagesetup">
+                    <i class="bx bx-list-ul me-1"></i>
+                    All Setting
+                </a>
+                <a class="nav-link" href="~/admin/homepagesetup/add"><i class="bx bx-plus me-1"></i> Add New</a>
+
+
+            </div>
+        </div>
+        <div class="card col-md-10">
+            <div class="form padding30">
+
+              @*   <div asp-validation-summary="All"></div> *@
+                <div class="row paddingrf-15">
+
+                    <div class="col-md-3 s-bold">
+                        Selling Type
+
+                    </div>
+                    <div class="col-md-6 checkright no-padding">
+
+
+
+                        <select asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.SellingType" asp-items="@Model.SellingTypeId" class="form-control">
+                            <option disabled selected>-- Select --</option>
+                        </select>
+
+                        <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.SellingType" class="required"></span>
+
+
+                    </div>
+                </div>
+
+                <hr>
+
+
+
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        Section Design
+                    </div>
+
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+
+                            <div class="form-group col-md-9">
+                                Title
+                                <input type="text" maxlength="100" asp-for="@Model.websitesetupproductsetting.Title">
+                                <span asp-validation-for="@Model.websitesetupproductsetting.Title" class="required"></span>
+
+
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                Sort #
+                                <input type="text" min="1" maxlength="100" asp-for="@Model.websitesetupproductsetting.SortOrder">
+                                <span asp-validation-for="@Model.websitesetupproductsetting.SortOrder" class="required"></span>
+
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                Style
+                                <select asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.Style">
+                                    <option disabled selected>-- Select --</option>
+                                    <option value="4">Large Blocks</option>
+                                    <option value="5">Medium Blocks</option>
+                                    <option value="8">Small Blocks</option>
+
+                                </select>
+
+                                <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.Style" class="required"></span>
+
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                Pre-Selected Category
+
+
+
+                                <select asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.PreselectedCategory"  class="form-control" id="ddlPreselected">
+                                    <option disabled selected>-- Select --</option>
+                                    <option value="random">Random</option>
+                                    <option value="product">Product</option>
+                                    <option value="onlybanner">Only Banner</option>
+                                </select>
+
+                                <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.PreselectedCategory" class="required"></span>
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                Quantity
+                                <input type="text" inputmode="numeric" min="0" max="100" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.NoofItemsDisplay">
+                                <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.NoofItemsDisplay" class="required"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <hr>
+
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        Backgrounds
+                    </div>
+
+
+
+
+                    <div class="form-group col-md-2">
+                        Select bakground color <br>
+                        <input type="text" type="color" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.Background">
+                        <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.Background" class="required"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        Banner
+
+
+
+
+
+                        <div class="div">
+
+                            <label class="file-upload">
+                                <span class="btn theme-bg f-theme margintb-15 "> Upload Image</span>
+                                <input type="file" id="fileInput" onchange="uploadFile()" />
+
+                                <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                            </label>
+                            <img id="bannerimage" class="preview" style="display:@(Model.websitesetupproductsetting.ItemDesignMetaData.Banner == null ? "none" : "block")" src="@(Model.websitesetupproductsetting.ItemDesignMetaData.Banner != null ? Model.websitesetupproductsetting.ItemDesignMetaData.Banner : "")">
+
+                          
+                                <a id="aremovebanner" onclick="removebanner()" style="display:@(Model.websitesetupproductsetting.ItemDesignMetaData.Banner == null ? "none" : "block")">Remove Banner</a>
+                            
+
+                            <p class="grey-c">
+                                Allowed JPG, GIF or PNG. Max size of 10 MB <br />
+                                <span id="spanfilename" class="required"></span>
+                                <input type="hidden" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.Banner" />
+
+                                <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.Banner" class="required"></span>
+                            </p>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+              
+
+
+                <div class="row" id="dvSelectType">
+
+                    <div class="col-md-3 s-bold">
+                       <span id="SpanSelectionType"></span>
+                    </div>
+
+                    <div class="col-md-9">
+                        <span id="SpanSelectionViewLoad"></span>
+                    </div>
+                    <hr>
+
+                    <input type="hidden" asp-for="@Model.websitesetupproductsetting.SelectionMetaData" />
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                   URL
+                    </div>
+                    <div class="col-md-9 checkright">
+                        <div class="row">
+                    <div class="col-md-6 form-group">
+
+                   
+                    <input type="checkbox" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.IsURL" checked="@Model.websitesetupproductsetting.ItemDesignMetaData.IsURL" />
+                    <label id="isurl" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.IsURL">Insert URL</label>
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to add url.</p>
+                            </div>
+                   
+                        <div id="dvurl" class="form-group col-md-6" style="display:@(Model.websitesetupproductsetting.ItemDesignMetaData.IsURL == false ? "none" : "block")">
+                            URL <br>
+                            <input type="text" maxlength="1000" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.URL">
+                            <span asp-validation-for="@Model.websitesetupproductsetting.ItemDesignMetaData.URL" class="required"></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                   
+                </div>
+
+              
+                <hr/>
+              
+
+
+                <div class="checkright row">
+
+
+                    <div class="col-md-3 s-bold">
+                        Statuses
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="form-group">
+
+
+                            <input type="checkbox" asp-for="@Model.websitesetupproductsetting.IsPublish" checked="@Model.websitesetupproductsetting.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.websitesetupproductsetting.IsPublish">Publish</label>
+
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this product Section</p>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+
+
+
+                            <input type="checkbox" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowTitle" checked="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowTitle" />
+                            <label id="ispublish" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowTitle">Show Title</label>
+
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to Show title on this product Section</p>
+
+
+                        </div>
+                        <div class="form-group">
+
+
+                            <input type="checkbox" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowBanner" checked="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowBanner" />
+                            <label id="ispublish" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowBanner">Show Banner</label>
+
+
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to Show banner on this product Section</p>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+
+
+                            <input type="checkbox" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowItemSlider" checked="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowItemSlider" />
+                            <label id="ispublish" asp-for="@Model.websitesetupproductsetting.ItemDesignMetaData.ShowItemSlider">Show Item as Slider</label>
+
+
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to Show Item as slider left to right moving</p>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <hr>     <div class="row paddingrf-15 right">
+                  @*   <input class="clickable-button" type="submit" value="Save"> *@
+                    <button class="clickable-button" type="submit" >Save
+                        </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg|gif)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+                $("#bannerimage").show();
+
+                $('#spanfilename').text("");
+
+                $("#bannerimage").attr("src", data.fileLink);
+
+                $('#websitesetupproductsetting_ItemDesignMetaData_Banner').val(data.fileLink);
+                $("#aremovebanner").show();
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+    function removebanner()
+    {
+        $('#websitesetupproductsetting_ItemDesignMetaData_Banner').val("");
+
+        $("#bannerimage").attr("src",null);
+
+        $("#bannerimage").hide();
+
+
+        $("#aremovebanner").hide();
+    }
+
+    $(document).ready(function () {
+        // On page load, check the initial state of the checkbox
+        toggleUrlDiv();
+
+        // Attach a change event listener to the checkbox
+        $(document).on('change', '[id*=websitesetupproductsetting_ItemDesignMetaData_IsURL]', function () {
+            toggleUrlDiv();
+        });
+
+        // Function to toggle the visibility of the div based on the checkbox state
+        function toggleUrlDiv() {
+            var checkbox = $('[id*=websitesetupproductsetting_ItemDesignMetaData_IsURL]');
+            var isChecked = checkbox.prop('checked');
+            $('#dvurl').toggle(isChecked);
+        }
+    });
+
+    ///Random or Category or Product
+    // $(document).ready(function () {
+    //     // Hide the div on page load
+    //     $('#dvSelectType').hide();
+
+    //     // Handle the change event of the select element
+    //     $('#ddlPreselected').change(function () {
+    //         var selectedValue = $(this).val();
+    //         if (selectedValue === 'category') {
+    //             $('#dvSelectType').show();
+
+    //             $("#SpanSelectionType").text("Select Category");
+
+    //             selectionLoad("category")
+    //         } else {
+    //             $('#dvSelectType').hide();
+    //             $("#SpanSelectionViewLoad").empty();
+    //         }
+    //     });
+
+    //     // Trigger the change event on page load to check the initial value
+    //     $('#ddlPreselected').change();
+    // });
+
+
+
+    // function selectionLoad(datatype) {
+    //     $.ajax({
+    //         url: "/Controller/product/ItemHomePageConditionalData?datatype=" + datatype,
+    //         type: "GET",
+    //         success: function (partialView) {
+    //             $("#SpanSelectionViewLoad").html(partialView);
+    //         },
+    //         error: function () {
+    //             console.log("Error occurred.");
+    //         }
+    //     });
+    // }
+</script>

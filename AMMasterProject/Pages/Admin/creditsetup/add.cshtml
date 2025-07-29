@@ -1,0 +1,301 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.creditsetup.addModel
+@{
+    <title>Credit Setup</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/creditsetup">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/creditsetup/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/creditsetup/settings"><i class="bx bx-cog me-1"></i> Setting </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <form method="post">
+
+            <input asp-for="@Model.revenuecreditpackage.RevenueCreditID" type="hidden" />
+
+
+            <div class="">
+            <div class="form card-body">
+
+                    <div asp-validation-summary="All"></div>
+                    <div class="row">
+
+                        <div class="col-md-3 s-bold">
+                            Credit Details
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="row">
+                               
+                                    <div class="form-group col-md-6">
+                                        Title:
+                                        <input type="text" maxlength="200" placeholder="Title" asp-for="@Model.revenuecreditpackage.RevenueCreditName">
+                                        <span asp-validation-for="@Model.revenuecreditpackage.RevenueCreditName" class="required"></span>
+                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        Credits:
+                                        <input type="number" min="1" placeholder="No. of Credits Allowed" asp-for="@Model.revenuecreditpackage.NoofCredit">
+                                        <span asp-validation-for="@Model.revenuecreditpackage.NoofCredit" class="required"></span>
+                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        Sort #
+                                        <input type="text" min="1" maxlength="100" asp-for="@Model.revenuecreditpackage.Sortnumber">
+                                        <span asp-validation-for="@Model.revenuecreditpackage.Sortnumber" class="required"></span>
+
+
+                                    </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+
+                        <div class="col-md-3 s-bold">
+                            Credit Pricing
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="row">
+
+                            <div class="col-md-3 padding-right">
+                                Currency
+
+                                <select asp-for="@Model.revenuecreditpackage.CurrencyID" asp-items="@Model.Currency" class="form-control">
+                                    <option disabled selected>-- Select --</option>
+                                </select>
+
+
+
+                                <span asp-validation-for="@Model.revenuecreditpackage.CurrencyID" class="required"></span>
+
+
+                            </div>
+                            <div class="col-md-6 padding-left">
+                                Amount
+                                <input type="text" min="1" placeholder="Credit Package Price" asp-for="@Model.revenuecreditpackage.CreditAmount">
+                                <span asp-validation-for="@Model.revenuecreditpackage.CreditAmount" class="required"></span>
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="col-md-3 s-bold">
+                            Description <span class="grey-c l-bold"></span>
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group">
+                                <textarea rows="2" cols="20" maxlength="150" asp-for="@Model.revenuecreditpackage.Description" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelCreditDescription'))"></textarea>
+                                <span id="characterCountLabelCreditDescription"></span>
+                                <span asp-validation-for="@Model.revenuecreditpackage.Description" class="required"></span>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+
+                        <div class="col-md-3 s-bold">
+                            Credit Image  <span class="grey-c l-bold">( Optional )</span>
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group ">
+                             
+
+                                <label class="btn margin5 theme-bg f-theme file-upload">
+                                 Select Image
+                                    <input type="file" id="fileInput" class="account-file-input" onchange="uploadFile()" />
+
+                                </label>
+
+                                <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+
+ <img id="creditimage" class="preview" height="30" style="display:@(Model.revenuecreditpackage.CreditImage == null ? "none" : "block")" src="@(Model.revenuecreditpackage.CreditImage != null ? Model.revenuecreditpackage.CreditImage  : "")">
+
+                                <input type="hidden" asp-for="@Model.revenuecreditpackage.CreditImage" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="col-md-3 s-bold">
+                            Will It  Expired?
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group checkright">
+
+
+                                <input type="checkbox" asp-for="@Model.revenuecreditpackage.IsExpiry" checked="@Model.revenuecreditpackage.IsExpiry" />
+                                <label id="IsExpiry" asp-for="@Model.revenuecreditpackage.IsExpiry">Yes</label>
+
+                                <p class="small grey-c paddingrf-15 marginrf-15">
+                                    Mark the checkbox To set an expiration period for credits
+
+                                </p>
+
+                            
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5" id="dvexpiry" style="display:none">
+                                    Days
+                                    <input type="number" min="1" placeholder="Type the number of days the package will expired" asp-for="@Model.revenuecreditpackage.NoofExpiryDays" />
+
+                                    <span asp-validation-for="@Model.revenuecreditpackage.NoofExpiryDays" class="required"></span>
+                                </div>
+
+                            </div>
+                       
+                        
+                        </div>
+                    </div>
+
+
+
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="col-md-3 s-bold">
+                            Statuses
+                        </div>
+
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group checkright">
+                             
+                                <input type="checkbox" asp-for="@Model.revenuecreditpackage.IsRecommended" checked="@Model.revenuecreditpackage.IsRecommended" />
+                                <label id="IsRecommended" asp-for="@Model.revenuecreditpackage.IsRecommended">Is Recommended</label>
+
+
+                                <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox for user to highlight this package </p>
+
+
+                            </div>
+
+                            <div class="form-group checkright">
+                              
+                                <input type="checkbox" asp-for="@Model.revenuecreditpackage.IsPublish" checked="@Model.revenuecreditpackage.IsPublish" />
+                                <label id="ispublish" asp-for="@Model.revenuecreditpackage.IsPublish">Is Publish</label>
+
+
+                                <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox to active this credit </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+
+                       
+                        <button class="btn margin5 padding10 btn-outline-secondary clickable-button">Save</button>
+
+                    </div>    
+                    
+                    
+                   
+            </div>
+        </div>
+</form> </div>
+</div>
+
+
+
+<script>
+
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+                $("#creditimage").show();
+
+                $('#spanfilename').text("");
+
+                $("#creditimage").attr("src", data.fileLink);
+
+                $('#revenuecreditpackage_CreditImage').val(data.fileLink);
+
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        // Show/hide the "Add URL" div based on the initial checked state of the checkbox
+        if ($('#revenuecreditpackage_IsExpiry').is(':checked')) {
+            $('#dvexpiry').show();
+        } else {
+            $('#dvexpiry').hide();
+        }
+
+        // Handle the checkbox change event
+        $('#revenuecreditpackage_IsExpiry').change(function () {
+            if ($(this).is(':checked')) {
+                $('#dvexpiry').show();
+            } else {
+                $('#dvexpiry').hide();
+            }
+        });
+    });
+</script>

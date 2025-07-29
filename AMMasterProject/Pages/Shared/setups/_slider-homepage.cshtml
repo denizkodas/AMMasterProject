@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+ <div class="swiper slider-homepage">
+        <div class="swiper-wrapper" id="dvsliderhome" >
+             
+           @* Repeat*@
+           
+            
+           
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        
+    </div>
+
+
+
+    <script>
+
+          $(document).ready(function() {
+              Slider_Homepage();
+
+});
+
+        function Slider_Homepage() {
+
+    $('[id*=dvsliderhome]').empty();
+    $.ajax({
+        type: "GET",
+        cache: true, // disable caching
+        url: "/api/global/sliderhomepage",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var itemsHtml = "";
+            // set attributes or content to the new div
+
+            $.each(data, function (index, item) {
+
+              
+
+                itemsHtml += '<div  class="swiper-slide">';
+
+                itemsHtml += '<img src="' + item.image + '" />';
+
+                itemsHtml += '</div>';
+
+
+             
+
+
+            });
+
+            $('[id*=dvsliderhome]').append(itemsHtml);
+
+          
+            
+
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+};
+    </script>

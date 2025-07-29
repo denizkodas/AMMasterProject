@@ -1,0 +1,272 @@
+﻿@using AMMasterProject.ViewModel
+@model RegionalSettingViewModel
+
+@{
+    bool IsMultilingual = Model.IsMultilingual;
+    bool IsMultiCurrency = Model.IsMultiCurrency;
+    bool IsCountrySelectionEnabled = Model.IsCountrySelectionEnabled;
+}
+
+
+@* ///Lagunage js*@
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+@*language popup*@
+
+@if (IsMultilingual == true)
+{
+    <li class="notranslate">
+   @*  <a id="ashowlanguage" class="language" href="#language-div"> <i class="fa fa-globe"></i> <span id="spanlanguagecode"></span></a>
+    *@  <div id="google_translate_element"></div>
+       
+
+
+        <div class="overlay " id="language-div" >
+        <div class="popup popup-small padding10">
+            <div class="popup-heading d-grey-c no-margin">
+                    <span data-translate="choosealanguage">  Choose a language</span>
+              
+                <a class="close-back" href="#close"></a>
+
+
+            </div>
+            <div class="language-list">
+              @*   <ul id="language-list-ul">
+                    <li>
+                        <a></a>
+                    </li>
+                </ul> *@
+              
+            </div>
+        </div>
+    </div>
+
+
+    </li>
+}
+
+
+@*country popup*@
+
+@if (IsCountrySelectionEnabled == true)
+{
+    <li>
+
+    <a id="ashowcountry" class="country" href="#country-div">  
+        <span class="visible-xs">
+            Country
+        </span>
+        <img id="countryflag" src="" /> <span id="spancountrycode"></span></a>
+   </li> <div class="overlay" id="country-div">
+        <div class="popup popup-small padding10">
+            <div class="popup-heading d-grey-c no-margin">
+                Choose a country
+                <a class="close-back" href="#close"></a>
+            </div>
+            <div class="country-list">
+                <ul id="country-list-ul">
+                    <li>
+                        <a></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+@*currency popup*@
+@if (IsMultiCurrency == true)
+{
+    <li class="notranslate">
+    <a id="ashowcurrency" class="currency" href="#currency-div">
+            <span class="visible-xs">
+                Currency
+            </span>  <span id="spancurrencycode"></span>
+    </a>
+    <div class="overlay" id="currency-div">
+        <div class="popup popup-small padding10">
+            <div class="popup-heading d-grey-c no-margin">
+                Choose a currency
+                <a class="close-back" href="#close"></a>
+            </div>
+            <div class="currency-list">
+                <ul id="currency-list-ul">
+                 
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    </li>
+}
+
+<script>
+    $('#ashowcountry').click(function (e) {
+       $('#country-div').show();
+         loadcountry();
+      
+    });
+
+
+    $('#ashowcurrency').click(function (e) {
+        $('#currency-div').show();
+        loadcurrency();
+
+    });
+
+
+    $('#ashowlanguage').click(function (e) {
+        $('#language-div').show();
+        loadlanguage();
+
+    });
+    
+    $(document).ready(function () {
+
+
+
+
+            getstoredCurrency();
+            getstoredLanguage();
+
+
+        if ('@IsCountrySelectionEnabled' == 'True') { 
+            getstoredCountry();
+        }
+       
+    });
+
+
+    function getstoredCountry()
+    {
+        // Get the stored countryAlpha2 code from the cookie
+        var storedCountryAlpha2 = getCookie('countrycode');
+
+        // If the stored countryAlpha2 is not empty, set it as the href of the a tag
+        if (storedCountryAlpha2) {
+            $('#spancountrycode').text(storedCountryAlpha2);
+            $('#countryflag').attr('src', '/countryflags/' + storedCountryAlpha2 + '.png');
+
+
+
+         
+
+        }
+
+        else {
+
+                getcurrentcountry()
+                    .then(function (result) {
+                        //console.log('Country:', result.country);
+                        //console.log('Country Code:', result.countryCode);
+
+                        var countryCode = result.countryCode;
+
+                                setCookie("countrycode", countryCode, 300);
+                                $('#spancountrycode').text(countryCode);
+                                $('#countryflag').attr('src', '/countryflags/' + countryCode + '.png');
+
+
+
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+            ///get auto 2 digit code and set in cookie
+            //coming regionalsetting.js
+                //usercountry2digit()
+                //    .then(function (data) {
+
+                //        var countryCode = data.countryCode;
+
+                //        setCookie("countrycode", countryCode, 300);
+                //        $('#spancountrycode').text(countryCode);
+                //        $('#countryflag').attr('src', '/countryflags/' + countryCode + '.png');
+                        
+                   
+                //    })
+                //    .catch(function (error) {
+                       
+                //        console.log(error);
+                //    });
+               
+
+        }
+    }
+
+    function getstoredCurrency() {
+        // Get the stored currency code from the cookie
+        var storedCurrencyCode = getCookie('currencycode');
+
+        if (storedCurrencyCode) {
+            $('#spancurrencycode').text(storedCurrencyCode);
+
+           
+        } else {
+            //$('#spancurrencycode').text('USD');
+
+                loadBaseCurrency();
+        }
+    }
+
+    function getstoredLanguage() {
+        // Get the stored currency code from the cookie
+        var storedLanguageCode = getCookie('languagecode');
+
+        if (storedLanguageCode) {
+
+               
+            $('#spanlanguagecode').text(storedLanguageCode);
+
+
+        } else {
+
+                loadBaseLanguage();
+           
+        }
+    }
+
+    // function googleTranslateElementInit() {
+    //         // setCookie('googtrans', '/es/en', 1);
+    //     new google.translate.TranslateElement({ pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    // }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,fr,es,de,it,ja,tr', // Specify the languages you want to include
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+
+
+           
+        }
+
+           
+    //function setCookie(key, value, expiry) {
+    //    var expires = new Date();
+    //    expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+    //    document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+    //}
+
+    ///store language cookie
+
+    //setCookie('googtrans', '/en/lo', 1);
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

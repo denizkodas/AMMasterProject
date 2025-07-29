@@ -1,0 +1,672 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.paymentsetupModel
+@{
+    <title>Payment Settings</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<form method="post">
+<div class="row">
+    <div class="col-md-2 col-12 mb-3 mb-md-0">
+
+
+        <ul class="nav nav-pills mb-3" role="tablist">
+
+                <li class="nav-item w-100 ">
+                    <button id="codTabButton" type="button" class="nav-link text-start " role="tab" data-bs-toggle="tab" data-bs-target="#codsetup" aria-controls="codsetup" aria-selected="true">
+                       Cash On Delivery
+                    </button>
+                </li>
+
+
+                <li class="nav-item w-100 ">
+                    <button id="transferTabButton" type="button" class="nav-link text-start " role="tab" data-bs-toggle="tab" data-bs-target="#transfersetup" aria-controls="transfersetup" aria-selected="true">
+                       Bank Transfer
+                    </button>
+                </li>
+
+            <li class="nav-item w-100 ">
+                    <button id="paypalTabButton" type="button" class="nav-link text-start " role="tab" data-bs-toggle="tab" data-bs-target="#paypalsetup" aria-controls="paypalsetup" aria-selected="true">
+                    Paypal
+                </button>
+            </li>
+            <li class="nav-item w-100">
+                    <button id="stripeTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#stripe" aria-controls="stripe" aria-selected="true">
+                    Stripe
+                </button>
+            </li>
+
+
+
+                <li class="nav-item w-100">
+                    <button id="razorpayTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#razorpay" aria-controls="razorypay" aria-selected="true">
+                        Razor Pay
+                    </button>
+                </li>
+
+                <li class="nav-item w-100">
+                    <button id="payfastTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#payfast" aria-controls="payfast" aria-selected="true">
+                        Pay Fast
+
+                    </button>
+                </li>
+
+
+                <li class="nav-item w-100">
+                    <button id="paystackTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#paystack" aria-controls="paystack" aria-selected="true">
+                        Pay Stack
+
+                    </button>
+                </li>
+
+
+
+                <li class="nav-item w-100">
+                    <button id="dpoTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#dpo" aria-controls="dpo" aria-selected="true">
+                      DPO
+                    </button>
+                </li>
+
+
+                <li class="nav-item w-100">
+                    <button id="dpoTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#sslcommerz" aria-controls="dpo" aria-selected="true">
+                        SSL Commerz
+                    </button>
+                </li>
+
+
+                <li class="nav-item w-100">
+                    <button id="mtnTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#mtn" aria-controls="mtn" aria-selected="true">
+                       MTN
+                    </button>
+                </li>
+
+
+
+        </ul>
+
+
+    </div>
+    <div class="col-md-10 col-12">
+        <div class="tab-content form card padding30 h-600 checkright">
+
+
+                <div class="tab-pane fade" id="codsetup">
+                    <h5 class="bold">COD Settings</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Message
+                                <input type="text" maxlength="500" asp-for="@Model.cod.Message">
+                                <span asp-validation-for="@Model.cod.Message" class="required"></span>
+                            </div>
+                        
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.cod.IsEnable" id="codSwitchChecked" value="true">
+                                <label class="form-check-label" for="codSwitchChecked"> Publish</label>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+
+
+
+                                <button asp-page-handler="COD" class="clickable-button">Save</button>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+                @* transfer *@
+
+                <div class="tab-pane fade" id="transfersetup">
+                    <h5 class="bold">Bank Transfers Settings</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                           
+                            <div class="form-group">
+                                Account Details
+
+
+
+                                <textarea maxlength="1000" asp-for="@Model.banktransfer.AccountDetails"></textarea>
+                                <span id="characterCountLabelCourseContent"></span>
+                                <span asp-validation-for="@Model.banktransfer.AccountDetails" class="required"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.banktransfer.IsEnable" id="banktransferSwitchChecked" value="true">
+                                <label class="form-check-label" for="banktransferSwitchChecked"> Publish</label>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+
+
+
+                                <button asp-page-handler="BankTransfer" class="clickable-button">Save</button>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+          @* @Section *@
+
+       
+
+            <div class="tab-pane fade" id="paypalsetup">
+                <h5 class="bold">Paypal Settings</h5>
+                
+                
+                <div class="row form paddingtb-15 justify-content-between">
+               
+                   <div class="col-md-5">
+                       <div class="form-group">
+                            Client ID
+                            <input type="text" maxlength="100" asp-for="@Model.paypal.ClientId">
+                            <span asp-validation-for="@Model.paypal.ClientId" class="required"></span>
+                       </div>
+                        <div class="form-group">
+                            Secret Key
+                            <input type="text" maxlength="100" asp-for="@Model.paypal.ClientSecretKey">
+                            <span asp-validation-for="@Model.paypal.ClientSecretKey" class="required"></span>
+                        </div> 
+                        
+                        <div class="form-group">
+                            Environment
+                                <select asp-for ="@Model.paypal.Environment">
+
+                                 
+                                    <option >sandbox</option>
+                                    <option >live</option>
+                                  
+                                </select>
+                                <span asp-validation-for="@Model.paypal.Environment" class="required"></span>
+                        </div>     
+                        
+                        <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.paypal.IsEnable" id="PaypalSwitchChecked" value="true">
+                                <label class="form-check-label" for="PaypalSwitchChecked"> Publish</label>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                          
+
+
+                                <button asp-page-handler="Paypal" class="clickable-button">Save</button>
+
+
+
+                        </div>
+                   </div>
+
+                    <div class="col-md-5">
+                 This is area for guidelines
+               </div>
+               
+               </div>
+            </div>
+           
+
+            @* @Section end *@
+
+            <div class="tab-pane fade" id="stripe">
+                <h5 class="bold">Stripe</h5>
+
+
+                <div class="row form paddingtb-15 justify-content-between">
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                           Secret Key
+                         
+                            <input type="text" maxlength="100" asp-for="@Model.stripe.APIKey">
+                                <span asp-validation-for="@Model.stripe.APIKey" class="required"></span>
+
+
+
+                        </div>
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.stripe.IsEnable" id="stripeSwitchChecked" value="true">
+                                <label class="form-check-label" for="stripeSwitchChecked"> Publish</label>
+                            </div>
+
+
+
+                     
+                        <div class="form-group">
+                         
+
+
+                                <button class="clickable-button" asp-page-handler="Stripe">Save</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        This is area for guidelines
+                    </div>
+
+                </div>
+            </div>
+
+
+
+                <div class="tab-pane fade" id="razorpay">
+                    <h5 class="bold">Razor Pay</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Key ID
+
+                                <input type="text" maxlength="100" asp-for="@Model.razorpay.KeyID">
+                                <span asp-validation-for="@Model.razorpay.KeyID" class="required"></span>
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                                Secret ID
+
+                                <input type="text" maxlength="100" asp-for="@Model.razorpay.SecretID">
+                                <span asp-validation-for="@Model.razorpay.SecretID" class="required"></span>
+
+
+
+                            </div>
+
+                            
+                            <div class="form-group">
+                                Store Name
+
+                                <input type="text" maxlength="100" asp-for="@Model.razorpay.StoreName">
+                                <span asp-validation-for="@Model.razorpay.StoreName" class="required"></span>
+
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                Environment
+                                <select asp-for="@Model.razorpay.Environment">
+
+
+                                    <option>sandbox</option>
+                                    <option>live</option>
+
+                                </select>
+                                <span asp-validation-for="@Model.razorpay.Environment" class="required"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                           <input type="checkbox" asp-for="@Model.razorpay.IsEnable" id="razorpaySwitchChecked" value="true">
+                                <label class="form-check-label" for="razorpaySwitchChecked"> Publish</label>
+                            </div>
+
+
+                            <div class="form-group">
+                            
+
+
+                                <button class="clickable-button" asp-page-handler="RazorPay">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="payfast">
+                    <h5 class="bold">Pay Fast</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Merchant ID
+
+                                <input type="text" maxlength="100" asp-for="@Model.payfast.MerchantID">
+                                <span asp-validation-for="@Model.payfast.MerchantID" class="required"></span>
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                                Merchant Key
+
+                                <input type="text" maxlength="100" asp-for="@Model.payfast.MerchantKey">
+                                <span asp-validation-for="@Model.payfast.MerchantKey" class="required"></span>
+
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.payfast.IsEnable" id="payfastSwitchChecked" value="true">
+                                <label class="form-check-label" for="payfastSwitchChecked"> Publish</label>
+                            </div>
+
+
+                            <div class="form-group">
+                             
+
+                                <button class="clickable-button" asp-page-handler="PayFast">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="paystack">
+                    <h5 class="bold">Pay Stack</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                PK Live
+
+                                <input type="text" maxlength="100" asp-for="@Model.paystack.PKLive">
+                                <span asp-validation-for="@Model.paystack.PKLive" class="required"></span>
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.paystack.IsEnable" id="paystackSwitchChecked" value="true">
+                                <label class="form-check-label" for="paystackSwitchChecked"> Publish</label>
+                            </div>
+
+
+                     
+                            <div class="form-group">
+                                <button class="clickable-button" asp-page-handler="PayStack">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="dpo">
+                    <h5 class="bold">DPO</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Company Token
+
+                                <input type="text" maxlength="100" asp-for="@Model.dpo.CompanyToken">
+                                <span asp-validation-for="@Model.dpo.CompanyToken" class="required"></span>
+
+
+
+                            </div>      <div class="form-group">
+                                Service Type
+
+                                <input type="text" maxlength="100" asp-for="@Model.dpo.ServiceType">
+                                <span asp-validation-for="@Model.dpo.ServiceType" class="required"></span>
+
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br/>
+                                <input type="checkbox" asp-for="@Model.dpo.IsEnable" id="dpoSwitchChecked" value="true">
+                                <label class="form-check-label" for="dpoSwitchChecked"> Publish</label>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="clickable-button" asp-page-handler="DPO">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="sslcommerz">
+                    <h5 class="bold">SSL Commerz</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Store ID
+
+                                <input type="text" maxlength="100" asp-for="@Model.sslcommerz.StoreID">
+                                <span asp-validation-for="@Model.sslcommerz.StoreID" class="required"></span>
+
+
+
+                            </div>      <div class="form-group">
+                                Store Password
+
+                                <input type="text" maxlength="100" asp-for="@Model.sslcommerz.StorePassword">
+                                <span asp-validation-for="@Model.sslcommerz.StorePassword" class="required"></span>
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                                Environment
+                                <select asp-for="@Model.sslcommerz.Environment">
+
+
+                                    <option>sandbox</option>
+                                    <option>live</option>
+
+                                </select>
+                                <span asp-validation-for="@Model.sslcommerz.Environment" class="required"></span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.sslcommerz.IsEnable" id="sslcommerzSwitchChecked" value="true">
+                                <label class="form-check-label" for="sslcommerzSwitchChecked"> Publish</label>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="clickable-button" asp-page-handler="SSLCommerz">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+               @*  MTN *@
+                <div class="tab-pane fade" id="mtn">
+                    <h5 class="bold">MTN</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+
+                            <div class="form-group">
+                                API URL
+                                <input type="text" maxlength="300" asp-for="@Model.mtn.APIURL">
+                                <span asp-validation-for="@Model.mtn.APIURL" class="required"></span>
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                              Base 64 Key
+                                <input type="text" maxlength="300" asp-for="@Model.mtn.BaseKey">
+                                <span asp-validation-for="@Model.mtn.BaseKey" class="required"></span>
+
+
+
+                            </div>
+                            <div class="form-group">
+                                Ocp Apim Subscription Key
+
+                                <input type="text" maxlength="100" asp-for="@Model.mtn.OcpApimSubscriptionKey">
+                                <span asp-validation-for="@Model.mtn.OcpApimSubscriptionKey" class="required"></span>
+
+
+
+                            </div>      
+                          
+
+                            <div class="form-group">
+                                Environment
+                                <select asp-for="@Model.mtn.Environment">
+
+
+                                    <option>sandbox</option>
+                                    <option>live</option>
+
+                                </select>
+                                <span asp-validation-for="@Model.mtn.Environment" class="required"></span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                Mark check if you want to live it<br />
+                                <input type="checkbox" asp-for="@Model.mtn.IsEnable" id="mtnSwitchChecked" value="true">
+                                <label class="form-check-label" for="mtnSwitchChecked"> Publish</label>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="clickable-button" asp-page-handler="MTN">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+               
+
+        </div>
+    </div>
+</div>
+</form>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#codsetup";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+
+
+
+
+        $('#banktransfer_AccountDetails').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ]
+        });
+    });
+</script>

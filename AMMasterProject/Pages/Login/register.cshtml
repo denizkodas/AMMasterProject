@@ -1,0 +1,60 @@
+﻿@page "/register"
+@using AMMasterProject.Helpers;
+@model AMMasterProject.Pages.Login.registerModel
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<style>
+    body {
+        background: white;
+    }
+
+    .login-popup {
+        background: none;
+        position: relative;
+    }
+
+        .login-popup .close-back {
+            display: none
+        }
+
+
+        .login-popup .popup {
+            border: solid 1px #eee;
+            background: var(--white);
+            border-radius: 4px;
+            box-shadow: 0px 2px 12px -4px rgba(0, 0, 0, 0.63)
+        }
+
+
+    .popup-heading .h4 {
+        display: none
+    }
+
+
+
+    .paddingrf-80 {
+        padding: 0px 37px;
+    }
+
+</style>
+<div id="loginFormContainer">
+</div>
+<script>
+
+    $(document).ready(function () {
+
+
+        loginview("RegisterView");
+
+
+
+    });
+
+
+
+
+</script>
+
+

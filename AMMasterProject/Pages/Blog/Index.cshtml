@@ -1,0 +1,39 @@
+﻿@page "/blog/{category?}"
+@model AMMasterProject.Pages.Blog.IndexModel
+@{
+    Layout = "/Pages/Shared/_layoutcommunity.cshtml";
+    ViewData["Title"] = "Blog";
+
+
+}
+<style>
+    .blogheading{
+        display:none
+    }
+</style>
+
+<div class="blogpage">
+   
+    <div class="container">
+
+     
+
+
+<div class="row box-center">
+
+            <div class="col-md-10">
+
+           @*--------------featured blog----------------*@
+                <div class="featured-blog">
+                    @await Component.InvokeAsync("Blog", new { viewName = "/Pages/Blog/BlogView.cshtml",methodname="featured" })
+                </div>
+
+                @*--------------all blog----------------*@
+                @await Component.InvokeAsync("Blog", new { viewName = "/Pages/Blog/BlogView.cshtml",methodname="all" })
+    </div>
+
+
+
+    </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using AMMasterProject.ViewModel
+@model CookieSettingsModel
+
+@if(Model!=null && Model.IsCookie==true)
+{
+<div id="dvcookie" class="cookie-container">
+    <div class="cookie">
+            <h3> <span class="notranslate" data-translate="weusecookies"></span> We use cookies</h3>
+        <p>
+            @Model.CookieText
+        </p>
+        <div class="action">
+                <a class="privacybtn" target="_blank" href="@Model.URL"> <span class="notranslate" data-translate="privacypolicy">Privacy Policy</span> </a>
+                <a id="cookieacceptbtn" class="acceptbtn"> <span class="notranslate" data-translate="accept">Accept</span> </a>
+        </div>
+    </div>
+</div>
+
+
+}
+
+<script>
+    $(document).ready(function () {
+        $('#cookieacceptbtn').on('click', function () {
+            // Store the cookie with a name and value
+            
+            
+            setCookie("cookiepolicy", "read", 365);
+            $("#dvcookie").slideUp('slow');
+        });
+    });
+</script>

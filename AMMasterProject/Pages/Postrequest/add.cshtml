@@ -1,0 +1,113 @@
+﻿@page
+@model AMMasterProject.Pages.Postrequest.addModel
+@{
+}
+<div class="container">
+    <div class="row box-center margintb">
+        <div class="col-md-5 no-padding">
+
+            <div class="white-bg border m-no-border  l-grey-bd  radius form">
+
+                <div class="">
+
+                   
+                    <h3 class="center bold padding15 o-margin ">
+                        <span class="notranslate" data-translate="postrequest">
+                            Post Request
+                        </span>
+                         <br> <small>
+                            <span class="notranslate m-none" data-translate="postrequestmsg">
+                            Post your desire prodcut requirements here
+                            </span>
+
+                           
+                        </small>
+                    </h3><hr>
+
+
+
+                    <div class="paddingrf-15">
+
+                        <div class="form-group">
+                            <span class="notranslate" data-translate="title">
+                                Title  
+                            </span>
+
+                          <input type="text" maxlength="90"> <br>
+                        </div>
+                        <div class="form-group">
+                            <span class="notranslate" data-translate="description">
+                                Description
+                            </span>
+                            <textarea rows="2" cols="20" id="MainContent_txtdescription"></textarea><br>
+                        </div>
+                        <div class="form-group">
+                            <span class="notranslate" data-translate="uploadproductimage ">
+                                Upload Product Image 
+                            </span>   <span class="notranslate" data-translate="optional">
+                                (optional)
+                            </span>
+                          
+                            <br>
+                            <label class="file-upload">
+                                <span class="btn btn-default l-grey-bg notranslate" data-translate="selectfile">
+                                    Select File
+                                </span>
+                                <input type="file" >
+                            </label>
+                            <img  class="pull-right radius">
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="form-group checkright">
+                        <div class="paddingrf-15">
+                            <span class="notranslate" data-translate="budgetlimits">
+                              Do you have budget limits?
+                            </span>
+
+                            <span class="pull-right"><input type="checkbox">
+                                <label class="notranslate" data-translate="yes"> Yes</label>
+                            </span><br>
+                        </div>
+
+                    </div>
+                    <div  class="row marginrf-m-15 padding15">
+                        <div class="col-md-6">
+                            <span class="notranslate" data-translate="from">
+                               From
+                            </span>
+                            
+                            
+                            <input  type="number"  min="0"><br>
+
+                       </div>
+                        <div class="col-md-6">
+                            <span class="notranslate" data-translate="to">
+                              To
+                            </span>
+                          <input  type="number"  min="0"><br>
+                        </div>
+                     </div>
+
+
+
+                    <hr class="no-margin">
+                    <div class="form-group padding15">
+                        <span  class="label alert-danger"></span>
+
+
+                        <button>
+                            <span class="w-100 notranslate" data-translate="submitrequest">
+                                Submit Request
+                            </span>
+                        </button>
+                      
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.billingModel
+@{
+    <title class="notranslate" data-translate="sellermenubilling">Billing</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+    <div>
+        <div class="row">
+
+
+
+
+            <div class="billing-tab">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="billing-tab" data-bs-toggle="tab" data-bs-target="#billingtab" type="button" role="tab" aria-controls="billingtab" aria-selected="true">
+
+                        <span class="notranslate" data-translate="paymenthistory">Payment History</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="credit-tab" data-bs-toggle="tab" data-bs-target="#credittab" type="button" role="tab" aria-controls="credittab" aria-selected="true">
+                        <span class="notranslate" data-translate="credithistory">Credit History</span>
+                        
+                         </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subs-tab" data-bs-toggle="tab" data-bs-target="#substab" type="button" role="tab" aria-controls="substab" aria-selected="true">
+                        <span class="notranslate" data-translate="subscribtionhistory">Subscribtion History</span>
+                        
+                  </button>
+                    </li>
+                </ul>
+                <div class="padding15 white-bg radius ">
+
+
+
+                <div class="padding15">
+
+
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active cap" id="billingtab" role="tabpanel" aria-labelledby="billing-tab">
+
+                            <div class="h4">
+                                <span class="cap notranslate" data-translate="paymenthistory">Payment History</span>
+
+                              
+
+                            </div>
+
+
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                var profileIdClaim = User.FindFirst("UserID");
+                                if (profileIdClaim != null)
+                                {
+                                    int profileId = Convert.ToInt32(profileIdClaim.Value);
+                                    @await Component.InvokeAsync("Credit", new { viewName = "/Pages/orders/PurchaseHistory.cshtml", profileid = profileId, type = "incomingoutgoingtransactionhistoryseller" })
+                                    
+
+
+
+
+
+                                }
+                            }
+
+
+                        </div>
+                        <div class="tab-pane fade" id="credittab" role="tabpanel" aria-labelledby="credit-tab">
+
+
+
+
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                var profileIdClaim = User.FindFirst("UserID");
+                                if (profileIdClaim != null)
+                                {
+                                    int profileId = Convert.ToInt32(profileIdClaim.Value);
+                                    @await Component.InvokeAsync("Credit", new { viewName = "/Pages/Credits/CreditHistory.cshtml", profileid = profileId, type="creditpurchasehistory" })
+                                    ;
+
+
+
+
+
+                                }
+                            }
+                        </div>
+                        <div class="tab-pane fade " id="substab" role="tabpanel" aria-labelledby="subs-tab">
+
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                var profileIdClaim = User.FindFirst("UserID");
+                                if (profileIdClaim != null)
+                                {
+                                    int profileId = Convert.ToInt32(profileIdClaim.Value);
+                                    @await Component.InvokeAsync("Credit", new { viewName = "/Pages/Subscriptions/SubscriptionHistory.cshtml", profileid = profileId, type="subscriptionpurchasehistory" })
+                                    ;
+
+
+
+
+
+
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

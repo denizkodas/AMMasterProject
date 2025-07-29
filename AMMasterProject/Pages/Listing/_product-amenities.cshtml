@@ -1,0 +1,77 @@
+﻿@using AMMasterProject.ViewModel
+@model AmenitiesViewModel
+
+
+
+
+    
+
+       
+
+
+            @if (Model != null && Model!=null)
+            {<div class="container amn-h-half" id="am-heigh"><div class="white-bg radius padding15 margintb-15 o-padding">
+ <div id="dvamenityheader" class="white-bg radius padding15 margintb-15">
+
+
+                @foreach (var header in Model.amenityheader)
+                {
+
+
+
+                    <div class="amanities-box">
+                        <p>
+                            @header.AmenityName
+                        </p>
+                        <div class="amanities-list" id="dvamenitychild">
+
+                            @if (Model.amenitychild.Count > 0)
+                            {
+                                foreach (var child in Model.amenitychild.Where(c => c.OptionAmenityId == header.Amenitiesid))
+                                {
+
+
+
+                                    <span>
+
+                                        <img src="@child.AmenitiesIcon" />
+                                        @child.AmenitiesOptionName
+                                    </span>
+
+                                }
+
+
+                            }
+
+
+
+                        </div>
+
+                    </div>
+
+                }
+
+    </div>
+                <div class="show-btns">
+                <a id="add-btn"> <span class="notranslate" data-translate="viewmore">View More</span> </a>
+                <a id="remove-btn"> <span class="notranslate" data-translate="close">Close</span> </a>
+                </div>
+        </div>
+    </div>
+}
+
+
+    
+
+        
+   
+
+
+
+
+
+
+
+
+
+

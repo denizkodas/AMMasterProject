@@ -1,0 +1,50 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.cmssetup.addModel
+@{
+    <title>Content Management</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class=" form card padding30 h-600">
+
+
+
+
+    <div class="row form paddingtb-15 justify-content-between">
+
+
+      
+        <div class="form-group col-md-12">
+            Content
+                <textarea rows="2" asp-for="@Model.websitecms.Cmscontent"></textarea>
+                <span asp-validation-for="@Model.websitecms.Cmscontent" class="required"></span>
+
+
+
+
+
+        </div>
+        <div class="form-group">
+            <button>Save</button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script>
+    $(document).ready(function () {
+        $('#websitecms_Cmscontent').summernote();
+    });
+
+</script>

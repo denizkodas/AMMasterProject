@@ -1,0 +1,69 @@
+﻿@using AMMasterProject.ViewModel
+@model GenderModel
+
+
+
+
+
+
+
+
+
+    <div>
+
+        <div class="user-avatar">
+           
+           @*  for female  *@
+            
+                @foreach (var femaleAvatar in Model.femalelist)
+                {
+                    <a onclick="assignavatar('@femaleAvatar.ImagePath')">
+                        <img src="@femaleAvatar.ImagePath" />
+                    </a>
+                }
+            
+        </div>
+
+
+
+
+
+        <div class="user-avatar">
+
+            @*  for male  *@
+          
+                @foreach (var maleAvatar in Model.malelist)
+                {
+                    <a onclick="assignavatar('@maleAvatar.ImagePath')">
+                        <img src="@maleAvatar.ImagePath" />
+                    </a>
+                }
+            
+           
+        </div>
+    </div>
+
+<script>
+    
+
+    function assignavatar(imagePath) {
+        // Show the profile image element
+        $("#profileimage").show();
+
+        // Assign the selected image path to the profile image element
+        $("#profileimage").attr("src", imagePath);
+
+        // Update a hidden input field with the selected image path
+        $('#UserProfile_ProfileImage').val(imagePath);
+
+        // Hide the image selection popup on selection
+        $("#updateimage").hide();
+    }
+</script>
+
+
+
+
+
+
+

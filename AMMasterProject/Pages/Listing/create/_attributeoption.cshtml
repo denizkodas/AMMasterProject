@@ -1,0 +1,255 @@
+﻿@model List<ProductAttributeOptionV2>
+
+
+  
+<div id="dvoptions">
+   
+
+                    <table>
+                    
+                        @if (Model != null)
+                        {
+                            @foreach (var option in Model)
+                            {
+
+
+                <tr style="vertical-align:top">
+                    <td style="width:350px">
+                                        <input type="text" class="txtoption" maxlength="100" placeholder="Options" value="@option.OptionText">
+                                    </td>
+                    <td style="width:250px">
+                                        <input class="txtprice" type="text" maxlength="100" inputmode="numeric" value="@option.Attributeprice">
+                                    </td>
+
+
+                    <td style="width:250px">
+                                     
+                                      
+                                            @* <lable class="file-upload" >
+                                                <span class="btn l-grey-bg grey-c">Select Image</span>
+
+                                            </lable>  *@
+
+                                            <label class="file-upload w-100">
+                                                <span class="btn btn-default w-100 l-grey-bg">
+                                    <img id="attributeimage_@option.ProductAttributeOptionId" class="listing-img-preview attributeoptionimage" style="display:@(option.Attributeimage == null ? "none" : "block")" src="@(option.Attributeimage != null ? option.Attributeimage : "")">
+                                <span class="notranslate" data-translate="updateimage">
+                                    Update image
+                                </span>
+                                </span>
+                                                <input type="file" class="fileInput" data-rowindex="@option.ProductAttributeOptionId" onchange="uploadFile(this)" />
+                                    <progress id="fileProgress_@option.ProductAttributeOptionId" class="w-100 margin5" style="display:none"></progress>
+                              
+                                            </label>
+                                            
+                                           
+                                  
+
+                                       <span id="validationImage_@option.ProductAttributeOptionId"></span>
+                                    </td>
+                    <td style="width:100px">
+
+                        <input type="text" class="txtsort" min="1" placeholder="Sort" inputmode="numeric" value="@option.Sort" />
+                    </td>
+                    <td style="width:250px">
+                        <a class="btn small  theme-bg f-theme aoptionupdateattribute" data-optionid="@option.ProductAttributeOptionId">  <span class="notranslate" data-translate="update">Update</span> </a>
+                                        <a class="btn small  grey-bg white-c aoptiondelete" data-optionid="@option.ProductAttributeOptionId">
+                            <span class="notranslate" data-translate="delete">Delete</span>
+                                            </a>
+                                  
+                                    </td>
+
+
+
+
+
+
+
+                                </tr>
+                            }
+                        }
+
+                    </table>
+             
+</div>
+
+
+
+
+
+<script>
+
+   
+
+
+
+    $(document).ready(function () {
+        // Use event delegation to handle clicks on '.aoptionupdate' links
+        // $('.option-row').on('click', '.aoptionupdateattribute', function () {
+        //     var optionRow = $(this).closest('tr');
+        //     var optiontext = optionRow.find('.txtoption').val();
+        //     var price = optionRow.find('.txtprice').val();
+        //     // Find the corresponding image element and get its 'src' attribute
+        //     var image = optionRow.find('.attributeoptionimage').attr('src');
+
+        //     var attributeguid = $('#hdnattributeguid').val();
+        //     var attributeoptionid = $(this).data('optionid');
+
+        //     optionusert(optiontext, price, attributeguid, attributeoptionid, image);
+        // });
+
+
+
+        $('.aoptionupdateattribute').click(function () {
+            var optionRow = $(this).closest('tr');
+            var optiontext = optionRow.find('.txtoption').val();
+            var price = optionRow.find('.txtprice').val();
+            var sort = optionRow.find('.txtsort').val();
+            // Find the corresponding image element and get its 'src' attribute
+            var image = optionRow.find('.attributeoptionimage').attr('src');
+
+            var attributeguid = $('#hdnattributeguid').val();
+            var attributeoptionid = $(this).data('optionid');
+
+            AttributeUpdates(optiontext, price, attributeguid, attributeoptionid, image, sort);
+        });
+
+
+    });
+
+    $(document).ready(function () {
+        $('.aoptiondelete').click(function () {
+            var attributeoptionid = $(this).data('optionid');
+            var attributeguid = $('#hdnattributeguid').val();
+
+            $.ajax({
+                url: '/Controller/Product/optiondelete',
+                type: 'POST',
+                data: {
+                    attributeguid: attributeguid,
+                    attributeoptionid: attributeoptionid
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    optionview(attributeguid);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+
+
+   
+
+
+    function uploadFile(input) {
+        var fileInput = input;
+        var rowIndex = $(fileInput).data('rowindex'); // Get the row index from data attribute
+        var progressBar = $("#fileProgress_" + rowIndex)[0]; // Use a unique ID for each progress bar
+        progressBar.style.display = "block";
+        progressBar.value = 60; // You can set the initial progress value here
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png)/)) {
+            $('#validationImage_' + rowIndex).text("Only jpeg or png files are allowed.");
+            progressBar.style.display = "none";
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            progressBar.style.display = "none";
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+
+                // Set the image source for the specific row
+                $("#attributeimage_" + rowIndex).attr("src", data.fileLink);
+                $("#attributeimage_" + rowIndex).show();
+                // Clear any validation messages for this row
+                $('#validationImage_' + rowIndex).text("");
+
+                progressBar.style.display = "none";
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function AttributeUpdates(optiontext, price, attributeguid, attributeoptionid, image, sort) {
+
+        var optiontext = optiontext;
+        var price = price;
+        var attributeguid = attributeguid;
+        var attributeoptionid = attributeoptionid;
+        var image = image;
+        var sort = sort;
+        if (optiontext == '' || price == '') {
+
+            $("#spanAttributeoption").text('Option is required');
+            $("#spanAttributeprice").text('Price is required');
+            return;
+        }
+
+        $.ajax({
+            url: '/Controller/Product/optionusert',
+            type: 'POST',
+            data: {
+                optiontext: optiontext,
+                price: price,
+                attributeguid: attributeguid,
+                attributeoptionid: attributeoptionid,
+                image: image,
+                sort: sort
+            },
+            success: function (response) {
+                // Handle the success response here
+
+                optionview(attributeguid);
+
+
+                const questionGUID = getParameterByName('QuestionGUID');
+
+                if (!questionGUID) {
+                    // Assuming 'attributeguid' is meant to be a variable containing the value you want to append
+                    var currentUrl = window.location.href + "?QuestionGUID=" + attributeguid;
+
+                    // Redirect to the updated URL
+                    window.location.href = currentUrl;
+                }
+
+
+                toaster("Attributed added successfully", "toast-success");
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                // Handle the error response here
+                console.log(errorThrown);
+
+
+            }
+        });
+    }
+   
+
+  
+</script>

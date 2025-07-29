@@ -1,0 +1,651 @@
+﻿@page "/listing/create/attribute/{ID}"
+@model AMMasterProject.Pages.Listing.create.attributeModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+
+
+
+
+
+
+<div>
+
+
+   
+
+
+    <div class="row large-form">
+
+        <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+        <div class="col-md-10 l-tabs-content form">
+            <a class="skip-btn" href="~/listing/create/inventory/@Model.productguid">
+                <span class="notranslate" data-translate="skip">Skip</span>
+                
+            </a>
+            <h5 class="l-tabs-heading">
+                <span class="notranslate" data-translate="attribute">Attribute</span>
+                
+            </h5>
+           
+            <div class="white-bg paddingtb-15">
+                <h6 class="padding15 margin5">
+                    <span class="notranslate" data-translate="attributedetail">Attribute Detail</span>
+                    </h6>
+                @*----------------------------------New----------------------------------------*@
+                <table class="table form">
+                    <tr>
+                    
+                        <td>
+                            <span class="notranslate" data-translate="attributedes">Attribute Name  eg:Color, Size etc</span>
+                            
+                            <input type="hidden" id="hdnattributeid" value="@Model.productAttributeQuestion.ProductAttributeId" />
+                            <input type="text" maxlength="100" asp-for="@Model.productAttributeQuestion.Question" value="@Model.productAttributeQuestion.Question">
+                            <span id="spanAttributeQuestion" class="required"></span>
+
+                        </td>
+                        <td>
+                            <span class="notranslate" data-translate="inserttype">Insert Type</span>
+
+                            
+                            <label asp-for="@Model.productAttributeQuestion.Type"></label>
+                            <select asp-for="@Model.productAttributeQuestion.Type">
+                                <option disabled>-- Select --</option>
+                                <option value="RadioButton List" selected="@(Model.productAttributeQuestion.Type == "RadioButton List")">RadioButton List</option>
+                                @*  <option value="CheckBox List" selected="@(Model.productAttributeQuestion.Type == "CheckBox List")">CheckBox List</option>
+                                <option value="TextBox" selected="@(Model.productAttributeQuestion.Type == "TextBox")">TextBox</option> *@
+                            </select>
+                            <span id="spanQuestionType" class="required"></span>
+
+
+
+                        </td>
+                        <td style="width:150px">
+                            <span class="notranslate" data-translate="sortno">Sort #</span>
+                          
+                            <input type="number" maxlength="10" asp-for="@Model.productAttributeQuestion.SortNumber" value="@Model.productAttributeQuestion.SortNumber">
+                            @* <span asp-validation-for="@Model.productAttributeQuestion.SortNumber" class="required"></span> *@
+
+                            <span id="spanSort" class="required"></span>
+                        </td>  
+                        
+                    </tr>
+              <tr>
+
+                
+
+                  <td colspan="3">
+                            <h6 class="paddingtb-15">Attribute Option</h6>
+                            <table class="  form mb-2" style="width:100%">
+                                <tr style="vertical-align:top">
+
+                                    <td style="width:350px">
+                                        <span class="notranslate" data-translate="optionname">  Option Name</span>
+                                      
+                                        <input type="text" id="txtoption" maxlength="100" placeholder="" value="">
+                                        <span id="spanAttributeoption" class="required"></span>
+                                        <small>
+                                            <span class="notranslate" data-translate="egbluegreen">  Eg: Blue, green</span>
+
+                                            </small>
+                                    </td>
+                                    <td style="width:250px">
+                                        <span class="notranslate" data-translate="price"> Price </span>
+                                      
+                                        <div class="options-container">
+                                            @*<input type="text" maxlength="100" id="txtprice" name="txtprice" value="0" placeholder="0" inputmode="numeric" required>
+                                            <span class="required"></span>*@
+
+                                            <input id="txtprice" type="text" maxlength="100" value="" inputmode="numeric">
+                                            <span id="spanAttributeprice" class="required"></span>
+                                            <small> 
+                                                
+                                                <span class="notranslate" data-translate="atpricedes"> This price will add in product price</span>
+                                                </small>
+                                        </div>
+                                    </td>
+                                    <td style="width:250px">
+
+                                        <span class="notranslate" data-translate="attributeimage"> Attribute Image (optional)</span>
+
+                                         
+                                 
+                                            <label class="file-upload w-100">
+                                                <span class="btn btn-default w-100 l-grey-bg">
+                                                <span class="notranslate" data-translate="selectfile"> Select File  </span>
+
+                                                    
+                                                    <img id="attributeimage" class="preview" style="width:28px; height:28px" />
+                                                </span>
+                                                <input type="file" id="fileInput" onchange="uploadFileAttribute()" />
+
+                                                <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                            </label>
+                                   
+                                                <span id="spanfilename" class="required"></span>
+                                                <input type="hidden" id="hdnAttributeimage" />
+
+
+                                            <small>
+                                            <span class="notranslate" data-translate="selectfilemsg"> Allowed JPG or PNG. Max size 10 MB  </span>
+
+                                        </small>
+
+                                         
+                                  
+
+
+                                    </td>
+                                    <td style="width:100px">
+                                    
+                                        <span class="notranslate" data-translate="sortno"> Sort #  </span>
+
+                                        <input type="text" min="1" id="txtsort" inputmode="numeric" placeholder="Sort" />
+                                    </td>
+                                    <td style="width:250px">
+                                        <br/>
+                                        <button class="clickable-button float-none" type="submit" id="attributeadd">+ </button>
+
+                                      
+                                    </td>
+
+                                </tr>
+
+
+                               
+                            </table>
+
+                           
+                            <div>
+
+                                <div id="dvOptioncontainer"></div>
+                                
+                              
+                            </div>
+                            <button type="submit" class="margin15" id="saveButton">
+                                <span class="notranslate" data-translate="save"> Save  </span>
+
+                            </button>
+                         
+                        </td>
+              </tr>
+              
+                </table>
+               
+
+
+
+
+                @*----------------------------------old----------------------------------------*@
+
+
+                <div>
+               
+                <label id="lblguid"></label>
+                <div asp-validation-summary="All"></div>
+                
+               
+            
+               
+
+          
+
+                <div class="row paddingrf-15">
+                    <div class=" col-md-6 checkright">
+                      
+
+                     @*    <input type="checkbox" asp-for="@Model.productAttributeQuestion.IsPublish" checked="@Model.productAttributeQuestion.IsPublish" />
+                        <label id="ispublish" asp-for="@Model.productAttributeQuestion.IsPublish">Publish</label>
+ *@
+
+                     @*    <input type="checkbox" id="productAttributeQuestion_IsPublish" name="productAttributeQuestion_IsPublish" @(Model.productAttributeQuestion.IsPublish ? "checked" : "") />
+                        <label id="ispublish" for="IsPublish">Publish</label> *@
+
+                    </div>
+                    <div class=" col-md-6 right">
+
+                           
+                    </div>
+                </div>
+
+
+
+                </div>
+
+                   
+              
+             
+                @*----------------------------------List----------------------------------------*@
+
+                <div class="padding15">
+                    <h6 class="d-grey-c">
+                        <span class="notranslate" data-translate="attributelist"> Attribute List </span>
+
+                        
+                    </h6>
+
+                    <div class="card">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table">
+                            <thead class="table-secondary">
+                          
+                                <tr class="active">
+                                    <td>
+                                            <span class="notranslate" data-translate="sorttype">  Sort Type  </span>
+
+                                       </td>
+                                    <td>
+                                            <span class="notranslate" data-translate="attributes"> attribute </span>
+                                            
+                                        </td>
+                                    <td>
+                                            <span class="notranslate" data-translate="type"> Type  </span>
+
+                                        </td>
+
+                                  @*   <td>Is Publish</td> *@
+                                    <td>
+                                            <span class="notranslate" data-translate="action"> Action </span>
+
+                                        </td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var question in Model.productAttributeQuestionList)
+                                {
+                                    
+                              
+
+                                    <tr id="row-@question.ProductAttributeGuid">
+                                    <td> <span >@question.SortNumber</span>  </td>
+                                    <td> <span >@question.Question</span>  </td>
+                                    <td> <span>@question.Type</span> </td>
+
+                                  @*   <td> <span>@question.IsPublish</span> </td> *@
+                                    <td>
+                                        <div class="dropdown">
+                                                    <button type="button"  class="btn dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end" style="">
+                                                    <li><a class="dropdown-item" href="~/listing/create/attribute/@Model.productguid?QuestionGUID=@question.ProductAttributeGuid">
+                                                                <span class="notranslate" data-translate="edit"> Edit </span>
+
+                                                        </a></li>
+                                                <li>
+
+
+
+                                                        <a  class="dropdown-item attributedelete" data-attributeguid="@question.ProductAttributeGuid">
+
+                                                                <span class="notranslate" data-translate="delete"> Delete  </span>
+
+                                                            </a>
+
+                                                    </li>
+
+
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+
+               
+                <hr />
+
+                <div class="row paddingrf-15">
+                    <div class=" col-md-6 checkright">
+                    </div>
+                    <div class=" col-md-6 right">
+
+
+
+
+                        <a href="~/listing/create/inventory/@Model.productguid">
+                            <input type="button" value="Save &amp; Continue">
+                        </a>
+                    </div>
+                </div>
+                </div>
+       
+        </div>
+
+    </div>
+  
+</div>
+
+
+<input type="hidden" id="hdnattributeguid" />
+
+<script>
+    
+
+    $(document).ready(function () {
+
+        // if this GUID exist in query string so its edit mode
+
+        const questionGUID = getParameterByName('QuestionGUID');
+        if (questionGUID) {
+            $('#hdnattributeguid').val(questionGUID);
+            optionview(questionGUID);
+        }
+
+        else {
+            $("#saveButton").hide();
+        }
+     
+
+       
+
+       
+
+    });
+
+    $(document).ready(function () {
+        $('#saveButton').click(function () {
+            upsertAttribute();
+
+
+           
+        });
+    });
+
+    $(document).ready(function () {
+        $('.attributedelete').click(function () {
+            var attributeguid = $(this).data('attributeguid');
+            var currentRow = $('#row-' + attributeguid);
+
+            $.ajax({
+                url: '/Controller/Product/attdel',
+                type: 'POST',
+                data: {
+                    attributeguid: attributeguid,
+                    
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    currentRow.remove();
+                    toaster("Record deleted successfully", "toast-success");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#attributeadd').click(function () {
+
+
+            if ($('#hdnattributeguid').val() == '') {
+                upsertAttribute();
+
+
+                setTimeout(function () {
+                    optionusert();
+                }, 3000);
+            }
+
+            else
+
+            {
+                optionusert();
+            }
+             
+           
+            
+
+
+
+        
+
+           
+        });
+    });
+
+ 
+
+    function upsertAttribute()
+    {
+        var loginid = '@Model.loginid'; // Set the loginid value
+        var productguid = '@Model.productguid'; // Set the productguid value
+
+        var question = $('#productAttributeQuestion_Question').val();
+        var type = $('#productAttributeQuestion_Type').val();
+        var sort = $('#productAttributeQuestion_SortNumber').val();
+        var ispublish = $('#productAttributeQuestion_IsPublish').val();
+        var ProductAttributeId = $('#hdnattributeid').val();
+
+
+        if (question == '' || type == '' || sort == '') {
+
+            $("#spanAttributeQuestion").text('Question is required');
+            $("#spanSort").text('Sort is required');
+            return;
+        }
+
+        $.ajax({
+            url: '/Controller/Product/attributeupsert',
+            type: 'POST',
+            data: {
+                loginid: loginid,
+                productguid: productguid,
+
+                Question: question,
+                Type: type,
+                sort: sort,
+                ispublish: ispublish,
+                ProductAttributeId: ProductAttributeId
+            },
+            success: function (response) {
+                // Handle the success response here
+
+                $('#hdnattributeguid').val(response);
+
+
+                // console.log(response);
+                // console.log(type);
+                // if (type == "DropDown List" || type == "CheckBox List" || type == "RadioButton List") {
+
+                //     optionview(response);
+                // }
+
+                //if query string vlaue exist so on save clear it 
+                const questionGUID = getParameterByName('QuestionGUID');
+                if (questionGUID) {
+                  hideOptions();
+                }
+
+              
+                question = '';
+                type = '';
+                sort = '';
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                // Handle the error response here
+                console.log(errorThrown);
+
+
+            }
+        });
+    }
+
+    function optionview(attributeguid) {
+        $.ajax({
+            url: '/Controller/Product/optionview',
+            type: 'GET',
+            data: {
+                attributeguid: attributeguid
+            },
+            success: function (result) {
+                // Handle the success response here
+                
+                $('#dvOptioncontainer').html(result);
+               
+            },
+            error: function (xhr, textStatus, errorThrown) {
+               
+                // Handle the error response here
+                console.log('AJAX request failed: ' + errorThrown);
+            },
+            complete: function (xhr, textStatus) {
+               
+                console.log('AJAX request completed with status: ' + textStatus);
+            }
+        });
+    }
+
+
+    function uploadFileAttribute() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                // console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#attributeimage").show();
+                $('#spanfilename').text("");
+
+                $("#attributeimage").attr("src", data.fileLink);
+
+                $('#hdnAttributeimage').val(data.fileLink);
+
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function optionusert() 
+    {
+
+        var optiontext = $('#txtoption').val();
+        var price = $('#txtprice').val();
+        var attributeguid = $('#hdnattributeguid').val();
+        var attributeoptionid = '0';
+        var image = $('#hdnAttributeimage').val();
+        var sort = $('#txtsort').val();
+        if (optiontext == '' || price == '') {
+
+            $("#spanAttributeoption").text('Option is required');
+            $("#spanAttributeprice").text('Price is required');
+            return;
+        }
+
+        $.ajax({
+            url: '/Controller/Product/optionusert',
+            type: 'POST',
+            data: {
+                optiontext: optiontext,
+                price: price,
+                attributeguid: attributeguid,
+                attributeoptionid: attributeoptionid,
+                image: image,
+                sort:sort
+            },
+            success: function (response) {
+                // Handle the success response here
+
+                optionview(attributeguid);
+                $('#txtoption').val('');
+                $('#txtprice').val('')
+                $('#hdnAttributeimage').val('')
+                $('#txtsort').val('')
+                $("#attributeimage").attr("src", '');
+                $("#attributeimage").hide();
+                const questionGUID = getParameterByName('QuestionGUID');
+
+                if (!questionGUID) {
+                    // Assuming 'attributeguid' is meant to be a variable containing the value you want to append
+                    var currentUrl = window.location.href + "?QuestionGUID=" + attributeguid;
+
+                    // Redirect to the updated URL
+                    window.location.href = currentUrl;
+                }
+
+
+                toaster("Attributed added successfully", "toast-success");
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                // Handle the error response here
+                console.log(errorThrown);
+
+
+            }
+        });
+    }
+
+
+    function hideOptions() {
+        // Get the current URL
+        var currentUrl = window.location.href;
+
+        // Find the index of "?"
+        var queryIndex = currentUrl.indexOf('?');
+
+        // If a query string exists, remove it
+        if (queryIndex !== -1) {
+            var newUrl = currentUrl.substring(0, queryIndex);
+
+            // Update the URL
+            window.history.replaceState({}, document.title, newUrl);
+        }
+
+        // Your existing hide function
+        $('#dvoptions').hide();
+        // Reload the page
+        window.location.reload();
+    }
+</script>

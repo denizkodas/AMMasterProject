@@ -1,0 +1,21 @@
+﻿@using AMMasterProject.Helpers;
+@using AMMasterProject.ViewModel
+
+@model List<CommunityCategory>
+
+@if (Model != null)
+{
+     <ul>
+    @foreach (var item in Model)
+    {
+
+
+       
+            <li class="nav-item">
+                <a class="nav-link active" href="/@item.SeoURL">@item.CategoryName</a>
+            </li>
+
+       
+    }
+    </ul>
+}

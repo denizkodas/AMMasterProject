@@ -1,0 +1,495 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.IndexModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellerprofileheading">Personal Info </title>
+}
+
+<div>
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+
+
+
+
+        <div class="card mb-4 col-md-10">
+            <form method="post" enctype="multipart/form-data">
+                <!-- Account -->
+                <div class="card-body form">
+
+                    <input asp-for="@Model.UserProfile.ProfileGuid" type="hidden" />
+
+                    <div asp-validation-summary="All"></div>
+                    @*----------------Basic Info by Default-----------------*@
+
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-3 s-bold m-none padding5">
+                            <div class="center">
+
+
+                                <div class="profile-image-add">
+                                    <img id="imgsellerimage" src="@Model.UserProfile.SellerImage" style="display: @(Model.UserProfile.SellerImage == null ? "none" : "block")"/>
+
+                                
+                                  
+                                </div>
+                                <progress id="fileProgresssellerimage" class="w-100 margin5" style="display:none; height: 6px"></progress>
+
+                                <label class="file-upload margin5 w-100">
+                                    <span class="btn btn-default l-grey-bg notranslate" data-translate="upload">
+                                     
+                                        
+                                        Upload </span>
+                                    <input type="file" id="fileInputsellerimage" onchange="uploadFilesellerimage()" />
+
+                                </label>
+                           
+                                
+                                <p class="grey-c s-bold small ">
+                                   
+                                    <span class="notranslate" data-translate="sellerproifleuploadmsg">
+                                      Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                                    </span>
+
+                                  
+                                </p>    <span asp-validation-for="@Model.UserProfile.SellerImage" class="required"></span>
+
+                                <span id="spanfilenamesellerimage" class="validation d-block margin5"></span>
+                                <input type="hidden" asp-for="@Model.UserProfile.SellerImage" />
+                             
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-7 no-padding checkright">
+
+
+                            <div class="row">
+
+
+                                <div class="form-group col-md-6 padding-right ">
+                                    <span class="notranslate" data-translate="firstname">
+                                     First Name
+                                    </span>
+                                   
+                                    <input type="text" maxlength="50" asp-for="@Model.UserProfile.Firstname">
+
+                                    <span asp-validation-for="@Model.UserProfile.Firstname" class="required"></span>
+                                </div>
+                                <div class="form-group  col-md-6 padding-right ">
+
+                                    <span class="notranslate" data-translate="lastname">
+                                        Last Name
+                                    </span>
+                                  
+                                    <input type="text" maxlength="50" asp-for="@Model.UserProfile.Lastname">
+
+                                    <span asp-validation-for="@Model.UserProfile.Lastname" class="required"></span>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="businessname">
+                                        Business Name
+                                    </span>
+                              
+                                    <input type="text" maxlength="200" asp-for="@Model.UserProfile.BusinessName">
+                                    <span asp-validation-for="@Model.UserProfile.BusinessName" class="required"></span>
+
+                                </div>
+                                <div class="form-group  col-md-6 padding-right ">
+                                    <span class="notranslate" data-translate="phonenumber">
+                                        Phone Number
+                                    </span>
+                                     @*<a href="#" id="acontactnumber" class="theme-c bold">Update</a>*@
+
+                                    <input type="text" asp-for="@Model.UserProfile.ContactNumber" maxlength="15" />
+                                @*    <span>@Model.UserProfile.ContactNumber</span>*@
+                                    <span asp-validation-for="@Model.UserProfile.ContactNumber" class="required"></span>
+
+                                   
+                                </div>
+                                <div class="form-group  col-md-6 padding-right">
+                                    <span class="notranslate" data-translate="email">
+                                        Email 
+                                    </span>
+                                  
+                                    <input type="text" maxlength="300" asp-for="@Model.UserProfile.Email">
+
+                                    <span asp-validation-for="@Model.UserProfile.Email" class="required"></span>
+                                </div>
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="primaryaddress">
+                                        Primary Address  
+                                    </span>
+                                   
+                                    <div class="input-group">
+                                    <span class="input-group-addon m-none " data-toggle="tooltip" data-placement="bottom" title="Click here to get your current location or type your complete address">
+                                        <a class="acurrentlocation">
+
+                                            <svg class="svg-small" viewBox="0 0 512 512"><path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256a128 128 0 1 0 256 0 128 128 0 1 0 -256 0zm128-80a80 80 0 1 1 0 160 80 80 0 1 1 0-160z" /></svg>
+                                           
+                                        </a>
+
+
+                                      
+                                    </span>
+                                  
+
+                                    <input id="txtaddress" type="text" maxlength="300" class="googleaddress" asp-for="@Model.UserProfile.Address" >
+                                    </div>
+                                    <span asp-validation-for="@Model.UserProfile.Address" class="required"></span>
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+               
+               
+                   
+
+
+                    @*----------------Cover Image-----------------*@
+
+
+                    <hr>
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="coverimage">
+                                Cover Image 
+                            </span>
+                            <small>
+
+                            </small>
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            <img id="imgcoverimage" src="@Model.UserProfile.SellerCoverImage" class="preview" style="display: @(Model.UserProfile.SellerCoverImage == null ? "none" : "block")">
+
+                            <label class="file-upload">
+                                <span class="btn btn-default l-grey-bg notranslate" data-translate="upload">
+
+                                    Upload
+                                </span>
+
+                                <input type="file" id="fileInputcoverimage" onchange="uploadFilecoverimage()" />
+
+                                <progress id="fileProgresscoverimage" class="w-100 margin5" style="display:none"></progress>
+                            </label>
+                            <p class="grey-c no-padding">
+                                <span class="notranslate" data-translate="coverimageuploadmsg">
+                                    Allowed JPG, GIF or PNG. Suggested Size 2000 by 250. MAX size 10 MB.
+                                  
+                                </span>
+
+                              
+
+                            </p> 
+                            <span id="spanfilenamecoverimage" class="validation"></span>
+                            <input type="hidden" asp-for="@Model.UserProfile.SellerCoverImage" />
+
+                            <span asp-validation-for="@Model.UserProfile.SellerCoverImage" class="required"></span>
+                        </div>
+
+
+                    </div>
+
+                    @*----------------Video URL-----------------*@
+                    <hr />
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="video">
+                                Video
+                            </span>
+
+
+                            <span class="l-bold notranslate" data-translate="optional">
+                           
+                                 
+                                 (optional)</span>
+                        </div>
+                        <div class="col-md-6">
+
+                      
+                        <div class="form-group">
+                                <span class="notranslate" data-translate="videosource">
+                                 Video Source
+                                </span>
+                           
+                            <select asp-for="@Model.UserProfile.Provider" id="ddlvideoprovider">
+
+                              @*   <option disabled selected>--Select--</option> *@
+                                <option value="html5" selected>HTML5 Source</option>
+                                <option value="youtube">Youtube</option>
+                                <option value="vimeo">Vimeo</option>
+
+                            </select>
+                            <span asp-validation-for="@Model.UserProfile.Provider" class="required"></span>
+                        </div>
+                        <div class="form-group no-padding checkright">
+                            <div class="form-group ">
+                                    <span class="notranslate" data-translate="videourl">
+                                        Video URL
+                                    </span>
+                                
+                                <input type="text" id="videoUrl" maxlength="1000" asp-for="@Model.UserProfile.SellerVideoURl">
+                                <label id="errorVideoURL" class="required"></label>
+                                <span asp-validation-for="@Model.UserProfile.SellerVideoURl" class="required"></span>
+                            </div>
+                            <div id="videoContainer"></div>
+                        </div>
+                        </div>
+                    </div>
+                
+                    @*----------------btn-----------------*@
+                    <hr>
+                    <div class=" row padding15">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">    <button id="btnSave" style="display:none" type="submit" class="clickable-button">
+                                <span class="notranslate" data-translate="save">
+                                    Save
+                                </span>
+                            
+                            </button></div>
+
+                    </div>
+                
+                </div>
+
+
+               
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div id="contactnumberViewContainer"></div>
+
+
+<script>
+
+   
+    function uploadFilesellerimage() {
+        var fileInput = $("#fileInputsellerimage")[0];
+        $("#fileProgresssellerimage").show();
+        var progressBar = $("#fileProgresssellerimage")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenamesellerimage').text("Only jpeg or png files are allowed.");
+            $("#fileProgresssellerimage").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenamesellerimage').text("File size must be less than 10 MB.");
+            $("#fileProgresssellerimage").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgsellerimage").attr("src", data.fileLink);
+
+                $('#UserProfile_SellerImage').val(data.fileLink);
+
+                $("#imgsellerimage").show();
+
+
+                $("#fileProgresssellerimage").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+    function uploadFilecoverimage() {
+        var fileInput = $("#fileInputcoverimage")[0];
+        $("#fileProgresscoverimage").show();
+        var progressBar = $("#fileProgresscoverimage")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg|gif)/)) {
+
+
+            $('#spanfilenamecoverimage').text("Only jpeg or png or gif files are allowed.");
+            $("#fileProgresscoverimage").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenamecoverimage').text("File size must be less than 10 MB.");
+            $("#fileProgresscoverimage").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgcoverimage").attr("src", data.fileLink);
+
+                $('#UserProfile_SellerCoverImage').val(data.fileLink);
+
+                $("#imgcoverimage").show();
+
+
+                $("#fileProgresscoverimage").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    
+
+   
+    ///load address auto complete
+    $(document).ready(function () {
+        setTimeout(function () {
+            // Your jQuery function code goes here
+            // This code will execute after a delay of 5 seconds
+
+            LoadGoogleAutoComplete();
+
+
+          
+           
+        }, 1000);
+    });
+
+
+    
+
+   
+
+    //load existing video data
+    $(document).ready(function () {
+        setTimeout(function () {
+            // Your jQuery function code goes here
+            // This code will execute after a delay of 5 seconds
+
+            
+
+            url = $('#videoUrl').val();
+
+            if (url != "") {
+                previewvideo(url);
+            }
+            $('#btnSave').show();
+
+
+           
+            
+        }, 2000);
+    });
+
+   
+
+
+    ///video display in iframe
+    $(document).ready(function () {
+        $('#videoUrl').on('input', function () {
+            var url = $(this).val();
+            previewvideo(url);
+            $('#errorVideoURL').text("If your video does not show preview, it means your video URL link is not correct.");
+        });
+    });
+
+    
+
+    // jQuery
+    $(document).ready(function () {
+        // Function to set the placeholder based on the selected value
+        function setPlaceholder(selectedValue) {
+            var placeholder = '';
+
+            if (selectedValue === 'html5') {
+                placeholder = 'abc.com/yourvideo.mp4';
+            } else if (selectedValue === 'youtube') {
+                placeholder = 'e.g. jNQXAC91vrW';
+            } else if (selectedValue === 'vimeo') {
+                placeholder = 'e.g. 123456789';
+            }
+
+            $('#videoUrl').attr('placeholder', placeholder);
+        }
+
+        // Bind the change event handler to the dropdown
+        $('#ddlvideoprovider').change(function () {
+            var selectedValue = $(this).val();
+            setPlaceholder(selectedValue);
+        });
+
+        // Trigger the change event on page load
+        var selectedValue = $('#ddlvideoprovider').val();
+        setPlaceholder(selectedValue);
+    });
+
+</script>

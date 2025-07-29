@@ -1,0 +1,99 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.currencyapiModel
+@{
+    <title>Currency API Setup</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<form method="post">
+
+
+    <div class="row">
+        <div class="col-md-2 col-12 mb-3 mb-md-0">
+
+
+            <ul class="nav nav-pills mb-3" role="tablist">
+                <li class="nav-item w-100 ">
+                    <button id="apilayerTabButton" type="button" class="nav-link text-start active " role="tab" data-bs-toggle="tab" data-bs-target="#apilayer" aria-controls="layerapisetup" aria-selected="true">
+                        Currency API
+                    </button>
+                </li>
+                
+
+
+
+
+            </ul>
+
+
+        </div>
+        <div class="col-md-10 col-12">
+            <div class="tab-content form card padding30 h-600">
+
+                @* @Section *@
+
+
+
+                <div class="tab-pane fade active show" id="apilayer">
+                    <h5 class="bold no-margin">APILayer Setup</h5>
+                    <p>
+                        <smal>Generate API Key from  <a class="bold" href="https://apilayer.com/marketplace/exchangerates_data-api" target="_blank">APILayer</a> </smal>
+
+
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                            Key
+                            <input asp-for="@Model.apilayer.APIKey" type="text" />
+                            <span asp-validation-for="@Model.apilayer.APIKey" class="required"></span>
+                            </div>
+
+                            <div class="form-group checkright">
+                      
+                            <input type="checkbox" asp-for="@Model.apilayer.IsPublish" id="apilayerSwitchCheck" value="true">
+                                <label  for="apilayerSwitchCheck"> Publish</label>
+                    
+
+                        </div>
+                            <div class="form-group">
+                                <button class="clickable-button" asp-page-handler="ApILayer">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+            
+               
+            
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#apilayer";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+</script>

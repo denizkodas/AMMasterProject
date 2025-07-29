@@ -1,0 +1,137 @@
+{
+  "CompanySetupSettings": {
+    "Logo": "~/images/logo.png",
+    "Favicon": "~/images/favicon.ico",
+    "CompanyName": "AM Technology",
+    "ShortDescription": "AM Technology is global market place development company.",
+    "Address": "this is my small address",
+    "SupportContact": "0000000000",
+    "SupportEmail": "info@amtechnology.info",
+    "MetaTitle": "Global Market Place",
+    "MetaKeyword": "marketplace, property classified, freelance",
+    "MetaDescription": "Global Market Place"
+  }, //done
+  "RegisterSettings": {
+    "RegisterMethod": "Mobile",
+    "VerificationPlatform": "Firebase"
+  }, //done
+  "RegisterVerificationSettings": {
+    "RegisterVerification": "False"
+  }, //done
+  "PaypalSettings": {
+    "ClientId": "clientid",
+    "ClientSecretKey": "secretkey",
+    "Environment": "live",
+    "IsEnable": "True"
+  }, //done
+  "DPOSettings": {
+    "CompanyToken": "CompanyTokenchange",
+    "ServiceType": "ServiceTypechange",
+    "IsEnable": "True"
+  }, //done
+  "RazorPaySettings": {
+    "Keyid": "Keyid",
+    "Secret": "Secret",
+    "IsEnable": "True"
+  }, //done
+  "PayFastSettings": {
+    "MerchantID": "MerchantIDjj",
+    "MerchantKey": "MerchantKeykkk",
+    "IsEnable": "True"
+  }, //done
+  "PayStackSettings": {
+    "PKLive": "MerchantIDhnn",
+    "IsEnable": "True"
+  }, //done
+  "StripeSettings": {
+    "APIKey": "APIKeychanged",
+    "IsEnable": "True"
+  }, //done
+  "TwilioSettings": {
+    "Number": "clientid",
+    "APIKey": "secretekey",
+    "IsEnable": "True"
+  },
+  "FirebaseSettings": {
+    "apiKey": "AIzaSyDVmiXO180oyhyT3Tr8-eCzFwvnlz2Xsg4",
+    "authDomain": "ammasterproject-1f531.firebaseapp.com",
+    "projectId": "ammasterproject-1f531",
+    "storageBucket": "ammasterproject-1f531.appspot.com",
+    "messagingSenderId": "511958923165",
+    "appId": "1:511958923165:web:d3dbfa7919f8e409d7a174",
+    "measurementId": "G-LQPMFERF12"
+  },
+
+  "FacebookLoginSettings": {
+    "APIKey": "secretekey"
+  },
+  "GoogleLoginSettings": {
+    "APIKey": "secretekey"
+  },
+  "EmailSettings": {
+    "FromEmail": "alert@defendmelegal.com",
+    "Password": "America@2022",
+    "Port": 25,
+    "SMTP": "relay-hosting.secureserver.net",
+    "EnableSSL": "True",
+    "BCC": "globaliwebsite@gmail.com"
+  }, //done
+  "ProfileBoostSettings": {
+    "DeductionType": "Both",
+    "NoofDays": "500",
+    "Amount": "100",
+    "Credit": "500",
+    "CustomAmount": "100",
+    "CustomCredit": "500"
+  }, //done
+  "ServiceBoostSettings": {
+    "DeductionType": "Both",
+    "NoofDays": "500",
+    "Amount": "100",
+    "Credit": "500",
+    "CustomAmount": "100",
+    "CustomCredit": "500"
+  }, //done
+  "ListingBoostSettings": {
+    "DeductionType": "Credit",
+    "NoofDays": "1",
+    "Amount": "1",
+    "Credit": "1",
+    "CustomAmount": "1",
+    "CustomCredit": "1"
+  }, //done
+  "AdvertisementBoostSettings": {
+    "DeductionType": "Amount",
+    "NoofDays": "100",
+    "Amount": "100",
+    "Credit": "100",
+    "CustomAmount": "100",
+    "CustomCredit": "100"
+  }, //done
+  "CommissionSettings": {
+    "CommissionType": "Percentage",
+    "Amount": "20",
+    "Label": "Sales Commission"
+  }, //done
+  "CommissionPlatformSettings": {
+    "CommissionType": "Amount",
+    "Amount": "4",
+    "Label": "Platform Update Fees"
+  }, //done
+  "CommissionBuyerSettings": {
+    "CommissionType": "Percentage",
+    "Amount": "5",
+    "Label": "Buyer Fees"
+  }, //done
+  "LoyaltyPointSettings": {
+    "PointsConversionRate": "0.02",
+    "MinPointsRedeem": "10",
+    "PointsExpiry": "70",
+    "IsEnable": "False"
+  }, //done
+  "AffiliateSettings": {
+    "AffiliatePercentage": "1",
+    "ReferalPercentage": "1",
+    "IsEnable": "False"
+  } //done
+}

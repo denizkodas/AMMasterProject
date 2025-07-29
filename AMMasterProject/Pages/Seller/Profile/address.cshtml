@@ -1,0 +1,176 @@
+﻿@page
+@using AMMasterProject.Helpers;
+@model AMMasterProject.Pages.Seller.Profile.addressModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenuaddress">Seconday Address </title>
+}
+<form method="post">
+    <input asp-for="@Model.Address.AddressGUID" type="hidden" />
+    <input asp-for="@Model.Address.AddressID" type="hidden" />
+
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+        <div class="card col-md-10 form">
+            <div class="margintb-15">
+                <h5 class="padding15 bold ">
+                    <span class="notranslate" data-translate="selleraddressheading">Other Addresses Details</span>
+
+
+                    </h5>
+
+
+
+                <div class="   ">
+
+
+
+                    <div class="row   padding15">
+                        <div class="col-md-3">
+                            <select asp-for="@Model.Address.Type">
+
+                                <option disabled selected>--Select--</option>
+                                <option value="0">Branche</option>
+                                <option value="1">Franchise</option>
+                                <option value="2">
+                                    Service Location
+                                </option>
+
+                            </select>
+                            <span asp-validation-for="@Model.Address.Type" class="required"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text no-border" id="basic-addon11">
+                                    <a class="acurrentlocation">
+
+                                        <svg class="svg-small" viewBox="0 0 512 512"><path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256a128 128 0 1 0 256 0 128 128 0 1 0 -256 0zm128-80a80 80 0 1 1 0 160 80 80 0 1 1 0-160z" /></svg>
+
+                                    </a>
+                                </span>
+
+
+                                <input id="txtaddress" type="text" maxlength="300" style="width:89%" class="googleaddress" asp-for="@Model.Address.Address">
+                            </div>
+                            <span asp-validation-for="@Model.Address.Address" class="required"></span>
+
+
+
+
+
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary clickable-button me-2">
+                                <span class="notranslate" data-translate="save">Save</span>
+
+                            </button>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+                <hr class="no-margin" />
+
+                <div class="table-responsive text-nowrap">
+                    <table id="ListingLoad" class="table border">
+                        <thead>
+                            <tr>
+                                <th style="width:200px">
+                                    <span class="notranslate" data-translate="address">Address</span>
+                                    
+                                    </th>
+                                <th>
+                                    <span class="notranslate" data-translate="type">Type</span>
+
+                                  </th>
+
+
+                                <th>
+                                    <span class="notranslate" data-translate="actions">Actions</span>
+                                    
+                                    </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+
+                            @foreach (var item in Model.listAddress)
+                            {
+
+
+                                <tr>
+                                    <td>
+
+                                        @item.Address
+                                        <br />
+
+                                        @item.ZipCode
+                                        @item.State
+                                        @item.City
+                                        @item.Country
+                                        @item.Latitude
+                                        @item.Longitude
+                                    </td>
+                                    <td style="width:100px">@Enum.GetName(typeof(AddressType), (AddressType)Enum.Parse(typeof(AddressType), item.Type))</td>
+
+                                    <td style="width:100px">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+
+                                              
+                                                    <a class="dropdown-item" href="/seller/profile/address?AddressGUID=@item.AddressGUID"><i class="bx bx-edit-alt me-1"></i>
+                                                    <span class="notranslate" data-translate="edit">Edit</span>
+                                                     </a>
+                                                @if (Model.listAddress.Count > 1)
+                                                {
+                                                    <button formnovalidate asp-page-handler="Delete" asp-route-id="@item.AddressGUID" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i>
+                                                        <span class="notranslate" data-translate="delete">Delete</span>
+                                                        
+                                                        </button>
+                                                }
+                                               
+                                                @*<a ><i class="bx bx-trash me-1"></i> Delete</a>*@
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+<script>
+    ///load address auto complete
+    $(document).ready(function () {
+        setTimeout(function () {
+            // Your jQuery function code goes here
+            // This code will execute after a delay of 5 seconds
+
+            LoadGoogleAutoComplete();
+
+
+
+
+        }, 2000);
+    });
+
+
+
+
+
+</script>

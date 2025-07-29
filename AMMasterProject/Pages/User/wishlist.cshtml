@@ -1,0 +1,50 @@
+﻿@page
+@model AMMasterProject.Pages.User.wishlistModel
+@{
+    ViewData["Title"] = "Wishlist";
+}
+<div class="paddingtb-15 o-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="customer-page-menu">
+
+
+            <partial name="/Pages/user/_tab.cshtml" />
+
+            </div>
+
+            <div class="customer-page wishlist-box">
+                <div class="padding15 white-bg radius m-none">
+                    <h4>
+                        <span class="notranslate" data-translate="wishlist">  Wishlist</span>
+
+
+                       
+
+                    </h4>
+                    </div>
+
+                <div id="dvProductViewContainer">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Controller/Product/wishlist',
+                success: function (result) {
+                    // update the page content here
+                    $('#dvProductViewContainer').html(result);
+                   
+                }
+            });
+        });
+</script>

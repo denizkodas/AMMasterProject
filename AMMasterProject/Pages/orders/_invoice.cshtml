@@ -1,0 +1,1064 @@
+﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.Helpers
+@model List<OrderViewModel>
+
+
+@{
+    int sellerCounter = 1; // Initialize the seller counter
+    int previousSellerID = 0;
+    var loginid = @User.FindFirst("USERID")?.Value;
+
+}
+
+
+@if (Model != null && Model.Count > 0)
+{
+    var groupTotal = Model.Sum(x => x.SummaryOrderMetaData.GrandTotal)-Model.Sum(x => x.SummaryOrderMetaData.CouponAmount);
+     var walletTotal = Model.Sum(x => x.SummaryOrderMetaData.WalletAmount);
+    var couponTotal = Model.Sum(x => x.SummaryOrderMetaData.CouponAmount);
+    var payableamount = (Model.Sum(x => x.SummaryOrderMetaData.GrandTotal)-Model.Sum(x => x.SummaryOrderMetaData.CouponAmount)) + Model.Sum(x => x.SummaryOrderMetaData.WalletAmount);
+    var orderMaster = Model.FirstOrDefault();
+
+
+
+    <div class="container">
+
+        <div class="h3 paddingtb-15 m-none">
+            <div class="float-end bottom-fix">
+
+               @*  <button class="btn theme-bg f-theme margin5" id="export-pdf-btn">Export to PDF</button> *@
+
+                <a onclick="exportpdf()" class="btn theme-bg f-theme margin5" id="export-pdf-btn">
+                    
+                      <span class="notranslate" data-translate="exporttopdf">
+            
+             Export to PDF
+           </span>
+                   </a>
+
+            </div>   
+            
+            
+             <span class="grey-c notranslate" data-translate="orderdetails">
+            
+            Order Detail 
+           </span>
+            
+        </div>
+
+
+        <div>
+
+            <div class="all-orders">
+                <div class="order-id-detail">
+                    <span class="h5">
+                          <span class="grey-c notranslate" data-translate="orderid">
+            
+           Order ID
+           </span>:<span class="blue-c s-bold">   <span class="generateorderid">@orderMaster.InvoiceNumber</span></span>
+                    </span>
+                    <span class="small grey-c order-date">
+                        <span class="m-none">-</span>  
+                        
+                         <span class="grey-c notranslate" data-translate="placedon">
+            
+          Placed On
+           </span>:
+                       
+
+                          <span class="setdateformat">@orderMaster.OrderDate </span>
+                            <span class="settimeformat">@orderMaster.OrderDate </span>
+
+                    </span>
+                    <span class="total-amount bold ">
+                          <span class="grey-c notranslate" data-translate="total">
+            
+          Total
+           </span>: <span class="cookiecurrency">@Model.FirstOrDefault()?.SummaryOrderMetaData.Currency </span>
+                        <label id="lbltotal">@groupTotal.ToString("N2")</label>
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="row white-bg no-margin ">
+                <div class="col-md-6  line30  padding15 sep-r">
+                    <div class="payment-ref">
+
+                        @*  Order Status:  <span class="float-end">
+
+                    <span id="orderstatus">@orderMaster.OrderProcessStatus</span>
+
+                    </span>
+                    <br> *@
+                  <div>
+                       <span class="notranslate" data-translate="paymentmode">
+            
+          Payment Mode
+           </span>:
+                        :  <span class="float-end">
+
+                            <span id="paymentmode">@orderMaster.PaymentMetaData.PaymentMethod.Replace("cod", "Cash On Delivery").Replace("banktransfer","Bank Transfer")</span>
+
+                            </span>
+                        </div>
+                       
+
+                      @if(orderMaster.PaymentMetaData.PaymentMethod !="cod" && orderMaster.PaymentMetaData.PaymentMethod !="banktransfer")
+                      {
+                        <div>
+
+                            <span class="notranslate" data-translate="paymentmode">
+            
+         Payment Date
+           </span>:
+
+                          <span class="float-end">
+
+
+                            <span id="paymentdate" class="setdateformat">@orderMaster.PaymentMetaData.PaymentDate</span>
+                             <span class="settimeformat">@orderMaster.PaymentMetaData.PaymentDate</span>
+                            </span>
+
+                            
+                           
+                        </div>
+
+                         <div>
+                        :
+                        
+                           <span class="notranslate" data-translate="paymentreference">
+            
+        Payment Reference
+           </span>:
+                        <span class="float-end">
+                            <span id="paymentreference">@orderMaster.PaymentMetaData.PaymentReference</span>
+
+                        </span>
+                        </div>  
+                        <div>
+                             <span class="notranslate" data-translate="paymentstatus">
+            
+        Payment Status
+           </span>:
+                        
+           <span class="notranslate" data-translate="payment">
+            
+        Payment 
+           </span>:
+            <span class="float-end">
+                            <span id="paymentstatus">@orderMaster.PaymentMetaData.PaymentStatus</span>
+
+                        </span>
+                            </div>
+                        }
+
+                        @*   ---Wallet Area *@
+                        @if (walletTotal < 0)
+                        {
+                            <div>
+
+                                 <span class="notranslate" data-translate="grandtotal">
+            
+        Grand Total
+           </span>: <span class="float-end">
+
+
+                                    <span class="bold" >
+
+
+
+                                        @Model.FirstOrDefault()?.SummaryOrderMetaData.Currency  @groupTotal.ToString("N2")
+                                    </span>
+                                </span>
+                            </div>
+                            <div>
+                                
+                                
+                                 <span class="notranslate" data-translate="walletused">
+            
+        Wallet Used
+           </span>:
+                                
+                                <span class="float-end red-c bold">
+
+
+                                    <span >-@Model.FirstOrDefault()?.SummaryOrderMetaData.Currency 
+
+                                        @Math.Abs(@walletTotal).ToString("N2")
+                                    </span>
+                                </span>
+                            </div>
+                            <div>
+
+
+                                @if (orderMaster.PaymentMetaData.PaymentStatus == "paid")
+                                {
+                                    <span class="notranslate" data-translate="paid">Paid:</span>
+                                }
+                                else
+
+                                {
+                                    <span  class="notranslate" data-translate="payableamount">Payable Amount:</span>
+
+
+                                }
+
+
+
+                                <span class="float-end green-c bold">
+
+
+                                    <span >@Model.FirstOrDefault()?.SummaryOrderMetaData.Currency @payableamount.ToString("N2") </span>
+                                </span>
+                            </div>
+
+                            @*   ---Wallet Area *@
+                        }
+                    </div>
+                </div>
+
+                @if (orderMaster.ShippingDetailMetaData != null)
+                {
+                    <div class="col-md-6 line30  padding15 ">
+                        <div class="">
+                            <div class="bold ">
+
+                                 <span class="notranslate" data-translate="shippingaddress">Shipping Address</span>:
+                                
+
+                            </div>
+
+                            @orderMaster.ShippingDetailMetaData.FullName <br/>
+                            <span id="shippingaddress"><b>@orderMaster.ShippingDetailMetaData.AddressType </b>: @orderMaster.ShippingDetailMetaData.ShippingAddress</span>
+                           @if(@orderMaster.ShippingDetailMetaData.NearestLandMark!=null)
+                            {
+                                <br/>
+                                  <span id="nearestlandmark">@orderMaster.ShippingDetailMetaData.NearestLandMark</span>
+                            }
+                            <br>
+                            <span id="buyeremail">@orderMaster.ShippingDetailMetaData.ShippingEmail</span>
+
+                            <br>
+
+                            <span id="deliveryphone">@orderMaster.ShippingDetailMetaData.ShippingPhone</span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="order-detail margintb-15 border">
+                @foreach (var item in Model)
+                {
+
+                    if (item.SellerViewModel.ProfileId != previousSellerID)
+                    {
+
+                        previousSellerID = item.SellerViewModel.ProfileId;
+                        @*  // Increment the seller counter for each new seller *@
+                        var packageText = "Package " + sellerCounter++;
+                        @*   Seller INFO *@
+
+                        <div class="white-bg line30 radius ">
+                            <div class="sold-by padding15 ">
+                                <div class="line20">
+
+
+                                    @if (item.BuyerID != int.Parse(loginid))
+                                    {
+                                        <a onclick="chatwith(@item.BuyerID)" class="float-end btn btn-sm l-grey-bg black-c margin10"><svg viewBox="0 0 80 81"> <path d="M44.8,4.6h-9.7C18.8,4.9,5.7,18.5,6,34.9c0.3,16,13.2,28.9,29.2,29.2h27.6l11.8,12.3v-42C74.5,18,61.2,4.7,44.8,4.6z     M71.6,68.9L64,61.1H35.2c-14.8,0-26.7-12-26.7-26.7c0-14.8,12-26.7,26.7-26.7h9.7c14.7,0,26.7,12,26.7,26.7V68.9z"></path><rect height="3" width="33.1" x="23.5" y="26"></rect><rect height="3" width="33.1" x="23.5" y="37.7"></rect></svg> 
+                                            
+                                        <span class="notranslate" data-translate="chatwith">   Chat with</span>
+                                     
+                                            
+                                        <span class="notranslate" data-translate="buyer">Buyer</span> </a>
+
+                                    }
+                                    else
+                                    {
+                                        <a onclick="chatwith(@item.SellerID)" class="float-end btn btn-sm l-grey-bg black-c margin10"><svg viewBox="0 0 80 81"> <path d="M44.8,4.6h-9.7C18.8,4.9,5.7,18.5,6,34.9c0.3,16,13.2,28.9,29.2,29.2h27.6l11.8,12.3v-42C74.5,18,61.2,4.7,44.8,4.6z     M71.6,68.9L64,61.1H35.2c-14.8,0-26.7-12-26.7-26.7c0-14.8,12-26.7,26.7-26.7h9.7c14.7,0,26.7,12,26.7,26.7V68.9z"></path><rect height="3" width="33.1" x="23.5" y="26"></rect><rect height="3" width="33.1" x="23.5" y="37.7"></rect></svg> 
+                                            
+                                         <span class="notranslate" data-translate="chatwith">   Chat with</span>
+                                        <span class="notranslate" data-translate="seller">Seller</span> </a>
+
+                                    }
+
+                                    
+                                    
+                                    
+                                    
+                                    <strong>
+                                     
+
+                                        @packageText
+                                    </strong> <br />
+                                    <span class="grey-c notranslate" data-translate="soldby">Sold by</span>:
+                                    <span class="cap" id="sellershopname">
+                                        <a target="_blank" href="/user/@item.SellerViewModel.BusinessUrlpath">
+                                        @item.SellerViewModel.BusinessName
+
+                                        </a>
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+                    @*  Product Binding *@
+                    @*    <div class="status padding15 ">
+            <span class="badge grey-bg l-bold medium  cap white-c">
+            Delivered
+            </span>
+            On date
+
+            </div> *@
+                    <div class="all-orders">
+
+
+                        @*   order list start *@
+
+                        <div class="padding15 o-padding">
+
+                            <div class="padding5 shopping-cart">
+                                <div class="row no-margin invoice-p-detail">
+                                    <div class="col-md-1 col-xs-2 no-padding">
+                                        <a target="_blank" href="@item.ItemDetailMetaData.basicModel.ItemURL" data-toggle="tooltip" data-placement="bottom">
+                                            <img src="@item.ItemDetailMetaData.basicModel.ItemImage">
+                                        </a>
+                                      @*   <span class="badge grey-bg l-bold small margin5  cap white-c">
+                                            @item.OrderProcessStatus @item.UpdateDate
+                                        </span> *@
+                                    </div>
+                                    <div class="col-md-8 line20">
+                                        <a target="_blank" href="@item.ItemDetailMetaData.basicModel.ItemURL">
+                                        <div class="p-name">@item.ItemDetailMetaData.basicModel.Name
+
+                                            <span class="p-badges">
+                                                <span class="@item.ItemDetailMetaData.basicModel.ListingType"> @item.ItemDetailMetaData.basicModel.ListingType </span>
+                                            </span>
+                                        </div>
+                                        </a>
+                                    
+                                        <div class="row mb-3">
+                                            <div class="col-md-4 o-padding">
+
+                                           
+
+
+                                      <div>
+                                                    <span class="grey-c notranslate" data-translate="qty">  Qty
+                                                    </span>:
+                                                    <span class="float-end grey-c bold">
+                                                        @item.ItemDetailMetaData.basicModel.Quantity 
+                                                        </span>
+                                                </div>
+                                        <div>
+
+                                                   <span class="notranslate" data-translate="price">
+                                                       Price
+                                                    </span>:
+
+                                                    <span class="float-end">
+                                                        @item.SummaryOrderMetaData.Currency   @item.SummaryOrderMetaData.ItemQtyTotal.ToString("N2")
+                                                    </span>
+                                                    <br/>
+                                                        
+                                            @if (item.ItemDetailMetaData.variationModel != null)
+                                            {
+                                                
+                                                @foreach (var variationList in item.ItemDetailMetaData.variationModel)
+                                                {
+                                                            var varialistqty = @variationList.ConversionAmount * @item.ItemDetailMetaData.basicModel.Quantity; 
+                                                            <p class="grey-c l-bold">
+
+                                                     +   @variationList.VariationName
+                                                        <span class="float-end">
+                                                                    @item.SummaryOrderMetaData.Currency  @varialistqty.ToString("N2")
+                                                                </span>
+                                                    </p>
+                                                }
+                                            }   
+                                            
+                                            
+                                           
+
+                                        </div>
+
+                                                
+                                        
+                                       
+                                            <span class="grey-c l-bold">+ 
+                                                
+                                                 <span class="notranslate" data-translate="shipping">
+                                                       Shipping
+                                                    </span>:
+                                                </span>
+                                            <span class="float-end grey-c ">
+                                         
+                                                    @if (@item.SummaryOrderMetaData.ShippingCost > 0)
+                                                    {
+                                                     @item.SummaryOrderMetaData.Currency  @item.SummaryOrderMetaData.ShippingQtyCost.ToString("N2")
+                                                        
+                                                    }
+                                                    else
+
+                                                    {
+                                                        <span class="green-c notranslate"  data-translate="freeshipping">Free Shipping</span>
+                                                    }
+                                                </span>  
+                                      
+                                       
+
+
+                                        @if (item.SummaryOrderMetaData.ChargesTotal>0)
+                    {
+                       
+                        <div>
+                        @foreach (var chargeList in item.ItemDetailMetaData.chargesModel)
+                        {
+                           
+                            var chargelistQyty = @chargeList.ConversionAmount * item.ItemDetailMetaData.basicModel.Quantity;
+                            <span class="no-margin grey-c small l-bold">
+                                + @chargeList.ChargesName  <span class="float-end"> @item.SummaryOrderMetaData.Currency @chargelistQyty.ToString("N2") </span> 
+                              </span> <br/>
+                             
+
+                        }
+                         </div>
+                    }
+                  
+                                              @if(@couponTotal>0)
+                                                {
+                                                       <span class="no-margin grey-c small l-bold">
+                                                    <span class="notranslate" data-translate="coupondiscount">
+                                                     -    Coupon Discount</span>
+                                                     <span class="float-end">
+                                                   @couponTotal
+                                                   </span>
+                                                   </span>
+                                                }
+
+                                        <p id="subtotal" class="bold">
+                                                    
+                                                      <span class="notranslate" data-translate="subtotal">
+                                                       Sub Total
+                                                    </span>:
+                                                    <span class="float-end">
+                                                        @item.SummaryOrderMetaData.Currency
+                                                        @{
+                                                          var grandTotal  = @item.SummaryOrderMetaData.GrandTotal-item.SummaryOrderMetaData.CouponAmount;
+                                                        }
+                                                        @grandTotal.ToString("N2")
+                                                        </span>
+
+
+                                        </p>
+
+                                      @*   Wallet deduction *@
+                                               @if(@item.SummaryOrderMetaData.WalletAmount<0)
+                                                {   <p>
+                                                    <span class="grey-c notranslate" data-translate="walletused">Wallet Used</span>:
+                                                     <span class="float-end grey-c ">
+                                                     -@item.SummaryOrderMetaData.Currency @Math.Abs(item.SummaryOrderMetaData.WalletAmount).ToString("N2")
+                                                        </span>
+                                               </p>
+
+                                                 @*   wallet amoutn is already in negative so need to add plus sign *@
+
+                                        
+                                               <p  class="bold">
+                                              <span class="notranslate" data-translate="balancepayment">Balance Payment</span>:
+                                                <span class="float-end">
+                                                    @item.SummaryOrderMetaData.Currency
+                                                    @(item.SummaryOrderMetaData.GrandTotal + item.SummaryOrderMetaData.WalletAmount)
+                                                </span>
+                                                </p>
+                                             }
+                                            </div>
+
+                                        </div>
+
+                                        <div>  </div>
+
+                                    </div>
+
+                                    <div class="col-md-3 right action o-padding padding15">
+                                        <div class=""></div>
+
+                                        @if (item.BuyerID != int.Parse(loginid))
+                                        {
+                                            @if (item.OrderProcessStatus.ToLower() == "processing" || item.OrderProcessStatus.ToLower() == "shipped" || item.OrderProcessStatus.ToLower() == "delivered")
+                                            {
+                                                <a onclick="showOrderStatus(@item.OrderId, 'orderstatus', 'Update Order Status')" class="float-end btn btn-sm l-grey-bg black-c marginrf-15"> 
+                                                    
+                                                     <span class="notranslate" data-translate="updatestatus">Update Status</span>
+                                                     </a>
+                                            }
+                                        }
+
+
+                                        @if (item.OrderProcessStatus.ToLower() == "processing")
+                                        {
+                                            <a onclick="showOrderStatus(@item.OrderId, 'cancel' ,'Cancellation Reason')" class="float-end btn btn-sm l-grey-bg black-c ">
+                                                
+                                                <span class="notranslate" data-translate="cancel">Cancel</span>
+                                                </a>
+
+                                        }
+                                        @if (item.OrderProcessStatus.ToLower() == "completed" && item.ReviewMetaData == null)
+                                        {
+                                            <a onclick="showOrderStatus(@item.OrderId, 'return' ,'Return Details')" class="float-end btn btn-sm l-grey-bg black-c ">
+                                                
+                                                               <span class="notranslate" data-translate="return">Return</span>
+                                                </a>
+                                        }
+                                        @if (item.OrderProcessStatus.ToLower() == "completed")
+                                        {
+
+
+
+
+                                            if (item.ReviewMetaData != null)
+                                            {
+                                               
+
+
+                                             @*    @if (item.BuyerID == int.Parse(loginid) && !item.ReviewMetaData.Any(r => r.ReviewerType == "buyer"))
+                                                {
+                                                    <a id="btnreview-@item.OrderId" onclick="showOrderReview(@item.OrderId, 'return')" class="float-end btn btn-sm l-grey-bg black-c margin10">Write Review</a>
+                                                }
+                                                else  *@
+                                                
+                                                if (item.SellerID == int.Parse(loginid) && !item.ReviewMetaData.Any(r => r.ReviewerType == "seller"))
+                                                {
+                                                    <a id="btnreview-@item.OrderId" onclick="showOrderReview(@item.OrderId, 'return')" class="float-end btn btn-sm l-grey-bg black-c marginrf-15">
+                                                        
+                                                         <span class="notranslate" data-translate="writereview">Write Review</span>
+                                                        
+                                                        </a>
+                                                }
+                                            }
+                                            else if (item.BuyerID == int.Parse(loginid))
+                                            {
+
+                                                //buyer- First buyer should give review
+                                                <a id="btnreview-@item.OrderId" onclick="showOrderReview(@item.OrderId, 'return')" class="float-end btn btn-sm l-grey-bg black-c marginrf-15">
+                                                    
+                                                     <span class="notranslate" data-translate="writereview">Write Review</span>
+                                                    </a>
+                                            }
+
+                                            if (item.ReviewMetaData != null)
+                                            {
+                                                <div class="reviews padding5"> 
+                                                    @foreach (var review in item.ReviewMetaData)
+                                                    {
+                                                        <p>
+                                                            <span> @review.ReviewName </span> : <strong> @review.AverageRating </strong> <i class="fa fa-star yellow-c"></i>
+                                                        </p>
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row box-center">
+                                    <div class="col-md-8 o-padding">
+                                        <div class="container-fluid">
+
+                                            <ul class="list-unstyled multi-steps">
+                                               
+                                                @{
+                                                    var statuses = new List<string> { "processing", "shipped", "delivered", "completed", "cancelled", "returned" };
+                                                    string activeStatus = item.OrderProcessStatus.ToLower();
+                                                    bool showCancelled = activeStatus == "cancelled"; // Check if it's cancelled
+                                                    bool showReturned = activeStatus == "returned"; // Check if it's returned
+                                                    foreach (var status in statuses)
+                                                    {
+                                                        bool isDone = status != activeStatus && statuses.IndexOf(status) < statuses.IndexOf(activeStatus);
+
+                                                       
+                                                        bool isActive = status == activeStatus;
+                                                        string statusDisplayName = Char.ToUpper(status[0]) + status.Substring(1); // Capitalize the first character
+
+                                                        if (status == "cancelled" && !showCancelled)
+                                                        {
+                                                            continue; // Skip "cancelled" if not cancelled
+                                                        }
+
+                                                        if (status == "returned" && !showReturned)
+                                                        {
+                                                            continue; // Skip "returned" if not returned
+                                                        }
+
+                                                        if (showCancelled && (status == "shipped" || status == "delivered" || status == "completed"))
+                                                        {
+                                                            continue; // Skip "shipped," "delivered," and "completed" if it's cancelled
+                                                        }
+
+                                                                <li class="@GetStatusClass(isDone, isActive)">
+                                                                    @statusDisplayName
+                                                                </li>
+                                                    }
+                                                }
+
+
+                                                @functions {
+                                            string GetStatusClass(bool isDone, bool isActive)
+                                            {
+                                                if (isActive)
+                                                {
+                                                    return "active";
+                                                }
+                                                else if (isDone)
+                                                {
+                                                    return "done";
+                                                }
+                                                else
+                                                {
+                                                    return "";
+                                                }
+                                            }
+                                        }
+
+
+
+
+                                    </ul>
+                                </div>
+                                <div class="l-grey-bd border white-smoke-bg small radius padding15 margintb-15">
+
+
+                                    @foreach (var OrderStatus in item.OrderStatusMetaData)
+                                            {
+                                                <p class="no-margin">
+                                                    <span class="status-date">
+                                                        
+
+                                                          <span class="setdateformat">
+                               @OrderStatus.OrderStatusDate
+                           </span> 
+
+                            <span class="settimeformat">
+                               @OrderStatus.OrderStatusDate
+                           </span> 
+
+                                                    </span>   <span class="cap bold">
+                                                        @OrderStatus.OrderStatusName:
+                                                    </span>
+                                                    <span>
+                                                        @OrderStatus.OrderStatusNotes
+                                                    </span>
+
+                                                </p>
+                                            }
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @if (item.ItemDetailMetaData.basicModel.ListingType == "Digital")
+                                {
+                                    
+                              
+                             @*    if downdload item *@
+                                <div id="dvdigitaldownload" class="margintb-15 alert alert-info ">
+                                    <div class="">
+                                            <strong>
+                                                  <span class="notranslate" data-translate="downloaditem">Download Item</span>:
+                                                
+                                            </strong>
+
+                                            @if (@item.PaymentMetaData.PaymentStatus == "paid" && item.OrderProcessStatus == "processing" || item.OrderProcessStatus == "completed")
+                                            {
+
+                                                
+
+                                                if (item.ItemDetailMetaData.productDigitalMetaData != null)
+                                                {
+                                                    foreach (var digitalitems in item.ItemDetailMetaData.productDigitalMetaData)
+                                                    {
+                                                        <div class="download-box float-end">
+                                                            <a onclick="OrderStatus(@orderMaster.OrderId, 'completed', 'Item Download. Auto mark as completed')" href="@digitalitems.DigitalLink" target="_blank">
+                                                                <?xml version="1.0" ?><svg style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st0{opacity:0.2;fill:none;stroke:#000000;stroke-width:5.000000e-02;stroke-miterlimit:10;}
+</style><g id="grid_system"/><g id="_icons"><g><path d="M11.3,15.7c0.1,0.1,0.2,0.2,0.3,0.2C11.7,16,11.9,16,12,16s0.3,0,0.4-0.1c0.1-0.1,0.2-0.1,0.3-0.2l4-4    c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L13,12.6V5c0-0.6-0.4-1-1-1s-1,0.4-1,1v7.6l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4    L11.3,15.7z"/><path d="M19,13c-0.6,0-1,0.4-1,1v2c0,1.1-0.9,2-2,2H8c-1.1,0-2-0.9-2-2v-2c0-0.6-0.4-1-1-1s-1,0.4-1,1v2c0,2.2,1.8,4,4,4h8    c2.2,0,4-1.8,4-4v-2C20,13.4,19.6,13,19,13z"/></g></g></svg>
+                                                                
+<span class="notranslate" data-translate="downloaditem">Download Item</span>
+
+</a>
+
+
+                                                        </div>
+                                                    }
+                                                }
+
+                                            }
+
+                                      
+                                        <br>
+                                        <p class="black-c">
+
+                                            <small>
+                                                <span class="notranslate" data-translate="downloaditemlineone">
+                                                Item will be available for download once the payment is made.</span></small> <br>
+                                            <small>
+                                                    <span class="notranslate" data-translate="downloaditemlinetwo">
+                                                
+                                                If you have made the payment and item is not available please call support service.
+                                            </span>    
+                                            </small> <br>
+                                        </p>
+                                           
+
+                                        </div>
+                                    </div>
+
+
+                                   
+                                }
+                            
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <hr class="no-margin"/>
+
+
+                }
+
+            </div>
+
+
+            @*  -------------------------------ORDER STATUS---------------------------- *@
+            <div class="overlay-view" style="display:none" id="dvOrderStatus">
+               
+                <input type="hidden" id="hdnOrderID" />
+                <div class="popup ">
+                    <div class="popup-heading">
+                      <span id="spanOrderStatus"></span>
+
+                        <a onclick="closeOrderStatus()" id="astatusclose" class="close-back"></a>
+
+                    </div>
+
+                    <div class="padding30 white-bg">
+
+                    <div class="form row">
+                        
+                        <div class="form-group col-md-6">
+                               <span class="notranslate" data-translate="status">
+                                                
+                            Status
+                            </span>
+                            <select id="ddlorderStatus" name="ddlorderStatus" required>
+                            </select>
+
+
+                                <span class="required" id="spanErrorOrderStatus"></span>
+
+
+
+                        </div>
+                        <div class="form-group col-md-8">
+                               <span class="notranslate" data-translate="notes">
+                                                
+                            Notes
+                            </span>
+                            <textarea id="txtvendornotes" name="txtvendornotes"></textarea>
+                        </div>
+                        <div class="from-group col-md-8 padding15">
+
+
+                           
+                            <button id="btnorderstatus" class="clickable-button" type="button">
+                                
+                                   <span class="notranslate" data-translate="update">
+                                                
+                                Update
+                            </span>    
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+
+        
+
+        </div>
+
+
+    </div>
+
+    <partial name="/Pages/Review/_addreview.cshtml" />
+
+
+    <script>
+    function showOrderStatus(orderid, key, reason) {
+        $("#hdnOrderID").val(orderid);
+        $("#dvOrderStatus").show();
+
+
+        var ddl = $('#ddlorderStatus');
+
+        // Clear existing options
+        ddl.empty();
+
+        // Add the default select option
+        ddl.append($('<option selected disabled value="0">-- Select --</option>'));
+
+        $.ajax({
+            url: '/Controller/Order/OrderStatusSetup?key=' + key, // Replace with your controller and action names
+            method: 'GET', // You can also use 'POST' if needed
+            dataType: 'json', // Expect JSON response
+            success: function (data) {
+                // Populate the dropdown with the returned data
+                $("#spanOrderStatus").text(reason);
+
+                
+                $.each(data, function (index, item) {
+                    ddl.append($('<option>').text(item.name).attr('value', item.statusType));
+                });
+            },
+            error: function () {
+                // Handle the error
+                console.log('Failed to load order status options.');
+            }
+        });
+
+
+
+
+
+    }
+
+    function closeOrderStatus() {
+        $("#hdnOrderID").val("");
+        $("#dvOrderStatus").hide();
+
+        var ddl = $('#ddlorderStatus');
+
+        // Clear existing options
+        ddl.empty();
+
+    }
+
+
+
+    function OrderStatus(orderId, orderProcessStatus, orderNotes) {
+        $.ajax({
+            url: '/Controller/order/OrderStatusUpdate?OrderId=' + orderId + "&orderprocesstatus=" + orderProcessStatus + "&orderNotes=" + orderNotes,
+            type: 'POST',
+            success: function (result) {
+
+                if (result === "success") {
+
+                    toaster('Order status updated successfully', 'toast-success',);
+                    // $("#spanErrorOrderStatus").text("Order status updated successfully");
+
+
+                } else {
+                    // Handle other success responses if needed
+                }
+            },
+            error: function () {
+                // Handle the error
+                // You might want to provide some feedback to the user in case of an error
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        // Add a click event handler for the button
+        $("#btnorderstatus").click(function () {
+            // Get the values you need for the OrderStatus function (orderId, orderProcessStatus, orderNotes)
+            var orderId = $("#hdnOrderID").val();
+            var ddlOrderStatus = document.getElementById("ddlorderStatus");
+            var orderProcessStatusValue = ddlOrderStatus.options[ddlOrderStatus.selectedIndex].value;
+            var orderProcessStatusText = ddlOrderStatus.options[ddlOrderStatus.selectedIndex].text;
+            var orderNotes = $("#txtvendornotes").val() ;
+
+            // Check if orderId or orderProcessStatus is null or blank
+
+            // Check if the textbox is empty
+            if (orderNotes === "") {
+                // Assign a different value to orderNotes when it's empty
+                orderNotes = orderProcessStatusText;
+            }
+
+
+            if (!orderId || orderId.trim() === "") {
+                // Show an alert message
+                location.reload();
+            }
+            else if (orderProcessStatusValue == "0") {
+                $("#spanErrorOrderStatus").text("Please select status");
+            }
+
+            else {
+                // Call the OrderStatus function with the provided values
+                OrderStatus(orderId, orderProcessStatusValue,  orderNotes);
+
+                // Reload the page after 2 seconds
+                setTimeout(function () {
+                    location.reload();
+                }, 2000); // 2000 milliseconds = 2 second
+            }
+        });
+    });
+
+
+
+    function chatwith(sellerid) {
+        var loginuserid = $("#hdnlogin").val();
+        if (typeof loginuserid !== "undefined" && loginuserid !== "") {
+
+            ///loginuserid// logged in user
+            //second property is to whom chat to do
+            createchat(loginuserid, sellerid)
+        }
+        else {
+
+            loginview("LoginView");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    function exportpdf() {
+
+        // Disable the export button during processing
+        document.getElementById('export-pdf-btn').disabled = true;
+        document.getElementById('export-pdf-btn').innerText = 'Processing...';
+
+        var currenturl = window.location.href;
+        var invoicenumber ="/invoices/" + getParameterByName("invoicenumber") +".pdf";
+        $.ajax({
+            url: '/Controller/master/ExportPDFIron?url=' + currenturl + "&invoicenumber=" + getParameterByName("invoicenumber"),
+            type: 'GET',
+            success: function (result) {
+                // Open the generated PDF in a new tab
+                window.open(invoicenumber, '_blank');
+                // Assuming the server returns a URL to download the PDF
+                // You can also return JSON with the file URL from the server
+            
+                DownloadFile(invoicenumber);
+
+
+                // After opening in a new tab, make another request to delete the file after 3 minutes
+                setTimeout(function () {
+                    $.ajax({
+                        url: '/Controller/master/DeletePDFFile?invoicenumber=' + getParameterByName("invoicenumber"),
+                        type: 'POST',
+                        success: function () {
+                            // File deleted successfully
+
+                            document.getElementById('export-pdf-btn').disabled = false;
+                            document.getElementById('export-pdf-btn').innerText = 'Export to PDF';
+                        },
+                        error: function () {
+                            // Handle the error
+                            // You might want to provide some feedback to the user
+                        }
+                    });
+                }, 10000);//30000 30 second only // 180000 milliseconds = 3 minutes
+            
+            },
+            error: function () {
+                // Handle the error
+                // You might want to provide some feedback to the user in case of an error
+            }
+        });
+    }
+
+
+
+    function DownloadFile(fileName) {
+        //Set the File URL.
+        var url =  fileName;
+
+        $.ajax({
+            url: url,
+            cache: false,
+            xhr: function () {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 2) {
+                        if (xhr.status == 200) {
+                            xhr.responseType = "blob";
+                        } else {
+                            xhr.responseType = "text";
+                        }
+                    }
+                };
+                return xhr;
+            },
+            success: function (data) {
+                //Convert the Byte Data to BLOB object.
+                var blob = new Blob([data], { type: "application/octetstream" });
+
+                //Check the Browser type and download the File.
+                var isIE = false || !!document.documentMode;
+                if (isIE) {
+                    window.navigator.msSaveBlob(blob, fileName);
+                } else {
+                    var url = window.URL || window.webkitURL;
+                    link = url.createObjectURL(blob);
+                    var a = $("<a />");
+                    a.attr("download", fileName);
+                    a.attr("href", link);
+                    $("body").append(a);
+                    a[0].click();
+                    $("body").remove(a);
+                }
+            }
+        });
+    };
+
+    
+
+
+
+</script>
+}
+
+

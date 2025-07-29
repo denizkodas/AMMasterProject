@@ -1,0 +1,116 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Advertisement.pricingModel
+@{
+    <title>Advertisement Pricing</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<form method="post">
+
+
+<div class="card">
+    <div class="form padding30">
+
+
+            @*  Auto Advertisement setting Form *@
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Auto 
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+
+                        <div class="form-group col-md-7">
+                            Deduction Type
+                            <select asp-for="@Model.advertisementboost.DeductionType">
+
+                                <option>Both</option>
+                                <option>Credit</option>
+                                <option>Amount</option>
+
+                            </select>
+                            <span asp-validation-for="@Model.advertisementboost.DeductionType" class="required"></span>
+                        </div>
+                   
+                    <div class="form-group col-md-7">
+                       Days
+                            <input type="text" maxlength="100" asp-for="@Model.advertisementboost.NoofDays">
+                            <span asp-validation-for="@Model.advertisementboost.NoofDays" class="required"></span>
+                    </div>
+                  
+
+
+                    <div class="form-group col-md-7">
+                        Amount
+                            <input type="text" maxlength="100" asp-for="@Model.advertisementboost.Amount">
+                            <span asp-validation-for="@Model.advertisementboost.Amount" class="required"></span>
+                    </div>
+
+                    <div class="form-group col-md-7">
+                        Credits
+                            <input type="text" maxlength="100" asp-for="@Model.advertisementboost.Credit">
+                            <span asp-validation-for="@Model.advertisementboost.Credit" class="required"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+            @*  Auto Advertisement setting Form End *@
+        
+        <hr />
+
+            @*  Customize Advertisement Setting Form *@
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Customize
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+                    <div class="row">
+
+
+
+                        <div class="form-group col-md-7">
+                           Per day AD Amount
+                                <input type="text" maxlength="100" asp-for="@Model.advertisementboost.CustomAmount">
+                                <span asp-validation-for="@Model.advertisementboost.CustomAmount" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-7">
+                            Per day AD Credits
+                                <input type="text" maxlength="100" asp-for="@Model.advertisementboost.CustomCredit">
+                                <span asp-validation-for="@Model.advertisementboost.CustomCredit" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            @*  Customize Advertisement setting Form End *@
+
+
+
+   
+
+        <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">
+
+                    @*  Submit Button *@
+                    <button asp-page-handler="AdvertisementBoost">Save</button></div>
+
+
+
+        </div>
+    </div>
+</div>
+
+</form>

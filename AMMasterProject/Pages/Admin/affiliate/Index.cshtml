@@ -1,0 +1,56 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.affiliate.IndexModel
+@{
+    <title>Affiliate / Referral</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class="form card padding30">
+    <div class="form padding30 row">
+
+        <div class="row">
+
+            <div class="col-md-5 no-padding">
+                <div class="row">
+
+
+                    <div class="form-group ">
+                        Affiliate %
+                        <input type="number" asp-for="@Model.affiliatepoints.AffiliatePercentage">
+                        <span asp-validation-for="@Model.affiliatepoints.AffiliatePercentage" class="required"></span>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        Referral %
+                        <input type="number" asp-for="@Model.affiliatepoints.ReferalPercentage">
+                        <span asp-validation-for="@Model.affiliatepoints.ReferalPercentage" class="required"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="checkbox" asp-for="@Model.affiliatepoints.IsEnable" id="loyaltySwitchChecked" value="true">
+                        <label class="form-check-label" for="loyaltySwitchChecked"> Enable</label>
+                    </div>
+
+                    <div class="form-group">
+                        <button asp-page-handler="Affiliate">Save</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="col-md-1 m-none"></div>
+            <div class="col-md-6 m-none s-bold float-end">
+            </div>
+        </div>
+
+    </div>
+</div>
+</form>

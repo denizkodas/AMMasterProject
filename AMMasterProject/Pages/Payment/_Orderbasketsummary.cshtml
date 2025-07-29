@@ -1,0 +1,221 @@
+﻿@using AMMasterProject.ViewModel;
+@model List<OrderViewModel>
+
+@{
+    int previousSellerID = 0;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+ 
+
+   <span class="totalitemcart">
+        <span class="notranslate" data-translate="total">Total</span>
+           <span class="badge theme-bg"> @Model.Count()</span>
+        <span class="notranslate" data-translate="itemincart"> Item In Cart</span>
+       
+    
+    
+    </span>
+    @foreach (var item in Model)
+    {
+
+        <hr class="no-margin" />
+        <div class="padding15">
+            <div class="row">
+                
+                <div class="col-md-8 col-xs-10 shopping-detail">
+                    <a id="aorderremove_@item.OrderId" onclick="deleteCart(@item.OrderId, '@item.InvoiceNumber')" class="aorderremove order-remove cart-delete"></a>
+
+                    <p class="p-name no-margin">@item.ItemDetailMetaData.basicModel.Name</p>
+                    @if (item.ItemDetailMetaData.variationModel.Count>0)
+                    {
+
+                        @foreach (var variationList in item.ItemDetailMetaData.variationModel)
+                        {
+                               <span class="badge l-grey-bg black-c m-bold">
+                                @variationList.VariationName
+                            </span>
+                        }
+                    }
+                    <span class="badge l-grey-bg black-c m-bold"></span>
+                    <div class="cart-p-price no-margin">@item.SummaryOrderMetaData.Currency 
+                        
+                        
+                        @* //@item.ItemDetailMetaData.ConversionAmount.ToString("N2") *@
+
+
+                        @{
+                            var totalAmount = item.SummaryOrderMetaData.TotalQty;
+                        }
+
+
+
+                        <span id="lbltotalamount" class="data 2digit comma-separate"> @totalAmount.ToString("N2")</span>
+
+                        @if (@item.SummaryOrderMetaData.ShippingCost >0)
+                        { 
+                            <span class="d-block l-bold grey-c"> +
+
+                                <span class="notranslate" data-translate="shipping"> Shipping</span>:
+                                
+                                
+                                @item.SummaryOrderMetaData.Currency
+
+
+                                <span id="lblshippingcost" class="data 2digit comma-separate">  @item.SummaryOrderMetaData.ShippingQtyCost</span>
+                               
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="green-c d-block notranslate" data-translate="freeshipping">
+                                 Free Shipping
+                                
+                               </span>
+                        }
+
+
+                        @if (item.SummaryOrderMetaData.ChargesTotal > 0)
+                        {
+
+                           
+                                @foreach (var chargeList in item.ItemDetailMetaData.chargesModel)
+                                {
+                                     var chargeListQty = @chargeList.ConversionAmount * item.ItemDetailMetaData.basicModel.Quantity;
+
+
+                                    <span class="d-block l-bold grey-c">
+                                        + @chargeList.ChargesName:
+                                        @item.SummaryOrderMetaData.Currency
+
+
+                                    <span id="lblshippingcost" class="data 2digit comma-separate"> @chargeListQty</span>
+
+                                    </span>
+
+
+
+
+                                }
+                            
+                            
+
+                        }
+
+                    </div>
+
+
+                    @if(item.ItemDetailMetaData.basicModel.ListingType =="Digital")
+                    {
+                        <div class="p-badges">
+                            <span class="@item.ItemDetailMetaData.basicModel.ListingType"> @item.ItemDetailMetaData.basicModel.ListingType </span>
+                        </div>
+                    }
+                   
+
+                   
+                </div>
+                <div class="col-md-2 col-xs-6 shopping-action">
+                   
+                    <div class="cart-qty form">
+                        <span class="notranslate" data-translate="qty">   QTY</span>
+
+                      
+                     @*  @item.ItemDetailMetaData.Quantity==0?1 *@
+                        @{
+                            var quantity = item.ItemDetailMetaData.basicModel.Quantity == 0 ? 1 : item.ItemDetailMetaData.basicModel.Quantity;
+                        }
+                        @quantity
+                      
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <span id="subtotalSpan_@item.OrderId" style="display: @(item.ItemDetailMetaData.basicModel.Quantity > 1 ? "none" : "none")">
+           
+            <span class="notranslate" data-translate="subtotal">  Sub Total</span>:
+
+
+            @item.SummaryOrderMetaData.Currency
+            <span id="subtotalValue_@item.OrderId">@item.SummaryOrderMetaData.TotalQty.ToString("N2")</span>
+        </span>
+    }
+   
+    //itemtotal + variation total
+   @*  var groupTotal = Model.Sum(x => x.SummaryOrderMetaData.TotalQty); *@
+
+   @*  var ShippingCost = Model.Sum(x => x.SummaryOrderMetaData.ShippingQtyCost); *@
+    var grandTotal = Model.Sum(x => x.SummaryOrderMetaData.GrandTotal);
+    <div class="cart-total">
+        <span class="heading notranslate" data-translate="total">Total</span>:
+
+     
+       @*  Grand Total *@
+        <span class="grandtotal" id="spanOrderBasketGrandTotal">
+            
+            @Model.FirstOrDefault()?.SummaryOrderMetaData.Currency
+
+
+            <span id="lblgrandtotal" class="data 2digit comma-separate">@Model.Sum(x => x.SummaryOrderMetaData.GrandTotal)</span>
+            
+            
+        </span>
+
+      @*   Payable amount *@
+      @*   <span class="amount">
+            Payable 
+            <span id="spanTotalCurrency">
+                @Model.FirstOrDefault()?.SummaryOrderMetaData.Currency
+                </span>
+
+            <span id="spanTotalAmount">
+                @grandTotal.ToString("N2")
+            </span> 
+        </span> *@
+    </div>
+
+    <input type="hidden" name="selectedPaymentCurrency" value="@Model.FirstOrDefault()?.SummaryOrderMetaData.Currency" id="selectedPaymentCurrency" />
+    <input type="hidden" name="selectedPaymentAmount" value="@grandTotal" id="selectedPaymentAmount" />
+
+
+    
+}
+
+
+else
+
+{
+
+    <script>
+        window.location.href = "/orders/cart";
+    </script>
+  
+   
+}
+
+
+@*@if (Model != null)
+{
+
+    <div class="grey-c  payment-page-summury">
+        <p class="no-margin ">
+            Amount <span class="float-end bold d-grey-c">@Model.Currency @Model.Total.ToString("N2")</span>
+        </p>
+        <p class="no-margin ">
+            Discount<span class="l-green-c">(10%)</span> <span class="float-end bold d-grey-c">$50</span>
+        </p>
+        <hr class="m-none" />
+        <h3 class="black-c ">
+            <span class="medium">Total Amount</span> <span class="float-end bold">@Model.Currency @Model.Total.ToString("N2")</span>
+        </h3>
+    </div>
+
+     
+}*@
+
+
+

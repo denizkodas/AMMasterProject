@@ -1,0 +1,178 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.creditsetup.SettingsModel
+@{
+    <title>Credit Setup</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/creditsetup">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/creditsetup/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/creditsetup/settings"><i class="bx bx-cog me-1"></i> Setting </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+
+
+        <div class=" padding30">
+        <h5 class="bold">Credit System Settings</h5>
+               
+                
+        <div class="row form paddingtb-15 justify-content-between">
+
+            <div class="col-md-8">
+                <div class="checkright row">
+
+
+                    <div class="col-md-3 s-bold">
+                        Enable/Disable
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="form-group">
+
+
+                                    <input type="checkbox"  asp-for="@Model.creditsystem.IsEnable" id="CreditSystemSwitchChecked" value="true">
+                                <label class="form-check-label" for="CreditSystemSwitchChecked"> Enable</label>
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to Enable commission system </p>
+
+
+                        </div>
+
+                         
+                       
+                    </div>
+                </div>
+                
+                 
+            </div>
+
+
+
+                </div>
+                <br/>
+                <div class="form" >
+                
+          
+
+
+
+                <h5 class="bold ">Manual Credit Management</h5>
+
+
+                    <hr />
+
+                <div  id="dvcreditview" style="display:none">
+                        <div class="row">
+                    <div class="col-md-4">
+                        <h6>Credit Allocation </h6>
+                        <div class="form-group">
+                            Free Credit on Seller Registration
+                            <input type="number" min="0" asp-for="@Model.creditsystem.FreeCreditForSeller">
+                            <span asp-validation-for="@Model.creditsystem.FreeCreditForSeller" class="required"></span>
+                        </div>
+
+                        <div class="form-group">
+                            Free Credit on Buyer Registration
+                            <input type="number" min="0" asp-for="@Model.creditsystem.FreeCreditForBuyer">
+                            <span asp-validation-for="@Model.creditsystem.FreeCreditForBuyer" class="required"></span>
+                        </div>
+
+                    </div>
+                   
+                    <div class="col-md-4">
+                        <h6>Credit Deduction</h6>
+
+                  
+                     
+
+                
+
+
+                    <div class="form-group">
+                        Address
+                        <input type="number" min="0" asp-for="@Model.creditsystem.DeductionOnAddressView">
+                        <span asp-validation-for="@Model.creditsystem.FreeCreditForBuyer" class="required"></span>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        Email
+                        <input type="number" min="0" asp-for="@Model.creditsystem.DeductionOnEmailView">
+                        <span asp-validation-for="@Model.creditsystem.FreeCreditForBuyer" class="required"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        Contact Number
+                        <input type="number" min="0" asp-for="@Model.creditsystem.DeductionOnContactView">
+                        <span asp-validation-for="@Model.creditsystem.FreeCreditForBuyer" class="required"></span>
+                    </div>
+                        </div>
+                        </div>
+                </div>
+                <hr />
+                <div class="form-group">
+
+
+
+                        <button class="clickable-button" asp-page-handler="CreditSystem">Save</button>
+
+
+
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+
+<script>
+    
+
+
+                                     ///handle multi currency div
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var multiSwitch = document.getElementById("CreditSystemSwitchChecked");
+        var contentDiv = document.getElementById("dvcreditview");
+
+        // Initial check for the checkbox on page load
+        if (multiSwitch.checked) {
+
+           
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+
+
+
+
+        // Handle checkbox change event
+        multiSwitch.addEventListener("change", function () {
+            if (multiSwitch.checked) {
+                contentDiv.style.display = "block";
+            } else {
+                contentDiv.style.display = "none";
+            }
+        });
+
+
+
+
+    });
+</script>

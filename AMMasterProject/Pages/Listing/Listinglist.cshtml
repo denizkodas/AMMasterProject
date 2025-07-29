@@ -1,0 +1,152 @@
+﻿@page
+@model AMMasterProject.Pages.products.ListinglistModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title data-translate="listings">Listing List </title>
+}
+<div>
+  
+<div class="card">
+  
+    <div class="table-responsive text-nowrap">
+        <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                <tr>
+
+                        <th>
+                            <span class="notranslate" data-translate="listing">      Listing  </span>
+                            
+                        </th>
+                        <th style="width:50px" class="text-center">
+
+                            <span class="notranslate" data-translate="sku">    SKU  </span>
+                          </th>
+                        <th style="width:150px" class="text-center">
+                            <span class="notranslate" data-translate="type">  Type</span>
+                            </th>
+
+                        <th style="width:100px" class="text-center">
+                            <span class="notranslate" data-translate="status">  Status</span>
+                            </th>
+                        <th style="width:60px" class="text-center">
+
+                            <span class="notranslate" data-translate="action">  Action</span>
+                            </th>
+                    </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+            @*    ///loop start*@
+                    @if (Model.productlist != null && Model.productlist.Count > 0)
+                    {
+                        @foreach (var products in Model.productlist)
+                        {
+                           
+                          
+                            <tr>
+                          
+                            <td>
+                                    <img src="@products.ProductBasicMetaData.Image" alt="@products.ProductBasicMetaData.Name" class="rounded-circle">
+                                    @products.ProductBasicMetaData.Name
+                                </td>
+                                <td class="text-center">
+
+
+
+                                    <span class="notranslate" data-translate="sku">SKU</span>:
+                                    
+                                    @(products.productInventoryMetaData==null ? products.ID.ToString() : products.productInventoryMetaData.SKU)</td>
+                                <td class="text-center">
+                                    @products.ProductBasicMetaData.SellingTypeID
+                                    @products.ProductBasicMetaData.ListingTypeID
+                            </td>
+                                <td class="text-center">
+                                    <span class="badge bg-label@(products.IsPublish ? "-success" : "-secondary") me-1">@products.IsPublish</span>
+
+                                </td>
+                            <td class="center">
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+
+
+                                            
+                                           @if(products.IsPublish==true)
+                                           {
+                                                <a target="_blank" class="dropdown-item" href="~/advertise/boost/item/@products.ItemGUID"><i class=" bx bx-crown me-1"></i> Boost</a>
+                                            
+                                           }
+                                            
+                                            
+                                            <a href="~/listing/create/basic?ID=@products.ItemGUID" class="dropdown-item" ><i class="bx bx-edit-alt me-1"></i>
+
+                                                <span class="notranslate" data-translate="edit">    Edit  </span>
+                                                
+                                                </a>
+
+
+                                            <a class="dropdown-item" target="_blank" href="~/listing/inquirylist?itemid=@products.ID"><i class="bx bx-stop-circle"></i>
+                                                <span class="notranslate" data-translate="qa">    Q/A  </span>
+                                                </a>
+                                      @*   <a class="dropdown-item" ><i class="bx bx-stop-circle"></i> In Active</a> *@
+
+                                            <a class="dropdown-item" target="_blank" href="~/item/@(products.ProductBasicMetaData.SEOURL + "-" + products.ID)"><i class="bx bx-stop-circle"></i>
+                                                <span class="notranslate" data-translate="preview">  Preview    </span>
+                                                
+                                                </a>
+
+
+                                            <a class="dropdown-item duplicate-item" href="#" data-itemguid="@products.ItemGUID">
+                                                <i class="bx bx-stop-circle"></i>
+                                                <span class="notranslate" data-translate="duplicateitem">  Duplicate Item    </span>
+                                                
+                                            </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                      
+
+                       
+                        }
+                    }
+                    else
+                    {
+                        
+                    }
+
+                    @*    ///loop end*@
+                </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.duplicate-item').click(function (e) {
+            e.preventDefault();
+
+            var productguid = $(this).data('itemguid');
+
+            $.ajax({
+                url: '/controller/product/DuplicateItem?productguid=' + productguid,
+                type: 'GET', // or 'GET' depending on your controller action
+                success: function (data) {
+                    console.log(data);
+                    // Check if the response indicates success
+                    
+                        // Redirect to the create page with the newly inserted item GUID
+                        window.location.href = '/listing/create/basic?ID=' + data.itemListingGUIDOptionalModel;
+                    
+                },
+                error: function () {
+                    // Handle AJAX error
+                    console.log('Error duplicating item.');
+                }
+            });
+        });
+    });
+</script>

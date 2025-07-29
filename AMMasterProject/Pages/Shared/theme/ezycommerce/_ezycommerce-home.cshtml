@@ -1,0 +1,138 @@
+﻿<link href="~/css/ezycommerce/theme-ezycommerce-home.css" rel="stylesheet" />
+
+<style>
+    /* Flash Sales ve Boosted Products bölümlerindeki ürün fotoğrafları */
+    #dvProductDiscountContainer .product-item img,
+    #dvProductBoostHomeContainer .product-item img {
+        width: 250px !important;
+        height: 300px !important;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto; /* Ortalamak için */
+    }
+
+    /* Alternatif hedefleme - diğer görseller için (örneğin ürün listesi) */
+    .product-discount-item img,
+    .product-boost-item img {
+        width: 300px !important;
+        height: 350px !important;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Ürün kutularının genel boyut ayarı */
+    #dvProductDiscountContainer .product-item,
+    #dvProductBoostHomeContainer .product-item {
+        width: 212px;
+        height: 378px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Ürün adı (başlık kısmı) */
+    #dvProductDiscountContainer .product-item a,
+    #dvProductBoostHomeContainer .product-item a {
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+        text-decoration: none;
+        display: block;
+        margin-top: 8px;
+        max-width: 100%;
+        word-break: break-word;
+    }
+
+    /* Fiyat yazıları */
+    .p-price {
+        font-size: 15px;
+        font-weight: bold;
+        color: #d60000;
+        margin-top: 6px;
+    }
+
+    .p-old-price {
+        font-size: 13px;
+        color: gray;
+        text-decoration: line-through;
+    }
+</style>
+<div class="container">
+    <div class="home-box">
+        <div class="section1"></div>
+        <div class="section2">
+
+            <!--<%-- -----------------------------Hero Banner------------------------------------
+            share > setup > herobanner
+            Home controller  home.js auto called in 2 seconds in home.js
+            --%>-->
+
+            <div class="homepage-banner">
+                <div id="dvHeroBannerContainer"></div>
+            </div>
+
+            <!--<%-- -----------------------------Boosted Products------------------------------
+                  share > setup > _productboost
+                  Home controller  home.js auto called in 4 seconds in home.js
+                ------ --%>-->
+            <div class="homepage-p2">
+                <div id="dvProductBoostHomeContainer"></div>
+            </div>
+        </div>
+        <div class="section3">
+            <!--<%-- -----------------------------Home CMS------------------------------------
+             share > setup > _cmsview
+             Home controller  home.js auto called after 5 seconds in home.js
+             --%>-->
+
+            <div id="dvCMSViewhomeContainer"></div>
+        </div>
+    </div>
+</div>
+
+<!--<%-- -----------------------------Discount----------------------------------- --%>-->
+<!--<%-- -----------------------------Home Discount------------------------------------
+          share > setup > _productdiscount
+          Home controller  home.js auto called after 15 seconds in home.js
+          --%>-->
+<div id="dvProductDiscountContainer"></div>
+
+<!--<%-- -----------------------------Products----------------------------------- --%>-->
+@* donot remove container class its for view port *@
+<div class="container" id="dvProductHomePageContainer"></div>
+
+<!--<%-- -----------------------------Boosted Seller------------------------------------ --%>-->
+<div class="container" id="dvFeaturedSellerHomeContainer"></div>
+
+<!-- Blog bölümü tamamen kaldırıldı -->
+<!--<%-- -----------------------------Partner------------------------------------
+               share > setup > _partnerhome
+               Home controller  home.js auto called after 30 seconds in home.js
+               --%>-->
+<div class="container" id="dvPartnerHomeContainer"></div>
+
+<!--<%-- -----------------------------Home footer CMS------------------------------------ --%>-->
+<!--<%-- -----------------------------Home CMS Footer------------------------------------
+              share > setup > _cmsview
+              Home controller  home.js auto called after 30 seconds in home.js
+              --%>-->
+<div class="container" id="dvCMSViewhomefooterContainer"></div>
+
+<script>
+    $(function () {
+        var header = $(".main-header");
+
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 500) {
+                header.addClass("main-header-classadd");
+            } else {
+                header.removeClass("main-header-classadd");
+            }
+        });
+    });
+</script>

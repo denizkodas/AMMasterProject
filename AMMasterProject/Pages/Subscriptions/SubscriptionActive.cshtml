@@ -1,0 +1,57 @@
+﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.Helpers
+@model SubscriptionActiveViewModel
+
+
+@if(Model!=null)
+{
+    @if(Model.IsEnable==true)
+    {
+        if (Model.subscriptionviewmodel != null)
+        {
+            var ItemMeta = @Model.subscriptionviewmodel.ItemMetaData;
+            var PaymentMeta = @Model.subscriptionviewmodel.PaymentMetaData;
+
+            <div class="current-plan">
+                <a class="subs-btn btn l-grey-bg float-end m-bold d-grey-c" href="~/subscriptions">
+                    <span class="notranslate" data-translate="changeplan">
+                        Change Plan 
+                    </span>
+                    
+                 </a>
+            <span class="subs-name">@ItemMeta.Name</span>
+                <span class="expiry"> 
+                  
+                    @if(Model.subscriptionviewmodel.ExpiryDate >=DateTime.Now)
+                    {
+                        <span class="grey-c">
+                            @GlobalHelper.ConvertToTimeAgo(@Model.subscriptionviewmodel.ExpiryDate)
+                          </span>
+                    }
+                    else
+                    {
+                        <span class="grey-c">
+                            <span class="notranslate" data-translate="expired">
+                                Expired 
+                            </span>
+
+                            @GlobalHelper.ConvertToTimeAgo(@Model.subscriptionviewmodel.ExpiryDate)
+                          </span>
+                    }
+
+                
+                </span>
+      
+            <span class="subs-price">
+                    <span class="notranslate" data-translate="nextpayment">
+                        Next payment
+                    </span>
+
+
+                     @PaymentMeta.PaidCurrency @PaymentMeta.PaidAmount on @GlobalHelper.DateFormat(@Model.subscriptionviewmodel.ExpiryDate).
+               </span></div>
+
+        }
+
+    }
+}

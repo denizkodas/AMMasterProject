@@ -1,0 +1,105 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.careers.CategoryModel
+@{
+    <title>Jobs</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+    <input asp-for="@Model.careercategory.CareerCategoryId" type="hidden" />
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/careers">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/careers/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/careers/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10 no-padding">
+
+        <div class="form ">
+            <div class="row padding30">
+                <div class="col-md-5">
+                        <div class="form-group">
+                            Category Name
+                            <input type="text" maxlength="100" asp-for="@Model.careercategory.CareerCategoryName">
+                            <span asp-validation-for="@Model.careercategory.CareerCategoryName" class="required"></span>
+
+
+
+                            <input type="checkbox" asp-for="@Model.careercategory.IsPublish" checked="@Model.careercategory.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.careercategory.IsPublish">Is Publish</label>
+                        </div>
+                </div>
+                <div class="col-md-1"> <br /> <button>Save</button></div>
+            </div>
+            <hr />
+            <div class="table-responsive text-nowrap ">
+                <table id="ListingLoad" class="table">
+                    <thead class="table-secondary">
+                        <tr>
+
+
+
+                            <th style="width:150px">Title</th>
+
+                            <th style="width:100px" class="text-center">Status</th>
+                            <th style="width:60px" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+
+                            @foreach (var item in Model.careercategorylist)
+                            {
+
+
+                                <tr>
+
+
+                                    <td>
+
+                                        @item.CareerCategoryName
+                                    </td>
+
+                                    <td class="text-center">
+                                        @item.IsPublish
+                                    </td>
+                                    <td class="center">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+
+                                                <a class="dropdown-item" href="~/admin/careers/category?ID=@item.CareerCategoryId"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+
+                                                <button formnovalidate asp-page-handler="Delete" asp-route-careercategoryid="@item.CareerCategoryId" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i> Delete</button>
+
+
+                                                @* <a class="dropdown-item"><i class="bx bx-trash"></i> In Active</a>*@
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                @*     Loop End*@
+
+                            }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</form>

@@ -1,0 +1,106 @@
+﻿@using AMMasterProject.ViewModel
+@model List<HomePageFirstLevel>
+
+
+
+@if (Model != null && Model.Count>0)
+{
+
+    <div class="container">
+
+        <div id="dvproducthome">
+            @foreach (var setting in Model)
+            {
+
+                @if (setting.ItemDesignMetaData.ShowTitle == true)
+                {
+                    <div id="dvpresetting" class="product-home-heading">
+
+                        <div class="h3 mobile-heading">
+                            <span>
+                                @setting.Title
+                            </span>
+
+                        </div>
+
+                    </div>
+                }
+
+
+
+                <div class="product-box-@setting.ItemDesignMetaData.Style" style="background-color:@setting.ItemDesignMetaData.Background">
+
+                    @if (setting.ItemDesignMetaData.ShowBanner == true)
+                    {
+
+
+                        @if (setting.ItemDesignMetaData.IsURL)
+                        {
+                            <a href="@setting.ItemDesignMetaData.URL">
+                                <img class="product_type_banner" src="@setting.ItemDesignMetaData.Banner" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img class="product_type_banner" src="@setting.ItemDesignMetaData.Banner" />
+                        }
+                    }
+
+
+
+
+                    @if (setting.ItemDesignMetaData.NoofItemsDisplay > 0)
+                    {
+                        <div class="product-box-wrapper row" id="dvproductboxwrapper">
+                           @*  @if (setting.ItemDesignMetaData.PreselectedCategory == "random") *@
+                            @* {
+                                @await Html.PartialAsync("/Pages/Listing/_ProductList.cshtml", setting.productviewModel)
+                            }
+
+                            else
+                            { *@
+                               
+
+                                    @* //Load product here*@
+                                  @if(setting.productviewModel!=null)
+                                  {
+                                @await Html.PartialAsync("/Pages/Listing/_ProductList.cshtml", setting.productviewModel.Take(setting.ItemDesignMetaData.NoofItemsDisplay))
+
+                                  }
+                                
+                           @*  } *@
+
+                          
+                            
+
+                         
+                            
+
+                        </div>
+
+                    }
+
+
+
+                </div>
+
+
+
+            }
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+}
+else
+
+{
+    <div class="no-record-found empty-product">No Record Found</div>
+}

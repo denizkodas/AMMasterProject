@@ -1,0 +1,83 @@
+﻿@page "/blog/detail/{blogurlpath}"
+@using AMMasterProject.Helpers;
+@model AMMasterProject.Pages.Blog.detailModel
+@{
+    Layout = "/Pages/Shared/_layoutcommunity.cshtml";
+    <title>Blog </title>
+
+    var description = Model.blog.SeoPageDescription ?? Model.blog.Title;
+
+    // Set the page title
+    ViewData["Title"] = Model.blog.SeoPageTitle;
+
+    // Set the meta tags
+    ViewData["Description"] = description;
+    ViewData["Keywords"] = Model.blog.SeoPageKeyword;
+    ViewData["ImageUrl"] = Model.blog.Image;
+
+    ViewData["Title"] = "Blog";
+}
+
+@if (Model.blog != null)
+{
+    <div class="blogpage">
+
+        <div class="">
+            <div class="container">
+
+                <div class="row box-center margintb">
+                    <div class="col-md-7 ">
+
+
+
+
+                        <div class=" blog-detail">
+                            <p class="margintb-15 theme-c upp s-bold center">
+                            @Model.blog.Category
+                            </p>
+                            <h2 class=" title d-grey-c center">
+                                @Model.blog.Title
+                            </h2>
+
+                            <p class="no-margin grey-c s-bold center">
+
+                               @* @Model.blog.InsertDate*@
+                                @GlobalHelper.DateFormat(@Model.blog.InsertDate)
+
+
+
+                            </p>
+
+
+                            <img src="@Model.blog.Image" class="b-image" alt="@Model.blog.Title">
+
+                            <div class="description">
+                                @Html.Raw(Model.blog.Summary)
+                                <br /> <br />
+
+                                @Html.Raw(Model.blog.Description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+else
+
+{
+    <div class="row margintb box-center ">
+        <div class="col-md-8 center">
+
+
+
+            <br>   <br>
+            <h2>
+                <span class="notranslate" data-translate="norecordfound">Sorry, No Record Found</span>
+                
+            </h2>
+        </div>
+    </div>
+}

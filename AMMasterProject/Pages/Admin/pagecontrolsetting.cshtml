@@ -1,0 +1,173 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.pagecontrolsettingModel
+@{
+    <title>Page Form Settings</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+    <div class=" white-bg no-padding simple-tab">
+        <div class="row no-margin">
+            <div class="col-md-2 no-padding">
+                <ul class="nav nav-pills mb-3" role="tablist">
+
+
+
+                    @*----tab1------- Register With Email or number btn*@
+                    <li class="nav-item">
+                        <button id="shippingTabButton" type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#shipping" aria-controls="shipping" aria-selected="true">
+                            Shipping Form
+                        </button>
+                    </li>
+                    </ul>
+            </div>
+            <div class="col-md-10 no-padding">
+                <div class="tab-content padding30 form">
+
+
+
+                    @*-----------tab 1--------------*@
+                    @*-----------Shipping Form-----------------------------------------*@
+                    <div class="tab-pane fade active show" id="shipping">
+
+                        <div>
+
+                            <h5 class="s-bold no-margin line30">
+                                Shipping Form Settings
+
+                            </h5>
+                            <p>
+                                <hr/>
+                            </p>
+                            <div class="row">
+
+                            
+                            <div class="col-md-5 form">
+
+
+                                <label class="switch">
+                                    <input type="checkbox" asp-for="@Model.shippingForm.IsZipCodeHide" id="isZipcodeSwitchCheck" value="true">
+                                    <span class="slider"></span>
+                                </label>
+                                <label class="form-check-label" for="isZipcodeSwitchCheck"> Is Zipcode Hide</label>
+                                <p class="form-check-msg">
+                                    Enable with a Right Switch, Disable with a Left Switch
+                                </p>
+
+                                <label class="switch">
+                                    <input type="checkbox" asp-for="@Model.shippingForm.IsStreetHide" id="isStreetSwitchCheck" value="true">
+                                    <span class="slider"></span>
+                                </label>
+                                <label class="form-check-label" for="isStreetSwitchCheck"> Is Street Hide</label>
+                                <p class="form-check-msg">
+                                    Enable with a Right Switch, Disable with a Left Switch
+                                </p>
+                                    <div class="form-group padding15">
+                                        <button class="clickable-button" asp-page-handler="Shipping">Update</button>
+
+
+
+                                    </div>
+                            </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+    </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#shippingform";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+
+
+
+
+
+
+
+   
+
+
+
+    ///handle 
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     // On document load
+
+    //     var multilingualSwitch = document.getElementById("isZipcodeSwitchCheck");
+    //     var contentDiv = document.getElementById("dvlanguagescript");
+
+    //     // Initial check for the checkbox on page load
+    //     if (multilingualSwitch.checked) {
+    //         contentDiv.style.display = "block";
+    //     } else {
+    //         contentDiv.style.display = "none";
+    //     }
+
+    //     // Handle checkbox change event
+    //     multilingualSwitch.addEventListener("change", function () {
+    //         if (multilingualSwitch.checked) {
+    //             contentDiv.style.display = "block";
+    //         } else {
+    //             contentDiv.style.display = "none";
+    //         }
+    //     });
+
+
+
+
+
+
+    // });
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</script>

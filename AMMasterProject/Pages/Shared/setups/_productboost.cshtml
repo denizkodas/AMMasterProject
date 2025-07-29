@@ -1,0 +1,99 @@
+﻿@using AMMasterProject.ViewModel
+
+@model List<ProductViewModel>
+@* Repeat*@
+@if (Model != null && Model.Count > 0)
+{
+
+    <div class="listing-boost">
+
+    <h3 class="bold no-margin padding15 mobile-heading">
+        <span class="recommendedproperties notranslate"  data-translate="recommended">Recommended </span>
+    </h3>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper no-margin product-box-8 no-bg " id="dvproductboost">
+
+
+
+            @foreach (var product in Model)
+            {
+
+
+                <div class="swiper-slide">
+                    <div class="product-box row">
+
+
+                        <a href="/item/@product.ProductSeourl">
+                            <div class="p-img">
+                                <img src="@product.ProductImage" />
+
+
+                            </div>
+
+                            <div class="p-data">
+
+                                <div class="p-title">
+                                    @product.ProductName
+                                </div>
+
+                                <div class="p-price">
+                                    @product.Currency  @product.Price.ToString("N2")
+                                    @if (@product.IsDiscounted == true)
+                                    {
+                                        <span class="p-old-p"> @product.PriceBeforeDiscount.ToString("N2") </span>
+
+
+                                    }
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+
+
+                    </div>
+                </div>
+
+            }
+
+
+
+
+
+        </div>
+
+
+    </div></div>
+}
+   @*  //------------------------------Thumbnail slider / boost products----------------------------------- *@
+   <script>
+
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1.8,
+        spaceBetween: 2,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+            },
+            1024: {
+                slidesPerView: 5,
+                spaceBetween: 10,
+            },
+        },
+    });
+</script>

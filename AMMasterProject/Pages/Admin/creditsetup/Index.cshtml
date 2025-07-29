@@ -1,0 +1,123 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.creditsetup.IndexModel
+@{
+    <title>Credit Setup</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/creditsetup">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/creditsetup/add"><i class="bx bx-plus me-1"></i> Add </a>
+                <a class="nav-link" href="~/admin/creditsetup/settings"><i class="bx bx-cog me-1"></i> Setting </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10 no-padding">
+
+        <div class="table-responsive text-nowrap">
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr>
+
+                            <th style="width:150px" class="text-center">  Sort</th>
+
+                        <th style="width:150px" class="text-center">Title</th>
+                        <th style="width:150px" class="text-center">  Amount </th> 
+                        <th style="width:150px" class="text-center">  Credits</th>
+
+                            <th style="width:150px" class="text-center">  Expiry</th>
+
+                         
+                      
+                        <th style="width:100px" class="text-center">Is Publish</th>
+                        <th style="width:60px" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @*     Loop start*@
+
+                    @foreach (var item in Model.revenuecreditpackage)
+                    {
+                        
+                   
+                    <tr>
+                                <td class="text-center">
+                                    @item.Sortnumber
+                                </td>
+
+
+                        <td class="text-center">
+                            
+                          @item.RevenueCreditName
+                        </td>
+                        <td class="text-center">
+                           @item.CreditAmount
+                        </td>  
+                        
+                        
+                        <td class="text-center">
+                          @item.NoofCredit
+                        </td>
+
+
+                                <td class="text-center">
+
+                                    @if(item.IsExpiry ==true)
+                                    {
+                                        @item.NoofExpiryDays <span>Days</span>
+                                    }
+                                    else
+
+                                    {
+                                        <span>Unlimited</span>
+                                    }
+                                    
+                                </td>
+
+
+                              
+                                <td class="text-center">
+
+
+
+                                    <span class="badge bg-label@(item.IsPublish ? "-success" : "-secondary") me-1">@item.IsPublish</span>
+
+                        </td>
+                        <td class="center">
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+
+                                    <a href="~/admin/creditsetup/add?ID=@item.RevenueCreditID" class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                   @* <a class="dropdown-item"><i class="bx bx-trash"></i> Delete</a>*@
+
+                                        <button formnovalidate asp-page-handler="Delete" asp-route-creditid="@item.RevenueCreditID" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i> Delete</button>
+
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                    @*     Loop End*@
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</form>
+

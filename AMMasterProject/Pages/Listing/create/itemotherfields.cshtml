@@ -1,0 +1,157 @@
+﻿@page "/listing/create/itemotherfields/{ID}"
+@model AMMasterProject.Pages.Listing.create.itemotherfieldsModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+
+<div>
+
+
+
+    <form method="post">
+
+        <div class="row large-form">
+
+            <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+
+
+            <div class="col-md-10 l-tabs-content form">
+                <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="otherfileds"> Other Fields  </span>
+
+                </h5>
+
+
+                <div class="white-bg paddingtb">
+
+                    <div class="form row padding15">
+                        <div class="col-md-3">
+                            <span class="notranslate" data-translate="filedsname">
+
+                               
+                            </span>
+                            <input type="text" asp-for="@Model.itemotherproperties.LabelName">
+
+
+                            <span asp-validation-for="@Model.itemotherproperties.LabelName" class="required"></span>
+
+                          
+                        </div>
+                      @*   <div class="col-md-3">
+                            <span class="notranslate" data-translate="filedsdata">
+                              
+                            </span>
+                            <input type="text" asp-for="@Model.itemotherproperties.ValueName">
+
+
+                            <span asp-validation-for="@Model.itemotherproperties.ValueName" class="required"></span>
+
+                            
+                        </div> *@
+                        <div class="col-md-2 padding15">
+                            <button type="submit">
+                                <span class="notranslate" data-translate="saveandcontinue">
+
+                                    Add
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive text-nowrap">
+                        <table id="ListingLoad" class="table">
+                            <thead class="table-secondary">
+                                <tr>
+
+                                    <th>
+                                        <span class="notranslate" data-translate="filedsname">  Fileds Name  </span>
+
+                                    </th>
+                                    <th>
+                                        <span class="notranslate" data-translate="filedsname">  Fileds Data  </span>
+
+                                    </th>
+                                    <th>
+                                        <span class="notranslate" data-translate="action">  Action </span>
+
+                                    </th>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.listproduct)
+                                {
+
+
+                                    <tr>
+                                       
+                                        <td>
+                                            @item.LabelName
+                                          
+                                        </td>
+                                       @*  <td>
+                                            @item.ValueName
+                                        </td> *@
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+
+                                                    <a class="dropdown-item">
+                                                        <i class="bx bx-trash"></i>
+
+                                                        <a class="dropdown-item" href="#@item.ID"><i class="bx bx-trash"></i>Delete</a>
+
+                                                    </a>
+
+
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="overlay" id="@item.ID">
+                                                <div class="popup-small popup form">
+                                                    <div class="padding30 ">
+                                                        <h4 class="no-margin">
+                                                            Confirm Delete
+                                                        </h4>
+
+                                                        <p class="medium">
+                                                            Are you sure you want to delete this record ?
+                                                        </p>
+
+                                                        <a class="btn grey-bg white-c float-end margin5" href="#close">No</a>
+
+
+                                                        <button formnovalidate class="btn red-c btn-xs float-end margin5" asp-page-handler="Delete" asp-route-videoid="@item.ID" onclick="return confirm('Are you sure you want to delete?')"><i class="bx bx-trash"></i> Delete</button>
+
+                                                        <br />
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </form>

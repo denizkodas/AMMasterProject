@@ -1,0 +1,165 @@
+﻿@page
+@using Newtonsoft.Json.Linq;
+@model AMMasterProject.Pages.Seller.Profile.businessModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenubusiness">Business Info </title>
+}
+
+<form method="post">
+
+
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+
+
+
+
+        <div class="card mb-4 col-md-10">
+
+            <div class="card-body form">
+
+
+            <div class="row paddingrf-15">
+                <div class=" col-md-3 s-bold m-none">
+
+                        <span class="notranslate" data-translate="businessdetails"> Business Details</span>
+
+                   
+                </div>
+                <div class="col-md-6 no-padding">
+                    <div class="form-group">
+                            <span class="notranslate" data-translate="type">  Type</span>
+                       
+                        <select asp-for="@Model.BusinessInfo.BusinessType" >
+                            <option disabled>--Select--</option>
+                            <option value="0">Individual</option>
+                            <option value="1">Business</option>
+                        </select>
+                    </div>
+                        <div class="form-group">
+                            <span class="notranslate" data-translate="businesswebsite">Business Website</span>
+                        
+                        <input asp-for="@Model.BusinessInfo.BusinessUrlpath" type="text" maxlength="1000">
+                        <span asp-validation-for="@Model.BusinessInfo.BusinessUrlpath" class="required"></span>
+                  </div>
+                        
+                        @*------If Individual-------*@
+
+                       @* @{
+                            var jsonObject = JObject.Parse(@Model.BusinessInfo.BusinessMetaData);
+
+                      
+                            var dateOfBirth = jsonObject.GetValue("Dateofbirth")?.ToObject<DateTime?>();
+                           
+
+                         
+                            var formattedDateOfBirth = dateOfBirth?.ToString("yyyy-MM-dd");
+                          }*@
+
+                    <div id="dvindividual" style="display:none">
+                        <div class="form-group">
+                                <span class="notranslate" data-translate="dateofbirth">Date of Birth</span>
+                           
+                            <input asp-for="@Model.BusinessInfo.Dateofbirth" type="date">
+                            <span asp-validation-for="@Model.BusinessInfo.Dateofbirth" class="required"></span>
+                         </div>
+                        <div class="form-group">
+                                <span class="notranslate" data-translate="gender">Gender</span>
+                            
+                            <select asp-for="@Model.BusinessInfo.Gender">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="@Model.BusinessInfo.Gender" class="required"></span>
+                        </div>
+                    </div>
+                    @*------If company-------*@
+
+                    <div id="dvbusiness" style="display:none">
+                        <div class="form-group">
+                                <span class="notranslate" data-translate="noofemployee">    No of Employee</span>
+                        
+                            <input asp-for="@Model.BusinessInfo.NoOfEmployee" type="number" min="1">
+                            <span asp-validation-for="@Model.BusinessInfo.NoOfEmployee" class="required"></span>
+                        </div>
+                        <div class="form-group">
+                            Founded Year
+                            <input asp-for="@Model.BusinessInfo.FoundingYear" type="number" min="1">
+                            <span asp-validation-for="@Model.BusinessInfo.FoundingYear" class="required"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                            <span class="notranslate" data-translate="aboutbusiness">     About Business</span>
+                    
+
+
+
+                        <textarea maxlength="2000" asp-for="@Model.BusinessInfo.BusinessDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelBusinessDescription'))"></textarea>
+                        <span class="float-end" id="characterCountLabelBusinessDescription"></span>
+                        <span asp-validation-for="@Model.BusinessInfo.BusinessDescription" class="required"></span>
+             
+                    </div>
+                 
+                </div>
+
+
+            </div>
+
+
+            <hr>
+            <div class=" row padding15">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                        <button type="submit" class="clickable-button">
+                            <span class="notranslate" data-translate="type">   <span class="notranslate" data-translate="save">  Save</span></span>
+                            
+                            </button>
+                    
+                
+                </div>
+
+            </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</form>
+
+<script>
+
+    $(document).ready(function () {
+        // Hide the initial divs based on the selected value on page load
+        var selectedValue = $('select[name="BusinessInfo.BusinessType"]').val();
+        if (selectedValue === '0') {
+            $('#dvbusiness').hide();
+            $('#dvindividual').show();
+        } else {
+            $('#dvbusiness').show();
+            $('#dvindividual').hide();
+        }
+
+        // Attach event listener to the select element
+        $('select[name="BusinessInfo.BusinessType"]').on('change', function () {
+            var selectedValue = $(this).val();
+
+            // Show or hide divs based on the selected value
+            if (selectedValue === '0') {
+                $('#dvbusiness').hide();
+                $('#dvindividual').show();
+            } else {
+                $('#dvbusiness').show();
+                $('#dvindividual').hide();
+            }
+        });
+    });
+</script>

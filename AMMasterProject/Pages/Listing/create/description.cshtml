@@ -1,0 +1,171 @@
+﻿@page "/listing/create/description/{ID}"
+@model AMMasterProject.Pages.Listing.create.descriptionModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<form method="post">
+    <div>
+
+
+
+      
+
+        <div class="row large-form">
+
+            <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+            <div class="col-md-10 l-tabs-content form">
+
+                <a class="skip-btn" href="~/listing/create/digital/@Model.productguid">
+                    <span class="notranslate" data-translate="skip">
+
+                        Skip 
+                    </span>
+                  
+                </a>
+
+
+                <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="description">
+
+                        Description 
+                    </span>
+                    
+                </h5>
+
+                <div class="white-bg paddingtb">
+
+
+
+
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="briefdescription">
+
+                                Brief Description 
+                            </span>
+                          
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group">
+
+                                <textarea rows="2" asp-for="@Model.product.DetailDescription"></textarea>
+
+
+
+                            </div>
+                            <span asp-validation-for="@Model.product.DetailDescription" class="required"></span>
+
+                        </div>
+
+
+                    </div>
+
+                    <hr>
+                    <div class="checkright padding15">
+                        <input type="checkbox" id="chkall"><label for="chkall" class="notranslate" data-translate="checkunnCheckall">Check/UnCheck All</label>
+                    </div>
+                    <hr>
+
+
+                    @if (Model.productquestionlist != null)
+                    {
+
+                        foreach (var question in Model.productquestionlist)
+                        {
+
+                            <div class="row paddingrf-15 no-margin">
+
+                                <div class="col-md-3 s-bold">
+                                    @question.ProductAmenitiesHeading
+                                </div>
+                                <div class="col-md-9 link-active no-padding">
+
+                                    @foreach (var option in Model.productoptionlist.Where(u => u.ProductAmenitiesId == question.ProductAmenitiesId))
+                                    {
+                                        @* <a href=""> @option.ProductAmenitiesName</a>*@
+
+                                       
+                                            @if (Model.productamenitiesselected.Any(u => u.OptionID == option.ProductAmenitiesOptionId))
+                                            {
+                                                <a id="@option.ProductAmenitiesOptionId" class="active" data-ProductAmenitiesOptionID="@option.ProductAmenitiesOptionId" data-amenityid="@option.ProductAmenitiesId" onclick="updateAmenity(this)">
+                                                    @option.ProductAmenitiesName
+                                                </a>
+
+
+                                            }
+                                            else
+                                            {
+                                                <a id="@option.ProductAmenitiesOptionId" class="inactive" data-ProductAmenitiesOptionID="@option.ProductAmenitiesOptionId" data-amenityid="@option.ProductAmenitiesId" onclick="updateAmenity(this)">
+                                                    @option.ProductAmenitiesName
+                                                </a>
+                                            }
+                                        
+
+
+                            }
+
+                                </div>
+                            </div>
+                            <hr />
+
+                        }
+                    }
+
+
+
+
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right">
+                            <button type="submit">
+                                <span class="notranslate" data-translate="saveandcontinue">   Save and Continue </span>
+
+                            </button>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#product_DetailDescription').summernote();
+    });
+
+
+    function updateAmenity(elem) {
+        var ProductAmenitiesOptionID = $(elem).data('productamenitiesoptionid');
+        var amenityid = $(elem).data('amenityid');
+        var productguid = '@Model.productguid';
+
+        $.ajax({
+            url: '/controller/product/amenityupsert',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                ProductAmenitiesOptionID: ProductAmenitiesOptionID,
+                amenityid: amenityid,
+                productguid: productguid
+            },
+            success: function (response) {
+                // handle success response
+
+                $(elem).toggleClass("active inactive");
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+
+</script>    

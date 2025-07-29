@@ -1,0 +1,60 @@
+﻿
+<script src="~/js/site.js" asp-append-version="true" ></script>
+
+<script src="~/js/google.js" asp-append-version="true"></script>
+
+<script src="~/js/search-box.js" asp-append-version="true"></script>
+
+<script src="~/js/register.js" asp-append-version="true"></script>
+<script src="~/js/membership.js" asp-append-version="true"></script>
+<script src="~/js/language.js" asp-append-version="true"></script>
+
+
+
+<script src="~/js/firebase.js" asp-append-version="true"></script>
+<script src="~/js/orderitem.js?v2" asp-append-version="true"></script>
+<script src="~/js/inbox.js?v2" asp-append-version="true"></script>
+<script src="~/js/home.js" asp-append-version="true"></script>
+
+<script src="~/js/setting.js" asp-append-version="true"></script>
+
+@*//Data table*@
+<script src="~/js/datatables.min.js"></script>
+
+@*//Data table*@
+<script src="~/js/menuitem.js"></script>
+
+@* //country and currency js*@
+<script src="~/js/regionalsettings.js"></script>
+
+@*//mobile-menu / ctegory*@
+<script src="~/js/mmenu.js"></script>
+
+<script src="~/js/paymentgateway.js"></script>
+
+@* //master language translation *@
+<script src="~/js/masterlanguage.js" asp-append-version="true"></script>
+@* 
+///seller search engine js *@
+<script src="~/js/seller.js" asp-append-version="true"></script>
+
+<partial name="_ValidationScriptsPartial" />
+
+@* -----------------// Initialize tooltips-------------------*@
+<script>
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+
+
+
+
+   
+</script>
+
+
+@await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/cookies.cshtml", methodname= "cookie", id=0 })
+@* ///custom script component*@

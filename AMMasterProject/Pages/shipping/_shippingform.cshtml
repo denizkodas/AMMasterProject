@@ -1,0 +1,671 @@
+﻿@model CustomerAddress
+
+
+<form method="post" id="shippingForm">
+
+
+
+
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <div class="overlay-view form">
+
+        <div class="popup ">
+            <div class="popup-heading">
+                <span class="notranslate" data-translate="addnewdeliveryaddress">  Add New Delivery Address </span>
+                
+                <a href="#" id="aclose" class=" close-back"></a>
+            </div>
+
+
+            <input asp-for="@Model.CustomerAddressGuid" type="hidden" />
+
+
+
+            <div class="row padding15">
+                <div class="col-md-6 form-group">
+                    <span class="notranslate" data-translate="fullname">   Full Name </span>
+
+                   
+                    <input type="text" maxlength="100" asp-for="@Model.FirstName" autocomplete="off">
+
+                    <span asp-validation-for="@Model.FirstName" class="required"></span>
+                </div>
+
+
+
+
+              @*   <div class="col-md-6  form-group">
+                    Last Name
+                    <input type="text" placeholder="Input Last Name" maxlength="100" asp-for="@Model.LastName" autocomplete="off">
+
+                    <span asp-validation-for="@Model.LastName" class="required"></span>
+                </div> *@
+
+
+
+                <div class="col-md-6  form-group">
+                   
+                        <span class="notranslate" data-translate="shippingPhone"> Phone Number </span>
+                 
+                    <input type="text" maxlength="100" asp-for="@Model.Phone" autocomplete="off">
+
+                    <span asp-validation-for="@Model.Phone" class="required"></span>
+
+                </div>
+
+
+                <div class="col-md-6  form-group">
+                    <span class="notranslate" data-translate="email"> Email </span>
+                    <input type="text" maxlength="300" asp-for="@Model.Email" autocomplete="off">
+
+                    <span asp-validation-for="@Model.Email" class="required"></span>
+                </div>
+
+            </div>
+
+            <hr class="no-margin" />
+            <div class="row padding15">
+                <div class="col-md-6 form-group">
+                    <span class="notranslate" data-translate="address">    Address </span>
+                 
+                    <div class="input-group">
+                        <span class="input-group-text no-border" id="basic-addon11">
+                            <a class="acurrentlocation">
+
+                                <svg class="svg-small" viewBox="0 0 512 512"><path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256a128 128 0 1 0 256 0 128 128 0 1 0 -256 0zm128-80a80 80 0 1 1 0 160 80 80 0 1 1 0-160z" /></svg>
+
+                            </a>
+                        </span>
+
+
+                        <input id="txtaddress" type="text" maxlength="300" class="googleaddress" asp-for="@Model.Address" autocomplete="off">
+
+                    </div>
+                    <span asp-validation-for="@Model.Address" class="required"></span>
+
+
+
+
+
+                </div>
+
+                <div class="col-md-6  form-group">
+
+
+                    <span class="notranslate" data-translate="shippingLandmark">Land Mark</span>
+                    <span class="notranslate" data-translate="optional">Optional</span>
+                    <input type="text" maxlength="100" asp-for="@Model.HouseNumber" autocomplete="off">
+
+                    <span asp-validation-for="@Model.HouseNumber" class="required"></span>
+                </div>
+
+                <div class="col-md-4  form-group list-container">
+                    <span class="notranslate" data-translate="country">Country</span>
+   
+                    <input id="mapcountry" type="text" maxlength="200" asp-for="@Model.Country" autocomplete="off">
+
+                    @*  <select id="mapcountry" asp-for="@Model.Country" autocomplete="off">
+                    <option value="">Select Country</option>
+                    </select>
+
+
+                    <input type="hidden" id="hdncountry" asp-for="@Model.Country" value="@Model.Country" /> *@
+
+                    <div id="countryList" class="list"></div>
+                    <span asp-validation-for="@Model.Country" class="required"></span>
+                </div>
+                <div class="col-md-4  form-group list-container">
+                    <span class="notranslate" data-translate="shippingState">State</span>
+             
+                    <input id="mapstate" type="text"  maxlength="200" asp-for="@Model.State" autocomplete="off">
+                    <div id="stateList" class="list"></div>
+                    <span asp-validation-for="@Model.State" class="required"></span>
+                </div>
+                <div class="col-md-4  form-group list-container">
+                    <span class="notranslate" data-translate="shippingcity">City</span>
+                    <input id="mapcity"  type="text" maxlength="200" asp-for="@Model.City" autocomplete="off">
+                    <div id="cityList" class="list"></div>
+                    <span asp-validation-for="@Model.City" class="required"></span>
+                </div>
+                @if (!(bool)ViewData["IsStreetHide"])
+                {
+                    <div class="col-md-4  form-group">
+                        <span class="notranslate" data-translate="shippingStreet">Street</span>
+                       
+                        <input id="mapstreet" type="text" maxlength="200" asp-for="@Model.Street" autocomplete="off">
+                        @*
+                    <span asp-validation-for="@Model.Street" class="required"></span>
+                    *@
+                    </div>
+                }
+                @if (!(bool)ViewData["IsZipCodeHide"])
+                {
+                    <div class="col-md-4  form-group">
+                        <span class="notranslate" data-translate="shippingZipcode">Zipcode</span>
+                      
+                        <input id="mapzipcode" type="text" maxlength="200" asp-for="@Model.Zipcode" autocomplete="off">
+
+                        @*   <span asp-validation-for="@Model.Zipcode" class="required"></span> *@
+                    </div>
+                }
+
+            </div>
+            <hr class="no-margin" />
+            <div class="row padding15">
+                <div class="col-md-6  form-group padding15">
+
+                    <span class="notranslate" data-translate="shippingeffectivedelivery">Address Type</span>
+                    <div class="radiobtn w-100 no-margin">
+
+
+
+                        <input type="radio" id="home" name="effective_delivery" value="Home">
+                        <label for="home" class="center notranslate" data-translate="shippingaddresstypehome">Home</label>
+
+
+                        <input type="radio" id="office" name="effective_delivery" value="Office">
+                        <label for="office" class="notranslate center" data-translate="shippingaddresstypeoffice">Office</label>
+
+                        @*  <span asp-validation-for="@Model.AddressType" class="required"></span> *@
+
+                        <input type="hidden" id="hdnAddressType" asp-for="@Model.AddressType" value="@Model.AddressType" />
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-6  form-group right  ">
+
+                    <span class="validation" id="spanShippingError"></span>
+                    <br />
+                    <button type="submit" id="btnSaveShipping" class="btn theme-bg f-theme clickable-button">
+
+                        <span class="notranslate" data-translate="save">Save</span>
+                        
+                        </button>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</form>
+
+<script>
+
+    $(document).ready(function () {
+
+        // Set the initial checked state based on the hidden field value
+        var initialAddressType = $("#hdnAddressType").val();
+        $("input[name='effective_delivery'][value='" + initialAddressType + "']").prop("checked", true);
+
+
+        // Update the hidden field value when a radio button is selected
+        $("input[name='effective_delivery']").change(function () {
+            $("#hdnAddressType").val($(this).val());
+        });
+    });
+
+
+
+    $(document).ready(function () {
+        // Attach click event handler to the 'aAddaddress' link
+        $('#aclose').click(function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            $('#shippingContainerForm').empty();
+
+        });
+
+
+
+
+
+
+
+
+
+    });
+
+    $(document).ready(function () {
+        // Client-side form validation setup
+        $('#shippingForm').validate({
+            errorClass: 'text-danger',
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+            rules: {
+                // Define any custom validation rules if needed
+            },
+            messages: {
+                // Define custom error messages if needed
+            }
+        });
+
+        // Form submission on button click
+        $('#btnSaveShipping').click(function () {
+            if ($("#shippingForm").valid()) {
+                // The form is valid, submit it
+                // $('#shippingForm').submit();
+
+                // alert("form is valid");
+            }
+        });
+
+
+        // AJAX form submission
+        $('#shippingForm').submit(function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Controller/Shipping/shippingupsert',
+                data: formData,
+                success: function (result) {
+                    // Handle the successful response
+                    if (result == 'success') {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/Controller/Shipping/shippinglist',
+                            success: function (result) {
+                                $('#shippingContainerList').html(result);
+                                $('#shippingContainerForm').empty();
+                            },
+                            error: function () {
+                                alert('Error loading quick view.');
+                            }
+                        });
+
+                        $('#shippingContainerForm').empty();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle the error response
+                    console.error('Error shippingupsert:', error);
+                    $("#spanShippingError").text("Fill in all the fields");
+                }
+            });
+        });
+    });
+
+
+
+
+
+    var countries; // Declare countries variable
+
+    // Function to fetch the country data from the JSON file
+    function fetchCountryData() {
+        $.getJSON("countrystatecity.json", function (data) {
+            countries = data;
+            populateCountryList();
+        });
+    }
+
+    // Function to populate the country list
+    // Function to populate the country list
+    function populateCountryList() {
+
+
+        var countryList = $("#countryList");
+        countryList.empty();
+        countryList.show();
+        countries.forEach(country => {
+            countryList.append(`<div class="list-item" data-id="${country.id}">${country.name}</div>`);
+        });
+
+        // Attach a click event to the country textbox to show the country list
+        // $("#mapcountry").click(function (event) {
+        //     event.stopPropagation();
+        //     countryList.toggle();
+        // });
+
+        // Attach a click event to the country list items to select a country
+        countryList.on("click", ".list-item", function () {
+            var selectedItemID = $(this).data("id");
+
+            var selectedItem = selectedItemID ? countries.find(item => item.id == selectedItemID) : null;
+            $("#mapcountry").val(selectedItem ? selectedItem.name : '');
+
+            countryList.hide();
+            $("#mapstate").val('');
+            $("#mapcity").val('');
+
+            // Populate state list based on the selected country
+            populateStateList(selectedItem);
+        });
+
+        // Close the list when clicking outside the input and list
+        $(document).click(function () {
+            countryList.hide();
+        });
+
+
+    }
+
+   
+    function populateFilteredCountryList(filteredCountries) {
+
+
+        var countryList = $("#countryList");
+        countryList.empty();
+        countryList.show();
+        filteredCountries.forEach(country => {
+            countryList.append(`<div class="list-item" data-id="${country.id}">${country.name}</div>`);
+        });
+
+        // Attach a click event to the filtered country list items to select a country
+        countryList.on("click", ".list-item", function () {
+            var selectedItemID = $(this).data("id");
+            var selectedItem = selectedItemID ? countries.find(item => item.id == selectedItemID) : null;
+            $("#mapcountry").val(selectedItem ? selectedItem.name : '');
+
+            countryList.hide();
+
+            // Populate state list based on the selected country
+            populateStateList(selectedItem);
+        });
+    }
+
+    // Function to populate the filtered state list
+    function populateFilteredStateList(filteredStates) {
+        var stateList = $("#stateList");
+        var stateTextbox = $("#mapstate");
+        stateList.empty(); // Clear existing options
+
+        filteredStates.forEach(state => {
+            stateList.append(`<div class="list-item" data-id="${state.id}">${state.name}</div>`);
+        });
+
+        // Enable and show state textbox
+        stateTextbox.prop("disabled", false);
+        stateList.show();
+
+        // Attach a click event to the filtered state list items to select a state
+        stateList.on("click", ".list-item", function () {
+            var selectedItemID = $(this).data("id");
+            var selectedItem = selectedItemID ? filteredStates.find(item => item.id == selectedItemID) : null;
+            stateTextbox.val(selectedItem ? selectedItem.name : '');
+            stateList.hide();
+
+
+            // Populate city list based on the selected state (if needed)
+            populateCityList(selectedItem);
+        });
+    }
+
+    // Function to populate the filtered city list
+    function populateFilteredCityList(filteredCities) {
+        var cityList = $("#cityList");
+        var cityTextbox = $("#mapcity");
+        cityList.empty(); // Clear existing options
+
+        filteredCities.forEach(city => {
+            cityList.append(`<div class="list-item" data-id="${city.id}">${city.name}</div>`);
+        });
+
+        // Enable and show city textbox
+        cityTextbox.prop("disabled", false);
+        cityList.show();
+
+        // Attach a click event to the filtered city list items to select a city
+        cityList.on("click", ".list-item", function () {
+            var selectedItemID = $(this).data("id");
+            var selectedCity = selectedItemID ? filteredCities.find(item => item.id == selectedItemID) : null;
+            cityTextbox.val(selectedCity ? selectedCity.name : '');
+            cityList.hide();
+        });
+    }
+
+
+
+
+    // Function to populate the state list based on the selected country's states
+    function populateStateList(selectedCountry) {
+        var stateList = $("#stateList");
+        var stateTextbox = $("#mapstate");
+        stateList.empty(); // Clear existing options
+
+        if (selectedCountry && selectedCountry.states) {
+            selectedCountry.states.forEach(state => {
+                stateList.append(`<div class="list-item" data-id="${state.id}">${state.name}</div>`);
+            });
+
+            // Enable and show state textbox
+            stateTextbox.prop("disabled", false);
+            stateList.show();
+
+            // Attach a click event to the state list items to select a state
+            stateList.on("click", ".list-item", function () {
+                var selectedItemID = $(this).data("id");
+                var selectedItem = selectedItemID ? selectedCountry.states.find(item => item.id == selectedItemID) : null;
+                stateTextbox.val(selectedItem ? selectedItem.name : '');
+                stateList.hide();
+
+                // Populate city list based on the selected state (if needed)
+                populateCityList(selectedItem);
+            });
+        } else {
+            // If no states, hide and disable state textbox and state list
+            stateTextbox.val('');
+            stateTextbox.prop("disabled", true);
+            stateList.hide();
+        }
+
+        // Close the list when clicking outside the input and list
+        $(document).click(function () {
+            stateList.hide();
+        });
+    }
+
+    // Function to populate the city list based on the selected state's cities
+    function populateCityList(selectedState) {
+        var cityList = $("#cityList");
+        var cityTextbox = $("#mapcity");
+        cityList.empty(); // Clear existing options
+
+        if (selectedState && selectedState.cities) {
+            selectedState.cities.forEach(city => {
+                cityList.append(`<div class="list-item" data-id="${city.id}">${city.name}</div>`);
+            });
+
+            // Enable and show city textbox
+            cityTextbox.prop("disabled", false);
+            cityList.show();
+
+            // Attach a click event to the city list items to select a city
+            cityList.on("click", ".list-item", function () {
+                var selectedItemID = $(this).data("id");
+                var selectedCity = selectedItemID ? selectedState.cities.find(item => item.id == selectedItemID) : null;
+                cityTextbox.val(selectedCity ? selectedCity.name : '');
+                cityList.hide();
+            });
+        } else {
+            // If no cities, hide and disable city textbox and city list
+            cityTextbox.val('');
+            cityTextbox.prop("disabled", true);
+            cityList.hide();
+        }
+
+        // Close the list when clicking outside the input and list
+        $(document).click(function () {
+            cityList.hide();
+        });
+    }
+
+    // Fetch country data and load countries into the list on page load
+    // fetchCountryData();
+
+    //----------------------- FILTER on key word country state city--------------
+
+    $("#mapcountry").on("input", function () {
+        var countryTextboxValue = $(this).val();
+
+        // Capitalize the first letter of the input value
+        countryTextboxValue = countryTextboxValue.charAt(0).toUpperCase() + countryTextboxValue.slice(1);
+
+        // Set the modified value back to the country textbox
+        $(this).val(countryTextboxValue);
+
+        var filterValue = countryTextboxValue.toLowerCase();
+        var filteredCountries = countries.filter(country => country.name.toLowerCase().startsWith(filterValue));
+        populateFilteredCountryList(filteredCountries);
+
+        $("#mapstate").val('');
+        $("#mapcity").val('');
+        $("#mapcity").prop("disabled", true);
+        // Enable state textbox if country textbox is not empty
+        $("#mapstate").prop("disabled", countryTextboxValue.trim() === "");
+
+        // Filter the country list based on the input value
+        // filterCountryList();
+    });
+
+    $("#mapstate").on("input", function () {
+        var stateTextboxValue = $(this).val();
+
+        // Capitalize the first letter of the input value
+        stateTextboxValue = stateTextboxValue.charAt(0).toUpperCase() + stateTextboxValue.slice(1);
+
+        // Set the modified value back to the state textbox
+        $(this).val(stateTextboxValue);
+
+        var selectedCountryName = $("#mapcountry").val();
+        var selectedCountry = countries.find(country => country.name === selectedCountryName);
+
+        if (selectedCountry) {
+            // Filter the states based on the input value and selected country
+            var filteredStates = selectedCountry.states ? selectedCountry.states.filter(state => state.name.toLowerCase().startsWith(stateTextboxValue.toLowerCase())) : [];
+
+            populateFilteredStateList(filteredStates);
+        }
+
+        $("#mapcity").val('');
+        // Enable city textbox if state textbox is not empty
+        $("#mapcity").prop("disabled", stateTextboxValue.trim() === "");
+    });
+
+
+    $("#mapcity").on("input", function () {
+        var cityTextboxValue = $(this).val();
+
+        // Capitalize the first letter of the input value
+        cityTextboxValue = cityTextboxValue.charAt(0).toUpperCase() + cityTextboxValue.slice(1);
+
+        // Set the modified value back to the city textbox
+        $(this).val(cityTextboxValue);
+
+        var selectedCountryName = $("#mapcountry").val();
+        var selectedCountry = countries.find(country => country.name === selectedCountryName);
+
+        var selectedStateName = $("#mapstate").val();
+        var selectedState = selectedCountry ? selectedCountry.states.find(state => state.name === selectedStateName) : null;
+
+        if (selectedState) {
+            // Filter the cities based on the input value and selected state
+            var filteredCities = selectedState.cities ? selectedState.cities.filter(city => city.name.toLowerCase().startsWith(cityTextboxValue.toLowerCase())) : [];
+
+            populateFilteredCityList(filteredCities);
+        }
+    });
+
+    //----------------------- FILTER on key word country state city--------------
+
+    //----------------------- make first letter cap and clear state list--------------
+
+    $("#mapstate").on("keyup", function () {
+        var stateTextboxValue = $(this).val();
+
+        // Capitalize the first letter of the input value
+        stateTextboxValue = stateTextboxValue.charAt(0).toUpperCase() + stateTextboxValue.slice(1);
+
+        // Set the modified value back to the state textbox
+        $(this).val(stateTextboxValue);
+
+        $("#mapcity").val('');
+        // Enable city textbox if state textbox is not empty
+        if (stateTextboxValue.trim() !== "") {
+            $("#mapcity").prop("disabled", false);
+        } else {
+            $("#mapcity").prop("disabled", true);
+        }
+    });
+    //----------------------- make first letter cap and clear state list--------------
+
+    //----------------------- make first letter cap and clear city list--------------
+    $("#mapcity").on("keyup", function () {
+        var cityTextboxValue = $(this).val();
+
+        // Capitalize the first letter of the input value
+        cityTextboxValue = cityTextboxValue.charAt(0).toUpperCase() + cityTextboxValue.slice(1);
+
+        // Set the modified value back to the city textbox
+        $(this).val(cityTextboxValue);
+    });
+    //----------------------- make first letter cap and clear city list--------------
+
+    //------------------- Attach a click event to the state textbox to show the state list
+
+    $("#mapcountry").on("click focus", function (event) {
+
+        event.stopPropagation();
+        fetchCountryData();
+        // fetchCountryData();
+
+
+
+    });
+
+    $("#mapstate").on("click focus", function (event) {
+        event.stopPropagation();
+
+        // Hide the country and city lists if they're open
+        $("#countryList").hide();
+        $("#cityList").hide();
+
+        var selectedCountryName = $("#mapcountry").val();
+        var selectedCountry = countries.find(country => country.name === selectedCountryName);
+
+        if (selectedCountry) {
+            populateStateList(selectedCountry);
+            // $("#stateList").toggle();
+        }
+    });
+
+    // Attach a click event to the city textbox to show the city list
+    $("#mapcity").on("click focus", function (event) {
+        event.stopPropagation();
+
+        // Hide the country and state lists if they're open
+        $("#countryList").hide();
+        $("#stateList").hide();
+
+        var selectedStateName = $("#mapstate").val();
+        console.log("state name on city textbox: " + selectedStateName);
+
+        // Get the selected country from the country textbox
+        var selectedCountryName = $("#mapcountry").val();
+        var selectedCountry = countries.find(country => country.name === selectedCountryName);
+
+        // Get the selected state from the states array of the selected country
+        var selectedState = selectedCountry ? selectedCountry.states.find(state => state.name === selectedStateName) : null;
+
+        console.log("state selection city click id: ", selectedState);
+
+        if (selectedState) {
+            populateCityList(selectedState);
+            // $("#cityList").toggle();
+        }
+    });
+
+
+
+</script>

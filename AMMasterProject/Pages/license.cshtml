@@ -1,0 +1,23 @@
+﻿@page
+@model AMMasterProject.Pages.licenseModel
+@{
+    Layout = "";
+    <title>AM License Key</title>
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://amtechnology.info/js/license.js?v=@DateTime.Now"></script>
+@* <script src="https://localhost:44344/js/license.js?v=@DateTime.Now"></script> *@
+
+
+<div id="licenseFormContainer"></div>
+
+
+<small id="smdesignby" class="designby">
+    
+        <a id="adesignby" href="https://amtechnology.info/" target="_blank"> Design & Developed by<span class="am-color">AM Technology</span></a>
+  
+
+
+    - Version: <span id="versionnumber" class="verionnumber">@Model.VersionNumber</span> <span id="versiondate" class="veriondate">@Model.VersionDate</span>
+</small>

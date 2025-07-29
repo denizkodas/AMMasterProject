@@ -1,0 +1,175 @@
+﻿@using AMMasterProject.ViewModel;
+@model SellerViewModel;
+
+@if (Model != null)
+{
+
+
+
+@*<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>*@
+
+@*    business info*@
+<div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <h5 class="padding15 no-margin">
+                    <span class="margin5">
+                        Store Details
+                    </span> <a class="theme-bg f-theme btn small float-end">
+
+                        Visit Store
+                    </a>
+                </h5>
+                <hr class="no-margin"/>
+              
+                   @* <img src="@Model.SellerCoverImage" alt="userimage" data-app-dark-img="illustrations/man-with-laptop-dark.png" class="margin15 float-end seller-logo" data-app-light-img="illustrations/man-with-laptop-light.png">
+*@<div class="box-left padding15">
+                    <img src="@Model.Image" alt="userimage" data-app-dark-img="illustrations/man-with-laptop-dark.png" class="seller-logo" data-app-light-img="illustrations/man-with-laptop-light.png">
+                <h5 class=" margin15">
+                    @Model.BusinessName <br />
+                    <small class="small grey-c s-bold">@Model.userothermetadata.SellerLevelName</small>
+                    @Model.BusinessDescription
+                </h5>
+                </div>
+                @*totals*@
+
+                <div class="">
+
+                    <hr />
+
+                    @*customers*@ 
+                    
+                    <div class="paddingrf-15">
+                        <h4 class="card-title float-end mb-2">@Model.CustomerTotal</h4>
+                        
+                        <div class="card-title box-middle">
+                          
+                            
+                            <span class="badge purple-bg p-2 margin5"><i class="bx bxs-user small white-c no-margin"></i></span>
+                          
+                            <div>
+                                <span class="fw-semibold d-block mb-1">Customers</span>
+                              
+                            </div>
+                        </div>
+                       
+                    </div>
+                  
+                    @*Listings*@
+                    <div class="paddingrf-15">
+                        <h4 class="card-title mb-2 float-end">@Model.ProductTotal</h4> 
+                        
+                        <div class="card-title box-middle">
+                            <span class="badge orange-bg p-2 margin5 "><i class='bx bx-list-ul white-c no-margin'></i></span>
+                          
+                            <div>
+                                <span class="fw-semibold d-block mb-1">Listing</span>
+                              
+                            </div>
+                        </div>
+
+                    </div>
+                  
+
+                    @*star rating*@
+                    <div class="paddingrf-15">
+                        <h4 class="card-title float-end mb-2">4.5 <small class="small">@Model.userothermetadata.SellerRating</small> </h4>
+                        <div class="card-title box-middle">
+                            <span class="badge yellow-bg p-2 margin5"><i class='bx bxs-star white-c no-margin '></i></span>
+                            
+                            <div>
+                                <span class="fw-semibold d-block mb-1">Ratings</span>
+                            </div>
+                        </div>
+
+                    </div>    
+                   
+                    @*followers*@
+                    <div class="paddingrf-15">
+                        <h4 class="card-title mb-2 float-end">@Model.userothermetadata.Followers</h4> <div class="card-title box-middle">
+                            <span class="badge blue-bg p-2 margin5">
+                                <i class='bx bxs-user-voice no-margin white-c'></i>
+
+                            </span>
+                            <div>
+                                <span class="fw-semibold d-block mb-1">Followers</span>
+                               
+                            </div>
+                        </div>
+
+                    </div>  
+                </div>
+            </div>
+        </div>
+        @* total orders as seller*@
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header padding15 d-flex align-items-center justify-content-between pb-0">
+                    <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Completed Orders as Seller: @Model.SalesQtyTotal</h5>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body padding15">
+                    <div id="appordersall">
+                        <div id="chart">
+                            <apexchart type="donut" height="230" :options="chartOptions" :series="series"></apexchart>
+                        </div>
+                    </div>
+
+                    <p>
+                        <span class="badge rounded-pill" style="background:#f4bb4e; display:inline-block"> </span>  Pending Orders:   <span class="grey-c float-end">14 Orders</span>
+                    </p>
+                    <p>
+                        <span class="badge rounded-pill" style="background:#27aae1; display:inline-block"> </span>  Processing Orders:   <span class="grey-c float-end">14 Orders</span>
+                    </p>
+                    <p>
+                        <span class="badge rounded-pill" style="background:#04df0c; display:inline-block"> </span>  Delivered Orders:   <span class="grey-c float-end">14 Orders</span>
+                    </p>
+                    <p>
+                        <span class="badge rounded-pill" style="background:#ff4254; display:inline-block"> </span>  Cancelled Orders:   <span class="grey-c float-end">14 Orders</span>
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+ 
+
+       
+        @*   Total Sales*@
+        <div class="card mb-4">
+            <h5 class="card-header m-0 me-2 pb-3">
+                Total Sales
+
+
+                <span class="card-title float-end h3 ">$12,628</span>
+            </h5>
+            @* Revenue chart *@
+            <div id="apprevenue">
+                <div id="revenuechart">
+                    <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+                </div>
+            </div>
+        </div>
+
+
+
+ 
+
+
+
+<script src="~/admin-assets/js/charts.js"></script>
+
+
+}

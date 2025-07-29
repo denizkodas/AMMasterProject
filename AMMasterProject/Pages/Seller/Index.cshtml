@@ -1,0 +1,504 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.IndexModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title>Dashoboard</title>
+}
+
+
+@{
+
+    var sellerRating = @Model.sellerView.userothermetadata?.SellerRating ?? 0;
+    var percentage = (sellerRating == 0) ? 0 : (sellerRating / 5) * 100;
+    percentage = Math.Round(percentage, 0);
+    // if (sellerRating != null && decimal.TryParse(sellerRating.ToString(), out var ratingValue))
+    // {
+    //     percentage = (int)((ratingValue / 5) * 100);
+    // }
+
+
+
+    var totalOrders = @Model.TotalOrderReceived;
+    var totalcompletedOrders = @Model.CompletedCount; // Assuming this is the correct property name
+    var ordercompletionpercentage = (totalOrders == 0) ? 0 : (totalcompletedOrders / totalOrders) * 100;
+
+    ordercompletionpercentage = Math.Round(percentage, 0);
+    
+}
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+
+<div class="card white-bg seller-dashboard mb-4">
+
+    <div class="row no-margin">
+
+        <div class="col-md-3 padding15 seller-p-section">
+
+            <div class="card-title d-flex align-items-start justify-content-between">
+
+                <h5 class="bold padding5 ">
+                    <span class="notranslate" data-translate="profile">   Profile</span>
+                 
+                 
+
+                </h5>
+                <div class="dropdown">
+                    <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3" style="">
+                        <a class="dropdown-item" target="_blank" href="~/user/@Model.sellerView.BusinessUrlpath">
+                            <span class="notranslate" data-translate="viewprofile">    View Profile</span>
+                            
+                           </a>
+                        <a class="dropdown-item" href="~/seller/profile">
+
+                            <span class="notranslate" data-translate="editprofile">    Edit Profile</span>
+                           </a>
+                    </div>
+                </div>
+
+
+
+              
+            </div>
+
+
+
+
+            <div class=" center">
+                <img src="@Model.sellerView.Image" alt="@Model.sellerView.BusinessName" data-app-dark-img="illustrations/man-with-laptop-dark.png" class=" seller-logo" data-app-light-img="illustrations/man-with-laptop-light.png">
+                <h6 class="bold no-margin">
+                    @Model.sellerView.BusinessName
+                </h6>
+                <p class="small grey-c s-bold">@Model.sellerView.userothermetadata.SellerLevelName</p>
+            </div>
+            <div class="paddingtb-15 ">
+                <a href="~/seller/profile">
+                    <div class="row grey-c no-margin">
+                        <div class="col-md-10  padding5 ">
+                            <span class="notranslate" data-translate="profilecompletion">Profile Completion</span>
+
+
+                        </div>
+                 
+                        <div class="col-md-2 no-padding left">
+                            @Model.ProfileTabPercentage%
+                        </div>       <div class="col-md-12 no-padding">
+
+                            <div style="height: 6px" class="progress margin5">
+                                <div class="progress-bar" role="progressbar" data-percentage="@Model.ProfileTabPercentage" style="width: @Model.ProfileTabPercentage%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="~/seller/profile">
+                    <div class="row grey-c no-margin">
+                        <div class="col-md-10 padding5">
+
+                            <span class="notranslate" data-translate="ordercompletion"> Order Completion</span>
+
+
+                           
+                        </div>
+                      
+                        <div class="col-md-2 no-padding left">
+                            @ordercompletionpercentage%
+                        </div>  <div class="col-md-12 no-padding">
+
+                            <div style="height: 6px" class="progress margin5">
+
+                                <div class="progress-bar" data-percentage="@ordercompletionpercentage" role="progressbar" style="width: @ordercompletionpercentage%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+
+           @*      <a href="~/seller/profile">
+                    <div class="row grey-c no-margin">
+                        <div class="col-md-7  no-padding ">
+                            Response Rate
+                        </div>
+                        <div class="col-md-3 padding5">
+
+                            <div style="height: 6px" class="progress margin5">
+                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 no-padding left">
+                            25%
+                        </div>
+                    </div>
+                </a> *@
+                <a href="~/seller/profile">
+
+                    <div class="row grey-c no-margin">
+                        <div class="col-md-10 padding5 ">
+                            <span class="notranslate" data-translate="positiverating"> Positive Rating</span>
+
+                            
+                        </div>
+                
+                        <div class="col-md-2 no-padding left">
+                            @percentage%
+                        </div>        <div class="col-md-12 no-padding">
+
+                            <div style="height: 6px" class="progress margin5">
+                                <div class="progress-bar" data-percentage="@percentage" role="progressbar" style="width: @percentage%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </a>
+
+
+              @*   <a href="/seller/profile">
+                    <div class="row grey-c no-margin">
+                        <div class="col-md-10 padding5">
+                            Profile Completion
+                        </div>
+                        <div class="col-md-2 no-padding left">
+                            25%
+                        </div><div class="col-md-12 no-padding">
+
+                            <div style="height: 6px" class="progress margin5">
+                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </a> *@
+            </div>
+           
+            <div class="white-smoke-bg padding20 radius30 mt-2">
+                <h6 class="no-margin">
+                    <span class="notranslate" data-translate="boostprofile"> Boost Profile</span>
+
+                    
+                </h6>
+            <p class="d-grey-c l-bold no-margin">
+                    <span class="notranslate" data-translate="boostprofilemsg">
+                        Boost your profile and attract more users with enhanced visibility as a
+                        seller
+
+                    </span> 
+            </p>
+            <a class="btn theme-bg f-theme mt-1" href="~/advertise/boost/profile/@Model.sellerView.ProfileGuid"><i class=" bx bx-crown me-1"></i> Boost Profile</a>
+            </div>
+        </div>  <div class="col-md-9 padding15 sep-r">
+            <h5 class="bold padding15 grey-c no-margin top-fix">
+
+                <span class="notranslate" data-translate="welcome"> Welcome</span>,
+ <span class="black-c">  @User.FindFirst("FirstName")?.Value @User.FindFirst("LastName")?.Value </span>
+
+               
+            </h5>
+
+            @*
+            <div class="seller-annoucement">
+            <div class="heading h5 bold no-margin">
+            Title <span class="float-end small l-bold grey-c">date</span>
+            </div>
+            <div class="padding15">
+            This is description
+            <a class="float-end btn bg-info white-c "> Action </a>
+            <br/>
+            </div>
+            </div> *@
+
+
+            <div class="chart-svg padding15">
+
+
+                <div class="row box-center ">
+
+
+
+                    @*customers*@
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start ">
+                                    <div class="avatar flex-shrink-0 margin5">
+                                        <span class="badge purple-bg p-2 "><i class="bx bxs-user white-c no-margin"></i></span>
+                                    </div>
+                                    <div>
+                                        <span class ="fw-semibold d-block mb-1 notranslate" data-translate="customers">
+                                            Customers
+                                        </span>
+                                      
+                                        <h4 class="card-title mb-2">@Model.sellerView.CustomerTotal</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    @*Listings*@
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start ">
+                                    <div class="avatar flex-shrink-0 margin5">
+                                        <span class="badge orange-bg p-2 "><i class='bx bx-list-ul white-c no-margin'></i></span>
+                                    </div>
+                                    <div>
+                                      
+                                            <span class="fw-semibold d-block mb-1 notranslate" data-translate="listings">
+                                                 Listing
+                                            </span>
+                                            
+                                           
+                                        <h4 class="card-title mb-2">@Model.sellerView.ProductTotal</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @*Services*@
+
+@*                     <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <div class="avatar flex-shrink-0 ">
+                                        <span class="badge green-bg p-2 margin5"><i class='bx bx-list-check no-margin white-c'></i></span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-semibold d-block mb-1">Services</span>
+                                        <h4 class="card-title mb-2">0</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div> *@
+
+
+                    @*followers*@
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start ">
+                                    <div class="avatar flex-shrink-0 margin5">
+                                        <span class="badge blue-bg p-2 ">
+                                            <i class='bx bxs-user-voice no-margin white-c'></i>
+
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-semibold d-block mb-1 notranslate" data-translate="followers">
+                                            Followers
+                                        </span>
+
+                                       
+                                        <h4 class="card-title mb-2"> @Model.sellerView.userothermetadata.Followers</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @*Average Rating*@
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start ">
+                                    <div class="avatar flex-shrink-0 margin5">
+                                        <span class="badge yellow-bg p-2 ">
+                                            <i class='bx bxs-star no-margin white-c'></i>
+
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-semibold d-block mb-1 notranslate" data-translate="averagerating">
+                                            Average Rating
+                                        </span>
+                                      
+                                        <h4 class="card-title mb-2">@Model.sellerView.userothermetadata.SellerRating.ToString("0.0") ( @Model.sellerView.userothermetadata.TotalReviewsAsSeller )</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header padding15 d-flex align-items-center justify-content-between pb-0">
+                                <div class="card-title mb-0">
+                                    <h5 class="m-0 me-2">
+                                        <span class="fw-semibold d-block mb-1 notranslate" data-translate="completedorders">
+                                            Completed Orders
+                                        </span>
+                                        
+                                         <strong>@Model.sellerView.SalesQtyTotal </strong> </h5>
+                                </div>
+                            @*     <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                                    </div>
+                                </div> *@
+                            </div>
+                            <div class="card-body padding15">
+                                <div id="appordersall">
+                                    <div id="chart">
+                                        <apexchart type="donut" height="230" :options="chartOptions" :series="series"></apexchart>
+                                    </div>
+                                </div>
+                                <p>
+                                    <span class="badge rounded-pill" style="background: #27aae1; display: inline-block !important;"></span>
+
+                                    <span class="notranslate" data-translate="processingorders">
+                                            Processing Orders
+                                    </span>:
+                     
+                                    <span class="grey-c float-end">@Model.ProcessingCount
+                                        <span class="notranslate" data-translate="orders">
+                                           Orders
+                                        </span>
+
+                                    </span>
+                                </p>
+
+                                <p>
+                                    <span class="badge rounded-pill" style="background: #eed92d; display: inline-block !important;"></span>
+
+                                    <span class="notranslate" data-translate="shippedorders">
+                                        Shipped Orders
+                                    </span>:
+                                    
+                                    <span class="grey-c float-end">
+                                        @Model.ShippedCount        <span class="notranslate" data-translate="orders">
+                                            Orders
+                                        </span>
+                                    </span>
+                                </p>
+                               
+                                <p>
+                                    <span class="badge rounded-pill" style="background: #02d7b9; display: inline-block !important;"></span>
+
+                                    <span class="notranslate" data-translate="deliveredorders">
+                                        Delivered Orders
+                                    </span>:
+                                    
+                                    
+                                    <span class="grey-c float-end">
+                                        @Model.DeliveredCount        <span class="notranslate" data-translate="orders">
+                                            Orders
+                                        </span>
+                                    </span>
+                                </p>
+
+                                <p>
+                                    <span class="badge rounded-pill" style="background: #5acb65; display: inline-block !important;"></span>
+                                    <span class="notranslate" data-translate="completedorders">
+                                           Completed Orders
+                                    </span>:
+                                    
+                                
+                                    <span class="grey-c float-end">
+                                        @Model.CompletedCount        <span class="notranslate" data-translate="orders">
+                                            Orders
+                                        </span>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="badge rounded-pill" style="background: #ff4254; display: inline-block !important;"></span>
+                                    <span class="notranslate" data-translate="cancelledorders">
+                                        Cancelled Orders
+                                    </span>:
+                                    
+                                   
+                                    <span class="grey-c float-end">
+                                        @Model.CancelledCount        <span class="notranslate" data-translate="orders">
+                                            Orders
+                                        </span>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="badge rounded-pill" style="background: #ff8708; display: inline-block !important;"></span> 
+                                    
+                                    <span class="notranslate" data-translate="returnedorders">
+                                        Returned Orders
+                                    </span>
+                                    
+                                    <span class="grey-c float-end">
+                                        @Model.ReturnedCount        <span class="notranslate" data-translate="orders">
+                                            Orders
+                                        </span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-8">
+                        <div class="card">
+                            <h5 class="card-header m-0 me-2 pb-3">
+                                <span class="notranslate" data-translate="sales">
+                                    Sales
+                                </span>
+                                
+
+
+                                <span class="card-title float-end h3 ">@Model.sellerView.SalesActualCurrency  @Model.CompletedAmount</span>
+                            </h5>
+
+                        @*     ///id should match with chart function el: *@
+                            <div id="sellerdashboardorderbarchart">
+                                <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+                            </div>
+                           
+
+                         
+                          
+                       
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="~/admin-assets/js/charts.js"></script>
+    </div>
+
+</div>
+
+<script>
+   
+    $(document).ready(function () {
+        updateProgressBarColors();
+    });
+
+
+    initializeChartOrderSummary(@Model.ShippedCount, @Model.ProcessingCount, @Model.DeliveredCount, @Model.CompletedCount,@Model.CancelledCount, @Model.ReturnedCount);
+
+
+    sellerdashboardSalesSeggregation(@Model.ProcessingAmount, @Model.ShippedAmount, @Model.DeliveredAmount, @Model.CompletedAmount, @Model.CancelledAmount, @Model.ReturnedAmount, '@Model.sellerView.SalesActualCurrency');
+
+
+
+</script>
+

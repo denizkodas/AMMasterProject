@@ -1,0 +1,105 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Boost.listingplanModel
+@{
+ <title>Boost Listing Plan</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<form method="post">
+<div class="card">
+    <div class="form padding30">
+
+
+
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Auto
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+                        <div class="form-group col-md-7">
+                            Deduction Type
+                            <select asp-for="@Model.listingboost.DeductionType">
+
+                                <option>Both</option>
+                                <option>Credit</option>
+                                <option>Amount</option>
+
+                            </select>
+                            <span asp-validation-for="@Model.listingboost.DeductionType" class="required"></span>
+                        </div>
+                    <div class="form-group col-md-7">
+                        Days
+                            <input type="text" maxlength="100" asp-for="@Model.listingboost.NoofDays">
+                            <span asp-validation-for="@Model.listingboost.NoofDays" class="required"></span>
+                    </div>
+
+
+
+                    <div class="form-group col-md-7">
+                        Amount
+                            <input type="text" maxlength="100" asp-for="@Model.listingboost.Amount">
+                            <span asp-validation-for="@Model.listingboost.Amount" class="required"></span>
+                    </div>
+
+                    <div class="form-group col-md-7">
+                        Credits
+                            <input type="text" maxlength="100" asp-for="@Model.listingboost.Credit">
+                            <span asp-validation-for="@Model.listingboost.Credit" class="required"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Customize
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+                    <div class="row">
+
+
+
+                        <div class="form-group col-md-7">
+                            Per day AD Amount
+                                <input type="text" maxlength="100" asp-for="@Model.listingboost.CustomAmount">
+                                <span asp-validation-for="@Model.listingboost.CustomAmount" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-7">
+                            Per day AD Credits
+                                <input type="text" maxlength="100" asp-for="@Model.listingboost.CustomCredit">
+                                <span asp-validation-for="@Model.listingboost.CustomCredit" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button class="clickable-button" asp-page-handler="ListingBoost">Save</button></div>
+
+
+
+        </div>
+    </div>
+</div>
+
+                        </form>

@@ -1,0 +1,362 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.companysetupModel
+@{
+      <title>Company Details</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+<div class="card mb-4">
+
+    <div class="card-body">
+
+        <div class="form">
+
+                <div asp-validation-summary="All"></div>
+
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                        Is Multi Vendor
+                    </div>
+                    <div class="col-md-9 no-padding">
+
+
+                        <div class="form-group margintb-15">
+
+                            <label class="switch">
+                                <input type="checkbox" asp-for="@Model.CompanySetup.IsMultiVendor" id="IsMultiVendorSwitchCheckChecked" value="true">
+                                <span class="slider"></span>
+                            </label>
+                            <label class="form-check-label black-c bold" for="IsMultiVendorSwitchCheckChecked"> Is Multi Vendor </label>
+                            <p class="form-check-msg">
+                                Enable with a Right Switch, Disable with a Left Switch:
+                            </p>
+                        </div>
+
+                        <span asp-validation-for="@Model.CompanySetup.IsMultiVendor" class="required"></span>
+                    </div>
+
+
+                </div>
+                <hr>
+
+            <div class="row paddingrf-15 no-margin">
+                <div class=" col-md-3 s-bold">
+                    Logo
+                </div>
+                <div class="col-md-9 no-padding">
+                   
+                    
+                    <label class="file-upload">
+                        <span class="btn btn-default l-grey-bg">
+                            Select File
+                        </span>
+                        <input type="file" id="fileInput" onchange="uploadFile()">
+
+                        <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                    </label><br>Allowed JPG or PNG. Max size of 10 MB
+                        <img id="logoimage" class="preview" src="@(Model.CompanySetup.Logo != null ? Model.CompanySetup.Logo : "")">
+                        <span id="spanfilename" class="required"></span>
+                        <input type="hidden" asp-for="@Model.CompanySetup.Logo" />
+
+                        <span asp-validation-for="@Model.CompanySetup.Logo" class="required"></span>
+                </div>
+
+
+            </div>
+
+            <hr>
+            <div class="row paddingrf-15 no-margin">
+                <div class=" col-md-3 s-bold">
+                   Favicon
+                </div>
+                <div class="col-md-9 no-padding">
+
+
+                    <label class="file-upload">
+                        <span class="btn btn-default l-grey-bg">
+                            Select File
+                        </span>
+                        <input type="file" id="fileInputfavicon" onchange="uploadFavicon()">
+
+                        <progress id="fileProgressfavicon" class="w-100 margin5" style="display:none"></progress>
+                    </label><br>Allowed Only ICO Format
+                        <img id="faviconimage" class="preview" src="@(Model.CompanySetup.Favicon != null ? Model.CompanySetup.Favicon : "")">
+                        <span id="spanfilenamefavicon" class="required"></span>
+                        <input type="hidden" asp-for="@Model.CompanySetup.Favicon" />
+
+                        <span asp-validation-for="@Model.CompanySetup.Favicon" class="required"></span>
+                </div>
+
+
+            </div>
+            <hr />
+
+                
+             
+                <div class="row paddingrf-15 no-margin">
+                <div class=" col-md-3 s-bold">
+                    About Company
+                </div>  
+                
+                
+                
+             
+                <div class="col-md-9 no-padding">
+                    <div class="form-group col-md-8">
+                        Company Name
+                            <input type="text" maxlength="200" asp-for="@Model.CompanySetup.CompanyName">
+
+                            <span asp-validation-for="@Model.CompanySetup.CompanyName" class="required"></span>
+                   
+                        
+                        </div>
+                    <div class="form-group">
+                        Short Description About Company
+                            <textarea type="text" maxlength="500" asp-for="@Model.CompanySetup.CompanyDescription" oninput="updateCharacterCount(this)"></textarea>
+                            <span id="characterCountLabel"></span>
+                            <span asp-validation-for="@Model.CompanySetup.CompanyDescription" class="required"></span>
+
+
+
+                    </div>
+                    <div class="form-group">
+                        Address
+                            <input type="text" maxlength="200" class="googleaddress" asp-for="@Model.CompanySetup.CompanyAddress">
+
+                            <span asp-validation-for="@Model.CompanySetup.CompanyAddress" class="required"></span>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="row paddingrf-15 no-margin">
+                <div class=" col-md-3 s-bold">
+                    Support Details
+                </div>
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+                        <div class="form-group col-md-8">
+                          Support Contact
+                                <input type="text" maxlength="20" asp-for="@Model.CompanySetup.SupportContact">
+
+                                <span asp-validation-for="@Model.CompanySetup.SupportContact" class="required"></span>
+
+                        </div>
+                     
+
+                        <div class="form-group col-md-8">
+                            Support Email
+                                <input type="text" maxlength="300" asp-for="@Model.CompanySetup.SupportEmail">
+
+                                <span asp-validation-for="@Model.CompanySetup.SupportEmail" class="required"></span>
+
+                        </div>
+
+                  </div>
+                </div>
+
+
+            </div>
+
+            <hr />
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                        SEO
+                    </div>
+
+
+
+                    <div class="col-md-6 no-padding">
+                        <div asp-validation-summary="All"></div>
+
+                        <div class="form-group">
+                            Meta title
+                            <input type="text" maxlength="100" asp-for="@Model.CompanySetup.MetaTitle" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetatitle'))">
+                            <span id="characterCountLabelMetatitle"></span>
+                            <span asp-validation-for="@Model.CompanySetup.MetaTitle" class="required"></span>
+
+
+
+                        </div>
+                        <div class="form-group">
+                            Meta Keywords  
+                            <input type="text" maxlength="200" asp-for="@Model.CompanySetup.MetaKeyword" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaKeyword'))">
+                            <small class="grey-c">comma seperated values property, zone, classified</small> 
+                            
+                            <span id="characterCountLabelMetaKeyword"></span>
+                            <span asp-validation-for="@Model.CompanySetup.MetaKeyword" class="required"></span>
+
+
+                        </div>
+                        <div class="form-group">
+                            Meta Description
+                            <input type="text" maxlength="200" asp-for="@Model.CompanySetup.MetaDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaDescription'))">
+                            <span id="characterCountLabelMetaDescription"></span>
+                            <span asp-validation-for="@Model.CompanySetup.MetaDescription" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            <hr>
+           
+            <div class="row paddingrf-15">
+                <div class=" col-md-6 checkright">
+                </div>
+                <div class=" col-md-6 right">
+
+                        <input class="clickable-button" type="submit" value="Save">
+                </div>
+            </div>
+
+            <div></div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        
+           
+        </div>
+   
+    </div>
+</form>
+
+
+
+
+    <script>
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#logoimage").attr("src", data.fileLink);
+
+                $('#CompanySetup_Logo').val(data.fileLink);
+
+
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+    function uploadFavicon() {
+        var fileInput = $("#fileInputfavicon")[0];
+        $("#fileProgressfavicon").show();
+        var progressBar = $("#fileProgressfavicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+       
+
+        if (!file.type.match(/image\/(x-ico|x-ICO|ico)/)) {
+
+
+            $('#spanfilenamefavicon').text("Only ico files are allowed.");
+            $("#fileProgressfavicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            $("#fileProgressfavicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilenamefavicon').text(fileName);
+
+                $("#faviconimage").attr("src", data.fileLink);
+
+                $('#CompanySetup_Favicon').val(data.fileLink);
+
+
+
+
+                $("#fileProgressfavicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+  
+
+
+
+
+    </script>
+

@@ -1,0 +1,324 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.subscriptionsetup.addModel
+@{
+    <title>Subscription Setup</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+    <input asp-for="@Model.revenuesubscriptionpackage.RevenueSubscriptionPackageID" type="hidden" />
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/subscriptionsetup">
+                <i class="bx bx-list-ul me-1"></i>
+              List
+            </a>
+            <a class="nav-link" href="~/admin/subscriptionsetup/add"><i class="bx bx-plus me-1"></i> Add New</a>
+                <a class="nav-link" href="~/admin/subscriptionsetup/settings"><i class="bx bx-cog me-1"></i> Setting </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+
+                <div asp-validation-summary="All"></div>
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Subscription Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+                          
+                        <div class="form-group col-md-6">
+                            Title
+                            <input type="text" maxlength="200" placeholder="Title" asp-for="@Model.revenuesubscriptionpackage.RevenuePackageName">
+                            <span asp-validation-for="@Model.revenuesubscriptionpackage.RevenuePackageName" class="required"></span>
+                        </div>
+
+
+                            <div class="form-group col-md-3">
+                                Sort #
+                                <input type="text" min="1" maxlength="100" asp-for="@Model.revenuesubscriptionpackage.Sortnumber">
+                                <span asp-validation-for="@Model.revenuesubscriptionpackage.Sortnumber" class="required"></span>
+
+
+                            </div>
+                      
+                      
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Package Description
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+
+                      
+                        <div class="form-group col-md-12">
+                            About Package
+                            <textarea rows="2" cols="20" maxlength="150" asp-for="@Model.revenuesubscriptionpackage.Description" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelCreditDescription'))"></textarea>
+                            <span id="characterCountLabelCreditDescription"></span>
+                            <span asp-validation-for="@Model.revenuesubscriptionpackage.Description" class="required"></span>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                 Pricing
+                </div>
+
+                <div class="col-md-9 no-padding">
+                  
+                        <div class="form-group row">
+                            <div class="col-md-3 padding-right">
+                                Currency
+                            <select asp-for="@Model.revenuesubscriptionpackage.CurrencyID" asp-items="@Model.Currency" class="form-control">
+                                <option disabled selected>-- Select --</option>
+                            </select>
+
+
+
+                            <span asp-validation-for="@Model.revenuesubscriptionpackage.CurrencyID" class="required"></span>
+
+                            </div>
+                            <div class="col-md-6 padding-left">
+                                Amount
+                            <input type="text" min="1" placeholder="Subscription Package Price" asp-for="@Model.revenuesubscriptionpackage.CreditAmount">
+                            <span asp-validation-for="@Model.revenuesubscriptionpackage.CreditAmount" class="required"></span>
+                            </div>
+
+                          
+
+                        </div>
+
+              
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                Duration
+                </div>
+
+                    <div class="col-md-9">
+                  
+                        <div class="row ">
+                            <div class="col-md-6 no-padding">
+                            <div class="form-group radiobtn-box">
+                                Recurring Period: <br />
+                                    <span class="radiobtn">
+                                    <input type="radio" id="period1" name="recurringPeriod" value="30" @(Model.revenuesubscriptionpackage.RecurringPeriodInDays == 30 ? "checked" : "")>
+                                    <label for="period1">1 Month</label>
+                                </span>
+                                    <span class="radiobtn">
+                                    <input type="radio" id="period3" name="recurringPeriod" value="90" @(Model.revenuesubscriptionpackage.RecurringPeriodInDays == 90 ? "checked" : "")>
+                                    <label for="period3">3 Months</label>
+                                </span>
+                                    <span class="radiobtn">
+                                    <input type="radio" id="period6" name="recurringPeriod" value="180" @(Model.revenuesubscriptionpackage.RecurringPeriodInDays == 180 ? "checked" : "")>
+                                    <label for="period6">6 Months</label>
+                                </span>
+                                    <span class="radiobtn">
+                                    <input type="radio" id="period12" name="recurringPeriod" value="365" @(Model.revenuesubscriptionpackage.RecurringPeriodInDays == 365 ? "checked" : "")>
+                                    <label for="period12">1 Year</label>
+                                </span>
+
+
+                            </div>
+                            <div class="" id="dvrecurringperiod">
+
+
+                                <div class="form-group">
+                                    Recurring Period in Days:
+                                    <input type="number" min="1" placeholder="Recurring Period In Days" asp-for="@Model.revenuesubscriptionpackage.RecurringPeriodInDays">
+                                    <span asp-validation-for="@Model.revenuesubscriptionpackage.RecurringPeriodInDays" class="required"></span>
+                                </div>
+
+
+
+                            </div>
+                            </div>
+                        </div>
+              
+                    </div>
+            
+            </div>
+            <hr>
+
+                <div class="checkright row">
+
+
+
+
+                    <div class="col-md-3 s-bold">
+                        Image
+                    </div>
+
+                    <div class="col-md-9">
+            <div class="form-group checkright">
+                
+
+                <label class="btn margin5 theme-bg f-theme file-upload">
+                    Select Icon
+
+
+                    <input type="file" id="fileInput" class="account-file-input" onchange="uploadFile()" />
+
+
+
+                </label>
+
+                <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+
+
+                <img id="creditimage" class="me-3" height="30" style="display:@(Model.revenuesubscriptionpackage.SubscriptionImage == null ? "none" : "block")" src="@(Model.revenuesubscriptionpackage.SubscriptionImage != null ? Model.revenuesubscriptionpackage.SubscriptionImage  : "")">
+
+                <input type="hidden" asp-for="@Model.revenuesubscriptionpackage.SubscriptionImage" />
+
+            </div>
+                    </div>
+                </div>
+                <hr>
+            <div class="checkright row">
+
+                
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+
+                        <div class="form-group checkright">
+
+                            <input type="checkbox" asp-for="@Model.revenuesubscriptionpackage.IsRecommended" checked="@Model.revenuesubscriptionpackage.IsRecommended" />
+                            <label id="IsRecommended" asp-for="@Model.revenuesubscriptionpackage.IsRecommended">Is Recommended</label>
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox for user to highlight this package </p>
+
+
+                        </div>
+
+                        <div class="form-group checkright">
+
+
+                        <input type="checkbox" asp-for="@Model.revenuesubscriptionpackage.IsPublish" checked="@Model.revenuesubscriptionpackage.IsPublish" />
+                        <label id="ispublish" asp-for="@Model.revenuesubscriptionpackage.IsPublish">Is Publish</label>
+
+
+                            <p class="small grey-c paddingrf-15 marginrf-15">  ark the checkbox to active this subscription</p>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                    <div class="col-md-6"></div> <div class="col-md-6">    <button class="clickable-button">Save</button></div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</form>
+
+<script>
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilename').text("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+                $("#creditimage").show();
+
+                $('#spanfilename').text("");
+
+                $("#creditimage").attr("src", data.fileLink);
+
+                $('#revenuesubscriptionpackage_SubscriptionImage').val(data.fileLink);
+
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+
+    // Update the textbox value based on the selected radio button
+    const radioButtons = document.querySelectorAll('input[name="recurringPeriod"]');
+    const recurringPeriodDays = document.getElementById('revenuesubscriptionpackage_RecurringPeriodInDays');
+
+    radioButtons.forEach(radioButton => {
+        radioButton.addEventListener('change', () => {
+            recurringPeriodDays.value = radioButton.value;
+        });
+    });
+
+   
+</script>

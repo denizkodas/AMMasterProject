@@ -1,0 +1,556 @@
+﻿@page "/payment/selection/{ID}/{MembershipType}"
+@model AMMasterProject.Pages.Payment.IndexModel
+@using AMMasterProject.Helpers
+@{
+    Layout = "/Pages/Shared/_layoutBlank.cshtml";
+
+    ViewData["Title"] = "Choose Payment";
+
+
+}
+
+<style>
+    body {
+        background: var(--white-smoke)
+    }
+
+</style>
+
+<form method="post" id="paymentForm">
+
+
+
+    <div class="container">
+
+        <div class="row box-center paddingtb-15">
+            <div class="col-md-9 o-padding">
+                <div class="right">
+
+                    <a href="@GlobalHelper.GetReturnURL()" id="lnkback" class="back-to-web m-none">
+                        <svg viewBox="0 0 32 32">
+
+                            <g data-name="Layer 2" id="Layer_2"><path d="M20,25a1,1,0,0,1-.71-.29l-8-8a1,1,0,0,1,0-1.42l8-8a1,1,0,1,1,1.42,1.42L13.41,16l7.3,7.29a1,1,0,0,1,0,1.42A1,1,0,0,1,20,25Z"></path></g>
+                            <path d="M39.3756,48.0022l30.47-25.39a6.0035,6.0035,0,0,0-7.6878-9.223L26.1563,43.3906a6.0092,6.0092,0,0,0,0,9.2231L62.1578,82.615a6.0035,6.0035,0,0,0,7.6878-9.2231Z"></path>
+
+                        </svg>
+                        <span class="notranslate" data-translate="back"> Back  </span>
+
+                        
+                      
+                    </a>
+
+
+                </div>
+
+                <div class="row white-bg  radius  padding30 payment-method">
+                    <div class="col-md-7 o-padding">
+                        <h3 class="bold paddingtb-15 m-none">
+                            <span class="notranslate" data-translate="houdoyouwanttopay">  How do you want to pay ?  </span>
+                            </h3>
+                        <div class="paddingtb-15 row no-margin ">
+                            <div  class="radiobtn-box no-padding position-relative">
+
+                                <div id="dvPaymentgatewayDisabled" class="disable-div"></div>
+
+                                @foreach (var item in Model.paymentgatewaylist)
+                                {
+                                    @*  bool isCurrencyAllowed = @GlobalHelper.currencyalloweValidation(item.Value); *@
+
+                                    bool isCurrencyAllowed = Model._globalhelper.currencyalloweValidation(item.Value);
+
+                                    <span class="radiobtn @(isCurrencyAllowed ? "" : "disabled")">
+                                        <input type="radio" name="paymentGateway" value="@item.Value" @(isCurrencyAllowed ? "" : "disabled")>
+                                        <label>
+
+
+                                            <img src="~/images/@(item.Value.ToLower()).png" class="payment-img" />
+                                            @item.Text
+                                        </label>
+                                        @if (!isCurrencyAllowed)
+                                        {
+                                            <span class="not-supported-message notranslate" data-translate="notsupportedcurrency">
+                                                  Not supported currency  
+
+
+                                               </span>
+                                        }
+
+                                    </span>
+
+
+
+                                }
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="form-group form payment-btn-fix">
+
+                            <div id="bankDetailsContainer"></div>
+                            <input type="hidden" name="selectedPaymentGateway" id="selectedPaymentGateway" />
+                            <button id="proceedButton" class="w-100 clickable-button" style="display:none">
+                                <span class="notranslate" data-translate="proceed"> Proceed    </span>
+
+                                </button>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 no-padding">
+                        <div class="position-relative">
+
+
+                            <div class="white-smoke-bg radius border mb-3 m-no-border m-no-bg ">
+
+                                <h5 class="padding15 m-none">
+                                    <span class="notranslate" data-translate="ordersummary">Order Summary    </span>
+
+                                    
+                                </h5>
+                                <div class="order-overview">
+                                    <div id="membershipbasketsummaryViewContainer">
+                                    </div>
+                                </div>
+                            </div>
+                            @*  ///Coupon code *@
+
+                            <div class="form mb-2">
+                                <span class="bold notranslate" data-translate="doyouhavecoupon">
+                                   Do you have any Coupon Code?   
+
+                                    
+                                    </span>
+                            <div class="input-group mb-3">
+                                <input type="text" id="couponCodeInput"  maxlength="100" placeholder="Type coupon code">
+
+                                <!-- Apply coupon button -->
+                                <button id="applyCouponButton">
+                                    Apply
+                                </button>
+                                </div>
+                                <span id="spanCouponValidation" class="validation"></span>
+                            </div>
+                       @*      Amount Calculation *@
+
+                            <div class="mb-2 o-padding radius border m-no-border padding15">
+
+                                @* //Applied coupon code *@
+
+
+                                <div  id="dvCouponblock" style="display:none">
+
+                                    <div class="mb-1 grey-c">
+
+                                    <label class="float-end d-block"></label>
+                   
+                                    
+                                    
+                                    <svg class="svg-large theme-fill" style="enable-background:new 0 0 64 64;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<path class="st0" d="M57.3,26.7c1.1-0.5,1.7-1.6,1.7-2.7V16c0-1.7-1.3-3-3-3H8c-1.7,0-3,1.3-3,3v7.8C5,25,5.7,26,6.8,26.5    c2.1,1,3.5,3.1,3.5,5.5S9,36.5,6.8,37.5C5.7,38,5,39,5,40.2V48c0,1.7,1.3,3,3,3h48c1.7,0,3-1.3,3-3v-7.9c0-1.1-0.7-2.2-1.7-2.7    c-2-1-3.3-3.1-3.3-5.3S55.3,27.7,57.3,26.7z M52,32c0,3,1.7,5.8,4.4,7.1c0.4,0.2,0.6,0.6,0.6,0.9V48c0,0.6-0.4,1-1,1H8    c-0.6,0-1-0.4-1-1v-7.8c0-0.4,0.3-0.8,0.7-0.9c2.9-1.3,4.7-4.2,4.7-7.3s-1.8-6-4.7-7.3C7.3,24.5,7,24.2,7,23.8V16c0-0.6,0.4-1,1-1    h48c0.6,0,1,0.4,1,1v7.9c0,0.4-0.2,0.7-0.6,0.9C53.7,26.2,52,29,52,32z"/><path class="st0" d="M39,34c-2.8,0-5,2.2-5,5s2.2,5,5,5s5-2.2,5-5S41.8,34,39,34z M39,42c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3    S40.7,42,39,42z"/><path class="st0" d="M25,30c2.8,0,5-2.2,5-5s-2.2-5-5-5s-5,2.2-5,5S22.2,30,25,30z M25,22c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3    S23.3,22,25,22z"/><path class="st0" d="M43,23.9c0-0.8-0.3-1.5-0.9-2.1c-1.1-1.1-3-1.1-4.1,0L21.9,38c-0.5,0.5-0.9,1.3-0.9,2.1    c0,0.8,0.3,1.5,0.9,2.1c0.6,0.6,1.3,0.9,2.1,0.9c0.7,0,1.5-0.3,2.1-0.9L42.1,26C42.7,25.4,43,24.7,43,23.9z M40.7,24.5    C40.7,24.5,40.7,24.5,40.7,24.5L24.5,40.7c-0.4,0.4-0.9,0.4-1.3,0c-0.2-0.2-0.3-0.4-0.3-0.6s0.1-0.5,0.3-0.6l16.2-16.2    c0.2-0.2,0.4-0.3,0.6-0.3s0.5,0.1,0.6,0.3c0.2,0.2,0.3,0.4,0.3,0.6S40.9,24.4,40.7,24.5z"/>
+
+
+
+
+</svg>
+                                       
+
+                                    @* //Applied coupon code *@
+                                    <span id="spanCouponStatusApplied">Coupon Applied</span>   
+                                    <span class="black-c bold marginrf-15 float-end">
+
+                                       <span class="black-c" >
+                                            <span id="spanCouponAmount"></span>
+                                        </span>
+                                    </span>
+                                    @*  <button id="btnwalletused" class=" grey-c bold float-end clickable-button">Use Wallet Amount</button>
+
+                                    *@
+                                    </div>
+                                    <hr class="m-none" />
+                                </div>
+                          
+                   
+
+                          
+
+                             
+                             @*   Wallet *@
+                                @if (@Model.AvailableWallet > 0)
+                                {
+                                    <div class="mb-1 grey-c">
+                                        <label id="lblvalidationWallet" class="float-end d-block"></label>
+                                        <svg class="svg-large" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none" d="M0 0h256v256H0z"></path>
+                                            <path d="M40 64v128a16 16 0 0 0 16 16h160a8 8 0 0 0 8-8V88a8 8 0 0 0-8-8H56a16 16 0 0 1-16-16h0a16 16 0 0 1 16-16h136" fill="none" stroke="var(--theme-color)" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" class="stroke-000000"></path>
+                                            <circle cx="180" cy="144" r="10" fill="#575757" class="fill-000000"></circle>
+                                        </svg>
+
+
+                                        <span class="notranslate" data-translate="wallet">Wallet</span>
+                                      <span class="black-c bold marginrf-15 float-end">
+
+                                            -<span class="black-c" id="SpanAvailableWallet">@Model.AvailableWallet</span>
+                                        </span>
+                                       @*  <button id="btnwalletused" class=" grey-c bold float-end clickable-button">Use Wallet Amount</button>
+
+ *@
+                                    </div>
+                                    <hr class="m-none" />
+                                 }
+                               
+
+                            @*   Available LoyaltyPoints *@
+
+
+                           
+                            <div id="dvLoyaltypointsContainer">
+
+                            </div>
+
+                                <h5 class="payable-amount">
+                                    <span class="notranslate" data-translate="payableamount"> Payable Amount </span>
+                                    
+                                   
+
+                           
+                                    <span class="red-c float-end">
+
+
+                              
+                                    @*   Payable amount *@
+                                      <span class="amount">
+                                    
+                                    <span id="spanTotalCurrency">
+                                   @*  @Model.FirstOrDefault()?.SummaryOrderMetaData.Currency *@
+                                    </span>
+
+                                            <span id="spanTotalAmount" >
+                                   @*  @grandTotal.ToString("N2") *@
+                                            </span>
+                                        </span>
+                                    </span>
+                                
+                                </h5>
+                            </div>
+
+                        </div>
+                        @* <div class="white-smoke-bg margintb-15 radius border padding15 grey-c m-none">
+                            <p class="s-bold">  We value your Privacy </p>
+
+                            <p>
+                                We will not sell or distribute your information.
+                            </p>
+                        </div> *@
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+   @*  //paymentgateway >mtn>_mtnbuyerphone *@
+    <div id="dvmtnviewContainer">
+
+  </div>  
+</form>
+
+<script>
+
+    function loadorderview()
+    {
+        var paymentcurrency = "";
+        var payableAmount = 0;
+        $("#lblvalidationWallet").addClass("loading-text");
+        var ID = '@Model.ID';
+
+
+
+        orderbasketview(ID);
+
+
+
+
+    }
+
+    function setpricing()
+    {
+
+        var availableWalletAmount = parseInt($("#SpanAvailableWallet").text(), 10);
+        var totalAmount = $("#selectedPaymentAmount").val();
+        paymentcurrency = $("#selectedPaymentCurrency").val();
+
+
+        ///payable amount
+        $("#spanTotalAmount").text(totalAmount);
+        $("#spanTotalCurrency").text(paymentcurrency);
+
+
+        // Check if wallet amount is greater than 0
+        if (availableWalletAmount > 0) {
+
+            payableAmount = totalAmount - availableWalletAmount;
+
+            if (totalAmount <= availableWalletAmount) {
+                availableWalletAmount = totalAmount;
+            }
+            else if (totalAmount >= availableWalletAmount) {
+
+                availableWalletAmount = availableWalletAmount;
+            }
+
+
+            // Calculate payable amount after deducting available wallet amount
+
+
+            // If wallet amount is greater than the payable amount
+            // if (payableAmount < 0) {
+            // Deduct the wallet amount and set payable amount to 0
+            // payableAmount = 0;
+
+            // Update the remaining wallet amount
+            // availableWalletAmount -= totalAmount;
+            // } else {
+            // Wallet amount is greater than payable amount, deduct the payable amount
+            // availableWalletAmount = 0;
+            // }
+
+
+
+            ///payable amount
+            $("#spanTotalAmount").text(payableAmount);
+
+            // Set the hidden value to send to the payment gateway
+            $("#selectedPaymentAmount").val(payableAmount);
+
+
+
+            // Disable the button and set text
+            // $("#btnwalletused").html("Wallet Applied").prop("disabled", true);
+
+            if (payableAmount == 0) {
+                $('#proceedButton').show();
+                $("#dvPaymentgatewayDisabled").addClass("disable-div");
+            }
+            else {
+                $("#dvPaymentgatewayDisabled").removeClass("disable-div")
+            }
+
+
+        }
+        else {
+            // $("#spanOrderBasketGrandTotal").hide();
+            $("#dvPaymentgatewayDisabled").removeClass("disable-div")
+        }
+        // Update the remaining wallet amount
+        $("#SpanAvailableWallet").text(numberformat(availableWalletAmount));
+
+        $("#lblvalidationWallet").removeClass("loading-text");
+
+
+        ///assign 2 decimal places class
+        $("#spanTotalAmount").addClass("2digit comma-separate");
+    }
+
+
+    function validatecoupon()
+    {
+        var couponCode = $("#couponCodeInput").val();
+        var totalAmount = parseFloat($("#selectedPaymentAmount").val()); // Ensure this ID is correct and amount is a valid number
+
+        // console.log(couponCode);
+        // console.log(totalAmount);
+        $.ajax({
+            type: "POST",
+            url: "/Controller/Order/CouponValidation", // Replace with your controller and action
+            data: {
+
+                couponcode: couponCode,
+                totalamount: totalAmount,
+                invoicenumber: '@Model.ID',
+            },
+            success: function (response) {
+                // console.log(response);
+                if (response.isSuccess) {
+                   
+                    $("#spanCouponValidation").text('');
+                    $("#dvCouponblock").show()
+                    $("#spanCouponStatus").text(response.message);
+                    $("#spanCouponAmount").text("-" + response.discountedAmount.toFixed(2))
+
+                    //view of amount
+                    $("#spanTotalAmount").text(response.payableAmount.toFixed(2));
+
+
+                    //send to payment gateway
+                    $("#selectedPaymentAmount").val(response.payableAmount.toFixed(2));
+                } else {
+                    $("#dvCouponblock").hide();
+                    $("#spanCouponValidation").text(response.message);
+
+                    $("#spanCouponAmount").text("-" + response.discountedAmount.toFixed(2))
+                    //view of amount
+                    $("#spanTotalAmount").text(response.payableAmount.toFixed(2));
+
+
+                    //send to payment gateway
+                    $("#selectedPaymentAmount").val(response.payableAmount.toFixed(2));
+                }
+            },
+            error: function () {
+                $("#spanCouponValidation").text("An error occurred while validating the coupon.");
+            }
+        });
+    }
+
+    function couponalreadyexist()
+    {
+        $.ajax({
+            type: "GET",
+            url: "/Controller/Order/CouponAlreadyExistForOrder", // Replace with your controller and action
+            data: {
+
+               
+                InvoiceNumber: '@Model.ID',
+            },
+            success: function (response) {
+                // console.log(response);
+                if (response.isSuccess==true) {
+                    // $("#dvCouponblock").show()
+                  
+                    $("#couponCodeInput").val(response.couponCode);
+                    // $("#spanCouponStatus").text(response.message);
+                    // $("#spanCouponAmount").text("-" + response.discountedAmount.toFixed(2))
+                    validatecoupon();
+                 
+                } else {
+                   
+                }
+            },
+            error: function () {
+                $("#spanCouponStatus").text("An error occurred while validating the coupon.");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        loadorderview();
+        ///Loading bar here to hold user to wait until wallet is calculated
+        // Wait for 2 seconds before executing the rest of the code
+        setTimeout(function () {
+
+            setpricing();
+
+            couponalreadyexist();
+
+            loyaltypointsload();
+        }, 2000); // 2000 milliseconds = 2 seconds
+
+        // loadorderview();
+
+
+    });
+
+
+    $('input[name="paymentGateway"]').change(function () {
+        if ($(this).is(':checked')) {
+            $('#proceedButton').show();
+        } else {
+            $('#proceedButton').hide();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var radioButtons = document.querySelectorAll('input[type="radio"][name="paymentGateway"]');
+        var hiddenInput = document.getElementById('selectedPaymentGateway');
+
+        radioButtons.forEach(function (radioButton) {
+            radioButton.addEventListener('click', function () {
+                hiddenInput.value = this.value;
+            });
+        });
+    });
+
+
+
+    $(document).ready(function () {
+        // Attach click event to radio buttons with name 'paymentGateway'
+        $('input[name="paymentGateway"]').click(function () {
+            // Check if the selected value is 'banktransfer'
+            if ($(this).val() === 'banktransfer') {
+                // Make an AJAX call to your controller method
+                $.ajax({
+                    url: '/controller/master/GetBankDetails',
+                    type: 'GET',  // or 'POST' depending on your controller method
+                    success: function (data) {
+                        console.log(data);
+                        // Handle the success response, e.g., update the UI with bank details
+                        // Note: Make sure to have appropriate HTML elements to display the bank details
+                        $('#bankDetailsContainer').html(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+            else if ($(this).val() === 'mtn') {
+               
+
+                mtnpartialview();
+
+                setTimeout(function () {
+                    $("#spanOrderID").text('@Model.ID');
+                    $("#spanOrderCurrency").text($("#selectedPaymentCurrency").val());
+                    $("#spanOrderAmount").text($("#selectedPaymentAmount").val());
+                    $("#spanMembershipType").text('@Model.MembershipType');
+
+                }, 1000); // 2000 milliseconds = 2 seconds
+
+
+            }
+
+            else {
+                $('#bankDetailsContainer').empty();
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        $("#applyCouponButton").click(function (event) {
+           
+            event.preventDefault(); // Prevent the form from submitting
+            loadorderview();
+            setpricing();
+
+            validatecoupon();
+        });
+    });
+
+
+    function loyaltypointsload() {
+        $.ajax({
+            url: "/Controller/order/AvailableLoyaltypoints",
+            type: "GET",
+            success: function (partialView) {
+                $("#dvLoyaltypointsContainer").html(partialView);
+            },
+            error: function () {
+                console.log("Error occurred.");
+            }
+        });
+    }
+    
+
+</script>
+
+

@@ -1,0 +1,84 @@
+﻿@using AMMasterProject.ViewModel;
+@model List<CreditPackageViewModel>
+
+
+<div class="overlay-view">
+    <div class="popup popup-small">
+        <div class="popup-heading">
+
+            <span class="notranslate" data-translate="buycredits">Buy Credits</span>
+            <a id="aclosecredit" class="close-back"></a>
+        </div>
+        <div class="credit-popup">
+           
+            @foreach (var item in Model)
+            {
+
+               
+                <div class="credit @item.IsRecommended.ToString().Replace("True", "recom")">
+                    <a class="acreditSelection" data-productid="@item.RevenueCreditID">
+                    <h3 class="credit-title">@item.RevenueCreditName</h3>
+                 
+                    <div class="c-other-details">
+
+                        @if (item.IsRecommended == true)
+                        {
+                            <span class="tag notranslate" data-translate="bestchoice"> Best Choice</span>
+                        }
+                        <div class="credit-price">@item.Currency @item.CreditAmount.ToString("N2")</div>
+                        <div class="credit-buy-now notranslate" data-translate="buynow"> Buy Now </div>
+                        </div>  
+                        
+                        <div class="credit-box">
+                     
+
+                            <img src="@(item.CreditImage == null ? "images/nocreditimage.png" : item.CreditImage)" class="credit-img" />
+                       <div class="credit-points">
+                            @item.NoofCredit
+                            <span class="grey-c small s-bold notranslate" data-translate="credits"> Credits</span>
+                         
+                    
+                        
+                        @if(item.IsExpiry ==true)
+                        {
+                                    <p class="credit-expiry">
+                                    <span class="notranslate" data-translate="validation">Validation</span> : <span class="red-c">@item.NoofExpiryDays <span class="notranslate" data-translate="days">Days</span></span>
+                            </p>
+                        }
+                        else
+                        {
+                                        <p class="credit-expiry">
+
+                                    <span class="notranslate" data-translate="validation">Validation</span> : <span class="red-c notranslate" data-translate="lifetime">Lifetime</span>
+                                        </p>
+                        }
+                                </div>
+                            </div>
+                   
+                        <p class="grey-c credit-des l-bold left margintb-15 h-40">
+                            @item.Description
+                        </p>
+                    </a>
+                </div>
+
+               
+            }
+               
+           
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.acreditSelection').on('click', function () {
+            var productid = $(this).data('productid');
+            var quantity = 1;  // You can set the quantity as needed
+            var instruction = '';  // You can set the instruction as needed
+
+            orderCreate(productid, quantity, instruction, 'credit', 'purchased', 'cart', 'processing');
+        });
+    });
+</script>
+

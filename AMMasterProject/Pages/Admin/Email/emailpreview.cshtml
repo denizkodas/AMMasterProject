@@ -1,0 +1,44 @@
+﻿@page "/admin/email/{pagepath}"
+@model AMMasterProject.Pages.Admin.Email.emailpreviewModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<style>
+    .content-wrapper {
+        background: #f5f5f9;
+    }
+</style>
+<div class="container">
+    <br>   <br>
+    <div class" >
+
+        @if (Model.listpagecategory != null && Model.listpagecategory.PageDescription != null)
+
+        {
+
+
+            @Html.Raw(Model.listpagecategory.PageDescription)
+
+        }
+        else
+
+        {
+            <div class="row margintb box-center ">
+                <div class="col-md-8 center">
+
+
+
+                    <br>   <br>
+                    <h2>
+                        Sorry, we're doing some work on the site
+                    </h2>
+                </div>
+            </div>
+        }
+
+
+    </div>
+
+    <br>   <br>
+</div>

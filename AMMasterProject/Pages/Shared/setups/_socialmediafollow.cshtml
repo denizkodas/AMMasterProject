@@ -1,0 +1,56 @@
+﻿<p id="pgetconnected" class="s-bold">   </p>
+        
+                                        
+    <div id="dvoursocialmedia">  </div>
+                              
+
+
+
+
+ <script>
+
+
+     
+          $(document).ready(function() {
+              socialmedias();
+
+});
+
+                                   
+   function socialmedias() {
+    var cachedData = localStorage.getItem('socialMediaData');
+    if (cachedData) {
+        // Use cached data
+        displaySocialMedia(JSON.parse(cachedData));
+    } else {
+        // Make a server call and cache the data
+        $.ajax({
+            type: "GET",
+            url: "/api/global/socialmedia",
+            success: function (data) {
+                // Cache the data
+                localStorage.setItem('socialMediaData', JSON.stringify(data));
+                displaySocialMedia(data);
+            },
+            error: function (response) {
+                console.log(response.responseText);
+            }
+        });
+    }
+}
+
+function displaySocialMedia(data) {
+    ROWCOUNT = 0;
+    $('[id*=dvoursocialmedia]').empty();
+    var itemsHtml = "";
+    // set attributes or content to the new div
+    $.each(data, function (index, item) {
+        ROWCOUNT++;
+        itemsHtml += '<a target="_blank" href="' + item.url + '"><img width="30px" src="' + item.icon + '"></a>';
+    });
+    if (ROWCOUNT > 0) {
+        $("#pgetconnected").html("Get Connected");
+        $('[id*=dvoursocialmedia]').append(itemsHtml);
+    }
+}
+</script>                                                           

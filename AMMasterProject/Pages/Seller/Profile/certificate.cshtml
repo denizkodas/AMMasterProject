@@ -1,0 +1,270 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.certificateModel
+@{
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenucertificate">Certificate</title>
+}
+
+<form method="post" enctype="multipart/form-data">
+
+
+    <input asp-for="@Model.certificate.CertificateGUID" type="hidden" />
+    <input asp-for="@Model.certificate.CertificateID" type="hidden" />
+
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+        <div class="card col-md-10 ">
+            <div class="row no-margin form">
+                <h5 class="padding15 bold margintb-15">
+                    <span class="notranslate" data-translate="sellercertificateheading">
+
+                        Certificate Information
+                    </span>
+                    
+                   </h5>
+                <div class="row">
+
+
+
+                   
+                        <div class="form-group col-md-9">
+                            <img id="imgcertificateimage" src="@Model.certificate.CertificateAttachment" class="preview" style="display: @(Model.certificate.CertificateAttachment == null ? "none" : "block")" />
+
+                            <label class="file-upload margin5 w-100">
+                            <span class="btn btn-default l-grey-bg notranslate" data-translate="selectfile">
+                              
+                                    Select File
+                           
+                                   </span>
+                                <input type="file" id="fileInputcertificateimage" onchange="uploadFilecertificateimage()" />
+
+                            </label> <progress id="fileProgresscertificateimage" class="w-100 margin5" style="display:none"></progress>
+                            <p class="grey-c s-bold small">
+                            <span class="notranslate" data-translate="selectfilemsg">
+                              Allowed JPG, or PNG or PDF.   MAX size 10 MB.
+                            </span>
+                               
+                            </p>
+                            <span id="spanfilenamecertificateimage" class="validation"></span>
+                            <input type="hidden" asp-for="@Model.certificate.CertificateAttachment" />
+
+                            <span asp-validation-for="@Model.certificate.CertificateAttachment" class="required"></span>
+
+                        </div> 
+                        <div class="form-group col-md-4">
+                        <span class="notranslate" data-translate="certificatename">
+                            Certificate Name
+                        </span>
+                           
+                            <input maxlength="200" asp-for="@Model.certificate.CertificateName" type="text">
+                            <span asp-validation-for="@Model.certificate.CertificateName" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                        <span class="notranslate" data-translate="institutename ">
+                            Institute Name 
+                        </span>
+                           
+                            <input maxlength="200" asp-for="@Model.certificate.InstituteName" type="text">
+                            <span asp-validation-for="@Model.certificate.InstituteName" class="required"></span>
+                        </div>
+                        <div class="form-group col-md-9">
+                        <span class="notranslate" data-translate="coursecontent">
+                            Course Content
+                        </span>
+                         
+                            <textarea maxlength="1000" asp-for="@Model.certificate.CourseContent"></textarea>
+                            <span id="characterCountLabelCourseContent"></span>
+                            <span asp-validation-for="@Model.certificate.CourseContent" class="required"></span>
+
+                        </div>
+                  
+                        <div class="form-group padding15 o-padding checkright col-md-9">
+
+                            <button type="submit" class="btn btn-primary ">
+
+                            <span class="notranslate" data-translate="save">
+                                Save
+                            </span>
+                               </button>
+                        </div>
+                    
+
+
+
+                  
+
+                   
+
+                </div>
+
+
+                <hr />
+                <h5 class="padding15 bold margintb-15">List</h5>
+
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="notranslate" data-translate="file">
+                                     File
+                                    </span>
+                                   </th>
+                                <th>
+                                    <span class="notranslate" data-translate="certificatename">
+                                        Certificate Name
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="notranslate" data-translate="institutename ">
+                                        Institute Name
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="notranslate" data-translate="insertdate">
+                                        Insert Date 
+                                    </span>
+                                   </th>
+
+                                <th>
+                                    <span class="notranslate" data-translate="action">
+                                       Actions
+                                    </span>
+                                    
+                                    </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.listcertificate)
+                            {
+
+
+                                <tr>
+                                    <td>
+                                        <img src="@item.CertificateAttachment" class="rounded-circle">
+
+
+                                    </td>
+
+                                    <td>@item.CertificateName</td>
+                                    <td>@item.InstituteName</td>
+                                    <td>@item.InsertDate</td>
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+
+                                              
+                                                    <a class="dropdown-item" href="/seller/profile/certificate?CertificateGUID=@item.CertificateGUID"><i class="bx bx-edit-alt me-1"></i>
+
+                                                    <span class="notranslate" data-translate="edit">
+                                                        Edit
+                                                    </span>
+                                                        </a>
+                                                @if (Model.listcertificate.Count > 1)
+                                                {
+                                                    <button formnovalidate class="clickable-button" asp-page-handler="Delete" asp-route-id="@item.CertificateGUID" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i>
+
+                                                        <span class="notranslate" data-translate="delete">
+                                                         Delete
+                                                        </span>
+                                                        
+                                                        </button>
+                                                }
+                                               
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function uploadFilecertificateimage() {
+        var fileInput = $("#fileInputcertificateimage")[0];
+        $("#fileProgresscertificateimage").show();
+        var progressBar = $("#fileProgresscertificateimage")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg|.pdf)/)) {
+
+
+            $('#spanfilenamecertificateimage').text("Only jpeg or png or pdf files are allowed.");
+            $("#fileProgresscertificateimage").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenamecertificateimage').text("File size must be less than 10 MB.");
+            $("#fileProgresscertificateimage").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgcertificateimage").attr("src", data.fileLink);
+
+                $('#certificate_CertificateAttachment').val(data.fileLink);
+
+                $("#imgcertificateimage").show();
+
+
+                $("#fileProgresscertificateimage").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+
+
+        $('#certificate_CourseContent').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ]
+        });
+
+
+
+
+    });
+</script>

@@ -1,0 +1,67 @@
+﻿@page "/admin/login"
+
+@model AMMasterProject.Pages.Login.adminloginModel
+@{
+    ViewData["Title"] = "Admin Login";
+    Layout = "/Pages/Shared/_LayoutBlank.cshtml";
+}
+
+
+<form method="post">
+
+    <div class="container">
+    <div class="row paddingtb box-center">
+        <div class="col-md-6">
+           
+            <div class="row form adminlogin radius30 border shadow">
+                <div class="col-left">
+                    <div class="login-text">
+                        <h3 class=" e-bold margintb">Welcome Admin</h3>
+                        <p>
+                            To gain access to the administration backend, please provide a valid username and password.
+                            <br/>
+                         </p>
+                         <hr class="white-bd"/>
+                        Click on forget password if you have forgotten your password
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="login-form">
+                        <h3 class="bold">Login </h3>
+                        <p class="grey-c">
+                            Please enter your login details below.
+                        </p>
+                        <div>
+                            <p>
+                                <input type="text" asp-for="@Model.loginviewmodel.UserName" placeholder="Username" required>
+                                <span asp-validation-for="@Model.loginviewmodel.UserName" class="required"></span>
+
+
+                            </p>
+                            <p>
+                                <input asp-for="@Model.loginviewmodel.Password" type="password" placeholder="Password" required>
+                                <span asp-validation-for="@Model.loginviewmodel.Password" class="validation"></span>
+                            
+                            </p>
+                            <p>
+
+
+                                    <button class="btn w-100 clickable-button">Log In</button>
+
+                                
+                         
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+       
+        </div>
+     
+        </div>
+
+ 
+</div>
+</form>
+

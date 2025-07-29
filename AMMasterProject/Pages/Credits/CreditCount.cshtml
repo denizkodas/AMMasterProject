@@ -1,0 +1,20 @@
+﻿@using AMMasterProject.ViewModel
+@model CreditCounterViewModel
+
+
+@if (Model.IsEnable == true)
+{
+
+    <ul class="header-credit" id="dvavialablecredit">
+
+        <li>
+            <a href="~/credits" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Available Credits">
+            <span class="credit-icon"></span> 
+            <span> @Model.CreditAvailable</span>   
+            <span class="notranslate" data-translate="credits">credits</span>  
+        </a> 
+        </li>
+    </ul>
+
+
+}

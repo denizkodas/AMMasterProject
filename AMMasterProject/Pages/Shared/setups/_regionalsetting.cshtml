@@ -1,0 +1,202 @@
+﻿ <ul class="region-setting" id="dvregionalsetting">
+     <li class="dropdown top-account-link form region_div">
+
+        
+    <a id="aregionalsetting" class="dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="mycountryflag"></span>
+        <span>
+
+            <span class="lblmycountry"></span>
+
+        </span>
+        <i class="fa fa-caret-down pull-right small m-none" aria-hidden="true"></i>
+
+       
+    </a>
+    <ul class="dropdown-menu padding10" id="region" aria-labelledby="aregionalsetting">
+
+        <li>
+            Ship to
+            <select id="ddlshipto"></select>
+        </li>
+
+        <li>
+            Language
+            <select id="ddllanguage"></select>
+        </li>
+        <li>
+            Currency
+            <select id="ddlcurrency"></select>
+        </li>
+        <li>
+            <button id="btnregionsetting" type="button" class="btn" value="Save">Save</button>
+        </li>
+    </ul>
+</li>
+
+
+
+ </ul>
+
+ @{ string companyName = Context.Items["CompanyName"].ToString(); }
+<input type="hidden" id="companyName" value="@companyName" />
+<script>
+  
+   
+
+     $(document).ready(function(){
+  setcountryandflag()
+});
+
+
+var companyName = $('#companyName').val();
+   // Bind country list on menu open
+$("#aregionalsetting").on("click", function() {
+
+    // Check if the data is already cached in local storage
+    var cachedData = localStorage.getItem("countryList");
+    if (cachedData) {
+        // Use the cached data
+        processData(JSON.parse(cachedData));
+    } else {
+        // Make an AJAX request to get the data
+        $.ajax({
+            type: "GET",
+            url: "/api/global/countrylist",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                // Save the data to local storage for future use
+                localStorage.setItem("countryList", JSON.stringify(data));
+                processData(data);
+
+                // Enable the button after the dropdown values have been populated
+                $("#btnregionsetting").prop("disabled", false);
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText + '\n' + xhr.responseText;
+                console.log('Error - ' + errorMessage);
+            }
+        });
+    }
+
+    function processData(data) {
+        var ddlCountry = $('#ddlshipto');
+        var ddlcurrency = $('#ddlcurrency');
+        var ddllanguage = $('#ddllanguage');
+
+        ddlCountry.empty();
+        ddlcurrency.empty();
+        ddllanguage.empty();
+
+        ddllanguage.append($('<option></option>').val("en").html("English"));
+        $.each(data, function(index, item) {
+            ddlCountry.append($('<option></option>').val(item.countrycode1).html(item.countryName));
+            ddlcurrency.append($('<option></option>').val(item.currencycode).html(item.currencycode));
+        });
+    }
+
+
+
+      
+
+     var cookieValue_currency = getCookie(companyName + "currency");
+    if (cookieValue_currency) {
+
+       
+        // cookie exists, set the values
+        if ($('#ddlcurrency').val() != "") {
+            $('#ddlcurrency').val(cookieValue_currency); // example value
+        }
+
+    };
+
+     var cookieValue_language = getCookie(companyName + "language");
+    if (cookieValue_language) {
+        // cookie exists, set the values
+        if ($('#ddllanguage').val() != "") {
+            $('#ddllanguage').val(cookieValue_language); // example value
+        }
+
+
+       
+       
+
+    };
+
+
+      var cookieValue_shipto = getCookie(companyName + "shipto");
+    if (cookieValue_shipto) {
+
+       
+        // cookie exists, set the values
+        if ($('#ddlCountry').val() != "") {
+
+          
+            $('#ddlCountry').val(cookieValue_shipto); // example value
+        }
+
+    };
+});
+
+
+
+$("#btnregionsetting").click(function () {
+   
+    setCookie(companyName + "shipto", $("#ddlshipto").val(), 7);
+    setCookie(companyName + "currency", $("#ddlcurrency").val(), 7);
+    setCookie(companyName + "language", $("#ddllanguage").val(), 7);
+
+    
+
+    $("#lblmycountrycode").text($("#ddlshipto").val());
+    
+    
+    setcountryandflag();
+    
+});
+
+
+
+function setcountryandflag() {
+
+    var cookieValue_shipto = getCookie(companyName + "shipto");
+    if (cookieValue_shipto) {
+
+
+      
+        // Define the image name and folder path
+        var imageName = cookieValue_shipto+ ".png";
+        var folderPath = "/countryflags/";
+
+        // Get the full image path
+        var imagePath = folderPath + imageName;
+
+        // Assign the image path to an image element
+        $("#imgmyflag").attr("src", imagePath);
+      
+        setCookie(companyName+"countryflag", imagePath, 7);
+
+      
+
+        $(".lblmycountry").html(cookieValue_shipto);
+        $(".mycountryflag").html("<img width='20px' src='" + imagePath + "'>");
+
+      
+    };
+
+
+     
+
+   
+
+};
+
+
+///store value in cache for user selected value
+
+</script>
+
+
+
+

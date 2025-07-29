@@ -1,0 +1,37 @@
+﻿<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+@if (!string.IsNullOrEmpty(ViewData["Title"]?.ToString()))
+{
+    <title>@ViewData["Title"]</title>
+
+    <!-- Open Graph tags for Facebook -->
+    <meta property="og:title" content="@ViewData["Title"]" />
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:title" content="@ViewData["Title"]" />
+}
+
+@if (!string.IsNullOrEmpty(ViewData["Description"]?.ToString()))
+{
+    <meta name="description" content="@ViewData["Description"]" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+    <meta name="twitter:description" content="@ViewData["Description"]" />
+}
+
+@if (!string.IsNullOrEmpty(ViewData["Keywords"]?.ToString()))
+{
+
+    <meta name="keywords" content="@ViewData["Keywords"]" />
+
+}
+
+@if (!string.IsNullOrEmpty(ViewData["ImageUrl"]?.ToString()))
+{
+    <meta property="og:image" content="@ViewData["ImageUrl"]" />
+    <meta property="og:image" content="@ViewData["ImageUrl"]" />
+    <meta name="twitter:image" content="@ViewData["ImageUrl"]" />
+
+}
+
+

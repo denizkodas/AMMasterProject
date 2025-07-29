@@ -1,0 +1,107 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Boost.profileplanModel
+@{
+    <title>Boost Profile Plan</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+<div class="card">
+    <div class="form padding30">
+
+
+
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Auto
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+                        <div class="form-group col-md-7">
+                            Deduction Type
+                            <select asp-for="@Model.profileboost.DeductionType">
+
+                                <option>Both</option>
+                                <option>Credit</option>
+                                <option>Amount</option>
+
+                            </select>
+                            <span asp-validation-for="@Model.profileboost.DeductionType" class="required"></span>
+                        </div>
+
+
+                    <div class="form-group col-md-7">
+                        Days
+                            <input type="text" maxlength="100" asp-for="@Model.profileboost.NoofDays">
+                            <span asp-validation-for="@Model.profileboost.NoofDays" class="required"></span>
+                    </div>
+
+
+
+                    <div class="form-group col-md-7">
+                        Amount
+                            <input type="text" maxlength="100" asp-for="@Model.profileboost.Amount">
+                            <span asp-validation-for="@Model.profileboost.Amount" class="required"></span>
+                    </div>
+
+                    <div class="form-group col-md-7">
+                        Credits
+                            <input type="text" maxlength="100" asp-for="@Model.profileboost.Credit">
+                            <span asp-validation-for="@Model.profileboost.Credit" class="required"></span>
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Customize
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+                    <div class="row">
+
+
+
+                        <div class="form-group col-md-7">
+                            Per day AD Amount
+                                <input type="text" maxlength="100" asp-for="@Model.profileboost.CustomAmount">
+                                <span asp-validation-for="@Model.profileboost.CustomAmount" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-7">
+                            Per day AD Credits
+                                <input type="text" maxlength="100" asp-for="@Model.profileboost.CustomCredit">
+                                <span asp-validation-for="@Model.profileboost.CustomCredit" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button class="clickable-button" asp-page-handler="ProfileBoost">Save</button></div>
+
+
+
+        </div>
+    </div>
+</div>
+
+</form>

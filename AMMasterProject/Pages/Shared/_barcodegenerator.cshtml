@@ -1,0 +1,7 @@
+﻿@using AMMasterProject.ViewModel;
+@model BarcodeViewModel;
+
+@if (Model != null && !string.IsNullOrEmpty(Model.Data))
+{
+    <img src="@Model.Data" />
+}

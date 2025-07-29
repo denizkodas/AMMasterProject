@@ -1,0 +1,132 @@
+﻿@using AMMasterProject.ViewModel
+@model MTNBuyerModel
+
+<form id="mtnmobileform" method="post">
+   
+
+    <div class="overlay-view">
+        <div class="popup popup-small">
+            <div class="popup-heading">
+                <span class="notranslate" data-translate="paybymtn">Pay by MTN</span>
+
+                
+                <a class="close-back" id="aclosemtn"></a>
+            </div>
+
+         
+            <div class="form padding15">
+                <p class="no-margin">
+
+                    <strong>
+                        <span class="notranslate" data-translate="ordrid">Order ID</span>:
+                        
+                    </strong> <span id="spanOrderID"></span>
+                </p>
+                <p class="no-margin">
+                    <strong>
+                        <span class="notranslate" data-translate="totalamount">Total Amount</span>:
+                        
+                    </strong> <span  id="spanOrderCurrency"></span> <span  id="spanOrderAmount"></span>
+                </p>
+
+                <p>
+                    <strong>
+                        <span class="notranslate" data-translate="purchasetype">Purchase Type</span>
+                      
+                    </strong> <span  id="spanMembershipType"></span> 
+                </p>
+
+                <!-- Dropdown Selection for Carrier -->
+                <div class="form-group">
+                    <label for="carrierSelect">Carrier:</label>
+                    <select id="carrierSelect">
+                        <option selected value="">Select a carrier</option>
+                        <option value="MSISDN" selected>MSISDN</option>
+                        <!-- Add additional options here if necessary -->
+                    </select>
+                    <span id="carrierError" class="required" ></span>
+                </div>
+
+                <!-- Number Input for MTN Payment ID -->
+                <div class="form-group">
+                    <label for="txtmtmpaymentid" class="notranslate" data-translate="mtnpaymentid">
+                       
+
+                        MTN Payment ID
+                    </label>
+                    <input type="number" id="txtmtmpaymentid" min="0" inputmode="numeric" pattern="\d*" title="Only numeric values are allowed.">
+                    <span id="paymentIdError" class="required"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="btnmtn">
+                        <span class="notranslate" data-translate="pay">Pay</span>
+                        
+                       </button>
+                </div>
+
+                <div class="alert alert-success" id="dvWaitingforApproval"></div>
+
+
+                <div class="bold red-c" id="dvattemptingmtn"></div>
+            </div>
+        </div>
+    </div>
+
+   
+</form>
+
+<script>
+
+    $(document).ready(function () 
+    {
+
+        $('#proceedButton').hide();
+        $('#btnmtn').click(function () {
+            var isValid = true;
+            var carrierSelect = $('#carrierSelect').val();
+            var paymentId = $('#txtmtmpaymentid').val();
+
+            // Reset validation messages
+            $('#carrierError').text('');
+            $('#paymentIdError').text('');
+
+            if (carrierSelect === "") {
+              
+                $('#carrierError').text("Please select carrier");
+
+                isValid = false;
+            }
+
+            if (!paymentId) {
+              
+                $('#paymentIdError').text("Please type payment id");
+                isValid = false;
+            }
+
+            // If validation passed, you can proceed with form submission or further processing
+            if (isValid) {
+
+                var amount = $("#spanOrderAmount").text();
+                var currency =  "EUR"//$("#spanOrderCurrency").text()
+                var orderid = $("#spanOrderID").text();
+                // console.log(isValid);
+                mtnrequesttopay(carrierSelect, paymentId,amount, currency,orderid);
+                // Perform AJAX submission or any other operation here
+                // alert('Form is valid, proceed with submission.');
+            }
+        });
+
+
+        $('#aclosemtn').click(function () {
+            $("#dvmtnviewContainer").empty();
+        });
+
+    });
+
+ 
+
+
+   
+
+</script>

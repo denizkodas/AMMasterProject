@@ -1,0 +1,77 @@
+﻿@using AMMasterProject.Helpers
+@inject IConfiguration Configuration
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    var currentdomain = GlobalHelper.GetCurrentDomainName();
+
+    var theme = Configuration["Theme"];
+}
+
+@if (currentdomain.Contains("localhost") || currentdomain.Contains("amtechnology.info"))
+{
+
+    <style>
+        .usersdemo {
+            position: fixed !important;
+            z-index: 100000001;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+
+    <div class="usersdemo ">
+
+        <div class="alert  alert-dismissible fade show" role="alert">
+
+
+
+            <button type="button" class="btn-close btn black-bg white-c padding5 small" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong class="green-c">User Login</strong>
+                    <p>
+                        <span class="d-l-title">Email:</span>user@amtechnology.info<br>
+
+
+                        <span class="d-l-title">Password:</span>Software@1 <br>
+                        <a href="login" class="green-c">Click to login</a>
+                    </p>
+
+                </div>
+                <div class="col-md-3">
+                    <strong class="orange-c">Seller Login</strong>
+                    <p>
+                        <span class="d-l-title">Email:</span>seller@amtechnology.info<br>
+
+
+                        <span class="d-l-title">Password:</span>Software@1<br>
+                        <a href="login" class="orange-c">Click to login</a>
+                    </p>
+
+                </div>
+                <div class="col-md-3">
+                    <strong class="blue-c">Admin</strong>
+                    <p>
+                        <span class="d-l-title">Username:</span>admin<br>
+
+
+                        <span class="d-l-title">Password:</span>Software@1<br>
+                        <a href="admin/login" class="blue-c">Click to login</a>
+                    </p>
+
+                </div>
+                <div class="col-md-4 float-end right">
+                    <br>
+
+                    <a target="_blank" href="https://codecanyon.net/item/multi_vendor-ecommerce-website-in-aspnet/26652957" class="buy-now">Buy Now   </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

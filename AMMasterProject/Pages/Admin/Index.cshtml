@@ -1,0 +1,372 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.IndexModel
+@{
+    <title>Dashboard</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<partial name="/Pages/shared/_toastr.cshtml" />
+@*<link href="~/admin-assets/css/apex-charts.css" rel="stylesheet" />*@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+<script src="https://amtechnology.info/js/license.js?v=@DateTime.Now"></script>
+
+
+<div class="paddingtb-15">
+    <h3>
+        Welcome Admin
+    </h3>
+</div>
+
+
+<div class="chart-svg">
+    <div class="">
+        <div class=" mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+
+                        <div class="col-md-6 sep-r">
+                            <div class="card-title d-flex align-items-start">
+                                <div class=" flex-shrink-0 ">
+                                    <span class="badge  l-grey-bg p-2  "><i class="bx bxs-coin h1 no-margin orange-c"></i></span>
+                                </div>
+                                <div class="marginrf-15">
+
+                                    <span class="fw-semibold d-block mb-1">Revenue</span>
+                                    <h3 class="card-title mb-2">@Model.BaseCurrency @Model.TotalRevenue</h3>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <div class="padding5">
+
+
+                                    <span class="badge bg-label-warning rounded-pill">Year 2021</span>
+                                    <div class="dropdown float-end">
+                                        <button class="btn p-0"
+                                                type="button"
+                                                id="cardOpt3"
+                                                data-bs-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                            <a class="dropdown-item" href="javascript:void(0);">View Report</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    @*  sales chart*@
+                                    <div id="appsales">
+                                        <div id="saleschart">
+                                            <apexchart type="line" height="130" :options="chartOptions" :series="series"></apexchart>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-2 sep-r">
+
+                            <span class="fw-semibold d-block mb-1">Credits</span>
+                            <h4 class="card-title mb-2">@Model.BaseCurrency @Model.TotalRevenueCredit</h4>
+                            <div class="row no-margin">
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCreditToday </span> Today</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCreditWeek </span>  Week</small>
+
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCreditMonth </span> Month</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCreditYear </span>  Year</small>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2 sep-r">
+                            <span class="fw-semibold d-block mb-1">Subscription</span>
+                            <h4 class="card-title mb-2"> @Model.BaseCurrency @Model.TotalRevenueSubscription</h4>
+                            <div class="row no-margin">
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueSubscriptionToday </span> Today</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueSubscriptionWeek </span>  Week</small>
+
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueSubscriptionMonth </span> Month</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueSubscriptionYear </span>  Year</small>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2 sep-r">
+                            <span class="fw-semibold d-block mb-1">Commission</span>
+                            <h4 class="card-title mb-2">@Model.BaseCurrency @Model.TotalRevenueCommission</h4>
+                            <div class="row no-margin">
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCommissionToday </span> Today</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCommissionWeek</span>  Week</small>
+
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCommissionMonth </span> Month</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueCommissionYear</span>  Year</small>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2 sep-r">
+                            <span class="fw-semibold d-block mb-1">Profile Boosting</span>
+                            <h4 class="card-title mb-2"> @Model.BaseCurrency @Model.TotalRevenueProfileBoost</h4>
+                            <div class="row no-margin">
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueProfileBoostToday </span> Today</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueProfileBoostWeek </span>  Week</small>
+
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueProfileBoostMonth </span> Month</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueProfileBoostYear </span>  Year</small>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2 sep-r ">
+                            <span class="fw-semibold d-block mb-1">Item Boosting</span>
+                            <h4 class="card-title mb-2"> @Model.BaseCurrency @Model.TotalRevenueItemBoost</h4>
+                            <div class="row no-margin">
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostToday </span> Today</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostWeek </span>  Week</small>
+
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostMonth </span> Month</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostYear </span>  Year</small>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <span class="fw-semibold d-block mb-1">Admin Own Listing</span>
+                            <h4 class="card-title mb-2"> @Model.BaseCurrency @Model.TotalRevenueItemBoost</h4>
+                            <div class="row no-margin">
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostToday </span> Today</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostWeek </span>  Week</small>
+
+                                <small class="grey-c col-md-6 no-padding"> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostMonth </span> Month</small>
+                                <small class="grey-c col-md-6 no-padding "> <span class="text-warning">@Model.BaseCurrency @Model.TotalRevenueItemBoostYear </span>  Year</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div> <div class="row">
+
+
+
+        <div class="col-lg-4 col-md-12 col-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                        <div class="card-title d-flex align-items-start">
+
+                        
+
+                        <div class=" flex-shrink-0 ">
+                            <span class="badge l-grey-bg p-2  "><i class="bx bxs-user h1 no-margin green-c"></i></span>
+                        </div>
+                        <div class="marginrf-15">
+                            <span class="fw-semibold d-block mb-1">Registration</span>
+                            <h3 class="card-title mb-2">@Model.TotalUsers</h3>
+                         
+                        </div>
+                        <div class="marginrf-15 row">
+                            <small class="grey-c d-block col-md-6"> <span class="text-success">@Model.TotalUsersToday </span> Today</small>
+                            <small class="grey-c d-block col-md-6 "> <span class="text-success">@Model.TotalUsersWeek </span>  Week</small>
+                            <small class="grey-c d-block col-md-6"> <span class="text-success">@Model.TotalUsersMonth </span> Month</small>
+                            <small class="grey-c d-block col-md-6 "> <span class="text-success">@Model.TotalUsersYear </span>  Year</small>
+                        </div>
+    </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-6 sep-r">
+                          
+                            <span class="small grey-c"> Register as</span>
+                            <span class="fw-semibold d-block mb-1">Customers</span>
+                            <h4 class="card-title mb-2">@Model.TotalCustomers</h4>
+                            <div class="row no-margin">
+                               
+                                <a href="/admin/usermanagement/buyer?timeFilter=Today" target="_blank" class="grey-c col-md-6 no-padding"> <span class="text-success">@Model.TotalCustomersToday </span> Today</a>
+                                <a href="/admin/usermanagement/buyer?timeFilter=ThisWeek" target="_blank" class="grey-c col-md-6 no-padding "> <span class="text-success">@Model.TotalCustomersWeek </span>  Week</a>
+
+                                <a href="/admin/usermanagement/buyer?timeFilter=ThisMonth" target="_blank" class="grey-c col-md-6 no-padding"> <span class="text-success">@Model.TotalCustomersMonth </span> Month</a>
+                                <a href="/admin/usermanagement/buyer?timeFilter=ThisYear" target="_blank" s class="grey-c col-md-6 no-padding "> <span class="text-success">@Model.TotalCustomersYear </span>  Year</a>
+                            </div>
+                            <hr/>
+                            Total Customer Who purchase product: 
+
+
+
+                            <a href="/admin/usermanagement/buyer?PurchaseItem=1" target="_blank" s class="grey-c col-md-6 no-padding "> <span class="badge grey-bg">@Model.TotalCustomersPurchaseProducts</span></a>
+                        </div>   
+                            <div class="col-md-6">
+                        
+                            <span class="small grey-c"> Register as</span>
+                            <span class="fw-semibold d-block mb-1">Seller</span>
+                            <h4 class="card-title mb-2">@Model.TotalSellers</h4>
+                            <div class="row no-margin">
+      
+
+
+                                <a href="/admin/usermanagement/seller?timeFilter=Today" target="_blank" class="grey-c col-md-6 no-padding"> <span class="text-success">@Model.TotalSellersToday </span> Today</a>
+                                <a href="/admin/usermanagement/seller?timeFilter=ThisWeek" target="_blank" class="grey-c col-md-6 no-padding "> <span class="text-success">@Model.TotalSellersWeek </span>  Week</a>
+
+                                <a href="/admin/usermanagement/seller?timeFilter=ThisMonth" target="_blank" class="grey-c col-md-6 no-padding"> <span class="text-success">@Model.TotalSellersMonth </span> Month</a>
+                                <a href="/admin/usermanagement/seller?timeFilter=ThisYear" target="_blank" s class="grey-c col-md-6 no-padding "> <span class="text-success">@Model.TotalSellersYear </span>  Year</a>
+                            
+                            </div>
+                            <hr />
+                            Total Seller Who selling product: 
+
+
+
+                            <a href="/admin/usermanagement/seller?Itemlisting=1" target="_blank" s class="grey-c col-md-6 no-padding "> <span class="badge grey-bg">@Model.TotalSellersHaveProducts</span></a>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-lg-8 col-md-12 col-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+
+                        <div class="col-md-4 ">
+                            <div class="card-title d-flex align-items-start">
+                                <div class=" flex-shrink-0 ">
+                                    <span class="badge  l-grey-bg p-2  "><i class="fa fa-list-check h1 no-margin purple-c"></i></span>
+                                </div>
+                                <div class="marginrf-15">
+                                  
+                                    <span class="fw-semibold d-block mb-1">Listings</span>
+                                    <h3 class="card-title mb-2">@Model.GrandTotal</h3>
+
+                                </div>
+
+                            </div>
+                        </div>
+                   
+                        <div class="col-md-8">
+                        </div>
+
+                    </div>
+
+                    <table class="table border">
+                        <tr class="bold black-c">
+                            <td>Type</td>
+                            <td>Sell </td>
+                            <td>Classified</td>
+                            <td>Auction</td>
+                            <td>Penny Auction</td>
+                            <td>Total</td>
+                        </tr>
+                        <tr>
+                            <td class="black-c bold">Physical</td>
+                            <td> @Model.PhysicalSell</td>
+                            <td> @Model.PhysicalClassified</td>
+                            <td>  @Model.AuctionPhysical  </td>
+                            <td>
+                                @Model.PennyAuctionPhysical
+                            </td>
+                            <td class="black-c bold">@Model.TotalPhysical</td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td class="black-c bold">Digital</td>
+                            <td> @Model.DigitalSell</td>
+                            <td> @Model.DigitalClassified</td>
+                            <td>@Model.AuctionDigital</td>
+                            <td>@Model.PennyAuctionDigital</td>
+                            <td class="black-c bold">@Model.TotalDigital</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="black-c bold">Service</td>
+                            <td>@Model.ServiceSell</td>
+                            <td> @Model.ServiceClassified</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td class="black-c bold">@Model.TotalService</td>
+
+                        </tr>
+                        <tr>
+                            <td class="black-c bold">Courses</td>
+                            <td>@Model.CoursesSell</td>
+                            <td> @Model.CoursesClassified</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td class="black-c bold">@Model.TotalCourses</td>
+
+                        </tr>
+                        <tr class="bold black-c">
+                            <td>Total</td>
+                            <td>@Model.TotalSell</td>
+                            <td>@Model.TotalClassified</td>
+                            <td>@Model.TotalAuction</td>
+                            <td>@Model.TotalPennyAuction</td>
+                            <td> @Model.GrandTotal</td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    
+  
+   
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<script src="~/admin-assets/js/apexcharts.js"></script>
+<script src="~/admin-assets/js/apex-charts.js"></script>
+
+
+
+<script src="~/admin-assets/js/charts.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        // Check if the hostname is not localhost or 127.0.0.1
+      
+            // Call the licensevalidation function
+            licensevalidation('@Model.licensesettings.LicenseKey', '@Model.licensesettings.LicenseKeyForBrandRemoval');
+        
+    });
+
+</script>

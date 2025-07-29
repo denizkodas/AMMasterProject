@@ -1,0 +1,50 @@
+﻿@using AMMasterProject.ViewModel
+@model FooterViewModel
+
+
+@if (Model != null && Model.Footer1.Count > 0)
+{
+
+    @foreach (var footer1 in Model.Footer1)
+    {
+
+        <ul class="menu">
+            <li>
+                <a class="heading"> @footer1.Category</a>
+                <ul class="submenu">
+                    @foreach (var footer2 in Model.Footer2.Where(u => u.PageCategoryId == @footer1.PageCategoryId))
+                    {
+                        <li>
+                            @if (footer2.IsUrl == true)
+                            {
+                                <a href="@footer2.Url">@footer2.Name</a>
+                            }
+                            else
+                            {
+
+                                var url = "/page/" + (!string.IsNullOrEmpty(@footer2.SeoPageName) ? @footer2.SeoPageName : @footer2.PageCategoryId.ToString());
+                                <a href="@url">@footer2.Name</a>
+                            }
+                        </li>
+                    }
+                </ul>
+            </li>
+
+
+
+
+        </ul>
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+

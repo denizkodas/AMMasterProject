@@ -1,0 +1,220 @@
+﻿@using AMMasterProject.ViewModel
+@model WishlistViewModel
+<div id="dv_wishlist" class="overlay-view">
+
+    <div class="popup popup-medium">
+
+        <div class="popup-heading ">
+            <span class="notranslate" data-translate="wishlist">   Wishlist</span>
+         
+            <a id="btnwishlistclose" class="close-back">
+            </a>
+        </div>
+        <p class="center grey-c margintb-15">
+            <span class="notranslate" data-translate="combineyourwishlist">
+                
+                Combine your wishlist item in specific groups.
+                
+            </span>
+            
+        </p>
+        <div class="row paddingrf-30">
+
+            <div class=" form">
+
+
+
+
+                <div class="form-horizontal padding30">
+                    <label id="lblerrorwishlist" class="success_label"></label>
+                    <div class="form-group">
+
+
+                        @if (Model.wishlistGroup!=null && Model.wishlistGroup.Count() >0)
+                        {
+
+                            <select id="ddlgroupname" asp-items="@Model.wishlistGroup" class="form-control">
+                               
+                            </select>
+                        }
+
+                        else
+
+                        {
+                            <select id="ddlgroupname"  class="form-control">
+                                <option selected>General</option>
+                            </select>
+                        }
+
+
+                    </div>
+                    <div class="form-group checkright">
+
+
+                        <input type="checkbox" id="chknewgroup" name="chknewgroup" value="1" />
+                        <label for="chknewgroup" class="notranslate" data-translate="createnewgroup">Create New Group</label>
+
+                    </div>
+
+                    <div id="dv_cwgroup" style="display:none" class="form-group">
+
+                        <input type="text" id="txtwishlistgroup" name="txtwishlistgroup" placeholder="Type list name here" required />
+                        <span id="groupvalidation" class="required"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <button id="btnwishlistadd" class="w-100 radius30" type="button">
+                            <span class="notranslate" data-translate="save">
+                                Save
+                            </span>
+                            </button>
+
+                    </div>
+
+
+
+
+
+
+                    <div id="dvwishlistexisting" class="form-group">
+
+                        @if (Model.productViewModel != null)
+                        {
+                            @foreach (var product in Model.productViewModel)
+                            {
+                               
+                                <div class="padding10 radius l-grey-bg"> 
+
+                                     @product.ProductName  
+                                     @product.wishlistgroupname
+                                    <a href="#" id="aitemremove" data-productid="@product.ProductId" data-groupname="@product.wishlistgroupname" class="awishlistremove wishlist-remove float-end red-c" onclick="rowdelete(this)"><i class="fa fa-times"></i></a>
+
+                                </div>
+
+                              
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" name="hiddenproductid" id="hiddenproductid">
+<input type="hidden" name="hdnclassid" id="hdnclassid">
+
+
+<script>
+    $("#btnwishlistclose").click(function () {
+        event.preventDefault();
+
+        
+        $('#wishlistContainer').empty();
+
+        
+    });
+
+
+    $("#chknewgroup").change(function () {
+        if ($(this).is(":checked")) {
+            $("#dv_cwgroup").show();
+        } else {
+            $("#dv_cwgroup").hide();
+        }
+    });
+
+
+    $("#btnwishlistadd").click(function () {
+        event.preventDefault();
+        var productid = $('#hiddenproductid').val();
+
+
+        var groupname;
+        if ($('#chknewgroup').prop('checked')) {
+
+            groupname = $('#txtwishlistgroup').val();
+
+            if(groupname=='')
+            {
+                $('#groupvalidation').text("Group Name is required")
+            }
+
+        } else {
+            groupname = $("#ddlgroupname").val();
+        }
+
+        
+
+       upsertwishlist(productid, groupname);
+
+
+    });
+
+    function rowdelete(elem) {
+        var productid = $(elem).data('productid');
+        var groupname = $(elem).data('groupname'); 
+        upsertwishlist(productid, groupname);
+    }
+   
+
+    function upsertwishlist(productid, groupname) {
+       
+         $.ajax({
+            type: 'POST',
+            url: '/Controller/product/wishlistupsert',
+            data: {
+                productid: productid,
+                groupname: groupname
+            
+            },
+            success: function (result) {
+
+
+                var lblfavorite =  $('#hdnclassid').val();
+                var $lblfavoriteElement = $(lblfavorite);
+
+               
+               
+                    $lblfavoriteElement.toggleClass('p-fav', result == 'Added');
+                    $lblfavoriteElement.toggleClass('p-un-fav', result == 'Deleted');
+
+
+             
+                    if(result=='Added')
+                    {
+                       toaster('Item added to wishlist', 'toast-success');
+                    }
+                else if (result == 'Deleted') {
+                    toaster('Item deleted from wishlist', 'toast-danger');
+                    }
+
+
+                $('#wishlistContainer').empty();
+
+
+                //$.ajax({
+                //    url: '/Controller/Product/WishlistForm?productid=' + productid,
+                //    type: 'GET',
+
+                //    success: function (result) {
+                //        // Handle the success response
+                //        $('#wishlistContainer').html(result);
+                //        $('#hiddenproductid').val(productid);
+
+                       
+                       
+                        
+                //    },
+                //    error: function () {
+                //        // Handle the error
+                //    }
+                //});
+            }
+        })
+    }
+
+</script>

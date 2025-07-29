@@ -1,0 +1,65 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.masterlanguageModel
+@{
+    <title>Language Translations</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<div class="card">
+    <div class="border table-responsive table-form">
+    <table class="table" id="ListingLoad">
+    <thead>
+        <tr class="table-secondary">
+                    <th> <span class="notranslate">Key </span></th>
+            @if (Model.LanguageTexts.Count > 0)
+            {
+                @foreach (var language in Model.LanguageTexts.First().Translations.Keys)
+                {
+                            <th> <span class="notranslate">@language</span> </th>
+                }
+            }
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LanguageTexts)
+        {
+            <tr>
+                <td>
+                            <span class="notranslate">
+                    @item.Key
+                </span>    
+                </td>
+                <form method="post">
+                    <input type="hidden" name="Key" value="@item.Key" />
+                    @foreach (var translation in item.Translations)
+                    {
+                    <td>
+                        <input type="text" name="Translations[@translation.Key]" value="@translation.Value" />
+                    </td>
+                    }
+                <td>
+                    <button type="submit" class="">Update</button>
+                </td>
+                </form>
+            </tr>
+        }
+    </tbody>
+</table>
+    </div>
+
+
+
+</div>
+<div class="overlay" id="addnewtext">
+    <div class="popup padding30">
+        <div class="form-group">
+            <form method="post" asp-page-handler="AddKey">
+                <label for="newKey">New Key</label>
+                <input type="text" id="newKey" name="NewKey" class="form-control" required />
+                <button type="submit" class="btn btn-primary mt-2">Add Key</button>
+            </form>
+        </div>
+    </div>
+</div>

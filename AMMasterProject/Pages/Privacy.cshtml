@@ -1,0 +1,67 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<script>
+
+
+@*
+@await Component.InvokeAsync("Category", new { viewName = "/Pages/Shared/Components/Category/CategoryView.cshtml" })
+
+
+<button id="myButton">Load Partial View</button>
+
+
+*@
+
+  <!-- Call the Product_Detail method of the Product controller -->
+
+  @*<div id="myPartialViewContainer"></div>
+
+    <div id="productViewContainer"></div>
+
+<button id="loadProductViewBtn">Load Product View</button>
+*@
+@*<button id="myButton">PRdouctView</button>*@
+<div id="productViewContainer"></div>
+
+<script>
+   $(document).ready(function () {
+    $.ajax({
+        url: "/Controller/Product/home?pagename=Default",
+        type: "GET",
+        success: function (partialView) {
+           
+            $("#productViewContainer").html(partialView);
+        },
+        error: function () {
+            console.log("Error occurred.");
+        }
+    });
+});
+
+
+    $('#loadProductViewBtn').on('click', function() {
+    var productseourl = 'the-den-19';// Replace with the actual SEO URL
+
+    $.ajax({
+        type: 'GET',
+        url: '@Url.Action("Product_Detail", "Product")',
+        data: { 
+        productseourl: productseourl,
+        loginuserid: 0},
+        success: function(result) {
+            $('#productViewContainer').html(result);
+           
+           
+            
+        },
+        error: function() {
+            alert('Error loading product view.');
+        }
+    });
+});
+</script>

@@ -1,0 +1,28 @@
+﻿@page
+@model AMMasterProject.Pages.Credits.IndexModel
+@{
+    var usertype = @User.FindFirst("UserType")?.Value;
+
+    if (usertype != "Client")
+    {
+        Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+
+    }
+    ViewData["Title"] = "Credits";
+    <title>Credits</title>
+}
+
+
+
+
+<div class="paddingtb credit-page">
+    <div class="container ">
+        <h2 class="e-bold m-none"> <span class="notranslate" data-translate="buycredits">Buy Credits</span> </h2>
+    <h4 class="l-bold grey-c">
+            <span class="notranslate" data-translate="buycreditsmsg">
+        Get the credits you need with just a few clicks - Purchase credits effortlessly and unlock a world of possibilities!
+            </span>
+        </h4>
+    <partial name="/Pages/credits/_credit-plans.cshtml" , model="Model.creditpackagelist" />
+    </div>
+</div>

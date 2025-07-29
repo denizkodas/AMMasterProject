@@ -1,0 +1,230 @@
+﻿@page "/listing/create/shipping/{ID}"
+@model AMMasterProject.Pages.Listing.create.shippingModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<form method="post">
+
+<div>
+
+
+
+    <div class="row large-form">
+
+        <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+        <div class="col-md-10 l-tabs-content form">
+                <a class="skip-btn" href="~/listing/create/attribute/@Model.productguid">
+                    <span class="notranslate" data-translate="skip">
+
+                        Skip
+                    </span>
+                </a>
+            <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="additionalshipping">
+
+                        Additional Shipping 
+                    </span>
+
+               
+            </h5>
+
+            <div class="white-bg paddingtb">
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="freeshipping">
+
+                                Free Shipping 
+                            </span>
+                        
+                    </div>
+                    <div class="col-md-9 no-padding checkright">
+
+
+
+                            <input type="checkbox" asp-for="@Model.product.IsFreeShipping" />
+                            <label id="isfreeshipping" asp-for="@Model.product.IsFreeShipping">Mark as Free Shipping</label>
+
+                            <span asp-validation-for="@Model.product.IsFreeShipping" class="required"></span>
+
+                    </div>
+
+
+                </div>
+                    <hr />  <div id="dvShippingDetails" style="display:none">
+               
+                     <div class="row paddingrf-15 no-margin" >
+                      
+                    <div class=" col-md-3 s-bold">
+                                <span class="notranslate" data-translate="shippingdetails">
+                                    Shipping Details
+                                   
+                                </span>
+                        
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+                            <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="weight">
+                                            Weight   
+
+                                        </span>
+                               
+                                <small>
+                                            <span class="notranslate" data-translate="lbs">
+                                             
+                                                lbs
+                                            </span>
+
+                                          </small>
+                                <input type="text" asp-for="@Model.product.ShippingWeight">
+
+
+                                    <span asp-validation-for="@Model.product.ShippingWeight" class="required"></span>
+
+                            </div>
+                            <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="length">
+                                           
+                                            Length
+                                        </span>
+                           
+                                <small>
+
+                                            <span class="notranslate" data-translate="inches">
+                                                inches
+
+                                            </span>
+                                    </small>
+                                    <input type="text" asp-for="@Model.product.ShippingLength" maxlength="100">
+
+
+                                    <span asp-validation-for="@Model.product.ShippingLength" class="required"></span>
+
+
+                            </div>
+                            <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="width">
+
+                                            Width  
+                                        </span>
+
+                                        <small>
+                                            <span class="notranslate" data-translate="inches">
+                                                inches
+
+                                            </span>
+                                        </small>
+                                    <input type="text" asp-for="@Model.product.ShippingWidth" maxlength="100">
+
+
+                                    <span asp-validation-for="@Model.product.ShippingWidth" class="required"></span>
+
+    </div>
+                            <div class="form-group col-md-8">
+                                        <span class="notranslate" data-translate="height">
+                                           
+                                            Height
+                                        </span>
+                             
+                                        <small>
+                                            <span class="notranslate" data-translate="inches">
+                                                inches
+
+                                            </span>
+                                        </small>
+                                    <input type="text" asp-for="@Model.product.ShippingHeight" maxlength="100">
+
+
+                                    <span asp-validation-for="@Model.product.ShippingHeight" class="required"></span>
+   </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>  
+
+
+                <hr />     
+                
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                     
+                                <span class="notranslate" data-translate="amount">
+                                    
+                                    Amount
+                                </span>
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+                            <div class="form-group col-md-8">
+                               
+                                        <span class="notranslate" data-translate="additionalshippingcharges">
+                                         
+                                            Additional Shipping Charges
+                                        </span>
+                                    <input type="text" asp-for="@Model.product.ShippingAddOnCharges" maxlength="100">
+
+
+                                    <span asp-validation-for="@Model.product.ShippingAddOnCharges" class="required"></span>
+
+
+
+                            </div>
+                        </div>
+
+          
+               
+            </div>
+                </div> 
+                <hr/>
+                    </div>
+                    <div class="row paddingrf-15">
+                    <div class=" col-md-6 checkright">
+                    </div>
+                    <div class=" col-md-6 right">
+                            <button type="submit">
+                                <span class="notranslate" data-translate="saveandcontinue">
+
+                                    Save and Continue
+                                </span>
+                        </button>
+                      
+                    </div>
+                </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+</form>
+
+
+<script>
+    function ShippingDetails() {
+        var isChecked = $("#product_IsFreeShipping").is(":checked");
+
+        if (isChecked) {
+            $("#dvShippingDetails").hide();
+        } else {
+            $("#dvShippingDetails").show();
+        }
+    }
+    $(document).ready(function () {
+
+        $("#product_IsFreeShipping").change(function () {
+            ShippingDetails();
+        });
+
+        // Function to handle page load event
+        ShippingDetails();
+    });
+</script>

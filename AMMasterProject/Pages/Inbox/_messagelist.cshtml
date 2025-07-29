@@ -1,0 +1,94 @@
+﻿@using AMMasterProject.Helpers
+@using AMMasterProject.ViewModel
+@model List<InboxViewModel>
+
+@{
+    var chatQueryString = Context.Request.Query["chatid"];
+}
+    
+
+
+@if (Model != null && Model.Count > 0)
+{
+
+
+
+  
+
+   
+     
+     
+
+
+               
+            @foreach (var messagelist in Model)
+            {
+
+                <li class="chat__bubble">
+                    <p>
+
+
+
+                    
+
+                              
+                                    @if (messagelist.image != null)
+                                            {
+                                               
+                                                <img src="@messagelist.image"  alt="@messagelist.fullname" loading="lazy">
+                                          }
+                                            else
+                                            {
+                                                <span class="profile-alpha alpha-@messagelist.firstchar">@messagelist.firstchar</span>
+                                            }
+
+                <span class="chat-member__name">
+                           
+
+                            @messagelist.fullname
+                    <span class="chat__time">
+
+                        @messagelist.insertdate
+                    </span>
+                </span>
+            </p>
+
+
+            <p class="chat-msg">
+                    @messagelist.message
+                </p>
+                <p>
+                    @if (@messagelist.attachment != null)
+                    {
+                      
+                            <a target="_blank" class="@FileUploadHelper.icons(@messagelist.filename)" href="@messagelist.attachment">@messagelist.filename</a>
+                        
+                    }</p>
+                </li>
+
+
+
+            }
+   
+
+  
+
+   
+
+
+
+
+
+
+
+}
+
+@if (string.IsNullOrEmpty(chatQueryString))
+{
+    <div class="empty-chat"></div>
+}
+
+
+
+
+

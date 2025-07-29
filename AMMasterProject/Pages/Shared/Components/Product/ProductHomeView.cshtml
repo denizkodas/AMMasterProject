@@ -1,0 +1,71 @@
+﻿@using AMMasterProject.ViewModel
+@model List<ProductViewModel>
+
+
+<div class="container">
+    @if (Model != null && Model.Count > 0)
+    {
+
+        <div id="dvproducthome">
+            @foreach (var productViewModel in Model)
+            {
+
+                // access the properties of productsetting here
+                foreach (var productsetting in productViewModel.ProductSettingList)
+                {
+
+                    if (@productsetting.ShowTitle == true)
+                    {
+                        <div id="dvpresetting" class="product-home-heading">
+
+                            <div class="h3">
+                                <span>
+                                    @productsetting.Title
+                                </span>
+
+                            </div>
+
+                        </div>
+                    }
+
+
+
+                    <div class="product-box @productsetting.ProductBoxCount" style="background-color:@productsetting.Backgroundcolor">
+
+                        if (@productsetting.ShowBanner == true) {
+                        <img class="product_type_banner" src="@productsetting.Banner" />
+                        }
+
+
+
+
+                        if (@productsetting.ProductViewQty > 0) {
+                        foreach (var products in productViewModel.productlist)
+                        {
+                        }
+
+                        }
+
+
+
+
+                    </div>
+
+
+
+                }
+            }
+
+
+        </div>
+    }
+    else
+    {
+        <div id="dvnorecordfound">No records found.</div>
+    }
+
+
+
+</div>
+
+

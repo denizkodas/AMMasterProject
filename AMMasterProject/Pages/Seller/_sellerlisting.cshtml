@@ -1,0 +1,399 @@
+﻿@using AMMasterProject.Helpers
+@using AMMasterProject.ViewModel
+@model List<SellerViewModel>
+
+<p class="total-seller-found">
+    7,555  Available
+</p>
+
+
+
+@*  //loop *@
+
+@foreach (var item in Model)
+{
+    <div class="sellerlisting">
+
+        <div class="col-md-8 mb-2 no-padding no-margin">
+            <div class="seller-search-data">
+
+                <div class="seller-img">
+                    <img src="@item.Image" />
+
+                </div>
+                <div class="seller-info">
+                    <span class="s-name">@item.FirstName @item.LastName</span>
+
+
+                    @if (item.userothermetadata.IsVerifiedSeller == true)
+                    {
+                        @*  varify bdage *@
+                        <span class="verifyseller" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Verified">
+                            <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title /><path d="M22.41,10.59,20.36,8.54V5.63a2,2,0,0,0-2-2H15.46l-2.05-2a2,2,0,0,0-2.82,0L8.54,3.64H5.63a2,2,0,0,0-2,2V8.54l-2,2.05A2,2,0,0,0,1,12a2,2,0,0,0,.58,1.41l2.06,2.05v2.91a2,2,0,0,0,2,2H8.54l2.05,2.05A2,2,0,0,0,12,23a2,2,0,0,0,1.41-.58l2.05-2.06h2.91a2,2,0,0,0,2-2V15.46l2.05-2.05a2,2,0,0,0,0-2.82Zm-4.05,4.05v3.72H14.64L12,21,9.36,18.36H5.64V14.64L3,12,5.64,9.36V5.64H9.36L12,3l2.64,2.64h3.72V9.36L21,12Z" /><polygon points="11 12.73 8.71 10.44 7.29 11.85 11 15.56 16.71 9.85 15.29 8.44 11 12.73" /></svg>
+                        </span>
+                    }
+                    @*   flag *@
+                    <img class="s-falg" src="@item.userothermetadata.CountryFlag">
+
+
+                  @*   //like *@
+                   @*  <a class="s-un-fav favoriteunfavorite">
+                        <svg viewBox="0 0 256 256"><rect fill="none"></rect><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>
+                    </a> *@
+
+
+                @*     <a class="s-un-fav favoriteunfavorite s-follow" data-sellerid="@item.ProfileId">
+                        <svg viewBox="0 0 256 256"><rect fill="none"></rect><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>
+                    </a>
+ *@
+
+                    <a class="favoriteunfavorite s-follow" data-sellerid="@item.ProfileId" >
+                        <svg viewBox="0 0 256 256"><rect fill="none"></rect><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>
+                    </a>
+
+
+                    @*   business type *@
+                    <div>
+
+                        @if (item.BusinessType == 0)
+                        {
+
+                            @*   business type if indiviual *@
+                            <span class="b-ind">
+                                @item.BusinessTypeName
+                            </span>
+                        }
+                        else
+                        {
+                            @*   business type if company *@
+                            <span class="b-company">
+                                @item.BusinessTypeName
+                            </span>
+
+                        }
+
+
+                        <span class="b-name">@item.BusinessName</span>
+
+                    </div>
+
+
+
+
+
+                    <div class="right-data">
+
+                        @if (@item.userothermetadata.TotalReviewsAsSeller > 0)
+                        {
+                            <span class="s-review">
+
+                                <svg baseProfile="tiny" height="24px" id="Layer_1" version="1.2" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path d="M9.362,9.158c0,0-3.16,0.35-5.268,0.584c-0.19,0.023-0.358,0.15-0.421,0.343s0,0.394,0.14,0.521    c1.566,1.429,3.919,3.569,3.919,3.569c-0.002,0-0.646,3.113-1.074,5.19c-0.036,0.188,0.032,0.387,0.196,0.506    c0.163,0.119,0.373,0.121,0.538,0.028c1.844-1.048,4.606-2.624,4.606-2.624s2.763,1.576,4.604,2.625    c0.168,0.092,0.378,0.09,0.541-0.029c0.164-0.119,0.232-0.318,0.195-0.505c-0.428-2.078-1.071-5.191-1.071-5.191    s2.353-2.14,3.919-3.566c0.14-0.131,0.202-0.332,0.14-0.524s-0.23-0.319-0.42-0.341c-2.108-0.236-5.269-0.586-5.269-0.586    s-1.31-2.898-2.183-4.83c-0.082-0.173-0.254-0.294-0.456-0.294s-0.375,0.122-0.453,0.294C10.671,6.26,9.362,9.158,9.362,9.158z" /></g></g></svg>
+                                <label class="rating">@item.userothermetadata.SellerRating</label>
+                                <span class="total-review">
+                                    @item.userothermetadata.TotalReviewsAsSeller
+                                    <span data-translate="reviews" class="notranslate">Reviews</span>
+
+
+                                </span>
+
+                            </span>
+                        }
+                        else
+                        {
+
+
+                                    <span class="s-review">
+
+                                        <label class="rating">New</label>
+                                        <span class="total-review">
+                                         <span data-translate="seller" class="notranslate">Seller</span>
+
+
+                                        </span>
+
+                                    </span>
+
+                        
+                        }
+                        <span class="followers" style="display:@(item.userothermetadata.Followers > 0 ? "inline" : "none")">
+                            <span id="lblfollowers" class="data total-f kformat">
+                                @item.userothermetadata.Followers
+                            </span>
+                            <span class="f-text">
+                                <span class="notranslate" data-translate="followers">Followers</span>
+                            </span>
+                        </span>
+
+                       @*  @if (@item.userothermetadata.Followers > 0)
+                        { *@
+                           @*  <span class="followers">
+
+                                <span id="lblfollowers" class="data total-f kformat">
+                                   @item.userothermetadata.Followers
+                                   </span>
+
+                                <span class="f-text">
+                                    <span class="notranslate" data-translate="followers">Followers</span>
+                                </span>
+
+                            </span> *@
+
+
+                        @* } *@
+
+                        @if (@item.ProductTotal > 0)
+                        {
+                            <span class="starting-price">
+
+
+                                <label class="amount">Rs 500</label>
+                                <span class="min-time">
+                                    min time
+                                </span>
+
+                            </span>
+                        }
+
+
+                    </div>
+
+                    @* business detials employees and founded year *@
+
+                    @if (@item.BusinessType == 1 && @item.BusinessMetaData != null)
+                    {
+                        <div class="s-member">
+
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title /><g data-name="Layer 36" id="Layer_36"><path class="cls-1" d="M26,29H2a1,1,0,0,1-1-1V8A2,2,0,0,1,3,6H29a2,2,0,0,1,2,2V24a1,1,0,0,1-.29.71l-4,4A1,1,0,0,1,26,29ZM3,27H25.59L29,23.59V8H3ZM29,8h0Z" /><rect class="cls-1" height="3" width="2" x="15" y="4" /><rect class="cls-1" height="3" width="2" x="6" y="4" /><rect class="cls-1" height="3" width="2" x="24" y="4" /><path class="cls-1" d="M30,14H2a1,1,0,0,1,0-2H30a1,1,0,0,1,0,2Z" /><path class="cls-1" d="M13,24a1,1,0,0,1-1-1V18.62l-.55.27a1,1,0,0,1-.9-1.78l2-1A1,1,0,0,1,14,17v6A1,1,0,0,1,13,24Z" /><path class="cls-1" d="M20,24H18a2,2,0,0,1-2-2V18a2,2,0,0,1,2-2h2a2,2,0,0,1,2,2v4A2,2,0,0,1,20,24Zm-2-6v4h2V18Z" /><polygon class="cls-1" points="30 24 26 28 26 24 30 24" /><path class="cls-1" d="M26,29a.84.84,0,0,1-.38-.08A1,1,0,0,1,25,28V24a1,1,0,0,1,1-1h4a1,1,0,0,1,.92.62,1,1,0,0,1-.21,1.09l-4,4A1,1,0,0,1,26,29Zm1-4v.59l.59-.59Z" /></g></svg>
+                            <span class="notranslate" data-translate="foundingyear">Founding Year</span>:
+
+                            <span>  @item.BusinessMetaData.FoundingYear</span>
+                        </div>
+                        <div class="s-member">
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><title /><g data-name="Layer 51" id="Layer_51"><rect height="2" width="2" x="31" y="5" /><path d="M32,31A14,14,0,1,0,18,17,14,14,0,0,0,32,31ZM32,5A12,12,0,0,1,44,16H43v2h1A12,12,0,0,1,33,29V27H31V29A12,12,0,0,1,20.05,18H21V16h-.95A12,12,0,0,1,32,5Z" /><path d="M34,18h4V16H34.85A2.81,2.81,0,0,0,33,14.15V9H31v9h3Z" /><path d="M48,33H16C8.83,33,3,38.45,3,45.14V61H61V45.14C61,38.45,55.17,33,48,33ZM35.91,35l-.54,6H28.63l-.54-6ZM36,51.44l-4,3.27-4-3.27L28.64,43h6.72ZM59,59H5V45.14C5,39.55,9.93,35,16,35H26.09l.62,7L26,52.33l6,5,6-5L37.29,42l.62-7H48c6.07,0,11,4.55,11,10.14Z" /></g></svg>
+                            <span> @item.BusinessMetaData.NoOfEmployee</span>  <span class="notranslate" data-translate="totalemployees"> Employees</span>
+
+
+                        </div>
+
+
+
+                    }
+
+
+                    <div class="s-member">
+
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title></title><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"></path><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"></path></g></svg>
+
+                        <span class="notranslate" data-translate="membersince">Member Since</span>:
+                        <span>@item.InsertDate</span>
+                    </div>
+
+                    @if (@item.ProductTotal > 0)
+                    {
+                        <div class="s-member">
+                            <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none" height="256" width="256" /><line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" x1="128" x2="216" y1="128" y2="128" /><line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" x1="128" x2="216" y1="64" y2="64" /><line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" x1="128" x2="216" y1="192" y2="192" /><polyline fill="none" points="92 48 57.3 80 40 64" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><polyline fill="none" points="92 112 57.3 144 40 128" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><polyline fill="none" points="92 176 57.3 208 40 192" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /></svg>
+                            <span>@item.ProductTotal</span>
+                            <span class="notranslate" data-translate="listings"> Listings</span>
+
+
+                        </div>
+                    }
+                    <div class="s-member">
+
+                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9.34045 6.37226L9.38917 6.4766L14.9493 20.9766C15.0972 21.3624 14.9104 21.7974 14.532 21.9482C14.1852 22.0865 13.7978 21.9379 13.6217 21.6151L13.5791 21.5228L12.1461 17.7857L5.05932 17.7859L4.96527 17.7798L3.4185 21.5398C3.26139 21.9217 2.83032 22.1015 2.45568 21.9413C2.11227 21.7945 1.93548 21.4129 2.02941 21.0561L2.06182 20.9596L8.02575 6.45964C8.26631 5.87479 9.04862 5.84994 9.34045 6.37226ZM18.7457 2.00293C19.1254 2.00293 19.4392 2.28508 19.4888 2.65116L19.4957 2.75293L19.4954 7.49893L21.2457 7.4997C21.6254 7.4997 21.9392 7.78185 21.9888 8.14793L21.9957 8.2497C21.9957 8.62939 21.7135 8.94319 21.3475 8.99285L21.2457 8.9997L19.4954 8.99893L19.4957 16.2497C19.4957 16.6294 19.2135 16.9432 18.8475 16.9929L18.7457 16.9997C18.366 16.9997 18.0522 16.7175 18.0025 16.3515L17.9957 16.2497V2.75293C17.9957 2.33872 18.3315 2.00293 18.7457 2.00293ZM8.81111 8.74708L5.64895 16.2857H11.7589L8.81111 8.74708ZM10.7477 2.00293H16.2455C16.6252 2.00293 16.939 2.28508 16.9887 2.65116L16.9955 2.75293V5.75663C16.9955 8.10121 15.0949 10.0019 12.7503 10.0019C12.3361 10.0019 12.0003 9.66609 12.0003 9.25187C12.0003 8.83766 12.3361 8.50187 12.7503 8.50187C14.2103 8.50187 15.4041 7.36214 15.4905 5.92386L15.4955 5.75663V3.50293H10.7477C10.3335 3.50293 9.99775 3.16714 9.99775 2.75293C9.99775 2.37323 10.2799 2.05944 10.646 2.00978L10.7477 2.00293H16.2455H10.7477Z" fill="#212121" /></svg>
+                        <span class="notranslate" data-translate="speaks">Speaks</span>
+                        <span>language</span>
+                    </div>
+
+                    <div class="s-actions">
+
+
+
+                        @if (@item.userothermetadata != null && @item.userothermetadata.UserInactiveMetaData != null)
+                        {
+
+                            @if (@item.userothermetadata.UserInactiveMetaData.Availableforchat == false)
+                            {
+                                <span>Not Available for chat till  <span class="setdateformat">@@item.userothermetadata.UserInactiveMetaData.EndDate</span></span>
+                            }
+                            else
+                            {
+                                <a href="" id="achat" class="sendmessage-btn">
+                                    <span class="notranslate" data-translate="sendmessage">
+                                        Send message
+                                    </span>
+
+                                </a>
+                            }
+
+
+                        }
+                        else
+
+                        {
+                            <a href="" id="achat" class="sendmessage-btn">
+                                <span class="notranslate" data-translate="sendmessage">
+                                    Send message
+                                </span>
+                            </a>
+                        }
+
+                        <a href="/user/@item.BusinessUrlpath" class="viewprofile-btn" id="ashopurlpath">
+                            <span data-translate="viewprofile" class="notranslate">
+
+                                View Profile
+                            </span>
+                        </a>
+                    </div>
+                    <div class="about-seller">
+
+                        @item.BusinessDescription
+                    </div>
+
+
+                    <a href="/user/@item.BusinessUrlpath" class="s-read-more">
+                        <span data-translate="readmore" class="notranslate">Read More</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+        @*
+    @if (!string.IsNullOrEmpty(@item.SellerVideoURl))
+    {
+    var videoId =@GlobalHelper.ExtractVideoId(@item.SellerVideoURl);
+    if (!string.IsNullOrEmpty(videoId))
+    {
+    var embedUrl = $"https://www.youtube.com/embed/{videoId}";
+    <div class="video-container">
+    <iframe src="@embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    }
+    else
+    {
+
+    }
+    } *@
+
+        @if (!string.IsNullOrEmpty(@item.SellerVideoURl))
+        {
+            var videoId = @GlobalHelper.ExtractVideoId(@item.SellerVideoURl);
+            if (!string.IsNullOrEmpty(videoId))
+            {
+                var embedUrl = $"https://www.youtube.com/embed/{videoId}?enablejsapi=1"; // Enable JS API for YouTube
+                <div class="video-container" onmouseover="showThumbnail(this)" onclick="openVideoPopup('@embedUrl')">
+                    <img src="https://img.youtube.com/vi/@videoId/0.jpg" alt="Video Thumbnail" class="video-thumbnail" />
+                </div>
+            }
+        }
+
+
+    </div>
+}
+
+
+
+
+<!-- Popup for Video -->
+<div id="videoPopup" class="video-popup" style="display:none;">
+    <div class="popup-content">
+        <span class="close" onclick="closeVideoPopup()">&times;</span>
+        <iframe id="popupVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+
+
+<script>
+    function showThumbnail(element) {
+        // Optionally add any hover effects if needed
+    }
+
+    function openVideoPopup(videoUrl) {
+        document.getElementById('popupVideo').src = videoUrl + "&autoplay=1"; // Autoplay the video
+        document.getElementById('videoPopup').style.display = 'flex';
+    }
+
+    function closeVideoPopup() {
+        document.getElementById('videoPopup').style.display = 'none';
+        var iframe = document.getElementById('popupVideo');
+        iframe.src = ""; // Stop the video
+    }
+
+    function updateFollowersCount($element, change) {
+        var followersSpan = $element.closest('.sellerlisting').find('.followers');
+        var followersLabel = followersSpan.find('#lblfollowers');
+        var totalfollowers = parseInt(followersLabel.text()) + change;
+
+        followersLabel.text(totalfollowers);
+
+        // Show or hide the followers span based on the count
+        if (totalfollowers > 0) {
+            followersSpan.show();
+        } else {
+            followersSpan.hide();
+        }
+    }
+
+    $(document).ready(function () {
+
+        $('.favoriteunfavorite').each(function () {
+            var $this = $(this);
+            var loginid = $("#hdnlogin").val();
+            var sellerid = $this.data('sellerid');
+             if(loginid != "0") {
+            // Initial check of follow status
+            checkFollowStatus($this, loginid, sellerid);
+             }
+        });
+    });
+
+    $(document).on('click', '.favoriteunfavorite', function (event) {
+        event.preventDefault();
+
+
+        var $this = $(this);
+        var loginid = $("#hdnlogin").val();
+        var sellerid = $this.data('sellerid');
+
+        if (loginid != "0") {
+            sendfollow(loginid, sellerid);
+
+            // Toggle the CSS class
+
+            if($this.hasClass('s-un-fav')) {
+                    $this.removeClass('s-un-fav').addClass('s-fav');
+                    updateFollowersCount($this, 1); // Increase the counter by 1
+                } else {
+                    $this.removeClass('s-fav').addClass('s-un-fav');
+                    updateFollowersCount($this, -1); // Decrease the counter by 1
+                }
+
+
+            // if ($this.hasClass('s-un-fav')) {
+            //     $this.removeClass('s-un-fav').addClass('s-fav');
+            // } else {
+            //     $this.removeClass('s-fav').addClass('s-un-fav');
+            // }
+
+            //var totalfollowers = parseInt($("#lblsellerfollowers").text()); 
+
+            // Update the total followers count based on follow/unfollow action
+            // if (newText === "Un Follow") {
+            //     totalfollowers += 1; // Increase the counter by 1
+            // } else {
+            //     totalfollowers -= 1; // Decrease the counter by 1
+            // }
+
+            // $("#lblsellerfollowers").text(totalfollowers); // Update the total followers display
+
+        } else {
+            // Call login view if not logged in
+            loginview("LoginView");
+        }
+    });
+</script>

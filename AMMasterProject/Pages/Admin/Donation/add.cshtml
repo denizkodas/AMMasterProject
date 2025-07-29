@@ -1,0 +1,170 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Donation.addModel
+@{
+    <title>Donation</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/donation">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/donation/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/donation/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Donation Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+
+                        <div class="form-group col-md-10">
+                            Campaign Title
+                            <input type="text">
+                        </div>
+
+
+                        <div class="form-group col-md-5">
+                            Category
+                            <select>
+                            </select>
+
+
+
+                        </div>
+                        <div class="form-group col-md-5">
+                            Campaign Expirey Date
+                            <input type="date" value="2021-06-18" id="html5-date-input" />
+                        </div>
+                        <div class="form-group col-md-10">
+                            External URL Optional
+                            <input type="text">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Description
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+
+                        <div class="form-group col-md-9">
+                            Summary
+                            <input type="text">
+                        </div>
+                        <div class="form-group col-md-12">
+                            Description
+                            <input type="text">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Image
+                </div>
+
+
+
+
+
+                <div class="form-group col-md-9">
+                    Banner
+
+
+
+
+
+                    <div class="div">
+
+                        <label class="file-upload">
+                            <span class="btn white-c bg-secondary"> Select Image</span>
+                            <input type="file" id="ImageUploadJquery">
+
+
+                        </label>
+                        <img class="margin15 preview" src="https://amenvato.s3.us-east-2.amazonaws.com/envatoallproject/Envato779c4e0e-4c7f-468f-96fb-3159da70b96d.gif" />
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <hr>
+
+
+
+
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+
+                        <input id="checkboxpublish" type="checkbox"><label for="checkboxpublish">Publish</label>
+
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this product Section</p>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button>Save</button></div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

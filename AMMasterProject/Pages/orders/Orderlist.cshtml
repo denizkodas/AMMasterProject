@@ -1,0 +1,13 @@
+﻿@page 
+@using AMMasterProject.Helpers;
+@model AMMasterProject.Pages.Reports.OrderlistModel
+
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title>Orders</title>
+    ViewData["Title"] = "All Orders";
+}
+
+<div>
+<partial name="/Pages/orders/_allorders.cshtml" model="Model.orderViewModelsList" />
+</div>

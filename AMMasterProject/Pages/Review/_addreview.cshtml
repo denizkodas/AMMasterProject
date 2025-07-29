@@ -1,0 +1,204 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* <link href="~/css/starrating.min.css" rel="stylesheet" />
+<script src="~/js/starrating.min.js"></script> *@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+
+
+<div class="overlay-view" style="display:none" id="dvOrderReview">
+    <div class="popup popup-medium">
+        <div class="popup-heading" >
+            <span class="notranslate" data-translate="writereview">
+               Write a review
+            </span>
+
+           <a class="close-back" href="#close" onclick="closeOrderReview()"></a>
+        </div>
+        <div class="padding30 form">
+            <div class="form-group">
+          
+                <div class="star-widget">
+              
+                        <span class="notranslate bold" data-translate="rating">Rating</span>:
+               
+                    <input type="radio" name="star" id="rate-5" value="5">
+                    <label for="rate-5" class="fa-solid fa-star"></label>
+                    <input type="radio" name="star" id="rate-4" value="4">
+                    <label for="rate-4" class="fa-solid fa-star"></label>
+                    <input type="radio" name="star" id="rate-3" value="3">
+                    <label for="rate-3" class="fa-solid fa-star"></label>
+                    <input type="radio" name="star" id="rate-2" value="2">
+                    <label for="rate-2" class="fa-solid fa-star"></label>
+                    <input type="radio" name="star" id="rate-1" value="1">
+                    <label for="rate-1" class="fa-solid fa-star"></label>
+
+                   
+
+            
+    
+ 
+      
+       
+
+                    <p class="rating-desc"></p>
+                </div>
+            
+            </div>
+            <div class="form-group">
+
+    
+                <span class="notranslate bold" data-translate="comments">Comments</span>:
+                    <textarea id="txtreviewnotes"></textarea>
+
+            </div>
+                <div class="form-group">
+
+                <span id="spanErrorOrderReview"></span>
+                   
+
+                <button id="btnorderReview" type="button">
+                    <span class="notranslate" data-translate="submit">Submit</span>:
+                    
+                    </button>
+                </div>
+                  <br/>
+                  <br/>
+   
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hdnReviewOrderId" />
+
+@*  // ---- ---- new script ---- ---- // *@
+<script>
+
+    function feedBack() {
+        if (document.getElementById("comment").value === "") {
+            document.getElementById("error-comment").innerHTML =
+                "* Please enter comment";
+        } else {
+            document.getElementById("error-comment").innerHTML = "";
+        }
+
+        if ($("input[type=radio]:checked").val() === "undefined") {
+            document.getElementById("error-rating").innerHTML =
+                "* Please choose any star";
+            alert("Please choose any star");
+        } else {
+            document.getElementById("error-rating").innerHTML = "";
+        }
+
+        var rating_Count = document.querySelector("input[name=star]:checked").value;
+        var comment = document.getElementById("comment").value;
+        $("#simpleModal").modal("show");
+
+        // alert(x);
+        console.log(comment);
+        console.log(rating_Count);
+        document.getElementById("comment_text").innerHTML = comment;
+        document.getElementById("star_count").innerHTML = rating_Count;
+    }
+
+
+    </script>
+<script>
+
+
+    function showOrderReview(orderid, key) {
+        $("#hdnReviewOrderId").val(orderid);
+        $("#dvOrderReview").show();
+
+
+      
+    }
+
+
+
+
+  
+
+    function closeOrderReview() {
+        $("#hdnReviewOrderId").val("");
+        $("#dvOrderReview").hide();
+
+      
+
+    }
+
+    function UpdateReview(orderId, rating, description, attachment) {
+        $.ajax({
+            url: '/Controller/order/ReviewUpdate?orderid=' + orderId + "&rating=" + rating + "&description=" + description + "&attachment=" + attachment,
+            type: 'POST',
+            success: function (result) {
+
+                if (result === "success") {
+
+                    toaster('Review updated successfully', 'toast-success',);
+                    $("#spanErrorOrderReview").text("Review updated successfully");
+                    $("#dvOrderReview").hide();
+                    $("#btnreview-"+orderId).hide();
+                    $("#btnorderReview").hide();
+
+                } else {
+                    // Handle other success responses if needed
+                }
+            },
+            error: function () {
+                // Handle the error
+                // You might want to provide some feedback to the user in case of an error
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        // Add a click event handler for the button
+        $("#btnorderReview").click(function () {
+            // Get the values you need for the OrderStatus function (orderId, orderProcessStatus, orderNotes)
+            var orderId = $("#hdnReviewOrderId").val();
+            
+            var description = $("#txtreviewnotes").val();
+            var attachment = "";
+            // Check if orderId or orderProcessStatus is null or blank
+
+            // Get all radio buttons with the name "star"
+            var radioButtons = document.getElementsByName("star");
+
+            // Initialize a variable to store the selected value
+            var selectedValue = null;
+
+            // Loop through all radio buttons
+            for (var i = 0; i < radioButtons.length; i++) {
+                // Check if the radio button is checked
+                if (radioButtons[i].checked) {
+                    // Set the selected value to the value of the checked radio button
+                    selectedValue = radioButtons[i].value;
+                    break; // Exit the loop once a checked radio button is found
+                }
+            }
+
+
+            if (!orderId || orderId.trim() === "") {
+                // Show an alert message
+                location.reload();
+            }
+            else if (!selectedValue || selectedValue == "0") {
+                $("#spanErrorOrderReview").text("Please select rating");
+
+                
+            }
+
+            else {
+                // Call the OrderStatus function with the provided values
+                UpdateReview(orderId, selectedValue, description, attachment);
+
+            }
+        });
+    });
+</script>

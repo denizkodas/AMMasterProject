@@ -1,0 +1,99 @@
+﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.Helpers
+
+@model List<SubscriptionPurchaseViewModel>
+
+
+<h3 class="paddingtb-15 m-none">
+    <span class="cap notranslate" data-translate="subscriptionhistory">
+        
+        Subscription History</span>
+    <a class="btn theme-bg f-theme float-end" href="~/subscription">
+        <span class="notranslate" data-translate="buysubscription">
+            Buy Subscription 
+        </span>
+        
+        </a>
+</h3>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="table-responsive border">
+        <table class="table border billing" id="ListingLoad2">
+            <thead class="white-smoke-bg">
+                <tr class="">
+                    <th style="width:100px">
+                        <span class="notranslate" data-translate="date">
+                           Date
+                        </span>
+                        
+                        </th>
+                    <th>
+                        <span class="notranslate" data-translate="description">
+                            Description 
+                        </span>
+                        
+                       </th>
+                    <th>
+                        <span class="notranslate" data-translate="serviceperiod">
+                            Service period 
+                        </span>
+                        
+                     </th>
+                    <th>
+                        <span class="notranslate" data-translate="paymentmethod">
+                            Payment method
+                        </span>
+                      </th>
+                  <th style="width:100px;" class="center">
+                        <span class="notranslate" data-translate="total">
+                          Total
+                        </span>
+                      </th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    var ItemMeta = item.ItemMetaData;
+                    var PaymentMeta = item.PaymentMetaData;
+
+                    <tr>
+                        <td>@GlobalHelper.DateFormat(@item.PurchaseDate)</td>
+                        <td>@ItemMeta.Name</td>   @*//subscription plan name*@
+                        <td style="width:500px">
+                            @GlobalHelper.DateFormat(@item.PurchaseDate) - @GlobalHelper.DateFormat(@item.ExpiryDate)
+                        </td>
+
+
+
+
+
+                         
+
+
+
+
+
+                       
+                        <td>@PaymentMeta.PaymentMethod</td>
+                        <td class="center s-bold">
+                            @PaymentMeta.PaidCurrency @PaymentMeta.PaidAmount
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="emptydata">
+        <span class="notranslate" data-translate="subscriptionemptydata">
+            No Subscription Details Found 
+        </span>
+
+
+        
+    </div>
+}

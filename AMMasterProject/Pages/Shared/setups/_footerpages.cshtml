@@ -1,0 +1,91 @@
+﻿
+
+ <div id="dvfooterpages" class="row">
+ </div>
+
+
+
+ <script>
+
+     
+          $(document).ready(function() {
+              footerpage1();
+
+});
+
+
+   function footerpage1() {
+    // Check if the data is already in cache
+    var cachedData = localStorage.getItem('footerpages1');
+    if (cachedData) {
+        // Load data from cache
+        var data = JSON.parse(cachedData);
+        renderFooterPages(data);
+    } else {
+        // Make AJAX request
+        $.ajax({
+            type: "GET",
+            cache: true,
+            url: "/api/global/footerpages1",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                // Save data to cache
+                localStorage.setItem('footerpages1', JSON.stringify(data));
+                renderFooterPages(data);
+            },
+            error: function (response) {
+                console.log(response.responseText);
+            }
+        });
+    }
+};
+
+function footerpage_2(mainpagecategoryid) {
+   
+  
+        // Make AJAX request
+        $.ajax({
+            type: "GET",
+            cache: true,
+            url: "/api/global/footerpages2/" + mainpagecategoryid,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+               
+                var itemsHtml = "";
+                $.each(data, function (index, item) {
+                    itemsHtml += '<p>';
+                    if (item.isUrl == true) {
+                        itemsHtml += '<a href="' + "/" + item.url + '">' + item.pageCategory1 + '</a>';
+                    } else {
+                        var url = item.pageCategoryId + "/" + item.pageCategory1 + "/page";
+                        itemsHtml += '<a href="' + url + '">' + item.pageCategory1 + '</a>';
+                    }
+                    itemsHtml += '</p>';
+                });
+                $('[id*=dvfootersecond' + mainpagecategoryid + ']').append(itemsHtml);
+            },
+            error: function (response) {
+                console.log(response.responseText);
+            }
+        });
+    
+};
+
+function renderFooterPages(data) {
+    var itemsHtml = "";
+    $.each(data, function (index, item) {
+        itemsHtml += '<div class="col-md-3">';
+        itemsHtml += '<p class="bold">';
+        itemsHtml += item.mainPageCategory1;
+        itemsHtml += '</p>';
+        itemsHtml += '<div id="dvfootersecond' + item.mainPageCategoryId + '"></div>';
+        itemsHtml += '</div>';
+        footerpage_2(item.mainPageCategoryId);
+    });
+    $('[id*=dvfooterpages]').append(itemsHtml);
+}
+
+
+ </script>

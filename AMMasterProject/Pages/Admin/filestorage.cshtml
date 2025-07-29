@@ -1,0 +1,265 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.filestorageModel
+@{
+    <title>File Storage</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<form method="post">
+
+
+<div class="row">
+    <div class="col-md-2 col-12 mb-3 mb-md-0">
+
+
+        <ul class="nav nav-pills mb-3" role="tablist">
+
+                <li class="nav-item w-100 ">
+                    <button id="cndtypeTabButton" type="button" class="nav-link  text-start" role="tab" data-bs-toggle="tab" data-bs-target="#cdn" aria-controls="cdnsetup" aria-selected="true">
+                       Select the File Storage
+                    </button>
+                </li>
+
+            <li class="nav-item w-100 ">
+                    <button id="amazonTabButton" type="button" class="nav-link  text-start" role="tab" data-bs-toggle="tab" data-bs-target="#aws" aria-controls="amazonsetup" aria-selected="true">
+                    Amazon
+                </button>
+            </li>
+
+            <li class="nav-item w-100 ">
+                    <button id="azureTabButton" type="button" class="nav-link  text-start" role="tab" data-bs-toggle="tab" data-bs-target="#azure" aria-controls="azuresetup" aria-selected="true">
+                    Azure Blog
+                </button>
+            </li>
+
+                <li class="nav-item w-100 ">
+                    <button id="firebasestorageTabButton" type="button" class="nav-link  text-start" role="tab" data-bs-toggle="tab" data-bs-target="#firebasestorage" aria-controls="firebasesetup" aria-selected="true">
+                      Fire Base Storage
+                    </button>
+                </li>
+
+        </ul>
+
+
+    </div>
+    <div class="col-md-10 col-12">
+        <div class="tab-content form card padding30 h-600">
+
+                @* @CDN *@
+                <div class="tab-pane fade" id="cdn">
+                    <h5 class="bold">File Storage Settings</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                              File Storage 
+                                <select asp-for="@Model.filestorage.FileStorageType">
+
+
+                                    <option value="aws">AWS</option>
+                                    <option value="azure">Azure</option>
+                                    <option value="firebase">Fire Base Storage</option>
+                                    <option value="local">Local</option>
+                                </select>
+                            </div>
+
+
+
+                            <div class="form-group">
+
+
+
+                                <button class="clickable-button" asp-page-handler="CDN">Save</button>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+            @* @Amazon *@
+
+
+
+            <div class="tab-pane fade" id="aws">
+                <h5 class="bold">Amazon Settings</h5>
+
+
+                <div class="row form paddingtb-15 justify-content-between">
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            Access Key
+                            <input maxlength="100" asp-for="@Model.aws.AccessKey" type="text" />
+                            <span asp-validation-for="@Model.aws.AccessKey" class="required"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            Secret Key
+                            <input maxlength="100" asp-for="@Model.aws.SecretKey" type="text" />
+                            <span asp-validation-for="@Model.aws.SecretKey" class="required"></span>
+                        </div>
+
+                        <div class="form-group">
+                            URL Path
+                            <input maxlength="500" asp-for="@Model.aws.URLPath" type="text" />
+                            <span asp-validation-for="@Model.aws.URLPath" class="required"></span>
+                        </div>
+
+                        <div class="form-group">
+                            Bucket Name
+                            <input maxlength="50" asp-for="@Model.aws.Bucket" type="text" />
+                            <span asp-validation-for="@Model.aws.Bucket" class="required"></span>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+
+
+
+                                <button class="clickable-button" asp-page-handler="Aws">Save</button>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        This is area for guidelines
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            @* @azure blog *@
+
+
+
+            <div class="tab-pane fade" id="azure">
+                <h5 class="bold">Azure Blog Settings</h5>
+
+
+                <div class="row form paddingtb-15 justify-content-between">
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                                Connection String
+                                <input maxlength="100" asp-for="@Model.azure.ConnectionString" type="text" />
+                                <span asp-validation-for="@Model.azure.ConnectionString" class="required"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            Container Name
+                                <input maxlength="100" asp-for="@Model.azure.ContainerName" type="text" />
+                                <span asp-validation-for="@Model.azure.ContainerName" class="required"></span>
+                        </div>
+
+                        <div class="form-group">
+                            URL Path
+                                <input maxlength="500" asp-for="@Model.azure.URLPath" type="text" />
+                                <span asp-validation-for="@Model.azure.URLPath" class="required"></span>
+                        </div>
+
+                     
+
+
+                        <div class="form-group">
+
+
+
+                                <button class="clickable-button" asp-page-handler="Azure">Save</button>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        This is area for guidelines
+                    </div>
+
+                </div>
+            </div>
+
+
+                @* @Fire Base  Storage *@
+
+                <div class="tab-pane fade" id="firebasestorage">
+                    <h5 class="bold">Fire Base Storage Settings</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Connection String
+                                <input asp-for="@Model.firebasestorage.ServiceAcountMetaData" type="text" />
+                                <span asp-validation-for="@Model.firebasestorage.ServiceAcountMetaData" class="required"></span>
+                            </div>
+
+
+                          
+
+
+
+                            <div class="form-group">
+
+
+
+                                <button class="clickable-button" asp-page-handler="FireBaseStorage">Save</button>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#cdn";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+</script>

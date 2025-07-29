@@ -1,0 +1,215 @@
+﻿@page
+@model AMMasterProject.Pages.User.usermenuModel
+@{
+
+    
+}
+
+<style>
+    footer,
+    .logoutlink {
+        display:none !important
+    }
+</style>
+
+
+<div class="container">
+    <div class="web-directory  paddingtb o-padding">
+            <h2 class="margintb  m-none">
+            <span class="notranslate" data-translate="usersitemap">  User Site Map </span>
+
+          
+            </h2>
+
+    <div class="user-detail w-none">
+        @* user name --- image*@
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <ul class="menu">
+                <li>
+                    <a>
+                        <h4 class="userfullname no-margin top-account-link">
+                            <partial name="/Pages/user/_userimage.cshtml" />  @User.FindFirst("FirstName")?.Value @User.FindFirst("LastName")?.Value
+                        </h4>
+                    </a>
+                </li>
+
+
+            </ul>
+        }
+
+        else
+
+        {
+            <ul class="menu">
+                <li >
+                    <a >
+                            <h4 class="userfullname no-margin top-account-link">
+                            <svg viewBox="0 0 32 32">
+                                <path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z" />
+                                <path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" />
+
+                            </svg>
+
+                                <span class="notranslate" data-translate="welcome"> Welcome</span>
+                            
+                        </h4>
+                    </a>
+                </li>
+
+
+            </ul>
+
+        }
+    </div>
+        <div class="usermenu-links">
+  
+<div class="mobile-menu">
+ 
+
+  
+        @* login links *@
+
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+
+                    @* Credit*@
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        var profileIdClaim = User.FindFirst("UserID");
+                        if (profileIdClaim != null)
+                        {
+                            int profileId = Convert.ToInt32(profileIdClaim.Value);
+                            @await Component.InvokeAsync("Credit", new { viewName = "/Pages/Credits/CreditCount.cshtml", profileid = profileId, type="creditcounter" })
+                            ;
+                          
+
+                        } 
+                        
+                       
+                    }
+
+           @* subscribtion*@
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        var profileIdClaim = User.FindFirst("UserID");
+                        if (profileIdClaim != null)
+                        {
+                            int profileId = Convert.ToInt32(profileIdClaim.Value);
+                            @await Component.InvokeAsync("Credit", new { viewName = "/Pages/Subscriptions/SubscriptionActive.cshtml", profileid = profileId, type="activesubscription" })
+                            ;
+
+
+                        }
+                    }
+
+
+
+            <div class="usermenu">
+            <partial name="/Pages/user/_tab.cshtml" />
+
+                        @if (Model.IsMultiVendor == true)
+                        {
+                            <ul class="onlyforgrocerymart">
+
+
+                                <li>
+
+                                    <a href="/inbox">
+
+
+
+                                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                                      
+                                        <span class="notranslate" data-translate="inbox"> Inbox</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+
+                    </div>
+        }
+
+        else
+
+        {
+
+            <ul class="menu ">
+
+                <li class="top-account-link">
+                            <a id="btnShowLoginForm">
+                                <span class="notranslate" data-translate="login"> Login </span>
+                    </a>
+                </li>
+
+                <li class="top-account-link">
+                            <a id="btnShowRegisterForm" >
+                                <span class="notranslate" data-translate="register"> Register </span>
+                            </a>
+                </li>
+            </ul>
+
+
+        }
+
+                @* settings *@
+
+                <ul class="menu visible-xs">
+                    <li>
+                        <a class="heading"> Settings</a>
+                        <ul class="submenu">
+
+                            @*Regional Settings*@
+
+                            <li id="dvRegionalSettingFooterContainer"></li>
+
+                    
+                          
+                        </ul>
+                    </li>
+
+
+
+
+                </ul>
+
+
+        @* Other Links *@
+
+                <div class="footermenu">
+
+
+                    <div id="dvFooterLinkViewContainer"></div>
+
+       </div>
+
+        @* logut btn *@
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <ul class="menu w-none">
+                <li>
+                    <a id="btnLogout" href="">
+                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
+                            <path clip-rule="evenodd" d="M2 12.5H14V11.5H2V12.5Z" fill-rule="evenodd" />
+                            <path clip-rule="evenodd" d="M5.14641 8.14645L1.64641 11.6465C1.45115 11.8417 1.45115 12.1583 1.64641 12.3536L5.14641 15.8536L5.85352 15.1465L2.70707 12L5.85352 8.85356L5.14641 8.14645Z" fill-rule="evenodd" />
+                            <path clip-rule="evenodd" d="M14.5954 5C11.9176 5 9.59182 6.54597 8.44623 8.81305L7.55371 8.36204C8.86051 5.77594 11.521 4 14.5954 4C18.967 4 22.5 7.58778 22.5 12C22.5 16.4122 18.967 20 14.5954 20C11.521 20 8.86051 18.2241 7.55371 15.638L8.44623 15.187C9.59182 17.454 11.9176 19 14.5954 19C18.4027 19 21.5 15.8721 21.5 12C21.5 8.12795 18.4027 5 14.5954 5Z" fill-rule="evenodd" />
+                        </svg>
+                                <span class="notranslate" data-translate="logout">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        }
+
+        else
+        {
+
+        }
+ 
+</div>
+
+    </div>
+        </div>
+    </div>

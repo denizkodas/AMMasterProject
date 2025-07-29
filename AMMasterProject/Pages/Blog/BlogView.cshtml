@@ -1,0 +1,70 @@
+﻿@using AMMasterProject.Helpers;
+@using AMMasterProject.ViewModel
+@model List<BlogViewModel>
+
+
+@if (Model != null && Model.Count > 0)
+{
+  <div class="blogview">
+
+    <h3 class="bold padding10 blogheading">
+            <span id="spanblog" class="notranslate" data-translate="blogs">Blogs</span>
+    </h3>
+    <div id="dvblogview" class="row">
+        @foreach (var blog in Model)
+        {
+            <div class="col-lg-4 padding15">
+                <a  href="/blog/detail/@blog.SeoPageName">
+
+                    <div class="blog-box">
+                       @* blog image*@
+                        <img src="@blog.Image" />
+
+                    
+                        <div>
+                            @* blog category*@ 
+                            <span class="category">
+                                @blog.Category
+
+                            </span>
+                            @* blog date*@
+                            <span class=" date">
+
+
+                                @GlobalHelper.DateFormat(@blog.InsertDate)
+                            </span>
+
+
+
+                            @* blog title*@
+                            <h4 class="heading">
+                                @blog.Title
+
+                            </h4>
+                            @* blog summary*@
+                            <p class="summary">
+                                @blog.Summary
+                            </p>
+
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+        }
+    </div>
+    </div>
+}
+
+
+@*
+<div class="col-md-4">
+    <a href="/blog/detail/@blog.SeoPageName">
+        @if (!string.IsNullOrEmpty(blog.Image))
+        {
+            <img src="@blog.Image" aalt="@blog.Title" />
+        }
+        <p>@blog.Title</p>
+    </a>
+</div>*@
+

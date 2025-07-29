@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" id="mybody">
+<head>
+    <meta name="viewport" content="width=device-width" />
+ @*   <title>@ViewBag.Title</title>*@
+
+
+  
+
+ 
+    <!-- Icons. Uncomment required icon fonts -->
+
+    <link href="~/admin-assets/css/boxicons.css" rel="stylesheet" />
+
+    @*----------------------//All scripts and css-----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsHeader.cshtml" />
+
+    <link href="~/admin-assets/css/core.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/theme-default.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/demo.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/style.css" rel="stylesheet" />
+    <link href="~/css/icons.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/rtl.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-tagsinput.css" rel="stylesheet" />
+
+
+    
+   
+
+   
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+         
+            var pageTitle = document.title;
+
+            // Update the content of the <span> element with the page title
+            var spanElement = document.getElementById('pageTitle');
+            spanElement.textContent = pageTitle;
+        });
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+
+        @*  //summer note*@
+
+    @*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>*@
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+  @* <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+*@
+</head>
+<body>
+    <!-- Toaster -->
+    <partial name="/Pages/Shared/_toastr.cshtml" />
+
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+
+            <div id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme ">
+                <div class="app-brand demo m-none">
+                    <a  class="app-brand-link">
+                        <span class="app-brand-logo">
+                            <partial name="/Pages/Shared/setups/_logo.cshtml" />
+                        </span>
+                    </a>
+                  
+                
+                  
+                </div>
+
+               
+                <partial name="/Pages/seller/_menu.cshtml" />
+                <partial name="/Pages/admin/_menu.cshtml" />
+
+                <div class="copyright">
+                
+                        
+                                @*Copyright*@
+                                &copy; <span class="notranslate"> @Context.Items["CompanyName"] </span> - @DateTime.Now.ToString("yyyy")
+
+                                <partial name="/Pages/Shared/setups/_designby.cshtml" />
+                      
+
+                       
+                </div>
+
+
+               
+            </div>
+           
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <div class="navbar-wrapper">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                     id="layout-navbar">
+               
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <!-- Title -->
+                        <div class="navbar-nav align-items-center">
+                            <h4 class="bold no-margin" id="pageTitle"></h4>
+                        </div>
+
+                            <!-- back btn for mobile -->
+                            <a id="lnkback" class="back-btn">
+                                <svg viewBox="0 0 32 32">
+
+                                    <g data-name="Layer 2" id="Layer_2"><path d="M20,25a1,1,0,0,1-.71-.29l-8-8a1,1,0,0,1,0-1.42l8-8a1,1,0,1,1,1.42,1.42L13.41,16l7.3,7.29a1,1,0,0,1,0,1.42A1,1,0,0,1,20,25Z"></path></g>
+                                    <path d="M39.3756,48.0022l30.47-25.39a6.0035,6.0035,0,0,0-7.6878-9.223L26.1563,43.3906a6.0092,6.0092,0,0,0,0,9.2231L62.1578,82.615a6.0035,6.0035,0,0,0,7.6878-9.2231Z"></path>
+
+                                </svg>
+                            </a>
+
+                        <ul class="navbar-nav flex-row align-items-center ms-auto m-none">
+                                
+                                @* Credit*@
+
+                                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                {
+                                    var profileIdClaim = User.FindFirst("UserID");
+                                   
+                                        int profileId = Convert.ToInt32(profileIdClaim.Value);
+                                        @await Component.InvokeAsync("Credit", new { viewName = "/Pages/Credits/CreditCount.cshtml", profileid = profileId, type="creditcounter" })
+                                        ;
+
+                                    
+                               
+
+                            <!-- Inbox -->
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/inbox/" >
+                                     
+<svg viewBox="0 0 512 512" ><path d="M364,450a15,15,0,0,1-11.29-5.12L273.5,354.34H118.64a64.58,64.58,0,0,1-64.5-64.51V112.51A64.58,64.58,0,0,1,118.64,48h273a64.58,64.58,0,0,1,64.5,64.51V289.83a64.58,64.58,0,0,1-64.5,64.51H379V435a15,15,0,0,1-15,15ZM118.64,78a34.55,34.55,0,0,0-34.5,34.51V289.83a34.55,34.55,0,0,0,34.5,34.51H280.3a15,15,0,0,1,11.29,5.12L349,395.09V339.34a15,15,0,0,1,15-15h27.59a34.55,34.55,0,0,0,34.5-34.51V112.51A34.55,34.55,0,0,0,391.63,78Z"/><path d="M199.63,264A15.13,15.13,0,0,1,189,259.61c-.34-.35-.67-.72-1-1.1a14.34,14.34,0,0,1-.87-1.18q-.41-.61-.75-1.26c-.23-.43-.44-.88-.63-1.33s-.35-.92-.5-1.38-.26-1-.36-1.43-.17-1-.22-1.45a14.66,14.66,0,0,1-.07-1.48,14.33,14.33,0,0,1,.07-1.47c.05-.49.13-1,.22-1.46s.22-1,.36-1.42.31-.94.5-1.39.4-.89.63-1.32a14.6,14.6,0,0,1,.75-1.27c.27-.4.56-.8.87-1.18s.65-.75,1-1.1a15.15,15.15,0,0,1,12.08-4.32c.49.05,1,.13,1.46.22s1,.22,1.42.36.94.31,1.39.5.89.4,1.32.63.86.48,1.27.75.8.56,1.18.87.75.65,1.09,1,.68.72,1,1.1.6.78.87,1.18a14.6,14.6,0,0,1,.75,1.27q.35.65.63,1.32c.19.45.35.92.5,1.39s.26.94.36,1.42.17,1,.22,1.46.07,1,.07,1.47,0,1-.07,1.48-.13,1-.22,1.45-.22,1-.36,1.43-.31.93-.5,1.38-.4.9-.63,1.33-.48.85-.75,1.26-.57.8-.87,1.18-.65.75-1,1.1-.71.68-1.09,1-.78.6-1.18.87-.84.52-1.27.75-.87.44-1.32.63-.92.35-1.39.5-.94.26-1.42.36-1,.17-1.46.22S200.12,264,199.63,264Z"/><path d="M310.64,264c-.49,0-1,0-1.47-.07s-1-.13-1.46-.22-1-.22-1.43-.36-.93-.31-1.38-.5-.89-.4-1.32-.63a14.6,14.6,0,0,1-1.27-.75c-.4-.27-.8-.56-1.18-.87s-.75-.65-1.1-1-.68-.72-1-1.1-.6-.78-.87-1.18a14.6,14.6,0,0,1-.75-1.27q-.35-.65-.63-1.32c-.19-.45-.35-.92-.5-1.38s-.26-1-.36-1.43-.17-1-.22-1.45-.07-1-.07-1.48,0-1,.07-1.48.13-1,.22-1.45.22-1,.36-1.43.31-.93.5-1.38.4-.9.63-1.33.48-.85.75-1.26a14.34,14.34,0,0,1,.87-1.18c.31-.38.65-.75,1-1.1s.72-.68,1.1-1,.78-.6,1.18-.87a14.6,14.6,0,0,1,1.27-.75q.65-.34,1.32-.63c.45-.19.92-.35,1.38-.5s1-.26,1.43-.36,1-.17,1.46-.22a16.15,16.15,0,0,1,2.95,0c.48.05,1,.13,1.45.22s1,.22,1.43.36.93.31,1.38.5.89.4,1.32.63a14.6,14.6,0,0,1,1.27.75c.4.27.8.56,1.18.87s.75.65,1.1,1,.68.72,1,1.1a14.34,14.34,0,0,1,.87,1.18q.4.62.75,1.26c.23.43.44.88.63,1.33s.35.92.5,1.38.26,1,.36,1.43.17,1,.22,1.45a15.68,15.68,0,0,1,0,3c-.05.48-.13,1-.22,1.45s-.22,1-.36,1.43-.31.93-.5,1.38-.4.89-.63,1.32a14.6,14.6,0,0,1-.75,1.27c-.27.4-.56.8-.87,1.18s-.65.75-1,1.1-.72.68-1.1,1-.78.6-1.18.87a14.6,14.6,0,0,1-1.27.75q-.65.34-1.32.63c-.45.19-.92.35-1.38.5s-.95.26-1.43.36-1,.17-1.45.22S311.13,264,310.64,264Z"/><path d="M255.13,264a14.6,14.6,0,0,1-1.47-.07c-.49-.05-1-.13-1.46-.22s-.95-.22-1.42-.36-.93-.31-1.38-.5-.9-.4-1.33-.63a15.58,15.58,0,0,1-2.45-1.62c-.38-.31-.75-.65-1.09-1a14.67,14.67,0,0,1-1-1.1c-.31-.38-.61-.78-.88-1.18a14.6,14.6,0,0,1-.75-1.27q-.34-.65-.63-1.32c-.18-.45-.35-.92-.49-1.39a13.41,13.41,0,0,1-.36-1.42,14.46,14.46,0,0,1-.29-2.93,14.66,14.66,0,0,1,.07-1.48,14.51,14.51,0,0,1,.22-1.45,14.24,14.24,0,0,1,.36-1.43c.14-.46.31-.93.49-1.38s.4-.89.63-1.32a14.6,14.6,0,0,1,.75-1.27c.27-.4.57-.8.88-1.18a14.67,14.67,0,0,1,1-1.1c.34-.34.71-.68,1.09-1a15.58,15.58,0,0,1,2.45-1.62c.43-.23.88-.44,1.33-.63s.91-.35,1.38-.5.95-.26,1.42-.36,1-.17,1.46-.22a16.15,16.15,0,0,1,3,0c.49.05,1,.13,1.45.22s1,.22,1.43.36.93.31,1.38.5.9.4,1.33.63.85.48,1.26.75a14.5,14.5,0,0,1,1.19.87c.38.31.75.65,1.09,1a14.67,14.67,0,0,1,1,1.1c.31.38.6.78.88,1.18a14.6,14.6,0,0,1,.75,1.27,13.2,13.2,0,0,1,.62,1.32,14.25,14.25,0,0,1,.5,1.38c.14.47.26,1,.36,1.43a14.51,14.51,0,0,1,.22,1.45,14.66,14.66,0,0,1,.07,1.48,14.46,14.46,0,0,1-.29,2.93c-.1.48-.22,1-.36,1.42a13.53,13.53,0,0,1-.5,1.39,13.2,13.2,0,0,1-.62,1.32c-.23.43-.48.86-.75,1.27s-.57.8-.88,1.18a14.67,14.67,0,0,1-1,1.1c-.34.34-.71.68-1.09,1a14.5,14.5,0,0,1-1.19.87q-.61.4-1.26.75c-.43.23-.88.44-1.33.63s-.91.35-1.38.5-.95.26-1.43.36-1,.17-1.45.22A14.66,14.66,0,0,1,255.13,264Z"/></svg>
+                                        @await Component.InvokeAsync("Notification", new { viewName = "/Pages/Inbox/InboxCounter.cshtml", methodname= "inboxactivecounter", profielid=profileId })
+
+                                </a>
+                       
+                            </li>
+                            <!--/ Inbox -->
+                            <!-- Nofity -->
+
+                               
+                                          
+
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown notify-counter">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                   
+
+                        <svg enable-background="new 0 0 32 32" viewBox="0 0 32 32"><path d="M28.857,25.485L26,20.723V14c0-5.177-3.954-9.446-9-9.949V3c0-0.552-0.448-1-1-1s-1,0.448-1,1v2c0,0.552,0.448,1,1,1  c4.411,0,8,3.589,8,8v7c0,0.182,0.049,0.359,0.143,0.515L26.233,25H5.766l2.091-3.485C7.951,21.359,8,21.182,8,21v-7  c0-3.079,1.8-5.92,4.585-7.238c0.499-0.236,0.712-0.832,0.476-1.332c-0.236-0.499-0.832-0.712-1.332-0.476  C8.249,6.601,6,10.151,6,14v6.723l-2.857,4.763c-0.186,0.309-0.19,0.693-0.013,1.008C3.307,26.807,3.64,27,4,27h8.142  c0.447,1.721,2,3,3.858,3c1.859,0,3.411-1.279,3.858-3H28c0.36,0,0.692-0.193,0.87-0.507C29.048,26.179,29.043,25.794,28.857,25.485  z M16,28c-0.737,0-1.375-0.405-1.722-1h3.443C17.375,27.595,16.737,28,16,28z"/></svg>
+
+
+                                        @await Component.InvokeAsync("Notification", new { viewName = "/Pages/Notification/AnnouncementCounter.cshtml", methodname= "announcementactivecounter", profielid=profileId })
+
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end no-padding">
+                                        <li><a class="s-bold h4" data-translate="notification">Notification </a></li>
+
+
+
+                                            @await Component.InvokeAsync("Notification", new { viewName = "/Pages/Notification/Announcement.cshtml", methodname= "announcementactive", profielid=profileId })
+                                          
+
+                                </ul>
+                            </li>
+
+
+                                    }
+                                
+                            <!--/ Inbox -->
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar rounded-circle border">
+                                   <partial name="/Pages/user/_userimage.cshtml" /> </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                            <partial name="/Pages/user/_userimage.cshtml" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                        <span class="fw-semibold d-block notranslate">
+                                                            @User.FindFirst("FirstName")?.Value @User.FindFirst("LastName")?.Value
+                                                        </span>
+                                                        <small class="text-muted">  @User.FindFirst("UserType")?.Value</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                               
+                                    <li>
+                                        <a class="dropdown-item" href="~/admin/changepassword">
+                                            <i class="bx bx-cog me-2"></i>
+                                                <span class="align-middle notranslate" data-translate="changepassword">Change Password</span>
+                                              
+                                        </a>
+                                    </li>
+                          
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                            <a id="btnLogout" class="dropdown-item" >
+                                            <i class="bx bx-power-off me-2"></i>
+                                                <span class="align-middle notranslate" data-translate="logout">Log Out</span>
+                                                
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                    </div>
+                </nav>
+                </div>
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+
+
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        @RenderBody()
+                    </div>
+
+                    <!-- / Content -->
+                    <!-- Footer -->
+
+                    <div class="container  region-footer m-none">
+                              
+                                    @*Social media icons*@
+                                    @*  @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/SocialView.cshtml", methodname= "socialmediafooter", id=0 })
+                                    *@
+
+                                    <!--<%-- -----------------------------Home Blog------------------------------------
+                                            share > setup > _socialmediafooter
+                                            Home controller  home.js auto called after 40 seconds in home.js
+                                            --%>-->
+                                    <div id="dvSocialMediaFooterContainer"></div>
+
+                                    @*Regional Settings*@
+                                    @* @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/RegionalSetting.cshtml", methodname= "regionalsetting", id=0 })
+                                    *@
+
+
+
+
+                                    <!--<%-- -----------------------------Regional Setting Footer------------------------------------
+                                            share > setup > _regionalsettingfooter
+                                            Home controller  home.js auto called after 40 seconds in home.js
+                                            --%>-->
+                                    <div id="dvRegionalSettingFooterContainer" class="region-footer"></div>
+                               
+
+                        
+
+                        </div>
+          
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+
+
+
+              
+
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+  
+    </div>
+    <!-- / Layout wrapper -->
+
+
+
+
+   
+
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+
+
+        <input type="hidden" name="hdnlogin" id="hdnlogin" value="@User.FindFirst("USERID")?.Value">
+
+        <input type="hidden" name="hdnloginGUID" id="hdnloginGUID" value="@User.FindFirst("USERGUID")?.Value">
+    }
+
+
+    @*----------------------//All scripts -----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsFooter.cshtml" />
+    <script src="~/js/bootstrap-tagsinput.min.js"></script>
+    <script src="~/admin-assets/js/script.js"></script>
+    <script>
+        function openbar() {
+            var element = document.getElementById("menu");
+            element.classList.add("show_menu");
+        }
+        function closebar() {
+            var element = document.getElementById("menu");
+            element.classList.remove("show_menu");
+        }
+
+    </script>
+   
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+
+
+    @*///-------Credit or subscription-------*@
+    <div id="membershipViewContainer">
+    </div>
+  
+</body>
+</html>

@@ -1,0 +1,48 @@
+.gjs-one-bg {
+    background-color: #f9f9f9 !important;
+}
+
+.gjs-one-color {
+    color: #463a3c
+}
+
+.gjs-one-color-h:hover {
+    color: #463a3c
+}
+
+.gjs-two-bg {
+    background-color: #b9a5a6
+}
+
+.gjs-two-color {
+    color: #656b6d !important;
+}
+
+.gjs-two-color-h:hover {
+    color: #b9a5a6
+}
+
+.gjs-three-bg {
+    background-color: #514f51 !important
+}
+
+.gjs-three-color {
+    color: #804f7b
+}
+
+.gjs-three-color-h:hover {
+    color: #804f7b
+}
+
+.gjs-four-bg {
+    background-color: #d97aa6
+}
+
+.gjs-four-color {
+    color: #545253 !important;
+    font-weight: bold !important;
+}
+
+.gjs-four-color-h:hover {
+    color: #d97aa6
+}

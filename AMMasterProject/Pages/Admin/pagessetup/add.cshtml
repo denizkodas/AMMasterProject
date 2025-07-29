@@ -1,0 +1,260 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.pagessetup.addModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title>Pages Setup</title>
+}
+
+
+<form method="post" >
+    <input asp-for="@Model.pagename.PageNameId" type="hidden" />
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/pagessetup">
+                <i class="bx bx-list-ul me-1"></i>
+                All Pages
+            </a>
+            <a class="nav-link" href="~/admin/pagessetup/add"><i class="bx bx-plus me-1"></i> Add New</a>
+            <a class="nav-link" href="~/admin/pagessetup/category"><i class="bx bx-plus me-1"></i> Category</a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+             @*    <div asp-validation-summary="All"></div> *@
+            <div class="row paddingrf-15">
+
+                <div class="col-md-3 s-bold">
+                     Section
+
+                </div>
+                <div class="col-md-6 checkright no-padding">
+                    <select asp-for="@Model.pagename.Type" >
+                        <option disabled selected>-- Select --</option>
+                        <option value="Both">Both</option> 
+                        <option value="Header">Header</option>
+                        <option value="Footer">Footer</option>
+                    </select>
+
+                        <span asp-validation-for="@Model.pagename.Type" class="required"></span>
+                </div>
+            </div>
+
+            <hr>
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                   Page Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                   
+                      @*  If footer Selected*@
+                      <div class="row">
+                        <div class="form-group col-md-4">
+                            Category
+                                <select asp-for="@Model.pagename.PageCategoryId" asp-items="@Model.listpagecategory" class="form-control">
+                                    <option disabled selected>-- Select --</option>
+                                </select>
+
+                                <span asp-validation-for="@Model.pagename.PageCategoryId" class="required"></span>
+
+                            </div>
+                        <div class="form-group col-md-5">
+                            Add new category if you cant find it.
+                            <a class="btn bg-secondary white-c " href="~/admin/pagessetup/category">Add New Category</a>
+                        </div>
+                      </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            Title
+                                <input type="text" maxlength="50" asp-for="@Model.pagename.Name">
+                                <span asp-validation-for="@Model.pagename.Name" class="required"></span>
+
+                            </div>
+
+                        <div class="form-group col-md-3">
+                            Sort #
+                                <input type="text" min="1" maxlength="100" asp-for="@Model.pagename.Sortnumber">
+                                <span asp-validation-for="@Model.pagename.Sortnumber" class="required"></span>
+
+
+                            </div>
+                     
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <hr>
+
+
+
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                   URL
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                            <input type="checkbox" asp-for="@Model.pagename.IsUrl" checked="@Model.pagename.IsUrl" />
+                            <label id="ispublish" asp-for="@Model.pagename.IsUrl">Is URL</label>
+
+
+
+
+
+                   
+
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to redrict page on specific URL</p>
+
+
+                    </div>
+                    <div class="form-group" id="dvurl" style="display:none">
+                        Add URL
+                            <input type="text"  maxlength="200" asp-for="@Model.pagename.Url">
+
+                            <span asp-validation-for="@Model.pagename.Url" class="required"></span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                  SEO
+                </div>
+
+                <div class="col-md-6 no-padding">
+
+                  
+
+                    <div class="row">
+                        <div class="form-group">
+                            Search engine friendly page name
+                                <input type="text" maxlength="100" asp-for="@Model.pagename.SeoPageName" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelPageName'))">
+                                <span id="characterCountLabelPageName"></span>
+                                <span asp-validation-for="@Model.pagename.SeoPageName" class="required"></span>
+
+                            </div>
+
+                        <div class="form-group">
+                            Meta title
+                               
+                                <input type="text" maxlength="200" asp-for="@Model.pagename.SeoTitle" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetatitle'))">
+                                <span id="characterCountLabelMetatitle"></span>
+                                <span asp-validation-for="@Model.pagename.SeoTitle" class="required"></span>
+
+                            </div>  <div class="form-group">
+                            Meta Keywords
+                                <small>comma seperated values property, zone, classified</small>
+                                <input type="text" maxlength="200" asp-for="@Model.pagename.SeoKeyword" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaKeyword'))">
+                                <span id="characterCountLabelMetaKeyword"></span>
+                                <span asp-validation-for="@Model.pagename.SeoKeyword" class="required"></span>
+                        </div>  <div class="form-group">
+                            Meta Description
+                                <input type="text" maxlength="200" asp-for="@Model.pagename.SeoDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaDescription'))">
+                                <span id="characterCountLabelMetaDescription"></span>
+                                <span asp-validation-for="@Model.pagename.SeoDescription" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+<hr/>
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+
+
+                            <input type="checkbox" asp-for="@Model.pagename.IsPublish" checked="@Model.pagename.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.pagename.IsPublish">Is Publish</label>
+
+
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this page</p>
+
+
+                    </div>
+
+             
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6 "></div>
+                <div class="col-md-6 no-padding">
+                <button>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        // Show/hide the "Add URL" div based on the initial checked state of the checkbox
+        if ($('#pagename_IsUrl').is(':checked')) {
+            $('#dvurl').show();
+        } else {
+            $('#dvurl').hide();
+        }
+
+        // Handle the checkbox change event
+        $('#pagename_IsUrl').change(function () {
+            if ($(this).is(':checked')) {
+                $('#dvurl').show();
+            } else {
+                $('#dvurl').hide();
+            }
+        });
+    });
+
+  
+    $(document).ready(function () {
+        $('#pagename_Type').on('change', function () {
+            if ($(this).val() === 'Header') {
+                $('#pagename_PageCategoryId').prop('disabled', true);
+            } else {
+                $('#pagename_PageCategoryId').prop('disabled', false);
+            }
+        });
+
+        // Trigger the change event on page load
+        $('#pagename_Type').change();
+    });
+
+
+    $(document).ready(function () {
+        $('#pagename_Name').keyup(function () {
+            var title = $(this).val();
+            var seoPageName = generateSeoFriendlyText(title);
+            $('#pagename_SeoPageName').val(seoPageName);
+        });
+    });
+</script>

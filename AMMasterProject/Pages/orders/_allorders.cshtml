@@ -1,0 +1,230 @@
+﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.Helpers
+@model List<OrderViewModel>
+    
+@{
+
+    
+    
+}
+
+
+<div>
+        @if (Model != null && Model.Count > 0)
+        {
+        var invoiceurl = "";
+
+
+
+        var loginid = @User.FindFirst("USERID")?.Value;
+        var buyerId = @Model != null ? @Model.FirstOrDefault()?.BuyerID : 0;
+
+        if (int.Parse(loginid) == int.Parse(buyerId.ToString()))
+        {
+            invoiceurl = "/user/ItemInvoice";
+        }
+        else
+        {
+            invoiceurl = "/orders/orderdetail";
+        }
+            
+                @foreach (var invoiceGroup in Model.GroupBy(item => item.InvoiceNumber))
+                
+                
+                {
+                    var invoiceNumber = invoiceGroup.Key;
+                    var itemsForInvoice = invoiceGroup.ToList();
+            decimal invoiceTotal = itemsForInvoice.Sum(item => item.SummaryOrderMetaData.GrandTotal) - itemsForInvoice.Sum(item => item.SummaryOrderMetaData.CouponAmount);
+
+            <div class="all-orders">
+
+
+                <a href="@invoiceurl?invoicenumber=@invoiceNumber">
+                
+                <div class="order-id-detail">
+                      <span class="h5">
+                            <span class="notranslate" data-translate="orderid">Order ID</span>:<span class="blue-c s-bold">@invoiceNumber</span>
+                        </span>
+                    <span class="small grey-c order-date">
+                        <span class="m-none">-</span>
+                            <span class="notranslate" data-translate="placedon">Placed On</span>:
+                        
+                        
+
+                            <span class="setdateformat"> @itemsForInvoice[0].OrderDate </span>
+                            <span class="settimeformat"> @itemsForInvoice[0].OrderDate </span>
+                       
+                        </span>
+                        <span class="small grey-c order-item">
+                            <span class="m-none">-</span>
+                            <span class="notranslate" data-translate="item">Item</span>:
+                            <span class="badge grey-bg">@itemsForInvoice.Count()</span> 
+                        </span>
+
+                    <span class="total-amount">
+                            <span class="notranslate" data-translate="total">Total</span>:
+                          @itemsForInvoice[0].ItemDetailMetaData.paymentModel.ConversionCurrency
+                            <span>@invoiceTotal.ToString("N2")</span>
+                        </span>
+                    <span  class="theme-c bold small marginrf-15 float-end order-detail-btn">
+                            <span class="m-none" data-translate="orderdetails">
+                            Order Details </span>
+                            <i class="fa fa-chevron-right small" aria-hidden="true"></i>
+                        </span>
+
+                    </div>
+                </a>
+                <div class="order-id-list"> 
+                    @foreach (var item in itemsForInvoice)
+                    {
+                        <div class="padding5 shopping-cart">
+                            <div class="row">
+                                <div class="col-md-1 col-xs-2 no-padding">
+                                    <a target="_blank" href="@item.ItemDetailMetaData.basicModel.ItemURL">
+                                        <img src="@item.ItemDetailMetaData.basicModel.ItemImage">
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                
+                                        <a class="store-name" target="_blank" href="/user/@item.SellerViewModel.BusinessUrlpath">
+
+                                        <span class="notranslate" data-translate="store">Store</span>:
+                                            
+                                        @item.SellerViewModel.BusinessName
+                                        </a>
+                                 <br />
+                                    <a target="_blank" href="@item.ItemDetailMetaData.basicModel.ItemURL">
+                                    <p class="p-name no-margin">
+                                       
+                                        @item.ItemDetailMetaData.basicModel.Name
+                                       
+                                    </p>
+                                    </a>
+                                    @if (item.ItemDetailMetaData.variationModel.Count> 0)
+                                    {
+                                      
+                                        @foreach (var variationList in item.ItemDetailMetaData.variationModel)
+                                        {
+                                               <span class="badge l-grey-bg black-c m-bold">
+                                                @variationList.VariationName
+                                            </span>
+                                        }
+                                        <br />
+                                    }
+                                    
+                                    <span class="grey-c">
+                                        <span class="notranslate" data-translate="qty">Qty</span>:
+                                        
+                                        
+                                        
+                                        @item.ItemDetailMetaData.basicModel.Quantity </span> -
+                                    <span>
+                                        @item.ItemDetailMetaData.paymentModel.ConversionCurrency
+
+
+                                        @{
+                                            var grandtotal = @item.SummaryOrderMetaData.GrandTotal - item.SummaryOrderMetaData.CouponAmount;
+                                        }
+
+                                        @grandtotal.ToString("N2")
+                                        
+                                       @*  @item.ItemDetailMetaData.ConversionAmount.ToString("N2") *@
+                                    </span>
+                                    <br />
+
+
+
+
+@* 
+                                    <p class="no-margin grey-c small l-bold">
+                                       
+                                        @if (@item.SummaryOrderMetaData.ShippingCost > 0)
+                                        {
+                                            <span>+ Shipping:</span>
+                                            <span>  @item.SummaryOrderMetaData.Currency</span>
+                                            <span>@item.SummaryOrderMetaData.ShippingQtyCost.ToString("N2")</span>
+
+                                        }
+                                        else
+                                        {
+                                            <span class="green-c">Free Shipping</span>
+                                        }
+
+                                    </p> *@
+
+
+@* 
+                                    @if (item.SummaryOrderMetaData.ChargesTotal > 0)
+                                    {
+
+
+                                        @foreach (var chargeList in item.ItemDetailMetaData.chargesModel)
+                                        {
+
+                                            var chargelistQyty = @chargeList.ConversionAmount * item.ItemDetailMetaData.basicModel.Quantity;
+                                            <span class="no-margin grey-c small l-bold">
+                                                + @chargeList.ChargesName @item.SummaryOrderMetaData.Currency @chargelistQyty.ToString("N2")
+                                            </span> <br />
+
+
+                                        }
+
+                                    } *@
+
+                                @*     <span class="bold" id="subtotalSpan_@item.OrderId">
+                                        Sub Total:
+
+                                        <span class="red-c ">
+                                            @item.SummaryOrderMetaData.Currency
+                                        </span>
+                                        <span class="red-c " id="subtotalValue_@item.OrderId">@item.SummaryOrderMetaData.GrandTotal.ToString("N2")</span>
+                                    </span> *@
+
+                                   @*  <div> @item.ItemDetailMetaData.Instruction </div>
+                                  *@
+                                </div>
+                                <div class="col-md-3 right padding15">
+                                <span class="badge white-smoke-bg l-bold cap black-c">
+                                    @item.OrderProcessStatus
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                     
+                    }
+              </div>
+            </div>
+          }
+            
+        }
+
+
+
+
+else
+
+{
+
+    <div class="emptydata">
+            <span class="notranslate" data-translate="emptydata">
+
+                no record found 
+            </span>
+   
+        </div>
+}
+ 
+ 
+
+
+
+
+
+
+</div>
+
+
+
+

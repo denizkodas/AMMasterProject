@@ -1,0 +1,275 @@
+﻿@page "/listing/create/video/{ID}"
+@model AMMasterProject.Pages.Listing.create.videoModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<form method="post" enctype="multipart/form-data">
+
+
+
+
+<div>
+
+    <div class="row large-form">
+
+      
+
+        <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+        <div class="col-md-10 l-tabs-content ">
+                <a class="skip-btn" href="~/listing/create/discount/@Model.productguid">
+                    <span class="notranslate" data-translate="skip">
+
+                        Skip
+                    </span>
+                </a>
+            <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="video">
+
+                     Video
+                    </span>
+            </h5>
+
+            <div class="white-bg paddingtb">
+                    <div class="row paddingrf-15 no-margin form">
+                    <div class=" col-md-3 s-bold">
+                            <span class="notranslate" data-translate="videodetails">
+
+                                Video Details  
+                            </span>
+                       
+                    </div>
+                    <div class=" col-md-9 checkright no-padding">
+
+                            <div class="row ">
+                        <div class="col-md-6">
+
+                      
+
+                        <div class="form-group">
+                                        <span class="notranslate" data-translate="provider">
+
+                                            Provider 
+                                        </span>
+                            
+                                <select asp-for="@Model.product.Provider">
+
+                                    <option disabled selected>--Select--</option>
+                                    <option value="html5">HTML5 Source</option>
+                                    <option value="youtube">Youtube</option>
+                                    <option value="vimeo">Vimeo</option>
+
+                                </select>
+                                <span asp-validation-for="@Model.product.Provider" class="required"></span>
+                            </div>
+                   
+                           
+
+                          
+
+                        <div class="form-group">
+                                        <span class="notranslate" data-translate="sourceurl">
+
+                                            ID/URL Source 
+                                        </span>
+
+                                        
+                            <input type="text" asp-for="@Model.product.Source">
+                          
+
+                                <span asp-validation-for="@Model.product.Source" class="required"></span>
+
+
+                        </div>
+
+                        <div class="form-group">
+                                        <span class="notranslate" data-translate="poster">
+
+                                            Poster  
+                                        </span>
+
+                             <br/>
+                                <img id="posterimage" class="listing-img-preview" style="display:@(Model.product.Poster == null ? "none" : "block")" src="@(Model.product.Poster != null ? Model.product.Poster : "")">
+                                <label class="file-upload ">
+                                    <span class="btn btn-default  l-grey-bg">
+                                                <span class="notranslate" data-translate="selectfile">
+
+                                                    Select File  
+                                                </span>
+                                        
+                                    </span>
+                                    <input type="file" id="fileInput" onchange="uploadFile()" />
+
+                                    <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                </label>
+
+
+                                <span id="spanfilename"></span>
+                                <input type="hidden" asp-for="@Model.product.Poster" />
+
+                                <span id="validationImage" asp-validation-for="@Model.product.Poster" class="required"></span>
+
+
+                        </div>
+                        <div class="form-group">
+                                        <button type="submit">
+                                            <span class="notranslate" data-translate="saveandcontinue">
+
+                                                Save and Continue
+                                            </span>
+                            </button>
+                              
+                            </div>
+
+                                </div>
+                            </div>
+                       
+                        </div>
+
+
+
+
+
+                    </div> <hr/>  
+                    <div class="row l-video no-margin">
+                      
+                           
+
+
+
+                            @if (Model.listproduct != null && Model.listproduct.Count > 0)
+                            {
+                                <h5>
+                                <span class="notranslate" data-translate="videolist">
+
+                                   Video List
+                                </span>
+                                    
+                                </h5>
+
+
+                             
+                                    @foreach (var item in Model.listproduct)
+                                    {
+                                        <div class="col-md-4  padding5">
+                                    <div class="border padding5  radius">
+                                   
+                                     
+                                               
+                                      
+                                            <iframe src="@item.URL" frameborder="0" ></iframe>
+                                       
+                                                <p>
+                                                    @item.Provider
+                                                <button formnovalidate class="btn red-c btn-xs float-end margin5" asp-page-handler="Delete" asp-route-videoid="@item.ID" onclick="return confirm('Are you sure you want to delete?')"><i class="bx bx-trash"></i> Delete</button>
+                                    </p>
+                                    </div>
+                                </div>
+                                     
+
+                                      
+                                    }
+                                  
+                            
+
+                              
+                            }
+                        
+                       
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+</form>
+
+
+<script>
+    function uploadFile() {
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png)/)) {
+            $('#spanfilename').text("Only jpeg or png files are allowed.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            $("#fileProgress").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                $('#spanfilename').text(fileName);
+                $("#posterimage").show();
+                $("#posterimage").attr("src", data.fileLink);
+                $('#product_Poster').val(data.fileLink);
+
+                $('#validationImage').text("");
+
+
+                $("#fileProgress").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+    // jQuery
+    $(document).ready(function () {
+        // Function to set the placeholder based on the selected value
+        function setPlaceholder(selectedValue) {
+            var placeholder = '';
+
+            if (selectedValue === 'html5') {
+                placeholder = 'abc.com/yourvideo.mp4';
+            } else if (selectedValue === 'youtube') {
+                placeholder = 'e.g. jNQXAC91vrW';
+            } else if (selectedValue === 'vimeo') {
+                placeholder = 'e.g. 123456789';
+            }
+
+            $('#product_Source').attr('placeholder', placeholder);
+        }
+
+        // Bind the change event handler to the dropdown
+        $('#product_Provider').change(function () {
+            var selectedValue = $(this).val();
+            setPlaceholder(selectedValue);
+        });
+
+        // Trigger the change event on page load
+        var selectedValue = $('#product_Provider').val();
+        setPlaceholder(selectedValue);
+    });
+
+
+
+</script>
+

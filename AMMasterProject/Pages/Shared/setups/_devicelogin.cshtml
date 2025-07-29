@@ -1,0 +1,82 @@
+﻿@using AMMasterProject.ViewModel
+@model UserDeviceViewModel
+<div class="connected-device">
+    <h4>
+        <span class="notranslate" data-translate="connecteddevice"> Connected Device</span>
+       
+    </h4>
+
+    @if (Model != null)
+    {
+        @foreach (var item in Model.ListUserDevice)
+        {
+
+
+            <div class="border row no-margin padding15">
+                <div class="col-md-1">
+                    @if (item.DeviceType.ToLower() == "tablet" || item.DeviceType.ToLower() == "Mobile")
+                    {
+
+                        <img src="~/images/mobiledevice.png" />
+                    }
+                    else if (item.DeviceType.ToLower() == "desktop")
+                    {
+                        <img src="~/images/laptopdevice.png" />
+
+                    }
+                    else
+                    {
+                        <img src="~/images/laptopdevice.png" />
+                    }
+
+
+
+                </div>
+                <div class="col-md-6">
+                    <strong class="grey-c">
+                        <span id="deviceBrowser">@item.Browser</span>
+                        ,    <span id="deviceOperatingSystem">@item.OperatingSystem</span>
+                        ,    <span id="devicedevicetype" class="cap">@item.DeviceType</span>
+                              <span id="devicebrand" class="cap">@item.Brand</span>
+                              <span id="devicemodel" class="cap">@item.Model</span>
+                      
+                    </strong> <br />
+                    <p class="grey-c no-margin">
+                        <span id="deviceIp">@item.IP</span>
+                    </p>
+                   
+                    <p class="grey-c no-margin">
+                        <span id="deviceIp">@item.DateTime</span>
+                    </p>
+                </div>
+                <div class="col-md-5 right">
+                    @if(item.DeviceType==Model.UserAgent.DeviceType &&
+                    item.IP ==Model.UserAgent.IP &&
+                    item.Browser ==Model.UserAgent.Browser && 
+                    item.OperatingSystem ==Model.UserAgent.OperatingSystem)
+                    {
+                        <span id="deviceAction" class="green-c bold btn small notranslate" data-translate="thisdevice">This Device</span>
+                    }
+                    else
+                    {
+                        <a class="l-grey-bg grey-c btn radius" onclick="devicelogout('@item.Browser', '@item.BrowserVersion', '@item.OperatingSystem', '@item.DeviceType', '@item.IP', event)">
+                            <span class="notranslate" data-translate="signout">Sign out</span>
+                        </a>
+                    }
+
+                
+                   
+                </div>
+            </div>
+        }
+    }
+
+</div>
+<script>
+
+
+
+
+
+
+</script>

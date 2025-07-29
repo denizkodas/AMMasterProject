@@ -1,0 +1,178 @@
+﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.Helpers
+
+@model List<CreditPurchaseViewModel>
+
+
+<h3 class="paddingtb-15 cap m-none">
+    <span data-translate="credit">Credit</span>
+    <span data-translate="history"> History</span>
+
+    <a class="btn theme-bg f-theme float-end" href="~/credits">
+        <span class="notranslate" data-translate="buycredits">Buy Credits</span>
+
+    </a>
+</h3>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="table-responsive border">
+        <table class="table border billing" id="ListingLoad1desc">
+            <thead class="white-smoke-bg">
+                <tr class="">
+                    <th >
+                        <span class="notranslate" data-translate="date">Date</span>
+                    </th>
+                    <th>
+                        <span class="notranslate" data-translate="details">Details</span>
+                    </th>
+                    <th>
+                        <span class="notranslate" data-translate="transaction">Transaction</span>
+                    </th>
+                    
+                    <th style="width:100px;" class="center">
+                        <span class="notranslate" data-translate="credits">Credits</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    var ItemMeta = item.ItemMetaData;
+                   @*  var ItemUsageMeta = item.ItemUsageMetaData; *@
+                    var PaymentMeta = item.PaymentMetaData;
+
+                    <tr>
+                        <td>
+                            <span class="setdateformat">
+                                @item.PurchaseDate
+                            </span>
+
+                            <br />
+
+                            <span class="settimeformat">
+                                @item.PurchaseDate
+                            </span>
+                        
+                        </td>
+                        <td style="width:500px">
+
+
+
+                          
+
+
+                            @if (item.TransactionType == "used")
+                            {
+                                @* If used*@
+                                <p >
+                                    @*Your credit has been utilized to access and view the seller's profile*@
+
+                                    @ItemMeta.basicModel.Description
+
+                                    <a target="_blank" href="@ItemMeta.basicModel.ItemURL"> <span class="notranslate" data-translate="viewdetails">View details</span> </a>
+                                </p>
+                            }
+                            else if (item.TransactionType == "free")
+                            {
+                                @* If Free*@
+                                <p>
+                                    <span class="notranslate" data-translate="youhavereceived">
+                                        You have received
+                                    </span>
+                                    <span>
+                                        @ItemMeta.basicModel.Name,
+                                    </span>
+                                    @* If expiry*@
+                                    @if (item.IsExpiry == true)
+                                    {
+                                        <span class="notranslate" data-translate="whichwillremainvaliduntil">
+                                            which will remain valid until
+                                        </span>
+                                             <span>
+
+                                                
+                                            @GlobalHelper.DateFormat(@item.ExiryDate),
+                                        </span>
+                                        
+                                    }
+                                    else
+                                    {@* If lifetime*@
+                                        <span class="notranslate" data-translate="Ithasalifetimeduration">
+                                           It has a lifetime duration.
+                                        </span>
+                                    }
+
+                                </p>
+
+                            }
+                            else
+                            {
+
+                                @* If purchased*@
+                                <p>
+                                    <span class="notranslate" data-translate="theinvoicewithnumber"> The invoice with number </span>
+                                    @PaymentMeta.InvoiceNumber
+                                    <span class="notranslate" data-translate="isforthe">  is for the  </span>
+                                    @ItemMeta.basicModel.Name package,
+                                    <span class="notranslate" data-translate="withanamountof">   with an amount of   </span>
+                                   
+                                    @PaymentMeta.PaidCurrency @PaymentMeta.PaidAmount,
+                                    <span class="notranslate" data-translate="andapaymentmethodof">   and a payment method of    </span>
+                                    
+                                    @PaymentMeta.PaymentMethod.
+
+                                    @* If expiry*@
+                                    @if (item.IsExpiry == true)
+                                    {
+                                        <span class="notranslate" data-translate="theinvoiceissettoexpireon">
+                                            The invoice is set to expire on
+                                        </span> 
+                                        <span>@GlobalHelper.DateFormat(@item.ExiryDate).</span>
+                                        
+                                    }
+                                    else
+                                    {@* If unlimited*@
+                                        <span class="notranslate" data-translate="ithasalifetimeduration">
+                                            It has a lifetime duration.
+                                        </span>
+                                    }
+
+                                </p>
+
+
+
+                            }
+
+
+
+
+
+
+                        </td>
+                        <td>@item.TransactionType.ToString().ToUpper()</td>   @*//free purchased used*@
+                       
+                        <td class="center s-bold">
+                            @if (ItemMeta.creditModel.NoOfCredit < 0)
+                            {
+                                <span class="red-c">@ItemMeta.creditModel.NoOfCredit</span>
+                            }
+                            else
+                            {
+                                <span class="grey-c">@ItemMeta.creditModel.NoOfCredit</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="emptydata">
+        <span class="notranslate" data-translate="creditemptydata">
+            No Credits Details Found
+        </span>
+    </div>
+}

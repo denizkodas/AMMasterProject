@@ -1,0 +1,457 @@
+﻿@{
+
+    bool ismultivendor = bool.Parse(@Context.Items["IsMultiVendor"].ToString());
+}
+
+
+<link href="~/css/grocerymart/theme-grocerymart.css" rel="stylesheet" />
+<!--<%-- ------------------------Mobile view heading and back btn------------------------------- --%>-->
+
+<div class="top-menu">
+    <span id="lblpagetitle" class="title-heading">@ViewData["Title"]</span>
+
+    <!--<%-- mobile back btn --%>-->
+    <a id="lnkback" class="back-btn">
+        <svg viewBox="0 0 32 32">
+            <svg viewBox="0 0 32 32">
+
+                <g data-name="Layer 2" id="Layer_2"><path d="M20,25a1,1,0,0,1-.71-.29l-8-8a1,1,0,0,1,0-1.42l8-8a1,1,0,1,1,1.42,1.42L13.41,16l7.3,7.29a1,1,0,0,1,0,1.42A1,1,0,0,1,20,25Z"></path></g>
+                <path d="M39.3756,48.0022l30.47-25.39a6.0035,6.0035,0,0,0-7.6878-9.223L26.1563,43.3906a6.0092,6.0092,0,0,0,0,9.2231L62.1578,82.615a6.0035,6.0035,0,0,0,7.6878-9.2231Z"></path>
+
+            </svg>
+        </svg>
+    </a>
+
+
+
+</div>
+
+
+
+
+
+<div class="header-cover">
+    <!--<%-- ------------------------banner------------------------------- --%>-->
+    <div class="campaign-topbanner m-none">
+        <div id="dvadtop">
+        </div>
+    </div>
+
+    <!--<%-- ----------------------------top header------------------------------------------------------ --%>-->
+    <div class="navbar-collapse collapse top-header  ">
+        <div class="container">
+
+          
+            <ul class="customer-menu">
+
+
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+
+                    var profileIdClaim = User.FindFirst("UserID");
+
+                    int profileId = Convert.ToInt32(profileIdClaim.Value);
+
+                    @if (ismultivendor == true)
+                    {
+                        @*  inbox *@
+                        <li class="inbox">
+                            <a href="/inbox">
+                                <svg style="enable-background:new 0 0 128 128;" version="1.1" viewBox="0 0 128 128" xml:space="preserve">
+                                    <path class="st0" d="M112.8,31.8c-0.7-1.2-1.7-2.1-2.9-2.8h0c-1.1-0.6-2.4-1-3.8-1H22c-1.4,0-2.6,0.3-3.8,1h0  c-1.2,0.6-2.2,1.6-2.9,2.7C14.4,32.9,14,34.4,14,36v56c0,1.5,0.4,2.9,1.1,4.1c0.7,1.2,1.6,2.1,2.8,2.8c1.2,0.7,2.6,1.1,4.1,1.1h84  c1.5,0,2.9-0.4,4.1-1.1c1.2-0.7,2.1-1.6,2.8-2.8c0.7-1.2,1.1-2.6,1.1-4.1V36C114,34.4,113.6,33,112.8,31.8z M106,32  c0.1,0,0.2,0,0.3,0L69.7,64c-2.6,2.2-6.9,2.3-9.6,0.1L21.9,32H106z M85.6,68.8l-2.8,2.8L107,95.8c-0.3,0.1-0.7,0.2-1,0.2H22  c-0.4,0-0.7,0-1-0.2l24.3-24.2l-2.8-2.8L18.2,93C18,92.7,18,92.4,18,92V36c0-0.6,0.2-1.2,0.4-1.7l39.2,32.9c2,1.7,4.8,2.8,7.4,2.8  c2.7,0,5.3-1.2,7.4-3l37.3-32.6c0.2,0.5,0.3,1,0.3,1.6v56c0,0.4,0,0.7-0.2,1L85.6,68.8z" id="XMLID_46_"></path></svg>
+
+
+
+                                <span class="notranslate" data-translate="inbox">Inbox</span>
+                                @*   <span class="i-notify"></span> *@
+
+                               @*  @await Component.InvokeAsync("Notification", new { viewName = "/Pages/Inbox/InboxCounter.cshtml", methodname= "inboxactivecounter", profielid=profileId })
+ *@
+
+                                @*---------------------------------------Header links --------------------------------------------------------
+                        --------------------------------shared > Setups > Headerlinks  ----------------------
+                        Home controller  home.js auto called in 10 seconds in home.js
+
+                        *@
+
+
+
+
+                                <div id="dvInboxCounterViewContainer"></div>
+                            </a>
+                        </li>
+
+                    }
+
+
+                }
+
+
+               
+
+
+                <li id="dvmenucustomers" style="display:none">
+                </li>
+
+
+            </ul>
+
+
+
+
+
+            @*---------------------------------------Header links --------------------------------------------------------
+            --------------------------------shared > Setups > Headerlinks  ----------------------
+            Home controller  home.js auto called in 3 seconds in home.js
+
+            *@
+
+
+
+            <div id="dvHeaderLinkViewContainer"></div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <!--<%-- ------------------------main header------------------------------- --%>-->
+
+    <div class="main-header">
+
+        <div class="container">
+
+
+            <!--<%-- ---------Website Logo------------- --%>-->
+            <div class="web-logo">
+                <a href="~/">
+                    <div class="logo">
+
+                        <img src="@Context.Items["CompanyLogo"]" alt="@Context.Items["CompanyName"]">
+
+                    </div>
+                </a>
+            </div>
+
+
+            <!--<%-- --------------------Mobile view footer------------------------- --%>-->
+
+            <div class="bottom-fix">
+                <div class="mobile-footer-links">
+                    <!--<%-- home btn--%>-->
+
+                    <a class="m-link" href="/Index">
+
+
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17.8913288,10 L11.8900003,3.99867157 L5.88867192,10 L5.89001465,10 L5.89001465,20 L17.8900146,20 L17.8900146,10 L17.8913288,10 Z M19.8900146,11.9986859 L19.8900146,20 C19.8900146,21.1045695 18.9945841,22 17.8900146,22 L5.89001465,22 C4.78544515,22 3.89001465,21.1045695 3.89001465,20 L3.89001465,11.9986573 L2.41319817,13.4754737 L1,12.0622756 L10.4769858,2.5852898 C11.2573722,1.8049034 12.5226285,1.8049034 13.3030149,2.5852898 L22.7800007,12.0622756 L21.3668025,13.4754737 L19.8900146,11.9986859 Z" fill-rule="evenodd" />
+
+                        </svg>
+                        <span class="notranslate" data-translate="home">Home</span>
+                    </a>
+                  
+                    <!--<%-- all categories --%>-->
+                    <a class="m-link mobile-search" href="~/categories">
+
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" /><line x1="21" x2="16.65" y1="21" y2="16.65" /></svg>
+                        <span class="notranslate" data-translate="search">Search</span>
+                    </a>
+
+
+                    <!--<%-- usermenu web--%>-->
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+
+
+
+                        @*   User menu *@
+
+                        @*   User with login *@
+                        <div class="dropdown dropdown_hover customer-menu m-none">
+                            <a class="dropdown-toggle" id="dropdownMenu1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg id="Layer_1" style="enable-background:new 0 0 58 70;" version="1.1" viewBox="0 0 58 70" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title /><g id="Layer_2"><g id="Layer_3"><path d="M27.1,22.6c5,0,9-4,9-9s-4-9-9-9s-9,4-9,9S22.1,22.6,27.1,22.6z M27.1,7.5c3.3,0,6,2.7,6,6s-2.7,6-6,6s-6-2.7-6-6    S23.7,7.5,27.1,7.5z" /><path d="M52.3,45.9C49,32,35.1,23.3,21.2,26.5c0,0,0,0,0,0c-6.7,1.6-12.5,5.7-16.1,11.6l2.6,1.6c6.7-10.7,20.8-14,31.5-7.4    c5.2,3.2,8.8,8.3,10.2,14.2c1.4,5.9,0.4,12.1-2.8,17.3l2.6,1.6C52.7,59.6,53.8,52.6,52.3,45.9z" /></g></g></svg>
+                                <span class="notranslate" data-translate="account">Account</span>
+                                <svg height="512px" class="cart-down" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="396.6,160 416,180.7 256,352 96,180.7 115.3,160 256,310.5 " /></svg>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li class="padding15 border-bottom">
+
+                                    <h4 class="userfullname no-margin notranslate">
+                                        @User.FindFirst("FirstName")?.Value @User.FindFirst("LastName")?.Value
+                                    </h4>
+
+                                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                    {
+                                        var profileIdClaim = User.FindFirst("UserID");
+                                        if (profileIdClaim != null)
+                                        {
+                                            int profileId = Convert.ToInt32(profileIdClaim.Value);
+                                            @await Component.InvokeAsync("Credit", new { viewName = "/Pages/Subscriptions/SubscriptionActive.cshtml", profileid = profileId, type="activesubscription" })
+                                            ;
+
+
+                                        }
+                                    }
+
+
+                                </li>
+                                <li>
+                                    <a href="../user" title="Overview">
+                                        <svg enable-background="new 0 0 48 48" height="48px" id="Layer_1" version="1.1" viewBox="0 0 48 48" width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path clip-rule="evenodd" d="M44.9,32.971c0,0.011,0.006,0.019,0.006,0.029c0,0.005-0.003,0.01-0.003,0.016  c0.001,0.005,0.003,0.01,0.003,0.016c0,0.552-0.447,1-1,1C43.921,34.031,35,34,35,34c-0.553,0-1-0.448-1-1c0-0.553,0.447-1,1-1  h7.946C42.965,31.666,43,31.338,43,31c0-10.493-8.507-19-19-19S5,20.507,5,31c0,0.338,0.035,0.666,0.053,1H13c0.553,0,1,0.447,1,1  c0,0.552-0.447,1-1,1c0,0-8.92,0.031-8.906,0.031c-0.553,0-1-0.448-1-1c0-0.006,0.002-0.011,0.003-0.016  c0-0.006-0.003-0.011-0.003-0.016c0-0.011,0.006-0.019,0.006-0.028C3.039,32.321,3,31.665,3,31c0-11.599,9.402-21,21-21  s21,9.401,21,21C45,31.665,44.961,32.321,44.9,32.971z M17.523,21.128c0.393-0.216,0.865-0.144,1.189,0.133l-0.05-0.083  c8.774,6.42,10.577,9.373,10.61,9.428c1.433,2.357,0.581,5.371-1.899,6.731s-5.653,0.553-7.085-1.804  c-0.035-0.053-1.824-3.014-3.291-13.442l0.051,0.082C16.959,21.769,17.131,21.343,17.523,21.128z M22.086,34.549  c0.555,0.911,1.589,1.478,2.699,1.478c0.542,0,1.079-0.137,1.552-0.397c0.72-0.395,1.235-1.031,1.45-1.794  c0.216-0.764,0.105-1.56-0.303-2.232c-0.017-0.025-1.572-2.386-8.062-7.348C20.703,32.071,22.075,34.529,22.086,34.549z" fill-rule="evenodd" /></svg>
+
+                                        <span class="notranslate" data-translate="overview"> Overview</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="~/user/profile">
+                                        <svg viewBox="0 0 128 128">
+                                            <path d="M64.281,84.291c-15.54,0-28.184-12.643-28.184-28.184V42.196c0-15.542,12.644-28.186,28.184-28.186  c15.542,0,28.186,12.644,28.186,28.186v13.911C92.467,71.648,79.823,84.291,64.281,84.291z M64.281,18.01  c-13.335,0-24.184,10.85-24.184,24.186v13.911c0,13.334,10.849,24.184,24.184,24.184c13.336,0,24.186-10.85,24.186-24.184V42.196  C88.467,28.86,77.617,18.01,64.281,18.01z"></path>
+                                            <path d="M102.332,114.01h-76.51c-6.518,0-11.819-5.303-11.819-11.82v-8.734c0-3.857,1.953-9.027,11.26-11.738l11.443-3.168  c1.067-0.291,2.167,0.33,2.461,1.395s-0.33,2.166-1.395,2.461l-11.417,3.16c-8.353,2.434-8.353,6.541-8.353,7.891v8.734  c0,4.313,3.508,7.82,7.819,7.82h76.51c4.312,0,7.819-3.508,7.819-7.82v-8.734c0-3.643-2.816-6.299-8.372-7.896l-10.892-3.045  c-1.064-0.297-1.686-1.4-1.388-2.465c0.298-1.063,1.398-1.689,2.464-1.387l10.906,3.049c9.326,2.682,11.281,7.867,11.281,11.744  v8.734C114.151,108.707,108.85,114.01,102.332,114.01z"></path>
+                                        </svg>  <span class="notranslate" data-translate="myprofile">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/orders">
+                                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title /><g id="Order_history"><path d="M251.2305,448H70.7735a150.4432,150.4432,0,0,0,32.2656-93.5391V64H381.4336V217.1719a8,8,0,0,0,16,0V56a7.9979,7.9979,0,0,0-8-8H95.0391a7.9979,7.9979,0,0,0-8,8V354.4609a134.7126,134.7126,0,0,1-39.711,95.8829A7.9993,7.9993,0,0,0,52.9844,464H251.2305a8,8,0,0,0,0-16Z" /><path d="M333.9961,148.7656h-183.52a8,8,0,0,0,0,16h183.52a8,8,0,0,0,0-16Z" /><path d="M341.9961,210.9688a7.9979,7.9979,0,0,0-8-8h-183.52a8,8,0,1,0,0,16h183.52A7.9979,7.9979,0,0,0,341.9961,210.9688Z" /><path d="M262.2305,265.1719a7.9979,7.9979,0,0,0-8-8H150.4766a8,8,0,0,0,0,16H254.2305A7.9979,7.9979,0,0,0,262.2305,265.1719Z" /><path d="M150.4766,311.375a8,8,0,1,0,0,16h65.2539a8,8,0,0,0,0-16Z" /><path d="M436.7266,287.4609A103.32,103.32,0,0,0,261.7905,342.873l-6.3569-6.3574a7.9991,7.9991,0,0,0-11.3125,11.3125L262.53,366.2363a8.026,8.026,0,0,0,11.3232,0l18.4126-18.4082a7.9991,7.9991,0,0,0-11.3125-11.3125l-1.8169,1.8164a87.3378,87.3378,0,1,1,22.6568,84.0664,7.9991,7.9991,0,0,0-11.3125,11.3125,103.413,103.413,0,0,0,146.2461-146.25Z" /><path d="M363.6055,291.32a7.9979,7.9979,0,0,0-8,8v61.2656a8.115,8.115,0,0,0,2.3506,5.6641l28.9931,28.9922A7.9991,7.9991,0,0,0,398.2617,383.93l-26.6562-26.6563V299.32A7.9979,7.9979,0,0,0,363.6055,291.32Z" /></g></svg>
+
+                                        <span class="notranslate" data-translate="myorders">My Orders</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/user/wishlist">
+                                        <svg viewBox="0 0 128 128">
+                                            <path d="M64.007,113.986c-0.469,0-0.938-0.164-1.313-0.492c-1.625-1.416-39.874-34.947-49.605-60.949  c-1.496-3.46-2.255-7.137-2.255-10.929c0-15.21,12.375-27.585,27.586-27.585c11.604,0,21.558,7.201,25.627,17.369  c4.116-10.066,14.019-17.177,25.549-17.177c15.212,0,27.588,12.374,27.588,27.585c0,0.549-0.021,1.093-0.053,1.635  c-0.085,24.652-49.694,68.207-51.809,70.051C64.945,113.822,64.476,113.986,64.007,113.986z M38.419,18.031  c-13.005,0-23.586,10.581-23.586,23.585c0,3.258,0.654,6.415,1.944,9.384c0.015,0.032,0.027,0.065,0.04,0.098  c8.369,22.436,40.298,52.006,47.189,58.211c7.947-7.148,49.123-45.193,49.123-65.929c0-0.042,0.001-0.083,0.004-0.124  c0.029-0.479,0.049-0.962,0.049-1.448c0-13.005-10.581-23.585-23.588-23.585S66.007,28.803,66.007,41.808  c0,0.118,0.005,0.233,0.009,0.35l0.01,0.3c0.011,0.539-0.194,1.058-0.571,1.442c-0.754,0.771-2.132,0.768-2.884-0.006  c-0.376-0.388-0.6-0.912-0.583-1.452l0.006-0.184c0.007-0.214,0.014-0.427,0.014-0.641C62.007,28.611,51.426,18.031,38.419,18.031z"></path>
+                                        </svg>
+                                        <span class="notranslate" data-translate="wishlist">Wishlist</span>
+                                    </a>
+                                </li>
+                          
+                           
+                                <li>
+                                    <a href="~/user/billing">
+                                        <svg viewBox="0 0 512 512"><title /><g id="Receipt"><path d="M273.5488,234.5911h-58.75a8,8,0,0,1,0-16h58.75a15.6484,15.6484,0,1,0,0-31.2968H238.4473a31.6485,31.6485,0,1,1,0-63.2969h58.7539a8,8,0,0,1,0,16H238.4473a15.6485,15.6485,0,1,0,0,31.2969h35.1015a31.6484,31.6484,0,1,1,0,63.2968Z" /><path d="M255.998,255.2318a7.998,7.998,0,0,1-8-8V111.3568a8,8,0,0,1,16,0v135.875A7.9979,7.9979,0,0,1,255.998,255.2318Z" /><path d="M413.5215,463.9974a7.9983,7.9983,0,0,1-5.6563-2.3438L382.0176,435.81,356.17,461.6536a7.9971,7.9971,0,0,1-11.3125,0L319.01,435.81l-25.8477,25.8437a7.9971,7.9971,0,0,1-11.3125,0L256.002,435.81,230.15,461.6536a7.9971,7.9971,0,0,1-11.3125,0L192.99,435.81l-25.8476,25.8437a7.9971,7.9971,0,0,1-11.3125,0L129.9824,435.81l-25.8476,25.8437a7.9993,7.9993,0,0,1-13.6563-5.6562v-400a7.9979,7.9979,0,0,1,8-8h315.043a7.9979,7.9979,0,0,1,8,8v400a8,8,0,0,1-8,8Zm-220.5313-47.5a7.9741,7.9741,0,0,1,5.6563,2.3437l25.8476,25.8438,25.8516-25.8438a7.9971,7.9971,0,0,1,11.3125,0l25.8477,25.8438,25.8476-25.8438a7.9971,7.9971,0,0,1,11.3125,0l25.8477,25.8438,25.8476-25.8438a7.9971,7.9971,0,0,1,11.3125,0l17.8477,17.8438V63.9974H106.4785V436.6849l17.8477-17.8438a7.9971,7.9971,0,0,1,11.3125,0l25.8476,25.8438,25.8477-25.8438A7.974,7.974,0,0,1,192.99,416.4974Z" /><path d="M349.5215,316.9974H162.4785a8,8,0,0,1,0-16h187.043a8,8,0,0,1,0,16Z" /><path d="M349.5215,369.3333H162.4785a8,8,0,1,1,0-16h187.043a8,8,0,1,1,0,16Z" /></g></svg>
+                                        <span class="notranslate" data-translate="billing"> Billing </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/user/changepassword">
+
+                                        <svg enable-background="new 0 0 64 64" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Layer_1" /><g id="icon"><path d="M46.798,23.335h-0.232V21.05c0-3.488-1.356-6.765-3.819-9.227c-2.462-2.463-5.738-3.819-9.227-3.819   c-7.193,0-13.046,5.853-13.046,13.046v2.285h-0.232c-2.287,0-4.148,1.861-4.148,4.148v24.366c0,2.287,1.861,4.148,4.148,4.148   h26.557c2.287,0,4.148-1.861,4.148-4.148V27.483C50.946,25.196,49.085,23.335,46.798,23.335z M22.473,21.05   c0-6.091,4.955-11.046,11.046-11.046c2.954,0,5.729,1.148,7.813,3.233c2.085,2.084,3.233,4.858,3.233,7.813v2.285H22.473V21.05z    M48.946,51.849c0,1.185-0.964,2.148-2.148,2.148H20.241c-1.185,0-2.148-0.964-2.148-2.148V27.483c0-1.185,0.964-2.148,2.148-2.148   h0.232h26.092h0.232c1.185,0,2.148,0.964,2.148,2.148V51.849z" /><path d="M36.531,36.655c0-1.925-1.807-3.429-3.818-2.907c-1.022,0.265-1.852,1.109-2.108,2.133   c-0.302,1.206,0.127,2.32,0.928,3.022c0.306,0.268,0.48,0.654,0.48,1.061v4.219c0,0.832,0.674,1.506,1.506,1.506   s1.506-0.674,1.506-1.506v-4.219c0-0.401,0.165-0.788,0.469-1.051C36.127,38.364,36.531,37.56,36.531,36.655z" /></g></svg>
+                                        <span class="notranslate" data-translate="changepassword">Change Password</span>
+
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    @{
+                                        string url = "";
+                                        if (User.FindFirst("UserType")?.Value == "Vendor")
+                                        {
+                                            url = "/Seller/Index";
+
+                                            <a href="@url" title="" class="bold black-c">
+                                                <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none" height="256" width="256" /><polyline fill="none" points="176 152 224 104 176 56" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" /><path d="M192,216H40a8,8,0,0,1-8-8V88" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" /><path d="M75,176a96.1,96.1,0,0,1,93-72h56" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" /></svg>
+                                                <span class="notranslate" data-translate="switchtosellerpanel">Switch Seller Panel</span>
+                                            </a>
+                                        }
+                                        else if (User.FindFirst("UserType")?.Value == "Admin")
+                                        {
+                                            url = "/Admin/Index";
+                                            <a href="@url" title="" class="bold black-c">
+
+                                                <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none" height="256" width="256" /><polyline fill="none" points="176 152 224 104 176 56" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" /><path d="M192,216H40a8,8,0,0,1-8-8V88" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" /><path d="M75,176a96.1,96.1,0,0,1,93-72h56" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" /></svg>
+                                                <span class="notranslate" data-translate="switchtoadminpanel">Switch Admin Panel</span>
+                                            </a>
+                                        }
+                                    }
+
+
+
+                                </li>
+
+                                <li>
+                                    <a id="btnLogout" href="">
+                                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
+                                            <path clip-rule="evenodd" d="M2 12.5H14V11.5H2V12.5Z" fill-rule="evenodd" />
+                                            <path clip-rule="evenodd" d="M5.14641 8.14645L1.64641 11.6465C1.45115 11.8417 1.45115 12.1583 1.64641 12.3536L5.14641 15.8536L5.85352 15.1465L2.70707 12L5.85352 8.85356L5.14641 8.14645Z" fill-rule="evenodd" />
+                                            <path clip-rule="evenodd" d="M14.5954 5C11.9176 5 9.59182 6.54597 8.44623 8.81305L7.55371 8.36204C8.86051 5.77594 11.521 4 14.5954 4C18.967 4 22.5 7.58778 22.5 12C22.5 16.4122 18.967 20 14.5954 20C11.521 20 8.86051 18.2241 7.55371 15.638L8.44623 15.187C9.59182 17.454 11.9176 19 14.5954 19C18.4027 19 21.5 15.8721 21.5 12C21.5 8.12795 18.4027 5 14.5954 5Z" fill-rule="evenodd" />
+                                        </svg>
+                                        <span class="notranslate" data-translate="logout">Logout</span>
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    }
+
+                    else
+
+                    {
+                        @*   User without login *@
+                        <div id="dvbeforelogin" class="dropdown dropdown_hover customer-menu m-none">
+                            <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true">
+                        <svg id="Layer_1" style="enable-background:new 0 0 58 70;" version="1.1" viewBox="0 0 58 70" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><g id="Layer_2"><g id="Layer_3"><path d="M27.1,22.6c5,0,9-4,9-9s-4-9-9-9s-9,4-9,9S22.1,22.6,27.1,22.6z M27.1,7.5c3.3,0,6,2.7,6,6s-2.7,6-6,6s-6-2.7-6-6    S23.7,7.5,27.1,7.5z"/><path d="M52.3,45.9C49,32,35.1,23.3,21.2,26.5c0,0,0,0,0,0c-6.7,1.6-12.5,5.7-16.1,11.6l2.6,1.6c6.7-10.7,20.8-14,31.5-7.4    c5.2,3.2,8.8,8.3,10.2,14.2c1.4,5.9,0.4,12.1-2.8,17.3l2.6,1.6C52.7,59.6,53.8,52.6,52.3,45.9z"/></g></g></svg> 
+                        <span>Account</span>
+                               <svg height="512px" class="cart-down" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="396.6,160 416,180.7 256,352 96,180.7 115.3,160 256,310.5 " /></svg>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+
+                                <li>
+                                    <a class=" bold">
+                                        <span class="notranslate" data-translate="welcome">Welcome, </span>    <span class="companyname">  @Context.Items["CompanyName"] </span>
+
+
+
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a id="btnShowLoginForm"> <span class="notranslate" data-translate="login">Login</span> </a>
+                                </li>
+                                <li >
+                                    <a id="btnShowRegisterForm"> <span class="notranslate" data-translate="register">Register</span> </a>
+                                </li>
+                               
+
+                            </ul>
+                        </div>
+                    }
+
+
+                    <!--<%-- cart--%>-->
+                    <div class="cart-div dropdown">
+
+                        <a href="/orders/cart">
+                          @*   <svg viewBox="0 0 256 256">
+
+
+                                <rect fill="none" height="256" width="256"></rect>
+                                <circle cx="80" cy="216" r="16"></circle>
+                                <circle cx="184" cy="216" r="16"></circle>
+                                <path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+
+                            </svg> *@
+                    <svg data-name="Capa 1" id="Capa_1" viewBox="0 0 20 19.84" xmlns="http://www.w3.org/2000/svg"><path d="M15.12,8.28a2,2,0,0,0-1.36-.68h-.52L11.8,4a.4.4,0,1,0-.74.28L12.39,7.6H6.17L7.49,4.24A.39.39,0,1,0,6.76,4L5.32,7.6H4.83a1.45,1.45,0,0,0-.28,0A1.94,1.94,0,0,0,3.09,10l.74,4.42A1.85,1.85,0,0,0,5.6,16h7.45a1.84,1.84,0,0,0,1.74-1.63L15.53,10a2.51,2.51,0,0,0,0-.27A2,2,0,0,0,15.12,8.28Zm-.37,1.54L14,14.28a1.08,1.08,0,0,1-1,1H5.62a1.07,1.07,0,0,1-1-1L3.87,9.79a1.14,1.14,0,0,1,.85-1.37l.14,0h8.87a1.16,1.16,0,0,1,1,1.24A.74.74,0,0,1,14.75,9.82Z"/><path d="M6.8,10.2a.4.4,0,0,0-.39.4v2.65a.4.4,0,1,0,.79,0V10.6A.4.4,0,0,0,6.8,10.2Z"/><path d="M9.27,10.2a.39.39,0,0,0-.39.4v2.65a.39.39,0,0,0,.39.4.4.4,0,0,0,.4-.4V10.6A.4.4,0,0,0,9.27,10.2Z"/><path d="M11.74,10.2a.4.4,0,0,0-.4.4v2.65a.4.4,0,0,0,.4.4.39.39,0,0,0,.39-.4V10.6A.39.39,0,0,0,11.74,10.2Z"/></svg>
+                            <span class="w-none notranslate" data-translate="cart">Cart</span>
+                            <span class="notify cart-counter-span"></span>
+
+                        </a>
+
+                    </div>
+
+                    <!--<%-- usermenu mobile--%>-->
+                    <a class="m-link" href="~/usermenu">
+                        <svg viewBox="0 0 32 32">
+                            <path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z" />
+                            <path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" />
+
+                        </svg>
+                        <span class="notranslate" data-translate="account">Account</span>
+
+                    </a>
+
+
+              
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+            <!--<%-- ---------Search bar------------- --%>-->
+
+
+            <div class="no-padding searchbar navbar-collapse collapse " id="dvheadersearchbar">
+
+
+                <partial name="/Pages/Shared/setups/_headersearchbox.cshtml" />
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <!--<%-- ------------------------Categories------------------------------- --%>-->
+
+
+    <div class="category_dropdown" id="acategorybtnmenu">
+
+       <div class="container">
+
+            <div class="category_list category-with-banner">
+
+                <!--<%-- ---------shared > Setups > _categories-------------
+                              Home controller  home.js auto called in 3 seconds in home.js
+                             --%>-->
+
+
+
+
+                <div id="dvCategoriesWithBannerContainer"></div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+<script>
+
+
+
+
+
+    $(function () {
+        var header = $(".main-header");
+
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 500) {
+                header.addClass("main-header-classadd");
+            } else {
+                header.removeClass("main-header-classadd");
+            }
+        });
+
+    });
+
+
+</script>

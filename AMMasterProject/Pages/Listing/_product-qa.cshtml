@@ -1,0 +1,97 @@
+﻿@using AMMasterProject.ViewModel
+@model List<ProductQAViewModel>
+@*   <label id="lblqa"></label>*@
+
+<div class="h4 bold margintb-15">
+    <span class="notranslate" data-translate="questionsabout">
+        Questions About This Product
+    </span>
+  
+
+    @if (Model != null)
+    {
+         @(string.Format("({0})", Model.Count))
+        
+    }
+</div>
+<div class="qa">
+    <textarea id="txtquestion" rows="2" cols="20" placeholder="Ask a Question" required maxlength="1000" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelquestion'))"></textarea>
+    <span id="characterCountLabelquestion"></span>
+
+    <label id="lblerror"></label>
+
+
+    <button id="btnquestionpost" class="btn clickable-button">
+
+        <span class="notranslate" data-translate="post">
+             Post
+        </span>
+        </button>
+
+
+</div>
+
+<label id="lblerror" class="alert alert-danger"></label>
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <div id="dvproductdetailqalist">
+
+        @foreach (var qa in Model)
+        {
+
+
+            <div class="border radius padding10 mb-1">
+
+                <div >
+                    <label class="bold d-grey-c">Q:</label>
+                    @qa.question
+                </div>
+
+                <div class="grey-c">
+                    <label class="bold d-grey-c">A:</label>
+                    @qa.answer
+                </div>
+
+              
+            </div>
+        }
+    </div>
+}
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#btnquestionpost").click(function (event) {
+            event.preventDefault();
+            if ($("#txtquestion").val() === "") {
+                $("#lblerror").text("Question is required");
+                return;
+            }
+            else {
+                product_detail_QA_insert();
+            }
+            
+               
+           
+        });
+
+
+
+        $("#txtquestion").on("input", function () {
+            // Get the value of txtquestion
+            var inputValue = $(this).val();
+
+            // Check if the input value is not null or empty
+            if (inputValue === null && inputValue.trim() == "") {
+                // Set the text of lblvalue to a single quote
+                $("#lblerror").text("Question is required");
+            } else {
+                // Set the text of lblvalue to an empty string
+                $("#lblerror").text("");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,78 @@
+﻿<div class="home-blog">
+    <div class="container">
+        <h3 class="bold padding10">
+            <span id="spanblog"> </span>
+        </h3>
+        <div id="dvblogview" class="row">
+
+            <!--Listview start-->
+
+            @*<div  class="col-md-4">
+                <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_450,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560157/guide-start-online-business-552-x2.png" />
+                <p>
+                    Title
+                </p>
+
+            </div>
+*@
+            <!--Listview start-->
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+      $(document).ready(function() {
+             blogs();
+
+});
+
+    function blogs() {
+
+    ROWCOUNT = 0;
+    $('#dvblogview').empty();
+    $.ajax({
+        type: "GET",
+        cache: false, // disable caching
+        url: "/api/global/bloglist",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var itemsHtml = "";
+            // set attributes or content to the new div
+
+
+            $.each(data, function (index, item) {
+
+                ROWCOUNT++;
+                itemsHtml += '<div class="col-md-4">';
+                itemsHtml += '<a  href="/blog/' + item.titleSeo + '" >';
+                itemsHtml += '<img src="' + item.image + '" />';
+                itemsHtml += '<p>';
+                itemsHtml += item.title
+                itemsHtml += '</p>';
+                itemsHtml += '</a>';
+                itemsHtml += '</div>';
+               
+            });
+
+            // $("#lbltotalquestion").text(rowcount);
+
+            if (ROWCOUNT > 0) {
+                $('[id*=dvblogview]').append(itemsHtml);
+
+                $("#spanblog").text("Blogs");
+            }
+
+
+
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+
+};
+</script>

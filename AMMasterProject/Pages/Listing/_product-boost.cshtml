@@ -1,0 +1,105 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper no-margin product-box8 no-bg " id="dvproductboost">
+             
+           @* Repeat*@
+           
+            
+           
+        </div>
+@*        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>*@
+        
+    </div>
+
+
+
+
+
+<script>
+
+      $(document).ready(function() {
+          Product_Boost();
+
+});
+
+var ROWCOUNT = 0;
+    function Product_Boost() {
+   
+    $('[id*=dvproductboost]').empty();
+
+
+    $.ajax({
+        type: "GET",
+        cache: false, // disable caching
+        url: "/api/global/productboost",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var itemsHtml = "";
+            // set attributes or content to the new div
+
+            $.each(data, function (index, item) {
+               
+              
+                ROWCOUNT++;
+                itemsHtml += '<div  class="swiper-slide">';
+                itemsHtml += '<div  class="product-box row">';
+
+
+                itemsHtml += '<a  href="/product/' + item.productSeourl+'" >';
+                itemsHtml += '<div  class="p-img">';
+               
+                itemsHtml += '<img src="' + item.productImage + '" />';
+
+
+                itemsHtml += '</div>';
+
+                itemsHtml += '<div  class="p-data">';
+
+                itemsHtml += '<div  class="p-title">';
+                itemsHtml += item.productName;
+                itemsHtml += '</div>';
+
+                itemsHtml += '<div  class="p-price">';
+                itemsHtml += item.currency.currencyName + " " + numberformat(item.price);
+                itemsHtml += '</div>';
+
+                itemsHtml += '</div>';
+
+                itemsHtml += '</a>';
+
+
+              
+                itemsHtml += '</div>';
+                itemsHtml += '</div>';
+               
+            });
+
+
+            if (ROWCOUNT <= 0) {
+                $('[id*=dvproductboost]').empty();
+            }
+            else {
+                $('[id*=dvproductboost]').append(itemsHtml);
+                $(".recommendedproperties").html();
+            }
+
+          
+
+          
+          
+
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+};
+</script>

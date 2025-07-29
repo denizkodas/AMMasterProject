@@ -1,0 +1,148 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Title>AM Technology</Title>
+    <Copyright>AM Technology</Copyright>
+    <PackageProjectUrl>https://amtechnology.info/</PackageProjectUrl>
+    <PackageIcon>amtechicon.png</PackageIcon>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Version>1.2.5</Version>
+    <AssemblyVersion>1.2.5</AssemblyVersion>
+    <FileVersion>1.2.5</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Admin\cmssetup\**" />
+    <Content Remove="Pages\Admin\cmssetup\**" />
+    <EmbeddedResource Remove="Pages\Admin\cmssetup\**" />
+    <None Remove="Pages\Admin\cmssetup\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helpers\EmailClientHelper.cs" />
+    <Compile Remove="Helpers\MyScheduledTask.cs" />
+    <Compile Remove="Helpers\NumberFormatsHelper.cs" />
+    <Compile Remove="Helpers\SchedulerHelper.cs" />
+    <Compile Remove="Models\BlogSetup.cs" />
+    <Compile Remove="Models\WebsiteSetupThemeSelection.cs" />
+    <Compile Remove="Pages\Admin\seosetup.cshtml.cs" />
+    <Compile Remove="Pages\Listing\create\otherfields.cshtml.cs" />
+    <Compile Remove="Pages\Listing\create\seo.cshtml.cs" />
+    <Compile Remove="Pages\Listing\create\tax.cshtml.cs" />
+    <Compile Remove="ViewModel\ProductQAViewModel.cs" />
+    <Compile Remove="ViewModel\ProductReviewViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Admin\creditsetup\assigncredittouser.cshtml" />
+    <Content Remove="Pages\Admin\seosetup.cshtml" />
+    <Content Remove="Pages\Listing\create\otherfields.cshtml" />
+    <Content Remove="Pages\Listing\create\seo.cshtml" />
+    <Content Remove="Pages\Listing\create\tax.cshtml" />
+    <Content Remove="Pages\Shared\Components\Product\ProductHomeView.cshtml" />
+    <Content Remove="Pages\Shared\setups\_blogsview.cshtml" />
+    <Content Remove="Pages\Shared\setups\_categoryview.cshtml" />
+    <Content Remove="Pages\Shared\setups\_footerpages.cshtml" />
+    <Content Remove="Pages\Shared\setups\_headerlink.cshtml" />
+    <Content Remove="Pages\Shared\setups\_partnersview.cshtml" />
+    <Content Remove="Pages\Shared\setups\_product-boost.cshtml" />
+    <Content Remove="Pages\Shared\setups\_regionalsetting.cshtml" />
+    <Content Remove="Pages\Shared\setups\_search-address-seller.cshtml" />
+    <Content Remove="Pages\Shared\setups\_sellerslist.cshtml" />
+    <Content Remove="Pages\Shared\setups\_slider-homepage.cshtml" />
+    <Content Remove="Pages\Shared\setups\_socialmediafollow.cshtml" />
+    <Content Remove="wwwroot\admin-assets\js\chart.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Admin\creditsetup\assigncredittouser.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Shared\setups\_search-address-seller.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\admin-assets\js\chart.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.7.308.9" />
+    <PackageReference Include="Azure.Identity" Version="1.14.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.16.0" />
+    <PackageReference Include="BarcodeLib" Version="3.0.3" />
+    <PackageReference Include="DeviceDetector.NET.NetCore" Version="3.9.2.2" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.6.0" />
+    <PackageReference Include="GoogleMaps.LocationServices" Version="1.2.0.5" />
+    <PackageReference Include="IronPdf" Version="2023.9.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="NuGet.Versioning" Version="6.6.1" />
+    <PackageReference Include="PayPal.SDK.NETCore" Version="1.9.1.2" />
+    <PackageReference Include="RazorPayCore" Version="1.0.0" />
+    <PackageReference Include="RestSharp" Version="112.1.0" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Stripe.net" Version="41.23.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.2.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="TimeZoneConverter" Version="6.1.0" />
+    <PackageReference Include="UAParser" Version="3.1.47" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Pages\Buyer\" />
+    <Folder Include="Pages\Master\" />
+    <Folder Include="Pages\Shared\Components\CMS\" />
+    <Folder Include="Pages\Shared\Components\Notification\" />
+    <Folder Include="Pages\Shared\Components\User\" />
+    <Folder Include="wwwroot\grapejs\" />
+    <Folder Include="wwwroot\log\" />
+    <Folder Include="wwwroot\cdn\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="C:\Users\imtiaz\Downloads\amtechicon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="Pages\Admin\usermanagement\assigncredittouser.cshtml" />
+    <None Include="Pages\Shared\setups\_search-address-seller.cshtml" />
+    <None Include="wwwroot\admin-assets\js\chart.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\Inbox\InboxCounter.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\Shared\Components\Product\ProductHomeDiscountView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Admin\creditsetup\assigncredittouser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Shared\setups\_search-address-seller.cshtml" />
+  </ItemGroup>
+
+</Project>

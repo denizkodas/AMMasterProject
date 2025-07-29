@@ -1,0 +1,78 @@
+﻿@page
+@model AMMasterProject.Pages.htmlbuilderModel
+@{
+}
+
+<input type="text" class="googleaddress" id="txtaddresssearch" placeholder="Click The Button Or Type Your Full Address">
+
+@* //<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqbbVqPMBsVj_0VeHM7bj0bd1MPQP0e14&libraries=places" async defer></script> *@
+<script>
+    function loadGoogleMapsScript(apiKey, callback) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${apiKey}`;
+        script.async = true;
+        script.defer = true;
+        script.onload = callback;
+        document.head.appendChild(script);
+    }
+
+    function initializeGoogleAutocomplete() {
+        var input = document.querySelector('.googleaddress');
+        if (input) {
+            var places = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(places, 'place_changed', function () {
+                var place = places.getPlace();
+                if (place.geometry) {
+                    var address = place.formatted_address;
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+                    var mesg = "Address: " + address;
+                    mesg += "\nLatitude: " + latitude;
+                    mesg += "\nLongitude: " + longitude;
+
+                    getAddressDetails(address);
+                    /*alert(mesg);*/
+                }
+            });
+        } else {
+            console.error("Autocomplete input element not found.");
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        getGoogleMapApiKey(function (apiKey) {
+            loadGoogleMapsScript(apiKey, initializeGoogleAutocomplete);
+        });
+    });
+</script>
+
+
+@*     <link rel="stylesheet" href="~/css/builder.css"></link>
+    <script type='text/javascript' src="~/js/builder.js"></script>
+
+
+    <script language="Javascript">
+    var builder = new Editor({ root: "/js/" });
+        builder.init();
+    </script>
+ *@
+
+@* <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
+    <input type="hidden" name="key_id" value="rzp_test_YuSihFErCSA3wH" />
+    <input type="hidden" name="amount" value=1001 />
+    <input type="hidden" name="order_id" value="@Model.OrderID" />
+    <input type="hidden" name="name" value="AM Technology" />
+    <input type="hidden" name="description" value="A Wild Sheep Chase" />
+    <input type="hidden" name="image" value="https://cdn.razorpay.com/logos/BUVwvgaqVByGp2_large.jpg" />
+    <input type="hidden" name="prefill[name]" value="Gaurav Kumar" />
+    <input type="hidden" name="prefill[contact]" value="9123456780" />
+    <input type="hidden" name="prefill[email]" value="gaurav.kumar@example.com" />
+    <input type="hidden" name="notes[shipping address]" value="L-16, The Business Centre, 61 Wellfield Road, New Delhi - 110001" />
+    <input type="hidden" name="callback_url" value="@Model.currentdomain/htmlbuilder?OrderID=@Model.OrderID" />
+
+
+    <input type="hidden" name="cancel_url" value="@Model.currentdomain/htmlbuilder" />
+    <button>Submit</button>
+</form> *@
+

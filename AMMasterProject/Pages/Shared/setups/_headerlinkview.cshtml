@@ -1,0 +1,22 @@
+﻿@model List<PageName>
+
+<ul id="dvheaderlinks" class="header-pages">
+    @if (Model != null && Model.Count > 0)
+    {
+        @foreach (var headerlinks in Model)
+        {
+            if (headerlinks.IsUrl == true)
+            {
+                <li><a href="@headerlinks.Url">@headerlinks.Name</a></li>
+            }
+            else
+            {
+
+
+                var url = "/page/" + (!string.IsNullOrEmpty(headerlinks.SeoPageName) ? headerlinks.SeoPageName : headerlinks.PageCategoryId.ToString());
+                <li><a href="@url">@headerlinks.Name</a></li>
+            }
+        }
+    }
+    
+</ul>

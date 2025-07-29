@@ -1,0 +1,370 @@
+{
+  "languagecode": {
+    "en": "English",
+    "fr": "French",
+    "es": "Spanish",
+    "de": "German",
+    "ar": "Arabic",
+    "it": "Italian"
+  },
+  "FirstName": {
+    "en": "first name",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "greeting": {
+    "en": "Hello, {name}!",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "login": {
+    "en": "Login",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "register": {
+    "en": "register",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "credits": {
+    "en": "credits",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "credit": {
+    "en": "credit",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "wishlist": {
+    "en": "wishlist",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "account": {
+    "en": "account",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "welcome": {
+    "en": "welcome to",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "overview": {
+    "en": "overview",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "inbox": {
+    "en": "inbox",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "my": {
+    "en": "my",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "profile": {
+    "en": "profile",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "orders": {
+    "en": "orders",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "change": {
+    "en": "change",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "password": {
+    "en": "password",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "logout": {
+    "en": "logout",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "home": {
+    "en": "home",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "category": {
+    "en": "category",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "search": {
+    "en": "search",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "notification": {
+    "en": "notification",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "nonotification": {
+    "en": "No Notification Found",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "nomsginbox": {
+    "en": "No Notification Found",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "billing": {
+    "en": "billing",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "shipping": {
+    "en": "shipping",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "address": {
+    "en": "address",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "affiliate": {
+    "en": "affiliate",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "postedrequest": {
+    "en": "posted request",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "setting": {
+    "en": "setting",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "coupons": {
+    "en": "coupons",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "following": {
+    "en": "following",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "subscription": {
+    "en": "subscription",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "plan": {
+    "en": "plan",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "details": {
+    "en": "details",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "payment": {
+    "en": "payment",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "history": {
+    "en": "payment",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "buy": {
+    "en": "buy",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "transaction": {
+    "en": "transaction",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "date": {
+    "en": "date",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "creditusedmsg": {
+    "en": " Your credit has been utilized to access and view the seller's profile",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "creditifexpiry": {
+    "en": " which will remain valid until",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "creditiffree": {
+    "en": "You have received",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "creditiflifetime": {
+    "en": ". It has a lifetime duration.",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "credit-if-p-invoice": {
+    "en": "The invoice with number",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  },
+  "back": {
+    "en": "back",
+    "fr": "test",
+    "es": "test",
+    "de": "test",
+    "it": "test",
+    "ar": "test"
+  }
+}

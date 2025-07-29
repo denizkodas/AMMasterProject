@@ -1,0 +1,160 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.socialmedialinksModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenusocialmedia">Social Media Links </title>
+}
+<div>
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+       
+
+
+        <div class="card col-md-10">
+            <h5 class="padding15 bold margintb-15">
+                <span class="notranslate" data-translate="sellersocialmediaheading">
+                    
+                    Your Social Media Links</span>
+
+               </h5>
+            <div class="row no-margin">
+                <div class="mb-4 col-md-12">
+                    <div class="">
+                        <div class="card-body margintb-15">
+
+                            <!-- Social Accounts -->
+                            @if (@Model.socialMediaList != null)
+                            {
+                                @foreach (var item in Model.socialMediaList)
+                                {
+                                    
+                                      
+                                        <div class="row form">
+                                            <div class="col-md-3 social-sharing ">
+                                            <h6 class="d-flex">  <span class="@item.Icon"></span> <span class="padding10"> @item.Name</span></h6>
+
+                                            </div>
+                                                <!-- Check if there's a corresponding SellerSocialMediaModel with the same SocialMediaID -->
+                                                @if (Model.sellerSocialMediaList != null)
+                                                {
+                                                    var sellerSocialMedia = Model.sellerSocialMediaList.FirstOrDefault(s => s.SocialMediaID == item.ID);
+                                                    if (sellerSocialMedia != null)
+                                                    {<div class="col-md-4" >
+                                                        <!-- Display the URL from SellerSocialMediaModel in a textbox -->
+                                                        <input type="text" class="social-media-input" id="socialMediaInput_@item.ID" value="@sellerSocialMedia.URL">
+                                                      </div>
+
+                                                    <div class="col-md-4">
+                                                    <a href="#" class="btn  btn-outline-secondary" onclick="socialMediaUpdate(@item.ID,'update')">
+                                                        <span class="notranslate" data-translate="update"> Update</span>
+                                                        
+                                                        </a>
+
+                                                    <a href="#" class="btn  btn-outline-secondary" onclick="socialMediaDelete(@sellerSocialMedia.SellerSocialMediaID)">
+                                                        <span class="notranslate" data-translate="remove"> Remove</span>
+
+
+                                                    </a>
+                                                </div>    }
+                                                    else
+                                                    {
+                                                        <!-- Display blank textbox so the user can type in their social media URL -->
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="social-media-input" id="socialMediaInput_@item.ID" placeholder="Enter social media URL">
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                    <a href="#" class="btn btn-outline-secondary " onclick="socialMediaUpdate(@item.ID)">
+                                                        <span class="notranslate" data-translate="add"> Add</span>
+
+                                                       
+                                                    </a>
+                                                    </div>
+                                                    }
+                                                }
+                                                @* else
+                                                {
+                                                   
+                                                    <input type="text" class="social-media-input" id="socialMediaInput_@item.ID" >
+                                                    <a href="#" class="btn  btn-outline-secondary" onclick="socialMediaUpdate(@item.ID)">Add</a>
+                                                } *@
+                                          @* 
+                                            <div class="col-4 col-sm-5 text-end">
+                                                <button type="button" class="btn btn-icon btn-outline-secondary">
+                                                    <i class="bx bx-link-alt"></i>
+                                                </button>
+                                            </div> *@
+                                        </div>
+                                  
+                                }
+                            }
+
+
+                            else
+
+                            {
+                                <div id="dvproductemptydata" class="no-record-found empty-product">No Record Found</div>
+                            }
+
+
+                           
+
+                            <!-- /Social Accounts -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <script>
+
+    function socialMediaUpdate(socialmediaid) {
+
+        var inputValue = document.getElementById('socialMediaInput_' + socialmediaid).value;
+        $.ajax({
+            url: '/Controller/user/socialMediaAccountUpdate?socialmediaid=' + socialmediaid + "&url=" + inputValue,
+            type: 'POST',
+            success: function (result) {
+                // If the delete operation was successful, remove the corresponding row
+                if (result === "success") {
+                    toaster("Account linked successfuly.", "toast-success");
+
+                } else {
+                    // Handle other success responses if needed
+                }
+            },
+            error: function () {
+                // Handle the error
+                // You might want to provide some feedback to the user in case of an error
+            }
+        });
+    }
+
+
+    function socialMediaDelete(SellerSocialMediaID) {
+
+        
+        $.ajax({
+            url: '/Controller/user/socialMediaAccountDelete?Sellersocialmediaid=' + SellerSocialMediaID ,
+            type: 'POST',
+            success: function (result) {
+                // If the delete operation was successful, remove the corresponding row
+                if (result === "success") {
+                    toaster("Account link deleted.", "toast-success");
+
+                } else {
+                    // Handle other success responses if needed
+                }
+            },
+            error: function () {
+                // Handle the error
+                // You might want to provide some feedback to the user in case of an error
+            }
+        });
+    }
+
+ </script>

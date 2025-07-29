@@ -1,0 +1,75 @@
+﻿@page 
+@model AMMasterProject.Pages.login.IndexModel
+@{
+
+    ViewData["Title"] = "Sign In";
+
+}
+
+
+
+
+
+<div id="loginFormContainer">
+</div>
+<style>
+    body{
+        background:white;
+    }
+
+    .login-popup{
+        background:none;
+        position:relative;
+        webkit-animation-name: none;
+        animation-name: none;
+        -webkit-animation-duration: none;
+        animation-duration: none;
+
+    }
+
+    .login-popup .close-back{
+        display:none
+    }
+
+
+    .login-popup  .popup{
+            border: solid 1px #eee;
+            background: var(--white);
+            border-radius: 4px;
+            box-shadow: 0px 2px 12px -4px rgba(0, 0, 0, 0.63)
+    }
+
+
+    .popup-heading .h4{
+        display:none
+    }
+
+  
+    
+    .paddingrf-80{
+        padding: 0px 37px;
+    }
+
+
+
+</style>
+
+
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            loginview("LoginView");
+
+
+
+        });
+
+
+
+
+    </script>
+
+

@@ -1,0 +1,171 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.AvailabilityModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenuavailability">Availability Setup</title>
+}
+
+
+<div class="row no-margin">
+
+    <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+
+
+
+
+    <div class="card col-md-10">
+        <div class="padding15 bold margintb-15">
+        <h5 class="no-margin">
+                <span class="notranslate" data-translate="markyouravailability">Mark Your Availability</span>
+            
+        
+        </h5>   
+        <p class="grey-c m-bold line30">
+                <span class="notranslate" data-translate="markyouravailabilitymsg"> Your profile will be displayed according to the marked availability hours.</span>
+
+               
+            </p>  
+          @*   <div class="form-group margintb-15">
+
+                <label class="switch">
+                    <input type="checkbox" id="IsEmailSwitchCheckChecked" value="true">
+                    <span class="slider"></span>
+                </label>
+                <label class="form-check-label black-c bold" for="IsEmailSwitchCheckChecked"> Enable</label>
+                <p class="l-bold grey-c">
+                    Quick Enable and Disable Availability -   Enable with a Right Switch, Disable with a Left Switch
+                </p>
+            </div>  *@
+        </div>
+        <div class="row no-margin">
+            <span class="validation float-end"></span> 
+            
+            <div >
+                <div class="">
+                  <div class="card-body no-padding">
+
+                      
+
+                        @foreach (var item in Model.sellerAvailabilityList)
+                        {
+
+                            
+                         
+                            <div class="row margintb-15">
+                              
+                            
+
+                                <div class="col-md-3 padding10">
+                                    <label class="switch">
+                                        <input type="checkbox" id="IsEmailSwitchCheckChecked_@item.Day" value="true" @(item.IsDayEnable != null && item.IsDayEnable ? "checked" : "") onchange="setAvailability('@item.Day', this.checked, false, $('#FromTime_@item.Day').val(), $('#ToTime_@item.Day').val())">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label class="form-check-label black-c marginrf-15 bold" for="IsEmailSwitchCheckChecked_@item.Day">@item.Day</label>
+                                </div>
+
+                                <div class="col-md-3 checkright">
+                                    <input type="checkbox" id="SetupCustomTime_@item.Day" value="true" @(item.IsCustomTiming != null && item.IsCustomTiming ? "checked" : "") onchange="setAvailability('@item.Day', true, this.checked, $('#FromTime_@item.Day').val(), $('#ToTime_@item.Day').val())">
+                                    <label for="SetupCustomTime_@item.Day">
+                                        <span class="notranslate" data-translate="setupcustomtime"> Setup Custom Time</span>
+
+                                        
+                                        </label>
+                                </div>
+
+                                <!-- if Setup Custom Time is enabled, then show the timing divs -->
+                                <div class="col-md-6" id="timingDiv_@item.Day" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="input-group border radius">
+                                                <span id="basic-addon1" class="input-group-text no-bg grey-c no-border small">From</span>
+                                                <input type="time" aria-label="time" aria-describedby="basic-addon1" class="form-control no-border right small black-c s-bold" id="FromTime_@item.Day" value="@item.FromTime">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="input-group border radius">
+                                                <span id="basic-addon1" class="input-group-text no-bg grey-c no-border small">To</span>
+                                                <input type="time" aria-label="time" aria-describedby="basic-addon1" class="form-control no-border right small black-c s-bold" id="ToTime_@item.Day" value="@item.ToTime">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <!-- Add this button after the foreach loop -->
+                                            <button id="updateButton" class="btn clickable-button btn-primary" onclick="setAvailability('@item.Day', true, true, $('#FromTime_@item.Day').val(), $('#ToTime_@item.Day').val())">
+
+                                                <span class="notranslate" data-translate="set"> Set</span>
+
+                                                </button>
+                                        </div>
+                                    </div>
+
+
+                                 
+                                </div>
+
+                                <!-- JavaScript/jQuery to toggle visibility based on Setup Custom Time checkbox -->
+                                <script>
+                                    // Function to toggle visibility based on the SetupCustomTime checkbox
+                                    function toggleTimingDiv(day) {
+                                        if ($("#SetupCustomTime_" + day).is(":checked")) {
+                                            $("#timingDiv_" + day).show();
+                                        } else {
+                                            $("#timingDiv_" + day).hide();
+                                        }
+                                    }
+
+                                    // Call the function on document load for each day
+                                    $(function () {
+                                        var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+                                        daysOfWeek.forEach(function (day) {
+                                            toggleTimingDiv(day);
+                                        });
+
+                                        // Attach the change event handler for each day
+                                        daysOfWeek.forEach(function (day) {
+                                            $("#SetupCustomTime_" + day).change(function () {
+                                                toggleTimingDiv(day);
+                                            });
+                                        });
+                                    });
+                                </script>
+
+                                
+                            </div>
+                        }
+                      
+                  
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+      
+    </div>
+</div>
+
+<script>
+    function setAvailability(day, isdayenable, iscustom, fromtime, totime) {
+        $.ajax({
+            url: '/Controller/user/availabilitySetup?day=' + day + '&IsDayEnable=' + isdayenable + '&iscustomtime=' + iscustom + '&fromtime=' + fromtime + '&totime=' + totime,
+            type: 'POST',
+            success: function (result) {
+                if (result === "success") {
+                    toaster("Availability updated successfully.", "toast-success");
+                } else {
+                    // Handle other success responses if needed
+
+                    toaster(result, "toast-success");
+                }
+            },
+            error: function () {
+                // Handle the error
+                // You might want to provide some feedback to the user in case of an error
+            }
+        });
+    }
+
+</script>

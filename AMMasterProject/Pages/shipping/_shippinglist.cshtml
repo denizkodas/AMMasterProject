@@ -1,0 +1,201 @@
+﻿@model List<CustomerAddress>
+
+
+   @if(Model!=null && Model.Count>0)
+{
+   foreach (var customerAddress in Model)
+    {
+
+
+        <div class="col-lg-4 col-sm-4 padding5 o-padding shipping-box">
+            <div class="padding15 border radius l-grey-bd">
+                <p class="bold">
+                    <span class="notranslate" data-translate="address">Address</span>
+
+                    # 1
+                    <a id="aAddressEdit" class="grey-c float-end open-popup-button" data-customeraddressguid="@customerAddress.CustomerAddressGuid" onclick="loadshippingform(this)"><i class="fa fa-pen"></i></a>
+                   
+                </p> <br>
+                <div class="small shipaddress">
+                    <p>
+
+
+                        @customerAddress.FirstName    @customerAddress.LastName
+                    </p>
+                    <p>
+                        <span class="shipping-@customerAddress.AddressType"> @customerAddress.AddressType</span>
+                    </p>
+                    <p class="shipping-address">
+                       @customerAddress.Address
+                        @customerAddress.City
+                        @customerAddress.Street
+                        @customerAddress.Zipcode
+                       
+                    </p>
+                    @if (@customerAddress.HouseNumber!=null)
+                    {
+                        <p>
+                            @customerAddress.HouseNumber
+                        </p>
+                    }
+                   
+                    <p>
+                        @customerAddress.Phone
+                    </p>
+                    <p>
+                        @customerAddress.Email
+                    </p>
+
+                   
+                </div>
+                <a id="SelectAddress" data-customeraddressguid="@customerAddress.CustomerAddressGuid" onclick="shippingAddressSelect(this)" class="btn d-grey-bg white-c float-end">
+                    <span class="notranslate" data-translate="shiphere">Ship Here</span>
+
+
+                    </a>
+
+                <a href="#" data-customeraddressguid="@customerAddress.CustomerAddressGuid" class="grey-c" onclick="deleteaddress(this)"><i class="fa fa-trash"></i></a>
+
+                <br>
+                <br>
+
+
+
+
+
+
+
+              
+
+
+
+
+
+
+               
+            </div>
+        </div>
+
+
+        
+        
+      
+    }
+}
+
+else
+
+{
+    
+   
+}
+
+
+
+<div class="col-lg-4 col-sm-4 padding5 o-padding shipping-box">
+
+    <a href="#" id="aAddressForm" class="open-popup-button">
+    <div class="padding30 border radius l-grey-bd">
+            <div class=" center shipaddress">
+            <img  class="white-smoke-bg padding15 radius100" src="https://amenvato.s3.us-east-2.amazonaws.com/envatoallproject/a2ea7927-13d9-4408-96b2-a547b9b90a67.png" alt="add-new-img" style="height:110px;width:110px;">
+        </div>
+        <br>
+            <p class="center padding5">
+                <span class="notranslate" data-translate="addnewshippingdetails"> Add New Shipping Details</span>
+           
+        </p>
+
+    </div>
+</a>
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        // Attach click event handler to the 'aAddaddress' link
+      
+        ///Add Mode
+        $('#aAddressForm').click(function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+
+            var customerAddressGuid = '';
+
+            loadshippingform(customerAddressGuid);
+        });
+
+
+    });
+
+    function loadshippingform(elem) {
+        var CustomerAddressGUID = $(elem).data('customeraddressguid');
+
+        // AJAX request on link click
+        $.ajax({
+            type: 'GET',
+            url: '/Controller/Shipping/shippingview?CustomerAddressGuid=' + CustomerAddressGUID,
+            success: function (result) {
+
+                $('#shippingContainerForm').empty();
+                $('#shippingContainerForm').html(result);
+                LoadGoogleAutoComplete();
+
+                // Initialize and trigger client-side validation for the loaded content
+                //$.validator.unobtrusive.parse('#shippingContainerForm');
+
+            },
+            error: function () {
+                alert('Error loading quick view.');
+            }
+        });
+    }
+
+    function deleteaddress(elem) {
+        var CustomerAddressGUID = $(elem).data('customeraddressguid');
+       
+
+        $.ajax({
+            url: '/controller/shipping/shippingdelete',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                CustomerAddressGUID: CustomerAddressGUID
+              
+
+            },
+            success: function (response) {
+                // handle success response
+                loadshippingaddresslist();
+                //$(elem).toggleClass("active inactive");
+                // $(elem).closest('tr').remove();
+
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+
+
+
+    function shippingAddressSelect(elem) {
+        var CustomerAddressGUID = $(elem).data('customeraddressguid');
+
+        $.ajax({
+            url: '/controller/order/ShippingUpdate?CustomerAddressGUID=' + CustomerAddressGUID,
+            type: 'GET',
+            success: function (response) {
+                /* console.log(response); */ // Log the response to check if it's as expected
+                window.location.href = response; // Redirect the user
+            },
+            error: function (xhr, status, error) {
+                console.error(error); // Log any error that occurs
+            }
+        });
+    }
+</script>
+
+
+

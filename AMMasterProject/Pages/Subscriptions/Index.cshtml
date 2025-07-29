@@ -1,0 +1,38 @@
+﻿@page
+@model AMMasterProject.Pages.Subscriptions.IndexModel
+@{
+    var usertype = @User.FindFirst("UserType")?.Value;
+
+    if (usertype != "Client")
+    {
+        Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+
+    }
+    ViewData["Title"] = "Subscriptions";
+    <title>Subscriptions</title>
+}
+
+<div class="container paddingtb-15">
+    <div class="paddingtb">
+        <div class="container ">
+            <span class="notranslate" data-translate="bestchoice">
+
+            </span>
+            <h2 class="e-bold center">
+                <span class="notranslate" data-translate="chooseyourplan">
+                    Choose Your Plan
+                </span>
+                
+                </h2>
+            <h4 class="l-bold grey-c center">
+                <span class="notranslate" data-translate="chooseyourplanmsg">
+                    Select from a range of tailored options to suit your needs and unlock an exceptional experience
+
+                </span>
+            </h4>
+
+    <partial name="/Pages/Subscriptions/_subscription-plans.cshtml" , model="Model.subscriptionpackagelist" />
+
+        </div>
+    </div>
+</div>

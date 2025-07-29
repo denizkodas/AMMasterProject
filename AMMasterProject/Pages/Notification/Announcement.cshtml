@@ -1,0 +1,106 @@
+﻿@using AMMasterProject
+@using AMMasterProject.Helpers
+@using AMMasterProject.ViewModel
+@model List<AnnouncementViewModel>
+
+
+
+
+
+@* Partial view starts *@
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+
+        <li class="@(item.IsUserRead ? "" : "unread")">
+            <a class="row-link markreadonclick" data-redirecturl="@item.RedirectUrl" data-announcement-id="@item.AnnouncementId">
+              
+                <div>
+                    <span class="n-heading">@item.Title</span>
+                    <p class="n-details">
+                        @item.Description<br />
+                        @{
+                            string timeAgo = GlobalHelper.ConvertToTimeAgo(item.StartDate);
+                        }
+                        <small class="n-date">@timeAgo</small>
+                    </p>
+                </div>
+            </a>
+            @if (item.IsUserRead == true)
+            {
+               
+                <span class="notranslate" data-translate="read"> Read </span>
+            }
+            else
+
+            {
+                <a class="announcemnetmarkasread markreadonclick" data-redirecturl="" data-announcement-id="@item.AnnouncementId">
+                    <span class="notranslate" data-translate="markasread"> Mark as read </span>
+                    </a>
+            }
+
+
+
+
+
+        </li>
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $(".markreadonclick").click(function (e) {
+            e.preventDefault();
+
+            var announcementId = $(this).data("announcement-id");
+            var redirecturl = $(this).data("redirecturl");
+
+            // Store the reference to the current element
+            var $currentElement = $(this);
+
+            // Perform AJAX POST request
+            $.ajax({
+                url: "/controller/User/AnnouncementMetdata",
+                type: "POST",
+                data: {
+                    announcementid: announcementId
+                },
+                success: function (response) {
+                    // Handle success response
+                    console.log(response);
+
+                    if (response === "success") {
+                        // Update the text to "Read"
+                        $currentElement.text("Read");
+
+                        // Remove the class from the parent <li> element
+                        $currentElement.closest("li").removeClass("unread");
+
+                        var currentCounter = parseInt($("#spanannouncementCounter").text(), 10);
+                        if (!isNaN(currentCounter) && currentCounter > 0) {
+                            $("#spanannouncementCounter").text(currentCounter - 1);
+                        }
+
+
+                        if (redirecturl !== "") {
+                            window.location.href = redirecturl;
+                        }
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle error response
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+@* Partial view ends *@
+
+
+
+
+
+

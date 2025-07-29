@@ -1,0 +1,15 @@
+﻿@using AMMasterProject.ViewModel
+@model BankTransferSettingsModel
+
+
+
+@{
+    if (Model != null)
+    {
+        
+        <div class="white-smoke-bg padding15 radius mb1">
+            @Html.Raw(Model.AccountDetails)
+        </div>
+        <br/>
+    }
+}

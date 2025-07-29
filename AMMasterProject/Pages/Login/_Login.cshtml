@@ -1,0 +1,440 @@
+﻿@using AMMasterProject.ViewModel
+@model RegisterSettingsModel
+<div class="overlay-view login-popup singin">
+    <div class="popup popup-large">
+
+        <div class="row login-box">
+            <div class="col-md-6 no-padding m-none">
+
+                <img src="@Model.LoginImage" />
+            </div>
+            <div class="col-md-6">
+
+
+                
+                <div class="popup-heading">
+                    <span class="w-none notranslate" data-translate="signin"> Sign in</span>
+                    <a id="Loginbackbtn" style="display:none" class="login-back">
+                        <svg class="svg-small" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#74767E"><path d="M5.093 13.031c.285.3.747.3 1.031 0a.801.801 0 0 0 0-1.09l-2.803-2.96h10.21c.402 0 .728-.345.728-.77 0-.426-.326-.77-.729-.77H3.173l2.951-3.118a.801.801 0 0 0 0-1.09.702.702 0 0 0-1.031 0L.97 7.589a.801.801 0 0 0 0 1.09l.07.072a.744.744 0 0 0 .01.01l4.043 4.271Z"></path></svg>
+                        <span class="m-none notranslate" data-translate="back">Back</span>
+
+                    </a>
+
+                    <a id="btnclose" class="close-back"></a>
+                </div>
+
+
+
+
+                @*------------------------1st Screen------------------------*@
+
+                @* choose option*@
+                <div id="dvLoginfirststep" style="display:block" class=" paddingrf-30 o-padding">
+
+
+                    <div class="login m-no-border   radius form">
+                        <div class="pb-3">
+                            <span class="h3 line30 notranslate" data-translate="signintoyouraccount">
+                                Sign in to your account
+                              
+                            </span> 
+                            <p class="grey-c medium">
+                                <span class="notranslate" data-translate="donhaveanaccount">
+                                    
+                                    Don’t have an account?
+                                </span>
+                             
+                                <a class="theme-c" id="btnShowRegisterForm" novalidate href="">
+                                    <span class="notranslate" data-translate="signup">
+
+                                        Sign up
+                                    </span>
+                          </a>
+                            </p>
+                        </div>
+
+                          @if (Model.IsEmail == true)
+                        {
+                            <a id="Loginwithemail" class="btn white-bg l-grey-bd d-grey-c w-100 s-bold padding10">
+                                <svg viewBox="0 0 32 32" class="svg-medium float-start"><title/><g id="mail"><path d="M29,6H3L2.92,6a.78.78,0,0,0-.21,0l-.17.07a.65.65,0,0,0-.15.1.67.67,0,0,0-.15.14l-.06.06a.36.36,0,0,0,0,.09,1.08,1.08,0,0,0-.08.19A1.29,1.29,0,0,0,2,6.9S2,7,2,7V25a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V7A1,1,0,0,0,29,6ZM16,14.81,6.2,8H27.09ZM4,24V8.91l11.43,7.91,0,0a1.51,1.51,0,0,0,.18.09l.08,0A1.09,1.09,0,0,0,16,17h0a1,1,0,0,0,.41-.1l.07,0,0,0L28,9.79V24Z"/></g></svg>
+                                <span class="notranslate" data-translate="continuewithemail">
+
+                                    Continue with email
+                                </span>
+                               
+                            </a>
+                        }
+                         @if (Model.IsPhone == true)
+                        {
+                            <a id="Loginwithphone" class="btn white-bg l-grey-bd d-grey-c w-100 s-bold padding10 margintb-15">
+
+                                <svg fill="none" height="24" class="svg-medium float-start" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18.1182 14.702L14 15.5C11.2183 14.1038 9.5 12.5 8.5 10L9.26995 5.8699L7.81452 2L4.0636 2C2.93605 2 2.04814 2.93178 2.21654 4.04668C2.63695 6.83 3.87653 11.8765 7.5 15.5C11.3052 19.3052 16.7857 20.9564 19.802 21.6127C20.9668 21.8662 22 20.9575 22 19.7655L22 16.1812L18.1182 14.702Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg>
+
+                                <span class="notranslate" data-translate="continuewithphonenumber">
+
+                                    Continue with phone number
+                                </span>
+                                
+                              
+                            </a>
+                        }
+
+                        
+                        @if (Model.IsGoogleLogin == true || Model.IsFacebookLogin == true)
+                        {
+                            <p class="grey-c center bold small upp margin30">
+                                <span class="notranslate" data-translate="or">
+or
+                                </span>
+                                
+                              </p>
+
+
+
+
+                            <div class="center">
+                                @if (Model.IsFacebookLogin == true)
+                                {
+                                    
+                                        <a class="btn white-bg l-grey-bd d-grey-c margin5 s-bold padding10" href="/controller/login/FacebookLogin">
+                                            <svg class="svg-medium float-start" height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M374.245,285.825l14.104,-91.961l-88.233,0l0,-59.677c0,-25.159 12.325,-49.682 51.845,-49.682l40.117,0l0,-78.291c0,0 -36.408,-6.214 -71.214,-6.214c-72.67,0 -120.165,44.042 -120.165,123.775l0,70.089l-80.777,0l0,91.961l80.777,0l0,222.31c16.197,2.542 32.798,3.865 49.709,3.865c16.911,0 33.512,-1.323 49.708,-3.865l0,-222.31l74.129,0Z" style="fill:#1877f2;fill-rule:nonzero;" /></svg> 
+                                        </a>
+                                      
+                                }
+                                @if (Model.IsGoogleLogin == true)
+                                {
+
+                                    <a class="btn white-bg l-grey-bd d-grey-c margin5 s-bold padding10" href="/controller/login/GoogleLogin">
+                                            <svg class="svg-medium float-start" enable-background="new 0 0 128 128" id="Social_Icons" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Google"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128" /><path clip-rule="evenodd" d="M27.585,64c0-4.157,0.69-8.143,1.923-11.881L7.938,35.648    C3.734,44.183,1.366,53.801,1.366,64c0,10.191,2.366,19.802,6.563,28.332l21.558-16.503C28.266,72.108,27.585,68.137,27.585,64" fill="#FBBC05" fill-rule="evenodd" /><path clip-rule="evenodd" d="M65.457,26.182c9.031,0,17.188,3.2,23.597,8.436L107.698,16    C96.337,6.109,81.771,0,65.457,0C40.129,0,18.361,14.484,7.938,35.648l21.569,16.471C34.477,37.033,48.644,26.182,65.457,26.182" fill="#EA4335" fill-rule="evenodd" /><path clip-rule="evenodd" d="M65.457,101.818c-16.812,0-30.979-10.851-35.949-25.937    L7.938,92.349C18.361,113.516,40.129,128,65.457,128c15.632,0,30.557-5.551,41.758-15.951L86.741,96.221    C80.964,99.86,73.689,101.818,65.457,101.818" fill="#34A853" fill-rule="evenodd" /><path clip-rule="evenodd" d="M126.634,64c0-3.782-0.583-7.855-1.457-11.636H65.457v24.727    h34.376c-1.719,8.431-6.397,14.912-13.092,19.13l20.474,15.828C118.981,101.129,126.634,84.861,126.634,64" fill="#4285F4" fill-rule="evenodd" /></g></g></svg>
+                                     </a>
+                                    
+                                }
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+
+
+
+
+                @*------------------------2nd Screen------------------------*@
+
+                @* if with email/phone Login Selection*@
+                <div id="dvLoginsecondstep" class=" paddingrf-30 o-padding" style="display:none">
+                 
+
+                    <div class="login  m-no-border   radius form">
+                        <div class="pb-3">
+                            <span class="h3 line30">
+                                <span class="notranslate" data-translate="continuewithyour">
+                                    Continue with your 
+                                </span>
+
+                            
+                                <span id="Logincontinuewith"></span>
+
+                                
+                            </span>
+                        </div>  
+                        
+                        
+                        <div class="line30 medium grey-c">
+
+
+                            @*------------if Email------------*@
+
+                            <div id="dvLoginTxtBoxEmail" style="display:none" class="form-group">
+
+                                <span class="notranslate" data-translate="email">
+                                    Email
+                                </span>
+
+                                
+                                <input type="email" autocomplete="off" maxlength="300" id="txtEmail" placeholder="name@email.com" required />
+                            </div>
+
+
+                            @*----------if Phone Number---------*@
+
+                            <div id="dvLoginTxtBoxPhone" style="display:none" class="form-group">
+
+                                <span class="notranslate" data-translate="phonenumber">
+                                    Phone Number 
+                                </span>
+                          
+                                <partial name="/Pages/Login/_phoneformatView.cshtml" />
+
+
+                            </div>
+                            <label id="validatorUserName" class="required"></label>
+
+                            <div class="form-group">
+                                <span class="notranslate" data-translate="password">
+                                    Password
+                                </span>
+                               
+                                <div class="input-group">
+
+
+                                    <input type="password"  id="txtpassword">
+
+                                    <span class="input-group-addon show_password">
+                                        <input type="checkbox" id="showPass">
+                                        <label for="showPass"></label>
+                                    </span>
+                                </div>
+
+                                <label id="validatorPassword" class="required"></label> 
+
+                            </div>
+                            <div>
+                                <a class="grey-c s-bold" runat="server" href="/forgetpassword">
+
+                                    <span class="notranslate" data-translate="forgotpassword">
+                                     Forgot Password?
+                                    </span>
+
+                                     </a>
+                            </div>
+                            <div class="margintb-15">
+                           
+                                <button type="button" class="w-100 float-none clickable-button" id="btnlogin">
+                                    <span class="notranslate" data-translate="continue">
+                                        Continue 
+                                    </span>
+                                   
+                                    
+                                </button>
+                            </div>
+                                <label id="spanError" class="required"></label>  
+                                <label class="error-label" id="lblloginerror"></label>
+                        
+                            
+                            
+
+                            <!--</form>-->
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+               
+                </div>
+
+
+
+
+
+           
+            </div>
+        </div>
+
+
+    </div>
+
+
+<style>
+    .password-field {
+        width: 85%;
+    }
+</style>
+
+<script>
+    setCurrentURL();
+    var username="";
+    var loginchannel;
+   
+    // Toggle password visibility
+    $('#showPass').on('click', function () {
+        var passInput = $("#txtpassword");
+        if (passInput.attr('type') === 'password') {
+            passInput.attr('type', 'text');
+        } else {
+            passInput.attr('type', 'password');
+        }
+    })
+
+    //validate valid email on blur
+    $('#txtEmail').on('input', function () {
+
+        $('#validatorUserName').text('');
+        username = $('#txtEmail').val();
+        if (isValidEmail(username)) {
+            // Valid email entered
+
+
+            $('#validatorUserName').text('');
+        }
+
+        else {
+            // Invalid input entered
+
+            $('#validatorUserName').text('Please enter a valid email address');
+            return false;
+        }
+    });
+
+
+
+    $('#txtPhoneNumber').on('input', function () {
+
+        $('#validatorUserName').text('');
+        username =  $('#txtPhoneNumber').val();
+
+        if (!isValidMobile(username)) {
+            $('#validatorUserName').text('Please enter a valid Phone Number');
+            return false;
+        }
+        else {
+            $('#validatorUserName').text('');
+        }
+
+    });
+
+
+    //unload form
+    $(document).on('click', '#btnclose', function() {
+        $('#loginFormContainer').empty();
+
+    });
+
+
+    ///Email show second step based on selections
+    $(document).on('click', '#Loginwithemail', function () {
+        $('#dvLoginsecondstep').show();
+        $('#dvLoginTxtBoxEmail').show();
+        
+
+        $('#dvLoginfirststep').hide();
+        $('#Logincontinuewith').text("Email");
+
+        $('#Loginbackbtn').show();
+
+
+        loginchannel = "Email";
+
+       
+    });
+
+
+
+    //Phone
+    $(document).on('click', '#Loginwithphone', function () {
+        $('#dvLoginsecondstep').show();
+        $('#dvLoginTxtBoxPhone').show();
+
+        $('#dvLoginfirststep').hide();
+        $('#Logincontinuewith').text("Phone");
+
+        $('#Loginbackbtn').show();
+        loginchannel = "Phone";
+        loadcountryList();
+
+    });
+
+    //back button
+    $(document).on('click', '#Loginbackbtn', function () {
+
+
+        $('#txtEmail').val('');
+        $('#txtPhoneNumber').val('');
+        $("#txtpassword").val('');
+        $('#validatorUserName').text('');
+        $('#lblloginerror').text('');
+        
+
+        $('#dvLoginsecondstep').hide();
+        $('#dvLoginfirststep').show();
+        $('#Loginbackbtn').hide();
+      
+
+        $('#dvLoginTxtBoxEmail').hide();
+        $('#dvLoginTxtBoxPhone').hide();
+
+    });
+
+  
+
+
+    ///call login method
+    $(document).on('click', '#btnlogin', function() {
+
+        $('#validatorPassword').text('');
+        $('#validatorUserName').text('');
+
+        var validationcheck = $('#validatorUserName').text('');
+
+        var password = $('#txtpassword').val();
+
+      
+       
+        if (username=="")
+        {
+          
+            $('#validatorUserName').text('Please enter a valid username');
+            return false;
+        }
+
+        if (password == "") {
+          
+            $('#validatorPassword').text('Please enter a valid password');
+            return false;
+        }
+
+
+        if (loginchannel == "Email") {
+
+            if (!isValidEmail(username))
+            {
+                // Valid email entered
+
+
+                $('#validatorUserName').text('Please enter valid email');
+                return false;
+            }
+        }
+
+
+        else if (loginchannel == "Phone") {
+
+            if (!isValidMobile(username)) {
+                $('#validatorUserName').text('Please enter a valid Phone Number');
+                return false;
+            }
+        }
+            
+       
+
+        //alert(username, password);
+
+        //return;
+
+        if (loginchannel == "Phone") {
+            username = "+" + $("#hdnmobilecode").val() + username;
+           
+        }
+
+        login(username, password);
+
+
+        //console.log(username, password, rememberme);
+    });
+
+    ///on enter event
+    $('.login input').keydown(function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            $('#btnlogin').click();
+        }
+    });
+
+
+   
+
+</script>

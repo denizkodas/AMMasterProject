@@ -1,0 +1,247 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.pagessetup.EditpagecontentModel
+@{
+
+    <title>Pages Setup</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+
+<div class=" form card padding30 h-600">
+
+
+
+
+    <div class="row form paddingtb-15 justify-content-between">
+
+
+        <div class="form-group col-md-5">
+            Selected Page: <strong>@Model.PageName</strong>
+         
+        </div>
+            <div class="form-group col-md-5">
+                <button id="saveButton">Save</button>
+
+            </div>
+        <div class="form-group col-md-12">
+            Content
+
+                <script src="https://editor.unlayer.com/embed.js"></script>
+            <div style="height:1000px" id="editor-container"></div>
+               
+           @* <textarea rows="2" asp-for="@Model.PageDetail.PageDescription "></textarea>
+            <span asp-validation-for="@Model.PageDetail.PageDescription" class="required"></span>*@
+
+        </div>
+     
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+   ///create its component and assign templateid conditionally.
+
+    $(document).ready(function () {
+      
+        const editor = unlayer.createEditor({
+            id: 'editor-container',
+            projectId: 169804
+          
+    });
+
+        if (@(Model.pageJson != null ? "true" : "false")) {
+            var encodedJson = JSON.stringify(@Html.Raw(Model.pageJson));
+            editor.loadDesign(JSON.parse(encodedJson));
+        }
+
+
+        $('#saveButton').click(function () {
+            const html = editor.getHtml(); // Retrieve the HTML code
+            const css = editor.getCss(); // Retrieve the CSS code
+
+            // Merge the HTML and CSS
+            const htmlWithCss = `<style>${css}</style>${html}`;
+            // Send the HTML with CSS data to the server
+            $.ajax({
+                url: '/controller/master/SaveHtml',
+                type: 'POST',
+                data: {
+                    html: htmlWithCss,
+                    json: "",
+                    pagenameid: '1'
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    if (response === "success") {
+                        window.location.href = "/admin/pagessetup"; // Replace "/redirect-page" with the desired page URL
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle the error response here
+                    console.log(error);
+                }
+            });
+        });
+
+
+
+        //const design = 
+        //    // Your design object here
+        //        {
+        //    "counters": {
+        //        "u_row": 8,
+        //            "u_column": 8,
+        //                "u_content_text": 8,
+        //                    "u_content_image": 2,
+        //                        "u_content_button": 1,
+        //                            "u_content_social": 1,
+        //                                "u_content_heading": 1
+        //    },
+        //    "body": {
+        //        "id": "yY5pox6dNM",
+        //            "rows": [{
+        //                "id": "EPawkhm0N8",
+        //                "cells": [1],
+        //                "columns": [{
+        //                    "id": "pQZJ-4lp09",
+        //                    "contents": [{
+        //                        "id": "jaBqZRocX3",
+        //                        "type": "heading",
+        //                        "values": {
+        //                            "containerPadding": "10px",
+        //                            "anchor": "",
+        //                            "headingType": "h1",
+        //                            "fontSize": "22px",
+        //                            "textAlign": "left",
+        //                            "lineHeight": "140%",
+        //                            "linkStyle": {
+        //                                "inherit": true,
+        //                                "linkColor": "#0000ee",
+        //                                "linkHoverColor": "#0000ee",
+        //                                "linkUnderline": true,
+        //                                "linkHoverUnderline": true
+        //                            },
+        //                            "displayCondition": null,
+        //                            "_meta": {
+        //                                "htmlID": "u_content_heading_1",
+        //                                "htmlClassNames": "u_content_heading"
+        //                            },
+        //                            "selectable": true,
+        //                            "draggable": true,
+        //                            "duplicatable": true,
+        //                            "deletable": true,
+        //                            "hideable": true,
+        //                            "text": "this is my notification"
+        //                        }
+        //                    }],
+        //                    "values": {
+        //                        "backgroundColor": "",
+        //                        "padding": "0px",
+        //                        "border": {},
+        //                        "borderRadius": "0px",
+        //                        "_meta": {
+        //                            "htmlID": "u_column_8",
+        //                            "htmlClassNames": "u_column"
+        //                        }
+        //                    }
+        //                }],
+        //                "values": {
+        //                    "displayCondition": null,
+        //                    "columns": false,
+        //                    "backgroundColor": "",
+        //                    "columnsBackgroundColor": "",
+        //                    "backgroundImage": {
+        //                        "url": "",
+        //                        "fullWidth": true,
+        //                        "repeat": "no-repeat",
+        //                        "size": "custom",
+        //                        "position": "center"
+        //                    },
+        //                    "padding": "0px",
+        //                    "anchor": "",
+        //                    "_meta": {
+        //                        "htmlID": "u_row_8",
+        //                        "htmlClassNames": "u_row"
+        //                    },
+        //                    "selectable": true,
+        //                    "draggable": true,
+        //                    "duplicatable": true,
+        //                    "deletable": true,
+        //                    "hideable": true
+        //                }
+        //            }],
+        //                "values": {
+        //            "popupPosition": "center",
+        //                "popupWidth": "600px",
+        //                    "popupHeight": "auto",
+        //                        "borderRadius": "10px",
+        //                            "contentAlign": "center",
+        //                                "contentVerticalAlign": "center",
+        //                                    "contentWidth": "600px",
+        //                                        "fontFamily": {
+        //                "label": "Cabin",
+        //                    "value": "'Cabin',sans-serif",
+        //                        "url": "https://fonts.googleapis.com/css?family=Cabin:400,700",
+        //                            "defaultFont": true
+        //            },
+        //            "textColor": "#000000",
+        //                "popupBackgroundColor": "#FFFFFF",
+        //                    "popupBackgroundImage": {
+        //                "url": "",
+        //                    "fullWidth": true,
+        //                        "repeat": "no-repeat",
+        //                            "size": "cover",
+        //                                "position": "center"
+        //            },
+        //            "popupOverlay_backgroundColor": "rgba(0, 0, 0, 0.1)",
+        //                "popupCloseButton_position": "top-right",
+        //                    "popupCloseButton_backgroundColor": "#DDDDDD",
+        //                        "popupCloseButton_iconColor": "#000000",
+        //                            "popupCloseButton_borderRadius": "0px",
+        //                                "popupCloseButton_margin": "0px",
+        //                                    "popupCloseButton_action": {
+        //                "name": "close_popup",
+        //                    "attrs": {
+        //                    "onClick": "document.querySelector('.u-popup-container').style.display = 'none';"
+        //                }
+        //            },
+        //            "backgroundColor": "#f9f9f9",
+        //                "backgroundImage": {
+        //                "url": "",
+        //                    "fullWidth": true,
+        //                        "repeat": "no-repeat",
+        //                            "size": "custom",
+        //                                "position": "top-center",
+        //                                    "customPosition": ["50%", "0%"]
+        //            },
+        //            "preheaderText": "",
+        //                "linkStyle": {
+        //                "body": true,
+        //                    "linkColor": "#0000ee",
+        //                        "linkHoverColor": "#0000ee",
+        //                            "linkUnderline": true,
+        //                                "linkHoverUnderline": true
+        //            },
+        //            "_meta": {
+        //                "htmlID": "u_body",
+        //                    "htmlClassNames": "u_body"
+        //            }
+        //        }
+        //    },
+        //    "schemaVersion": 15
+        //};
+              
+       
+
+       
+    });
+
+    </script>
+
+
+
+

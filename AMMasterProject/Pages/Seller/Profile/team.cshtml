@@ -1,0 +1,339 @@
+﻿@page
+@model AMMasterProject.Pages.Seller.Profile.teamModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+    <title class="notranslate" data-translate="sellermenuteammembers">Team</title>
+}
+
+
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="@Model.team.TeamGUID" type="hidden" />
+    <input asp-for="@Model.team.TeamID" type="hidden" />
+    <div class="row no-margin">
+        <partial name="/Pages/seller/profile/_ptabsl.cshtml" model="@Model.profileCompletionMetaData" />
+
+
+
+
+        <div class="card col-md-10 no-padding">
+            <div class="padding15 form">
+                <h5 class="padding15 bold no-margin">
+
+                    <span class="notranslate" data-translate="sellermteammembersheading">  Team Members Information</span>
+
+                   </h5>
+
+                <div class="row no-margin">
+                    <div class="col-md-3">
+
+                        <div class="seller-profile">
+                            <img id="imgcontactimage" src="@Model.team.Image" class="preview" style="display: @(Model.team.Image == null ? "none" : "block")" />
+                            <progress id="fileProgresscontactimage" class="w-100 margin5" style="display:none"></progress>
+                        </div>
+
+                        <label class="file-upload margin5 w-100">
+                            <span class="btn btn-default l-grey-bg notranslate" data-translate="uploadphoto"> Upload Photo </span>
+                            <input type="file" id="fileInputcontactimage" onchange="uploadFilecontactimage()" />
+
+                        </label>
+
+
+                        <p class="grey-c s-bold small">
+                            <span class="notranslate" data-translate="uploadphotomsg">  Allowed JPG or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.</span>
+
+                            
+                        </p>
+                        <span id="spanfilenamesellerimage" class="validation"></span>
+                        <input type="hidden" asp-for="@Model.team.Image" />
+
+                        <span asp-validation-for="@Model.team.Image" class="required"></span>
+
+
+                    </div>
+                  <div class="col-md-9">
+
+                        <div class="row margintb-15">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="name">Name </span>
+
+                              
+                                   
+                                    <input asp-for="@Model.team.Name" type="text" maxlength="300">
+                                    <span asp-validation-for="@Model.team.Name" class="required"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="role">Role </span>
+                                    
+                                    <input asp-for="@Model.team.Role" type="text" maxlength="100">
+                                    <span asp-validation-for="@Model.team.Role" class="required"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="yearsofexperience">Years Of Experience </span>
+                                    
+                                    <input asp-for="@Model.team.YearsOfExperience" type="Number" maxlength="20">
+                                    <span asp-validation-for="@Model.team.YearsOfExperience" class="required"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="phonenumber"> Phone Number </span>
+
+                                   
+                                    <input asp-for="@Model.team.ContactNumber" type="text" maxlength="15">
+                                    <span asp-validation-for="@Model.team.ContactNumber" class="required"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="email"> Email </span>
+                                    <input asp-for="@Model.team.Email" type="text" maxlength="300">
+                                    <span asp-validation-for="@Model.team.Email" class="required"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <span class="notranslate" data-translate="speciality"> Speciality </span>
+                                    
+                                    <small>
+                                        <span class="notranslate" data-translate="specialitymsg"> 
+
+
+                                            Please provide details of the skills your team member have
+                                        </span>
+                                    </small>
+
+                                    <input data-role="tagsinput" rows="10" cols="20" asp-for="@Model.team.Speciality" type="text" maxlength="500">
+                                    @*<textarea data-role="tagsinput" rows="2" cols="20" maxlength="2000" asp-for="@Model.team.Speciality" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelAbout'))"></textarea>*@
+                                    <span id="characterCountLabelAbout"></span>
+                                    <span asp-validation-for="@Model.team.Speciality" class="required"></span>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <span class="notranslate" data-translate="experience">   Experience </span>
+
+                                    <small>
+                                        <span class="notranslate" data-translate="experiencemsg">
+
+
+                                            Please provide details of the experiences your team member have
+                                        </span>
+                                    </small>
+
+
+
+                                  
+                             
+
+                                   
+                                    <textarea rows="2" cols="20" maxlength="1000" asp-for="@Model.team.Experience" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelexperience'))"></textarea>
+                                    <span id="characterCountLabelexperience"></span>
+                                    <span asp-validation-for="@Model.team.Experience" class="required"></span>
+
+                                </div>
+                            </div>
+
+
+                            <div class="checkright">
+                             
+                                
+                                <div class="form-group ">
+                            <input type="checkbox" asp-for="@Model.team.IsCreateLogin" checked="@Model.team.IsCreateLogin" />
+                            <label id="createlogin" asp-for="@Model.team.IsCreateLogin">
+                                        <span class="notranslate" data-translate="createteamlogin">   Create login of this team member</span>
+
+                                
+                                </label>
+                                    <p class="small grey-c paddingrf-15 marginrf-15">
+                                        <span class="notranslate" data-translate="createteamloginmsg"> Mark check if you want to craete login of this team member</span>
+
+                                        
+                                         </p>
+                            </div> </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary clickable-button me-2">
+                                    <span class="notranslate" data-translate="save"> Save</span>
+
+                                    
+                                    </button>
+
+                            </div>
+                        </div>
+                  </div>
+                
+                </div>
+
+
+           
+
+            </div>
+            <hr class="no-margin" />
+
+            <div class="table-responsive text-nowrap">
+                <table id="ListingLoad" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="notranslate" data-translate="name">  Name </span>
+                              </th>
+                            <th>
+                                <span class="notranslate" data-translate="role">Role </span>
+                                </th>
+                            <th>
+                                <span class="notranslate" data-translate="phonenumber">  Phone Number </span>
+                               </th>
+                            <th>
+                                <span class="notranslate" data-translate="email">Email </span>
+                                </th>
+
+                            <th>
+                                <span class="notranslate" data-translate="action"> Action</span>
+                                </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+
+                        @foreach (var item in Model.listteam)
+                        {
+
+
+                            <tr>
+                                <td>
+                                    <img src="@item.Image" class="rounded-circle">
+                                    @item.Name
+                                </td>
+
+                                <td>@item.Role</td>
+                                <td>@item.ContactNumber</td>
+                                <td>@item.Email</td>
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                           
+                                                <a class="dropdown-item" href="/seller/profile/team?TeamGUID=@item.TeamGUID"><i class="bx bx-edit-alt me-1"></i>
+                                                <span class="notranslate" data-translate="edit"> Edit</span>
+                                                    
+                                                    </a>
+                                            @if (Model.listteam.Count > 1)
+                                            {
+                                                <button formnovalidate asp-page-handler="Delete" asp-route-id="@item.TeamGUID" onclick="return confirm('Are you sure you want to delete?')" class="dropdown-item"><i class="bx bx-trash"></i>
+                                                    <span class="notranslate" data-translate="delete"> Delete</span>
+                                                    
+                                                    </button>
+                                            }
+                                           
+                                            @*<a ><i class="bx bx-trash me-1"></i> Delete</a>*@
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+
+<script>
+    function uploadFilecontactimage() {
+        var fileInput = $("#fileInputcontactimage")[0];
+        $("#fileProgresscontactimage").show();
+        var progressBar = $("#fileProgresscontactimage")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenamecontactimage').text("Only jpeg or png files are allowed.");
+            $("#fileProgresscontactimage").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenamecontactimage').text("File size must be less than 10 MB.");
+            $("#fileProgresscontactimage").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgcontactimage").attr("src", data.fileLink);
+
+                $('#team_Image').val(data.fileLink);
+
+                $("#imgcontactimage").show();
+
+
+                $("#fileProgresscontactimage").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+
+
+
+        $('#team_Experience').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ]
+        });
+    });
+
+</script>

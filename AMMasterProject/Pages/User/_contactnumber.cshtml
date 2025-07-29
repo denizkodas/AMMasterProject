@@ -1,0 +1,19 @@
+﻿@using AMMasterProject.ViewModel
+@model SellerProfileModel
+
+
+<form method="post">
+
+
+<input type="hidden" asp-for="@Model.ContactNumber"  required/>
+<span>@Model.ContactNumber</span>
+
+
+<button type="submit" class="">
+        <span class="notranslate" data-translate="update">Update </span>
+    
+    </button>
+
+</form>
+
+

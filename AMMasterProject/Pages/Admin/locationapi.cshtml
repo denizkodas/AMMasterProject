@@ -1,0 +1,95 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.locationapiModel
+@{
+
+    <title>Location API Setup</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+    <div class="row">
+        <div class="col-md-2 col-12 mb-3 mb-md-0">
+
+
+            <ul class="nav nav-pills mb-3" role="tablist">
+               
+                <li class="nav-item w-100 ">
+                    <button id="locationTabButton" type="button" class="nav-link text-start " role="tab" data-bs-toggle="tab" data-bs-target="#locationapi" aria-controls="loactionsetup" aria-selected="true">
+                        Location API
+                    </button>
+                </li>
+
+
+
+
+
+            </ul>
+
+
+        </div>
+        <div class="col-md-10 col-12">
+            <div class="tab-content form card padding30 h-600">
+
+                @* @Section *@
+
+
+
+              
+
+                <div class="tab-pane fade  " id="locationapi">
+                    <h5 class="bold no-margin">Google Map API</h5>
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Key
+                                <input asp-for="@Model.googlemapapi.APIKey" type="text" />
+                                <span asp-validation-for="@Model.googlemapapi.APIKey" class="required"></span>
+                            </div>
+
+                            <div class="form-group checkright">
+
+                                <input type="checkbox" asp-for="@Model.googlemapapi.IsPublish" id="googlemapSwitchCheck" value="true">
+                                <label for="googlemapSwitchCheck"> Publish</label>
+
+
+                            </div>
+                            <div class="form-group">
+                                <button class="clickable-button" asp-page-handler="ApIGoogle" class="clickable-button">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#locationapi";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+</script>

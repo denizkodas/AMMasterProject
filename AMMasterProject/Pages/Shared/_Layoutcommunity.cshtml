@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="mybody">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   @* <title>@ViewData["Title"]</title>*@
+
+    <partial name="/Pages/Shared/_MetaTags.cshtml" />
+    @*//RTL CSS*@
+    <link href="~/css/rtl.css" rel="stylesheet" />
+    @*//custom scripts and Root Style user defined*@
+   @*  @await Component.InvokeAsync("Global", new { viewName = "/Pages/Shared/Global/ScriptsUserDefined.cshtml", methodname= "scripts", id=0 })
+ *@
+    @*----------------------//All scripts and css-----------------------*@
+
+    <partial name="/Pages/Shared/setups/_ScriptsHeader.cshtml" />
+    @*-----------------------------------------------//favicon-----------------------------------------*@
+    <link rel="icon" type="image/x-icon" href="@Context.Items["Favicon"]">
+    @*-----------------------------------------------//CSS-----------------------------------------*@
+   
+
+
+
+</head>
+
+<body class="white-bg community">
+
+
+
+
+
+    <div class="container">
+    <nav class="community-header">
+        <div class="container-fluid">
+           
+                <div class="row">
+                    <a class="community-logo" href="/@ViewData["Title"].ToString().ToLower()">
+                        <partial name="/Pages/Shared/setups/_logo.cshtml" />
+                        <span> @ViewData["Title"] </span>
+                    </a>
+            @*        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>*@
+                    <div class="community-search">
+                      
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search by Keyword">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <span id="errorMessage" style="display: none" class="required">Please enter a keyword.</span>
+                </div>
+                 
+                    <a class="community-back" href="~/index">
+                 
+                            <span class="notranslate" data-translate="goto"> Go to</span>
+
+                        <span>  @Context.Items["CompanyName"]</span>
+                        </a>
+                    </div>
+                </div>
+    </nav>
+    </div>
+    <div class="community-category">
+        <div class="container">
+            <div class="collapse navbar-collapse "></div>
+            @*//-------- cummunitry category  ---------*@
+            @await Component.InvokeAsync("Category", new { viewName = "/Pages/Shared/Global/CommunityCategory.cshtml", methodname=@ViewData["Title"] })
+     
+        </div>
+    </div>
+
+    @*//--------Body Content---------*@
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+
+    @*//--------Footer---------*@
+
+    <footer>
+
+
+        <div class="container ">
+
+            <div id="dvfooterpages">
+
+
+
+            
+
+                <!--<%-- -----------------------------Footer Pages------------------------------------
+                             share > setup > _footerview
+                             Home controller  home.js auto called after 40 seconds in home.js
+                             --%>-->
+                <div id="dvFooterLinkViewContainer" class="footer-links row"></div>
+            </div>
+
+        </div>
+
+    </footer>
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    @*Copyright*@
+                    &copy; <span class="notranslate"> @Context.Items["CompanyName"] </span> - @DateTime.Now.ToString("yyyy")
+
+                    <partial name="/Pages/Shared/setups/_designby.cshtml" />
+                </div>
+                <div class="col-md-8 no-padding region-footer">
+
+             
+               
+                    <!--<%-- -----------------------------Social media icons------------------------------------
+                            share > setup > _socialmediafooter
+                            Home controller  home.js auto called after 40 seconds in home.js
+                            --%>-->
+                    <div id="dvSocialMediaFooterContainer"></div>
+
+              
+                    <!--<%-- -----------------------------Regional Setting Footer------------------------------------
+                            share > setup > _regionalsettingfooter
+                            Home controller  home.js auto called after 40 seconds in home.js
+                            --%>-->
+                    <div id="dvRegionalSettingFooterContainer" class="region-footer"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#basic-addon2').click(function () {
+                var searchInputValue = $('#searchInput').val().trim();
+                if (searchInputValue === '') {
+                    $('#errorMessage').show();
+                } else {
+                    window.location.href = '/blog?q=' + encodeURIComponent(searchInputValue);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

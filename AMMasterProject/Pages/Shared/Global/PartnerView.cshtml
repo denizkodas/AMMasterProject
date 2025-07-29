@@ -1,0 +1,60 @@
+﻿@model List<WebsitesetupPartner>
+
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <div class="partner-list">
+        <div class="container">
+            <div class="">
+                <h3 class="bold padding10 mobile-heading">
+                    <span id="partnerfeatured" class="notranslate" data-translate="ourpartner">Our Partner </span>
+                </h3>
+                <div class="">
+                    <div class="swiper partner-view">
+                        <div id="dvpartnerview" class="swiper-wrapper">
+
+                            @foreach (var partner in Model)
+                            {
+                                <div class="swiper-slide">
+
+
+                                    @if (@partner.Partnerurl != "") {
+                                    <a href="@partner.Partnerurl">
+                                        <div class="partner-wrapper">
+                                            <img src="@partner.Image" alt="@partner.ParnerName" />
+                                        </div>
+                                    </a>
+                                    }
+                                    else {
+                                    <div class="partner-wrapper">
+                                        <img src="@partner.Image" alt="@partner.ParnerName"  />
+                                    </div>
+                                    }
+
+
+
+
+
+
+                                </div>
+
+
+                            }
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+

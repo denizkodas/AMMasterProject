@@ -1,0 +1,72 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Announcement.IndexModel
+@{
+    <title>Announcement</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/announcement">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/announcement/add"><i class="bx bx-plus me-1"></i> Add </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+
+        <div class="table-responsive text-nowrap">
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr> <th style="width:150px">Description</th>
+                         <th style="width:100px" class="text-center">Dates</th>
+                        <th style="width:150px" class="text-center">For  </th>
+                       
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @*     Loop start*@
+
+                    @foreach (var item in Model.announcement)
+                        {
+                            
+                      
+                    <tr>
+
+
+                        <td >
+                           
+                            @item.Title
+                            <p>
+                                @item.Description
+                            </p>
+                        </td>
+                      
+                        <td class="text-center">
+                            @item.StartDate  -   @item.ExpiryDate
+                        </td>
+                       
+                        <td class="text-center">
+                          @item.AnnouncementFor
+                        </td>
+                       
+                    </tr>
+                        }
+                    @*     Loop End*@
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</form>

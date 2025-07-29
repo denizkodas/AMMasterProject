@@ -1,0 +1,224 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.SmsapiModel
+@{
+    <title>SMS API Setup</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+ <form method="post">
+
+
+    <div class="row">
+        <div class="col-md-2 col-12 mb-3 mb-md-0">
+
+
+            <ul class="nav nav-pills mb-3" role="tablist">
+                <li class="nav-item w-100 ">
+                <button id="firebaseTabButton" type="button" class="nav-link text-start active " role="tab" data-bs-toggle="tab" data-bs-target="#firebasesetup" aria-controls="firebasesetup" aria-selected="true">
+                    Firebase
+                    </button>
+                </li>
+             <li class="nav-item w-100 ">
+                <button id="twilioTabButton" type="button" class="nav-link text-start " role="tab" data-bs-toggle="tab" data-bs-target="#twiliosetup" aria-controls="twiliosetup" aria-selected="true">
+                    Twilio
+                    </button>
+                </li>
+             
+
+
+            </ul>
+
+
+        </div>
+        <div class="col-md-10 col-12">
+            <div class="tab-content form card padding30 h-600">
+
+                @* @Section *@
+
+
+
+            <div class="tab-pane fade active show" id="firebasesetup">
+                <h5 class="bold">Firebase Settings</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Api Key
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.apiKey">
+                                <span asp-validation-for="@Model.firebase.apiKey" class="required"></span>
+                            </div>
+                            <div class="form-group">
+                                Auth Domain
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.authDomain">
+                                <span asp-validation-for="@Model.firebase.authDomain" class="required"></span>
+                            </div>
+
+                            <div class="form-group">
+                                Project Id
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.projectId">
+                                <span asp-validation-for="@Model.firebase.projectId" class="required"></span>
+                            </div>
+
+                            <div class="form-group">
+                                Storage Bucket
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.storageBucket">
+                                <span asp-validation-for="@Model.firebase.storageBucket" class="required"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                Messaging Sender Id
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.messagingSenderId">
+                                <span asp-validation-for="@Model.firebase.messagingSenderId" class="required"></span>
+                            </div>
+
+                            <div class="form-group">
+                                App Id
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.appId">
+                                <span asp-validation-for="@Model.firebase.appId" class="required"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                Measurement Id
+                                <input type="text" maxlength="100" asp-for="@Model.firebase.measurementId">
+                                <span asp-validation-for="@Model.firebase.measurementId" class="required"></span>
+                            </div>
+
+
+
+
+                      @*      <div class="black-c bold">
+
+
+                            <label class="switch">
+                                <input type="checkbox" >
+                                <span class="slider"></span>
+                            </label>
+                            <label class="form-check-label" > Enable</label>
+
+
+
+                            <p class="l-bold grey-c">
+                                Enable with a Right Switch, Disable with a Left Switch:
+                            </p>
+                        </div>*@
+
+
+
+                            <div class="form-group">
+
+
+
+                                <button class="clickable-button" asp-page-handler="FireBase">Save</button>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+          @*  twilio setup*@
+            <div class="tab-pane fade" id="twiliosetup">
+                <h5 class="bold">Twilio Settings</h5>
+
+
+                    <div class="row form paddingtb-15 justify-content-between">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                Account Sid
+                                <input type="text" maxlength="100" asp-for="@Model.twilio.AccountSid">
+                                <span asp-validation-for="@Model.twilio.AccountSid" class="required"></span>
+                            </div>
+                            <div class="form-group">
+                                Auth Token
+                                <input type="text" maxlength="100" asp-for="@Model.twilio.AuthToken">
+                                <span asp-validation-for="@Model.twilio.AuthToken" class="required"></span>
+                            </div>
+                            <div class="form-group">
+                                Phone
+                                <input type="text" maxlength="100" asp-for="@Model.twilio.Phone">
+                                <span asp-validation-for="@Model.twilio.Phone" class="required"></span>
+                            </div>
+                        
+
+                           
+                  @*      <div class="black-c bold">
+
+
+                            <label class="switch">
+                                <input type="checkbox" >
+                                <span class="slider"></span>
+                            </label>
+                            <label class="form-check-label" > Enable</label>
+
+
+
+                            <p class="l-bold grey-c">
+                                Enable with a Right Switch, Disable with a Left Switch:
+                            </p>
+                        </div>*@
+
+
+
+                            <div class="form-group">
+
+
+
+                                <button class="clickable-button" asp-page-handler="Twilio">Save</button>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            This is area for guidelines
+                        </div>
+
+                    </div>
+                </div>
+
+
+               
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#firebaseTabButton";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+</script>
+

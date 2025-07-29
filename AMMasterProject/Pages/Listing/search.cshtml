@@ -1,0 +1,830 @@
+﻿@page "/item/search"
+@model AMMasterProject.Pages.products.searchModel
+@{
+    ViewData["Title"] = "Search";
+
+}
+<style>
+    .campaign-topbanner,
+    .navbar-collapse.collapse.top-header,
+    footer,
+    .copyright,
+    .category_btn,
+    .category_dropdown,
+    .top-header {
+        display: none !important
+    }
+
+    .searchbar {
+        margin-left: 37px;
+    }
+
+    .main-header {
+        z-index: 10001;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+    .body-content {
+        min-height: initial;
+    }
+
+    body {
+        background: var(--white-smoke) !important;
+    }
+
+    .container {
+        max-width: 100%
+    }
+
+    .usersdemo {
+        display: none
+    }
+
+    .main-header .customer-menu{
+        display:none !important
+    }
+
+</style>
+
+
+
+
+<div class="search-page">
+
+    <div class="search-form-box" id="searchform">
+        <div class="form">
+            <div class="top-menu">
+                <span class="title-heading">
+                    <span class="notranslate" data-translate="filter">  Filter</span>
+                      
+                    
+                    
+                    <a class="back-btn" id="aclosefilter">
+                        <svg viewBox="0 0 32 32">
+                            <g data-name="Layer 2" id="Layer_2"><path d="M20,25a1,1,0,0,1-.71-.29l-8-8a1,1,0,0,1,0-1.42l8-8a1,1,0,1,1,1.42,1.42L13.41,16l7.3,7.29a1,1,0,0,1,0,1.42A1,1,0,0,1,20,25Z" /></g>
+                            <path d="M39.3756,48.0022l30.47-25.39a6.0035,6.0035,0,0,0-7.6878-9.223L26.1563,43.3906a6.0092,6.0092,0,0,0,0,9.2231L62.1578,82.615a6.0035,6.0035,0,0,0,7.6878-9.2231Z" />
+
+                        </svg>
+                    </a>
+                </span>
+            </div>
+
+            @*  //Search by seller address *@
+              <div class="searchbind">
+            <div class="h5 ">
+                    <span class="notranslate" data-translate="searchbylocation">  Search by Location</span>
+
+
+                    
+            </div>
+            <button id="address-search-btn" class="search-btn-box">
+            <div class="border padding10 radius">
+                        <span id="spanaddress" class="text-overflow notranslate" data-translate="searchbynearyou">Search by Near You</span>
+
+            </div></button>
+
+
+
+
+
+            </div>
+
+
+            <div class="searchbind checkright">
+                <div class="h5 ">
+                    <span class="notranslate" data-translate="categories">  Categories</span>
+                    
+                </div>
+                <div class="search-category-box" id="categoryCheckboxList">
+
+                    @foreach (var item in Model.CategoryList)
+                    {
+
+                      
+                        //searchcategory-level1
+                        //searchcategory-level2
+                        //searchcategory-level3
+                        //searchcategory-selected
+
+                        var searchcategoryclass = "searchcategory-level1";
+                        var selectedclass = "";
+                        if(@item.LevelNumber==1)
+                        {
+                            searchcategoryclass = "searchcategory-level1";
+                        }
+                        else if (@item.LevelNumber == 2)
+                        {
+                            searchcategoryclass = "searchcategory-level2";
+                        }
+                        else if (@item.LevelNumber == 3)
+                        {
+                            searchcategoryclass = "searchcategory-level3";
+                        }
+
+                        @* if (Model.QueryStringcategoryid==item.CategoryId)
+                        {
+                            selectedclass = "searchcategory-selected";
+                        }
+                        else
+                        {
+                            selectedclass = "";
+                        } *@
+
+
+                        <div>
+
+                            <input class="@searchcategoryclass @selectedclass" type="checkbox" id="@item.CategoryId" name="ProductTypes" value="@item.CategoryId" @(item.Selected ? "checked" : "")>
+                            <label for="@item.CategoryId">@item.CategoryName</label>
+                        </div>
+                      @*   <a href="/item/search?categoryid=@item.CategoryId" class="category-link @searchcategoryclass @selectedclass" data-categoryid="@item.CategoryId">
+                           
+                            @if (@item.Icon != "" && @item.LevelNumber == 1)
+                            {
+                            <img src="@item.Icon" />
+                            }
+                            <span>
+                            @item.CategoryName </span> 
+                            
+                        
+                        </a> *@
+                    }
+
+                    @*    <div id="categoryCheckboxList"></div>*@
+
+                </div>
+            </div>
+
+
+
+            <div class="searchbind checkright">
+                <div class="h5">
+                    <span class="notranslate" data-translate="type">   Type</span>:
+                   
+                </div>
+                @*<select asp-items="Model.ProductType"></select>
+                *@
+                <div id="productTypeCheckboxList">
+                    @foreach (var item in Model.ProductType)
+                    {
+                        <div>
+                            <input type="checkbox" id="@item.Value" name="ProductTypes" value="@item.Value" @(item.Selected ? "checked" : "")>
+                            <label for="@item.Value">@item.Text</label>
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+            <div class="searchbind checkright">
+                <div class="h5">
+                    <span class="notranslate" data-translate="sellingtype">   Selling Type</span>
+                    
+                </div>
+
+                <div id="sellingTypeCheckboxList">
+                    @foreach (var item in Model.SellingType)
+                    {
+                        <div>
+                            <input type="checkbox" id="@item.Value" name="SellingType" value="@item.Value" @(item.Selected ? "checked" : "")>
+                            <label for="@item.Value">@item.Text</label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="searchbind">
+
+                <div class="h5">
+                    <span class="notranslate" data-translate="price"> Price</span>
+                    
+                </div>
+
+                <div class="pricing-box">
+
+                    <input type="text" id="txtminprice" inputmode="numeric" min="1" placeholder="=Min" />
+                    <input type="text" id="txtmaxprice" inputmode="numeric" placeholder="=Max" />
+
+                    <input type="button" value=" " class="go-btn" id="btnprice" />
+                </div>
+                <span id="price-error"></span>
+            </div>
+
+
+
+            <div class="searchbind checkright" id="ratingCheckboxList">
+                <div class="h5">
+                    <span class="notranslate" data-translate="rating">Rating</span>
+                    
+                </div>
+                @for (int i = 1; i <= 5; i++)
+                {
+                    int starValue = i;
+                    string starid = "checkbox" + i.ToString();
+                    <div>
+                        <input id="@starid" value="@starValue" type="checkbox" onclick="onStarRatingChange(this)">
+                        <label for="@starid"> </label>
+                        @for (int j = 1; j <= i; j++)
+                        {
+                            <i class="fa fa-star yellow-c"></i>
+                        }
+                        @for (int j = i + 1; j <= 5; j++)
+                        {
+                            <i class="fa fa-star l-grey-c"></i>
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<div class="search-data o-padding">
+
+
+
+
+
+    <div id="searchproduct">
+        <div id="addresssearchcontainer"></div>
+
+
+        @*  <partial name="/Pages/products/_product-home.cshtml" />*@
+
+        <div class="container">
+
+            <div class="row padding15 o-padding no-margin">
+                <div class="col-md-8 no-padding m-none">
+                </div>
+                <div class="col-md-4 no-padding">
+                    <div class="filter">
+                        <a id="ashowfilter">
+
+                            <svg viewBox="0 0 32 32">
+                                <path d="  M3.241,7.646L13,19v9l6-4v-5l9.759-11.354C29.315,6.996,28.848,6,27.986,6H4.014C3.152,6,2.685,6.996,3.241,7.646z" fill="none" id="XMLID_6_" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
+                            </svg>
+
+                            <span class="notranslate" data-translate="filter">Filter</span>
+                         
+                        </a>
+                    </div>
+
+
+                    <div class="list-grid">
+                        <span class="notranslate" data-translate="view">View</span>:
+                        
+                        <a href="javascript:void(0)" onclick="list()">
+
+                            <svg viewBox="0 0 16 16"><path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" fill-rule="evenodd" /></svg>
+                        </a>
+                        <a href="javascript:void(0)" onclick="grid()">
+                            <svg class="feather feather-grid" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="7" width="7" x="3" y="3" /><rect height="7" width="7" x="14" y="3" /><rect height="7" width="7" x="14" y="14" /><rect height="7" width="7" x="3" y="14" /></svg>
+
+                        </a>
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            @*  <p class="no-margin">
+            <labl id="lblshowingrecords"></labl>
+            <labl id="lbltotalrecods">@TempData["TotalItemCount"]</labl>
+
+
+            </p> *@
+
+            <div id="dvProductViewContainer">
+
+
+
+                @*
+                <partial name="/Pages/Listing/_ProductList.cshtml" model="productmodel" />*@
+
+            </div>
+        </div>
+
+
+        <div class="center padding15">
+            <label id="lblmsg"></label>
+            <button type="button" class="btn radius30 white-bg shadow" id="btnloadmore">
+                <span class="notranslate" data-translate="loadmore">Load More</span>
+                
+                </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="dvaddressview" style="display:none" class="overlay-view">
+    <div class="popup">
+        <div class="popup-heading no-margin">
+
+            <span class="notranslate" data-translate="searchbyarea"> Search by area</span>
+            <a id="asearchboxclose" class="close-back"></a></div>
+
+        <div class="padding10 l-grey-bg">
+            <div class="  padding15">
+
+
+                <partial name="/Pages/Shared/setups/_search-address.cshtml" />
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hdnCurrentPage" value="0" />
+<input type="hidden" id="hdnNextPage" value="0" />
+
+
+<script>
+    function list() {
+        var element = document.getElementById("searchproduct");
+        element.classList.add("listview");
+    }
+    function grid() {
+        var element = document.getElementById("searchproduct");
+        element.classList.remove("listview");
+    }
+
+</script>
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var urlParams = new URLSearchParams(window.location.search);
+    // var categoryid = urlParams.get('categoryid');
+    var addressFilter = urlParams.get('address');
+
+
+    $(document).ready(function () {
+
+        productload();
+
+
+    });
+
+
+
+
+
+    $("#btnloadmore").click(function () {
+
+
+        //   $("#btnloadmore").text("Loading....");
+        // $("#btnloadmore").addClass("loadingprocessing");
+        productload();
+
+
+
+
+        // setTimeout(function () {
+        //     $("#btnloadmore").text("Load More");
+        //     $("#btnloadmore").removeClass("loadingprocessing");
+        // }, 5000); // Simulated delay of
+
+    });
+
+
+
+
+
+    ///search push START
+
+
+    var productTypeCheckboxList = document.getElementById('productTypeCheckboxList');
+    var sellingTypeCheckboxList = document.getElementById('sellingTypeCheckboxList');
+    var ratingCheckboxList = document.getElementById('ratingCheckboxList');
+
+    var categoryCheckboxList = document.getElementById('categoryCheckboxList');
+
+    var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener('change', function () {
+            var selectedProductTypes = [];
+            var selectedSellingTypes = [];
+            var selectedRatings = [];
+            var selectedCategories = [];
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    if (checkboxes[i].closest('#productTypeCheckboxList')) {
+                        selectedProductTypes.push(checkboxes[i].value);
+                    } else if (checkboxes[i].closest('#sellingTypeCheckboxList')) {
+                        selectedSellingTypes.push(checkboxes[i].value);
+                    } else if (checkboxes[i].closest('#ratingCheckboxList')) {
+                        selectedRatings.push(checkboxes[i].value);
+                    }
+                    else if (checkboxes[i].closest('#categoryCheckboxList')) {
+                        selectedCategories.push(checkboxes[i].value);
+                    }
+                }
+            }
+
+            // Get the existing query parameters
+            urlParams = new URLSearchParams(window.location.search);
+
+            // Update the producttype parameter
+            if (selectedProductTypes.length > 0) {
+                urlParams.set('producttype', selectedProductTypes.join(','));
+            } else {
+                urlParams.delete('producttype');
+            }
+
+            // Update the sellingtype parameter
+            if (selectedSellingTypes.length > 0) {
+                urlParams.set('sellingtype', selectedSellingTypes.join(','));
+            } else {
+                urlParams.delete('sellingtype');
+            }
+
+            // Update the rating parameter
+            if (selectedRatings.length > 0) {
+                urlParams.set('rating', selectedRatings.join(','));
+            } else {
+                urlParams.delete('rating');
+            }
+
+            // Update the categories parameter
+            if (selectedCategories.length > 0) {
+                urlParams.set('categoryid', selectedCategories.join(','));
+            } else {
+                urlParams.delete('categoryid');
+            }
+
+
+            var newUrl = window.location.pathname + '?';
+            var isFirstParam = true;
+
+            urlParams.forEach(function (value, key) {
+                if (!isFirstParam) {
+                    newUrl += '&';
+                }
+                newUrl += key + '=' + value;
+                isFirstParam = false;
+            });
+
+            window.history.replaceState({}, '', newUrl);
+
+            // Update the URL without refreshing the page
+            // var newUrl = window.location.pathname + '?' + urlParams.toString();
+            // window.history.replaceState({}, '', newUrl);
+
+            refreshfilter();
+        });
+    }
+
+
+
+    // Price search button click event
+    document.getElementById("btnprice").addEventListener("click", function () {
+        // Get the values of min and max price input fields
+        var minPrice = document.getElementById("txtminprice").value;
+        var maxPrice = document.getElementById("txtmaxprice").value;
+
+        // If both fields are blank, delete the corresponding query parameters
+        if (minPrice === "" && maxPrice === "") {
+            urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('minprice')) {
+                urlParams.delete('minprice');
+            }
+            if (urlParams.has('maxprice')) {
+                urlParams.delete('maxprice');
+            }
+            var newUrl = window.location.pathname + '?' + urlParams.toString();
+            window.history.replaceState({}, '', newUrl);
+            refreshfilter();
+            return;
+        }
+
+        // Perform price validation
+        var validationPassed = pricevalidation();
+
+        if (validationPassed) {
+            // Update the query parameters
+            urlParams = new URLSearchParams(window.location.search);
+
+            if (minPrice === "") {
+                // If min price field is blank, delete the corresponding query parameter
+                urlParams.delete('minprice');
+            } else {
+                // Otherwise, update the minprice parameter
+                urlParams.set('minprice', minPrice);
+            }
+
+            if (maxPrice === "") {
+                // If max price field is blank, delete the corresponding query parameter
+                urlParams.delete('maxprice');
+            } else {
+                // Otherwise, update the maxprice parameter
+                urlParams.set('maxprice', maxPrice);
+            }
+
+            // Update the URL without refreshing the page
+            var newUrl = window.location.pathname + '?' + urlParams.toString();
+            window.history.replaceState({}, '', newUrl);
+            refreshfilter();
+
+        }
+
+
+    });
+
+    function pricevalidation() {
+        // Get values from input fields
+        var minPrice = $('#txtminprice').val();
+        var maxPrice = $('#txtmaxprice').val();
+
+        // Perform validation
+        if (minPrice === "" || maxPrice === "") {
+            $('#price-error').text("Please enter a value for both minimum and maximum price.");
+            return false;
+        }
+
+        if (parseInt(minPrice) >= parseInt(maxPrice)) {
+            $('#price-error').text("Maximum price must be greater than minimum price.");
+            return false;
+        } else {
+
+            closeFilter();
+            $('#price-error').text("");
+            return true;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    ///search push END
+
+
+
+    ///query string bindings
+
+
+    window.onload = function () {
+        // Parse the query string into an object
+        var queryObj = {};
+        var queryIndex = window.location.href.indexOf("?");
+        if (queryIndex !== -1) {
+            var queryString = window.location.href.substring(queryIndex + 1);
+            var queryArr = queryString.split("&");
+            for (var i = 0; i < queryArr.length; i++) {
+                var queryPair = queryArr[i].split("=");
+                queryObj[decodeURIComponent(queryPair[0])] = decodeURIComponent(queryPair[1]);
+            }
+        }
+
+        // Set the values of the minprice and maxprice textboxes
+        var txtminprice = document.getElementById("txtminprice");
+        var txtmaxprice = document.getElementById("txtmaxprice");
+        if (queryObj.hasOwnProperty("minprice")) {
+            txtminprice.value = queryObj["minprice"];
+        }
+        if (queryObj.hasOwnProperty("maxprice")) {
+            txtmaxprice.value = queryObj["maxprice"];
+        }
+
+
+        //star rating binding
+
+        // Get the query string parameter "rating"
+
+        const ratingParam = urlParams.get('rating');
+
+        // If "rating" parameter exists, split the values and check the corresponding checkboxes
+        if (ratingParam) {
+            const ratingValues = ratingParam.split(',');
+            ratingValues.forEach((value) => {
+                const checkbox = document.getElementById(`checkbox${value}`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+
+
+        const keywordParam = urlParams.get('q');
+        if (keywordParam) {
+
+            $("#txtsearch").val(keywordParam);
+        }
+
+
+        ////Address binding here
+
+        var addressParam = urlParams.get('address');
+
+
+        // If 'address' parameter exists, assign its value to the textbox
+        if (addressParam) {
+            var addressTextbox = document.getElementById('spanaddress');
+            if (addressTextbox) {
+                addressTextbox.innerHTML = addressParam;
+            }
+        }
+    };
+
+
+
+
+    ///refresh every thing on filter and call it again
+
+    function refreshfilter() {
+        $("#btnloadmore").hide();
+        // make the pages to 0 bcs new filters is applying
+        $("#hdnCurrentPage").val("0");
+        $("#hdnNextPage").val("0");
+        $('[id*=dvProductViewContainer').empty();
+
+
+        productload();
+
+
+    };
+
+
+
+
+
+
+
+
+    /////load address filters start
+
+    $(document).ready(function () {
+        $("#address-search-btn").click(function (e) {
+            e.preventDefault(); // Prevent the default behavior of the button tag
+            $("#dvaddressview").show(); // Show the address view
+        });
+
+
+        // Get the value of the 'address' parameter from the query string
+        //const urlParams = new URLSearchParams(window.location.search);
+        
+
+
+    });
+
+
+
+
+
+
+    $("#asearchboxclose").click(function (e) {
+
+        e.preventDefault(); // Prevent the default behavior of the button tag
+        $("#dvaddressview").hide();
+
+    });
+
+
+    /////load address filters end
+
+
+
+
+
+
+    var nextPage = 0;
+    var currentPage = 0;
+
+
+    function productload() {
+
+        $("#btnloadmore").text("Loading....");
+        $("#btnloadmore").addClass("loadingprocessing");
+
+        currentPage = parseInt($("#hdnCurrentPage").val());
+        nextPage = parseInt($("#hdnNextPage").val());
+
+        if (currentPage == 'undefined') {
+            currentPage = 0;
+        }
+        nextPage = currentPage + 1;
+        let totalRecords = 0;
+        $.ajax({
+            type: 'GET',
+            url: '/Controller/Product/search?pagenumber=' + nextPage + "&" + urlParams.toString(),
+            success: function (result) {
+                // update the page content here
+
+                $('#dvProductViewContainer').empty();
+                $('#dvProductViewContainer').html(result);
+
+                $("#hdnCurrentPage").val(nextPage);
+
+                //$("#btnloadmore").show();
+
+                previousRecord = parseInt(nextPage * 12);
+
+
+                // Get the count of newly added records and update the totalRecords variable
+
+
+                const itemCount = $('.col-lg-3.col-sm-4.no-padding.block-item').length;
+                $("#lblshowingrecords").text("Showing " + itemCount + " of ");
+                // var lbltotalrecords = $("#lbltotalrecords").text();
+
+
+                //hide load more button
+
+
+                setTimeout(function () {
+                    $("#btnloadmore").text("Load More");
+                    $("#btnloadmore").removeClass("loadingprocessing");
+
+
+
+
+                    // console.log("count of div" + itemCount);
+                    // console.log("total in temp" + $("#lbltotalrecords").text());
+
+
+                    if (itemCount == $("#lbltotalrecords").text()) {
+                        $("#btnloadmore").hide();
+                        $("#lblmsg").text("You have reached the last record of this search");
+
+                        $("#lblmsg").addClass("no-record-found empty-product");
+                    }
+
+                    else {
+                        $("#btnloadmore").show();
+                        $("#lblmsg").text("");
+                    }
+
+
+                }, 2000);
+
+            }
+        });
+
+
+    }
+
+    function showFilter() {
+        $("#searchform").addClass("showfilter");
+        // Additional actions if needed
+    }
+
+    function closeFilter() {
+        $("#searchform").removeClass("showfilter");
+        // Additional actions if needed
+    }
+    $(document).ready(function () {
+        // Function to show the filter
+       
+
+        // Initially hiding the filter
+       
+
+        // Click event to show the filter
+        $("#aclosefilter").click(function () {
+            closeFilter();
+        });
+
+            $("#ashowfilter").click(function () {
+                showFilter();
+            });
+    });
+
+
+</script>
+

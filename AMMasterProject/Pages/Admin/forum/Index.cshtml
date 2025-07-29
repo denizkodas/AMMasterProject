@@ -1,0 +1,78 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.forum.IndexModel
+<title>Forum</title>
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/forum">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/forum/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+
+        <div class="table-responsive text-nowrap">
+            <table id="ListingLoad" class="table">
+                <thead class="table-secondary">
+                    <tr>
+
+
+
+                        <th style="width:150px">Postinf</th>
+                        <th style="width:150px" class="text-center">category</th>
+                        <th style="width:100px" class="text-center">User</th>
+                        <th style="width:100px" class="text-center">Status</th>
+                        <th style="width:60px" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @*     Loop start*@
+                    <tr>
+
+
+                        <td>
+                           
+                            <h6 class="no-margin">Posting</h6>
+                            <small>  1 hour ago / <span class="badge grey-bg white-c">2</span> Rplies</small>
+                         
+                        </td>
+                        <td class="text-center">
+                            category
+                        </td>
+                        <td class="text-center">
+                            <a >
+                                <img class="rounded-circle"> By malikbilal453,
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            status
+                        </td>
+                        <td class="center">
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+
+                                    <a class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> View </a>
+                                    <a class="dropdown-item"><i class="bx bx-trash"></i> Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    @*     Loop End*@
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,308 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Blog.addModel
+@{
+    <title>Blogs</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+    <input asp-for="@Model.blog.BlogId" type="hidden" />
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/blog">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/blog/add"><i class="bx bx-plus me-1"></i> Add </a>
+            <a class="nav-link" href="~/admin/blog/category"><i class="bx bx-plus me-1"></i> Category </a>
+
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                  Blog Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+
+                        <div class="form-group col-md-10">
+                            Title
+                                <input type="text" maxlength="100" asp-for="@Model.blog.Title">
+                                <span asp-validation-for="@Model.blog.Title" class="required"></span>
+                        </div>
+                        
+                    
+                        <div class="form-group col-md-5">
+                            Category
+                                <select asp-for="@Model.blog.Categoryid" asp-items="@Model.BlogCategory" class="form-control">
+                                    <option disabled selected>-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@Model.blog.Categoryid" class="required"></span>
+
+
+
+                           
+                        </div>
+                       
+                        <div class="form-group col-md-10">
+                            External URL Optional
+                                <input type="text" maxlength="200" asp-for="@Model.blog.Externalurl">
+                                <span asp-validation-for="@Model.blog.Externalurl" class="required"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                   Description
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+
+
+                        <div class="form-group col-md-9">
+                            Summary
+                                <textarea type="text" maxlength="1000" asp-for="@Model.blog.Summary" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelSummary'))"></textarea>
+                                <span id="characterCountLabelSummary"></span>
+                                <span asp-validation-for="@Model.blog.Summary" class="required"></span>
+                        </div>   
+                        <div class="form-group col-md-12">
+                            Description
+                               @* <input type="text" asp-for="@Model.blog.Description">*@
+                                <textarea asp-for="@Model.blog.Description"></textarea>
+                                <span asp-validation-for="@Model.blog.Description" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+
+                <div class="row paddingrf-15 no-margin">
+                    <div class=" col-md-3 s-bold">
+                        Icon
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        Upload Image
+                        <br>
+                        <label class="file-upload">
+                            <span class="btn btn-default l-grey-bg">
+                                Select File
+                            </span>
+                            <input type="file" id="fileInputicon" onchange="uploadFileicon()" />
+
+                            <progress id="fileProgressicon" class="w-100 margin5" style="display:none"></progress>
+                        </label>
+                        <img id="imgicon" src="@Model.blog.Image" class="preview" style="display: @(Model.blog.Image == null ? "none" : "block")">
+
+
+                        <p class="grey-c">
+                            Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                        </p><br />
+                        <span id="spanfilenameicon" class="required"></span>
+                        <input type="hidden" asp-for="@Model.blog.Image" />
+
+                        <span asp-validation-for="@Model.blog.Image" class="required"></span>
+                    </div>
+
+
+                </div>
+
+               
+      
+
+            <hr>
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        SEO
+                    </div>
+
+                    <div class="col-md-6 no-padding">
+
+
+
+                        <div class="row">
+                            <div class="form-group">
+                                Search engine friendly page name
+                                <input type="text" maxlength="100" asp-for="@Model.blog.SeoPageName" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelPageName'))">
+                                <span id="characterCountLabelPageName"></span>
+                                <span asp-validation-for="@Model.blog.SeoPageName" class="required"></span>
+
+                            </div>
+
+                            <div class="form-group">
+                                Meta title
+
+                                <input type="text" maxlength="200" asp-for="@Model.blog.SeoTitle" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetatitle'))">
+                                <span id="characterCountLabelMetatitle"></span>
+                                <span asp-validation-for="@Model.blog.SeoTitle" class="required"></span>
+
+                            </div>  <div class="form-group">
+                                Meta Keywords
+                                <small>comma seperated values property, zone, classified</small>
+                                <input type="text" maxlength="200" asp-for="@Model.blog.SeoKeyword" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaKeyword'))">
+                                <span id="characterCountLabelMetaKeyword"></span>
+                                <span asp-validation-for="@Model.blog.SeoKeyword" class="required"></span>
+                            </div>  <div class="form-group">
+                                Meta Description
+                                <input type="text" maxlength="200" asp-for="@Model.blog.SeoDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaDescription'))">
+                                <span id="characterCountLabelMetaDescription"></span>
+                                <span asp-validation-for="@Model.blog.SeoDescription" class="required"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+
+                            <input type="checkbox" asp-for="@Model.blog.IsPublish" checked="@Model.blog.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.blog.IsPublish">Is Publish</label>
+
+
+                        <p class="small grey-c paddingrf-15 marginrf-15">  Mark check if you want to live this Section</p>
+
+
+
+                            <input type="checkbox" asp-for="@Model.blog.Isaddonhomepage" checked="@Model.blog.Isaddonhomepage" />
+                            <label id="Isaddonhomepage" asp-for="@Model.blog.Isaddonhomepage">Is Show On Home Page</label>
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox to determine whether you want to display this content on the homepage</p>
+
+
+
+                            <input type="checkbox" asp-for="@Model.blog.isfeatured" checked="@Model.blog.isfeatured" />
+                            <label id="Isfeatured" asp-for="@Model.blog.isfeatured">Is Show On Blog Page On Top</label>
+                            <p class="small grey-c paddingrf-15 marginrf-15">  Mark the checkbox to determine whether you want to display this content on the blog home page</p>
+
+                    </div>
+
+             
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                    <div class="col-md-6"></div> <div class="col-md-6">    <button class="clickable-button">Save</button></div>
+
+            
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+
+
+
+
+
+    function uploadFileicon() {
+        var fileInput = $("#fileInputicon")[0];
+        $("#fileProgressicon").show();
+        var progressBar = $("#fileProgressicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenameicon').text("Only jpeg or png files are allowed.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameicon').text("File size must be less than 10 MB.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgicon").attr("src", data.fileLink);
+
+                $('#blog_Image').val(data.fileLink);
+
+                $("#imgicon").show();
+
+
+                $("#fileProgressicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+
+   
+        $(document).ready(function () {
+        $('#blog_Description').summernote();
+        });
+   
+
+
+    $(document).ready(function () {
+        $('#blog_Title').keyup(function () {
+            var title = $(this).val();
+            var seoPageName = generateSeoFriendlyText(title);
+            $('#blog_SeoPageName').val(seoPageName);
+        });
+    });
+
+   
+</script>
+
+</form>

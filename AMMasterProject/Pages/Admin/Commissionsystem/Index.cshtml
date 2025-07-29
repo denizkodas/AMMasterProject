@@ -1,0 +1,475 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Commissionsystem.IndexModel
+@{
+    <title>Commission System</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+   
+
+
+    <div class="row">
+        <div class="col-md-2 col-12 mb-3 mb-md-0">
+
+
+            <ul class="nav nav-pills mb-3" role="tablist">
+                <li class="nav-item w-100 ">
+                    <button id="buyertaxTabButton" type="button" class="nav-link text-start  " role="tab" data-bs-toggle="tab" data-bs-target="#buyer" aria-controls="buyer" aria-selected="true">
+                        Buying Tax & Commission
+                    </button>
+                </li>
+                @*   <li class="nav-item w-100">
+                <button id="platformTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#platform" aria-controls="platform" aria-selected="true">
+                Tax/VAT/GST
+                </button>
+                </li> *@
+                <li class="nav-item w-100">
+                    <button id="sellerTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#seller" aria-controls="seller" aria-selected="true">
+                        Seller Tax & Commission
+                    </button>
+                </li>
+
+                @*  <li class="nav-item w-100">
+                <button id="categoryTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#category" aria-controls="category" aria-selected="true">
+                Category
+                </button>
+                </li>
+                <li class="nav-item w-100">
+                <button id="listingTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#listing" aria-controls="listing" aria-selected="true">
+                Listing Based
+                </button>
+                </li>
+
+                <li class="nav-item w-100">
+                <button id="sellerTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#seller" aria-controls="seller" aria-selected="true">
+                Seller
+                </button>
+                </li> *@
+
+
+
+
+
+
+
+
+            </ul>
+
+
+        </div>
+        <div class="col-md-10 col-12">
+            <div class="tab-content form card padding30 h-600">
+
+
+                @*  Sales Commission*@
+                <div class="tab-pane fade" id="buyer">
+
+                
+                    <h5 class="bold">Commission & Tax on Sales For Buyer</h5>
+
+                    <div class="">
+                        <div class="form padding30 row">
+
+                            <div class="row">
+
+
+
+                                <div class="col-md-5 no-padding">
+                                    <div class="row">
+
+
+                                        <div class="form-group">
+                                            Commission Type
+                                            <select asp-for="@Model.CommissionBuyerSettings.CommissionType">
+
+
+                                                <option>Percentage</option>
+                                                <option>Amount</option>
+
+                                            </select>
+                                        </div>
+
+
+
+                                        @*   If Percentage*@
+                                        <div class="form-group">
+                                            <span id="commissiontype"></span>
+                                            <input type="number" min="0" asp-for="@Model.CommissionBuyerSettings.Amount">
+
+                                            <span asp-validation-for="@Model.CommissionBuyerSettings.Amount" class="required"></span>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            Label Value will be show to user
+                                            <input type="text" maxlength="30" asp-for="@Model.CommissionBuyerSettings.Label">
+
+                                            <span asp-validation-for="@Model.CommissionBuyerSettings.Label" class="required"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button class="clickable-button" asp-page-handler="BuyerCommission">Save</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-1 m-none"></div>
+                                <div class="col-md-6 m-none s-bold float-end">
+                                    <h4>
+                                        What is commission or Tax on Sales for Buyers ?
+                                    </h4>
+                                    <p>
+                                        Under this model, the commission is calculated based on the total value of each individual sale made by the seller. A predetermined commission rate or amount is applied to the sale price.
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <h4>
+                        List
+                    </h4>
+                    <table class="table border" style="vertical-align: bottom;">
+
+
+                 
+                    @foreach (var item in Model.CommissionBuyerSettingsList)
+                    {
+                        <tr>
+                            <td>
+                                    <input id="row-label-@item.ID" type="text" value="@item.Label" /> <br />
+
+                            </td>
+                           
+                            <td>
+                                    <select id="row-commissiontype-@item.ID" asp-for="@item.CommissionType">
+
+
+                                        <option>Percentage</option>
+                                        <option>Amount</option>
+
+                                    </select>
+
+                            </td>
+                            <td style="width:150px">
+                                    <input id="row-amount-@item.ID" type="number" value="@item.Amount" />  <br />
+
+                            </td>
+                            <td>
+                                    Updated Date <br />
+                                    @item.UpdatedDate
+
+                            </td>
+                            <td>
+
+                                    <a id="aUpdateBuyerCommision"  data-id="@item.ID" class="commissionbuyerupdate btn margin5 btn-outline-danger"> Update</a>
+                                    <a id="aDeleteBuyerCommision" data-id="@item.ID" class="commissionbuyerdelete btn margin5 btn-icon btn-outline-danger"> <i class="bx bx-trash"></i></a>
+
+                            </td>
+                        </tr>
+                      
+                       
+
+                   }
+                    </table>
+                </div>
+
+                @*  Seller Commission and TAx fees*@
+                <div class="tab-pane fade" id="seller">
+                   
+                    <h5 class="bold">Seller Commission or TAX</h5>
+
+                    <div class="">
+                        <div class="form padding30 row">
+
+                            <div class="row">
+
+
+
+                                <div class="col-md-5 no-padding">
+                                    <div class="row">
+
+
+                                        <div class="form-group">
+                                            Commission Type
+                                            <select asp-for="@Model.CommissionSellerSettings.CommissionType">
+
+
+                                                <option>Percentage</option>
+                                                <option>Amount</option>
+
+                                            </select>
+                                        </div>
+
+
+                                        @*  If amount*@
+                                        <div class="form-group">
+                                            <span id="commissionplatformtype"></span>
+                                            <input type="number" min="0" asp-for="@Model.CommissionSellerSettings.Amount">
+
+                                            <span asp-validation-for="@Model.CommissionSellerSettings.Amount" class="required"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            Label Value will be show to user
+                                            <input type="text" maxlength="30" asp-for="@Model.CommissionSellerSettings.Label">
+
+                                            <span asp-validation-for="@Model.CommissionSellerSettings.Label" class="required"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button class="clickable-button" asp-page-handler="SellerCommission">Save</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-1 m-none"></div>
+                                <div class="col-md-6 m-none s-bold float-end">
+                                    <h4>
+                                        What is Platform Commission ?
+                                    </h4>
+                                    <p>
+                                        Our revenue model includes platform Commission that are applied to buyers during their transactions. These fees play a crucial role in supporting the financial sustainability of your  platform. When buyers make a purchase, a small percentage or fixed amount is added to the total purchase value as a platform fee.
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <h4>
+                        List
+                    </h4>
+                    <table class="table border" style="vertical-align: bottom;">
+
+
+                    @foreach (var item in Model.CommissionSellerSettingsList)
+                    {
+                        <tr>
+                            <td>
+
+                           
+                  
+                        <input id="row-label-@item.ID" type="text" value="@item.Label" /> <br />
+                                </td>  
+                                
+                           <td>
+
+                       
+
+                        <select id="row-commissiontype-@item.ID" asp-for="@item.CommissionType">
+
+
+                            <option>Percentage</option>
+                            <option>Amount</option>
+
+                        </select>
+                                </td>
+                     <td style="width:150px">
+
+                 
+                        <input id="row-amount-@item.ID" type="number" value="@item.Amount" />  <br />
+                                </td> 
+                                <td>
+                                    Updated Date
+                               <br/>
+                                @item.UpdatedDate
+                                </td>
+                                <td>
+
+
+                                    <a id="aUpdateSellerCommision" data-id="@item.ID" class="commissionsellerupdate btn margin5  btn-outline-danger"> Update</a>
+                                    <a id="aDeleteSellerCommision" data-id="@item.ID" class="commissionsellerdelete btn margin5 btn-icon btn-outline-danger"> <i class="bx bx-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+
+    $(document).ready(function () {
+        // Set initial value on document ready
+        $('#commissiontype').text($('#CommissionBuyerSettings_CommissionType').val());
+
+        // Bind value on selected change
+        $('#CommissionBuyerSettings_CommissionType').change(function () {
+            $('#commissiontype').text($(this).val());
+        });
+    });
+
+
+    $(document).ready(function () {
+        // Set initial value on document ready
+        $('#commissionplatformtype').text($('#CommissionSellerSettings_CommissionType').val());
+
+        // Bind value on selected change
+        $('#CommissionSellerSettings_CommissionType').change(function () {
+            $('#commissionplatformtype').text($(this).val());
+        });
+    });
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#buyer";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+
+
+    $(document).ready(function () {
+        $('.commissionbuyerdelete').click(function () {
+            var id = $(this).data('id');
+         
+            var currentRow = $('#row-' + id);
+
+            $.ajax({
+                url: '/Controller/AppSetting/CommissionBuyerDeleteByRowID',
+                type: 'POST',
+                data: {
+                    id: id,
+                   
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    currentRow.remove();
+                    toaster("Record deleted successfully", "toast-success");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('.commissionsellerdelete').click(function () {
+            var id = $(this).data('id');
+
+            var currentRow = $('#row-' + id);
+
+            $.ajax({
+                url: '/Controller/AppSetting/CommissionSellerDeleteByRowID',
+                type: 'POST',
+                data: {
+                    id: id,
+
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    currentRow.remove();
+                    toaster("Record deleted successfully", "toast-success");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('.commissionbuyerupdate').click(function () {
+            var id = $(this).data('id');
+            var label = $('#row-label-' + id).val();
+            var commissiontype = $('#row-commissiontype-' + id).val();
+            var amountValue = $('#row-amount-' + id).val();// Get the value from the corresponding input
+
+            $.ajax({
+                url: '/Controller/AppSetting/CommissionBuyerUpdateByRowID',
+                type: 'POST',
+                data: {
+                    id: id,
+                    label:label,
+                    commissiontype: commissiontype,
+                    amount: amountValue
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    toaster("Record updated successfully", "toast-success");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('.commissionsellerupdate').click(function () {
+            var id = $(this).data('id');
+            var label = $('#row-label-' + id).val();
+            var commissiontype = $('#row-commissiontype-' + id).val();
+            var amountValue = $('#row-amount-' + id).val();// Get the value from the corresponding input
+
+            $.ajax({
+                url: '/Controller/AppSetting/CommissionSellerUpdateByRowID',
+                type: 'POST',
+                data: {
+                    id: id,
+                    label: label,
+                    commissiontype: commissiontype,
+                    amount: amountValue
+                },
+                success: function (response) {
+                    // Handle the success response here
+                    toaster("Record updated successfully", "toast-success");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle the error response here
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+   
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

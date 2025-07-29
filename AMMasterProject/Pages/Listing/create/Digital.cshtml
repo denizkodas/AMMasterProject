@@ -1,0 +1,273 @@
+﻿@page "/listing/create/digital/{ID}"
+@model AMMasterProject.Pages.Listing.create.DigitalModel
+@{
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+<title class="notranslate" data-translate="listingdetails">
+
+    Listing Details
+</title>
+<form method="post" enctype="multipart/form-data">
+
+    <div>
+
+
+
+
+      
+
+        <div class="row large-form">
+
+            <partial name="/Pages/listing/create/_tab.cshtml" model="@Model.productguid" />
+
+            <div class="col-md-10 l-tabs-content ">
+                <a class="skip-btn" href="~/listing/create/policy/@Model.productguid">
+                    <span class="notranslate" data-translate="skip">
+
+                        Skip  
+                    </span>
+                  
+                </a>
+                <h5 class="l-tabs-heading">
+                    <span class="notranslate" data-translate="digitalfile">
+                        Digital Files
+                    
+                    </span>  <span class="notranslate" data-translate="digitalfilemsg">
+                     (Only .zip file allowed)
+                    
+                    </span>
+              
+                </h5>
+
+                <div class="white-bg paddingtb">
+
+                   
+                    @if (Model.IsDigital == true)
+                    {
+
+                        <div class="row paddingrf-15 no-margin">
+                            <div class=" col-md-3 s-bold">
+                                <span class="notranslate" data-translate="uploadimages">
+                                  
+                                    Upload Images
+                                </span>
+                                 <br />
+                                <label class="file-upload">
+                                    <span class="btn btn-default l-grey-bg notranslate" data-translate="selectfile">
+                                        Select File
+                                    </span>
+                                    <input type="file" id="fileInput" onchange="uploadFile()" multiple />
+                                    <progress id="fileProgress" class="w-100 margin5" style="display:none"></progress>
+                                    <span id="spanfilename"></span>
+                                </label>
+                                <br />
+
+                                <span id="spanfileValidation" class="required"></span>
+                               @*  <input asp-for="@Model.product.DigitalLink" type="hidden" id="hdndigitallink" /> *@
+                                <span asp-validation-for="@Model.product.DigitalLink" class="validation"></span>
+                            </div>
+                            <div class="col-md-9 padding15">
+
+
+                                <div id="imagePreview" class="img-list row margin15"></div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row paddingrf-15">
+                            <div class=" col-md-6 checkright">
+                            </div>
+                            <div class=" col-md-6 right form">
+
+                                <button type="submit" id="btnimageSubmit">
+
+                                    <span class="notranslate" data-translate="saveandcontinue">   Save and Continue </span>
+                                </button>
+                                
+
+                            </div>
+                        </div>
+                        <hr /> <div class="row padding15">
+                            @if (Model.listproduct != null && Model.listproduct.Count > 0)
+                            {
+                                @foreach (var item in Model.listproduct)
+                                {
+                                    <div class="img-list multiple-img">
+                                        @*   <img src="@item.DigitalLink" /> *@
+
+                                        @item.Name
+                                        <br />
+                                        <a class="red-c btn padding5 btn-xs w-100 center" href="#@item.ID"><i class="bx bx-trash"></i>Delete</a>
+                                    </div>
+
+                                    <div class="overlay" id="@item.ID">
+                                        <div class="popup-small popup ">
+                                            <div class="padding30 left">
+                                                <h4 class="no-margin">
+                                                    <span class="notranslate" data-translate="confirmdelete">    Confirm Delete </span>
+
+                                                 
+                                                </h4>
+
+                                                <p class="medium">
+                                                    <span class="notranslate" data-translate="confirmdeleteque">     Are you sure you want to delete ? </span>
+                                                   
+                                                </p>
+
+                                                <a class="btn grey-bg white-c float-end margin5" href="#close">
+                                                    <span class="notranslate" data-translate="no"> No </span>
+                                                    </a>
+                                                <button formnovalidate asp-page-handler="Delete" class="btn theme-bg f-theme float-end margin5" asp-route-imageid="@item.ID">
+                                                    <span class="notranslate" data-translate="yes"> Yes </span>
+                                                </button>
+
+
+                                                <br />
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                            <input type="hidden" asp-for="@Model.product.DigitalLink" id="digitallink" />
+                            <input type="hidden" asp-for="@Model.product.Name" />
+
+                        </div>
+                    }
+
+                    else
+
+                    {
+                        <div id="dvDigitalItem" class="padding30 l-grey-bg radius30 margin15 center">
+                       
+
+                          <svg data-name="Your Icons" class="svg100" id="Your_Icons" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><title/><path d="M36,6H12a4.62,4.62,0,0,0-1,.1h0A5,5,0,0,0,7,11a2,2,0,0,0,2,2h6V26.26A8,8,0,0,0,17,42a7.77,7.77,0,0,0,1.46-.14,2.78,2.78,0,0,0,.87.14c2.17,0,2.17-2,4.33-2s2.17,2,4.33,2,2.17-2,4.34-2,2.16,2,4.33,2c1.56,0,2-1,2.93-1.61A3,3,0,0,0,41,37.84V11A5,5,0,0,0,36,6ZM9,11a3,3,0,0,1,2.22-2.9h0l.21,0A3.06,3.06,0,0,1,12,8a3,3,0,0,1,2.12.87,3.1,3.1,0,0,1,.82,1.53A5.8,5.8,0,0,1,15,11Zm2,23a6,6,0,0,1,4-5.65,5.79,5.79,0,0,1,.93-.25l.13,0A5.86,5.86,0,0,1,17,28a6,6,0,1,1-6,6Zm28,3.84a1,1,0,0,1-.47.85,7.25,7.25,0,0,0-1.05.84c-.5.45-.54.47-.82.47s-.32,0-.81-.47a4.83,4.83,0,0,0-7,0c-.49.45-.54.47-.81.47s-.31,0-.8-.47A4.91,4.91,0,0,0,23.92,38l0,0a8.29,8.29,0,0,0,.74-1.76l.06-.24a5.94,5.94,0,0,0,.14-.71,2.36,2.36,0,0,0,0-.28A7.77,7.77,0,0,0,25,34a7.9,7.9,0,0,0-.59-3H36a1,1,0,0,0,0-2H23.46a1.06,1.06,0,0,0-.19,0,8.12,8.12,0,0,0-2.4-2H36a1,1,0,0,0,0-2H20a1,1,0,0,0-1,1,.88.88,0,0,0,.06.28A7.82,7.82,0,0,0,17,26V11a7,7,0,0,0-.67-3H36a3,3,0,0,1,3,3Z"/><path d="M36,12H30a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Z"/><path d="M36,16H30a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Z"/><path d="M36,20H30a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Z"/><path d="M25,12H21a2,2,0,0,0-2,2v6a2,2,0,0,0,2,2h4a2,2,0,0,0,2-2V14A2,2,0,0,0,25,12Zm0,8H21V14h4Z"/><path d="M17,35a1,1,0,0,0,1-1V31a1,1,0,0,0-2,0v3A1,1,0,0,0,17,35Z"/><circle cx="17" cy="37" r="1"/></svg>
+
+                                <h4>
+
+                                <span class="notranslate" data-translate="digitalmarkingrequirement"> Digital Marking Requirement for Upload </span>
+                                    
+                            </h4> 
+                            
+                            <h5 class="l-bold">
+                                <span class="notranslate" data-translate="digitalmarkingrequirementmsg">  Please make sure the item is labeled as 'Digital' before attempting to upload it. </span>
+
+                               </h5>
+
+                        </div>
+                    }
+                   
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    function uploadFile() {
+        $("#btnimageSubmit").addClass("clickable-button").prop("disabled", true);
+        $("#btnimageSubmit").text("Validating File");
+        $('#spanfileValidation').text("");
+        var fileInput = $("#fileInput")[0];
+        $("#fileProgress").show();
+        var progressBar = $("#fileProgress")[0];
+        progressBar.value = 60;
+
+        var files = fileInput.files;
+
+        var imagePreview = $("#imagePreview"); // Select the imagePreview div here
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (file.size > 10 * 1024 * 1024) {
+                // alert("File size must be less than 10 MB.");
+
+                $('#spanfileValidation').text("File size must be less than 10 MB.")
+                $("#fileProgress").hide();
+                return;
+            }
+
+
+            if (fileExtension !== "zip") {
+                // alert("Only .zip files are allowed.");
+                $("#fileProgress").hide();
+                $('#spanfileValidation').text("Only .zip files are allowed.")
+                return;
+            }
+
+            // console.log(fileExtension);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var image = new Image();
+                image.src = event.target.result;
+                console.log(fileExtension);
+                var preview = $("<div class='multiple-img'></div>").appendTo(imagePreview);
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+
+                if (fileExtension.match(/(jpg|jpeg|png|gif|bmp)$/)) {
+                    // Append the image preview to the imagePreview div
+                    var imageTag = $("<img>").attr("src", image.src).appendTo(preview);
+                    var spanTag = $("<span>").text(fileName).appendTo(preview);
+                } else {
+                    // Append the filename without an icon for other file types
+                    // var extensionclass = "icon_" + fileExtension;
+                    // var spanTag = $("<span>").addClass(extensionclass).text(fileName).appendTo(preview);
+
+
+                    var extensionclass = "icon_" + fileExtension;
+
+                    // Create a separate span for the text
+                    var textSpan = $("<span>").text(fileName);
+
+                    // Create a span for the extension class
+                    var extensionSpan = $("<span>").addClass(extensionclass);
+
+                    // Append both span elements to the parent element (e.g., "preview")
+                    extensionSpan.appendTo(preview);
+                    textSpan.appendTo(preview);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        var formData = new FormData();
+        var fileNames = [];
+
+        for (var i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+            fileNames.push(files[i].name);
+        }
+
+        // Make AJAX request
+        $.ajax({
+            type: "POST",
+            url: "/Controller/Product/Image",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                // $('#spanfileValidation').text(response);
+                // $('#spanfileValidation').text(response);
+                console.log(response);
+                $("#digitallink").val(response);
+                $("#btnimageSubmit").removeClass("clickable-button").prop("disabled", false);
+                $("#btnimageSubmit").text("Save &amp; Continue");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+
+        $("#fileProgress").hide();
+    }
+</script>

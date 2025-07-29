@@ -1,0 +1,748 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Category.addModel
+@{
+    <title>Categories</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+
+    var modelguid = new Guid("00000000-0000-0000-0000-000000000000");
+}
+
+<form method="post">
+    <input asp-for="@Model.categorymaster.CategoryId" type="hidden" />
+
+    <div class="row no-margin form">
+        <div class="col-md-2 no-padding">
+            <ul class="nav nav-pills mb-3" role="tablist">
+                <li class="nav-item w-100 ">
+                   
+                        <button id="basicTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#basic" aria-controls="basic" aria-selected="true">
+                            Basic
+                        </button>
+                    
+                   
+                </li>
+                <li class="nav-item w-100 ">
+
+                    @if (Model.categoryid == 0)
+                    {
+                        <button type="button" class="nav-link text-start">Description</button>
+                    }
+                    else
+
+                    {
+                        <button id="descriptionTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#description" aria-controls="description" aria-selected="false">
+                            Description
+                        </button>
+                    }
+
+                </li>
+                <li class="nav-item w-100 ">
+                    @if (Model.categoryid == 0)
+                    {
+                       
+                        <button type="button" class="nav-link text-start">Icon/Banner</button>
+                    }
+                    else
+
+                    {
+                        <button id="iconTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#images" aria-controls="images" aria-selected="false">
+                            Icon/Banner
+                        </button>
+                    }
+
+                </li>
+                <li class="nav-item w-100 ">
+
+                    @if (Model.categoryid == 0)
+                    {
+                        <button type="button" class="nav-link text-start">SEO</button>
+                      
+                    }
+                    else
+
+                    {
+                        <button id="seoTabButton" type="button" class="nav-link text-start" role="tab" data-bs-toggle="tab" data-bs-target="#seo" aria-controls="seo" aria-selected="false">
+                            Seo
+                        </button>
+                    }
+                </li>
+            </ul>
+
+
+
+
+        </div>
+        <div class="col-md-10">
+            <div class="tab-content card padding30">
+                <div class="tab-pane fade" id="basic" role="tabpanel">
+                    <div asp-validation-summary="All"></div>
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                           Item Type
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group">
+                                <div class="slected-btn ">
+                                    @*  Sell, Classified, Auction, Penny Auction*@
+                                    @foreach (var item in Model.sellingtype)
+                                    {
+                                        <a class="sellingtype tooltip-hover" data-id="@item.ID">
+                                            @item.Name
+                                            <div class="tooltip-div">@item.Description</div>
+                                        </a>
+                                    }
+
+                                    <input type="hidden" asp-for="@Model.categorymaster.SellingTypeID" value="0" />
+
+                                </div>
+                            </div>  
+                            
+                            
+                         
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <hr>
+
+                    <div class="row paddingrf-15 no-margin">
+
+
+                        <div class=" col-md-3 s-bold">
+                            Listing Type
+                        </div>
+                        <div class=" col-md-9  checkright  no-padding">
+
+
+                            <div class="form-group">
+                                <div class="slected-btn">
+
+                                    @* Physical Digital Service Course*@
+                                    <div class="listing-types">
+                                    </div>
+
+                                    <input type="hidden" asp-for="@Model.categorymaster.ListingTypeID" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <hr/>
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            Category Detail
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            <div class="row">
+
+                                <div class="form-group col-md-8">
+                                    Name
+                                    <input type="text" maxlength="200" asp-for="@Model.categorymaster.CategoryName">
+                                    <span asp-validation-for="@Model.categorymaster.CategoryName" class="required"></span>
+
+
+                                </div>
+
+
+                                <div class="form-group col-md-8">
+                                    Parent Category (If Any)
+
+                                 @*    <select asp-for="@Model.categorymaster.ParentCategoryId" asp-items="@Model.ParentCategory" class="form-control">
+                                        <option disabled selected>-- Select --</option>
+                                        <option value="0">-- Parent Category --</option>
+                                    </select>
+                                    <span asp-validation-for="@Model.categorymaster.ParentCategoryId" class="required"></span>
+ *@
+
+                                    <select class="form-control" id="firstSelectBox">
+                                     
+                                        <option value="0">-- Parent Category (optional) --</option>
+                                    </select>
+
+                                    <span id="validationCategory" asp-validation-for="@Model.categorymaster.ParentCategoryId" class="required"></span>
+
+
+                                    @*  <input type="hidden" asp-for="@Model.product.CategoryId" />*@
+
+
+                                    <input type="hidden" asp-for="@Model.categorymaster.ParentCategoryId" />
+
+
+                                </div>
+
+                            </div><div class="row">
+                                <div class="form-group col-md-4">
+                                    Display Order
+
+                                    <input type="text" maxlength="200" asp-for="@Model.categorymaster.Sortnumber">
+                                    <span asp-validation-for="@Model.categorymaster.Sortnumber" class="required"></span>
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <hr>
+
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            Statuses
+                        </div>
+                        <div class=" col-md-9  checkright  no-padding">
+                            <div class="form-group">
+
+
+                                <input type="checkbox" asp-for="@Model.categorymaster.IsPublished" id="isPublish" value="true">
+                                <label for="isPublish"> Publish</label>
+
+                                <p class="small grey-c paddingrf-15 marginrf-15">Mark check if you want to live it </p>
+
+
+                            </div>
+                            <div class="form-group ">
+
+
+
+                                <input type="checkbox" asp-for="@Model.categorymaster.IsIncludeMenu" id="isIncludeMenu" value="true">
+                                <label for="isIncludeMenu"> Include in Category menu</label>
+
+                                <p class="small grey-c paddingrf-15 marginrf-15">
+                                    Mark check if you want to include this category on category menu
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right">
+                            <button class="clickable-button" type="submit">Save</button>
+                          
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="description" role="tabpanel">
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            Description
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            <div class="form-group">
+
+                                <textarea rows="2" asp-for="@Model.categorymaster.Description"></textarea>
+                                <span asp-validation-for="@Model.categorymaster.Description" class="required"></span>
+
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right">
+                            <button class="clickable-button" type="submit" asp-page-handler="Description">Save</button>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="images" role="tabpanel">
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            Icon
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            Upload Image
+                            <br>
+                            <label class="file-upload">
+                                <span class="btn btn-default l-grey-bg">
+                                    Select File
+                                </span>
+                                <input type="file" id="fileInputicon" onchange="uploadFileicon()" />
+
+                                <progress id="fileProgressicon" class="w-100 margin5" style="display:none"></progress>
+                            </label>
+                            <img id="imgicon" src="@Model.categorymaster.Icon" class="preview" style="display: @(Model.categorymaster.Icon == null ? "none" : "block")">
+
+
+                            <p class="grey-c">
+                                Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                            </p><br />
+                            <span id="spanfilenameicon" class="required"></span>
+                            <input type="hidden" asp-for="@Model.categorymaster.Icon" />
+
+                            <span asp-validation-for="@Model.categorymaster.Icon" class="required"></span>
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <div class="row paddingrf-15 no-margin">
+                        <div class=" col-md-3 s-bold">
+                            Banner
+                        </div>
+                        <div class="col-md-9 no-padding">
+                            Upload Image
+                            <br>
+                            <label class="file-upload">
+                                <span class="btn btn-default l-grey-bg">
+                                    Select File
+                                </span>
+                                <input type="file" id="fileInputbanner" onchange="uploadFilebanner()" />
+
+                                <progress id="fileProgressbanner" class="w-100 margin5" style="display:none"></progress>
+                            </label>
+                            <img id="imgbanner" src="@Model.categorymaster.Banner" class="preview" style="display: @(Model.categorymaster.Banner == null ? "none" : "block")">
+
+                            <p class="grey-c">
+                                Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                            </p><br />
+                            <span id="spanfilenamebanner" class="required"></span>
+                            <input type="hidden" asp-for="@Model.categorymaster.Banner" />
+
+                            <span asp-validation-for="@Model.categorymaster.Banner" class="required"></span>
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right">
+                            <button class="clickable-button" type="submit" asp-page-handler="Images">Save</button>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="seo" role="tabpanel">
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                            <div class="form-group">
+                                Search engine friendly page name
+                                <input type="text" maxlength="100" asp-for="@Model.categorymaster.SeoPageName" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelPageName'))">
+                                <span id="characterCountLabelPageName"></span>
+                                <span asp-validation-for="@Model.categorymaster.SeoPageName" class="required"></span>
+
+
+                            </div>  <div class="form-group">
+                                Meta title
+
+                                <input type="text" maxlength="200" asp-for="@Model.categorymaster.SeoTitle" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetatitle'))">
+                                <span id="characterCountLabelMetatitle"></span>
+                                <span asp-validation-for="@Model.categorymaster.SeoTitle" class="required"></span>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                Meta Keywords
+                                <small>comma seperated values property, zone, classified</small>
+                                <input type="text" maxlength="200" asp-for="@Model.categorymaster.SeoKeyword" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaKeyword'))">
+                                <span id="characterCountLabelMetaKeyword"></span>
+                                <span asp-validation-for="@Model.categorymaster.SeoKeyword" class="required"></span>
+
+                            </div>  <div class="form-group">
+                                Meta Description
+                                <input type="text" maxlength="200" asp-for="@Model.categorymaster.SeoDescription" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelMetaDescription'))">
+                                <span id="characterCountLabelMetaDescription"></span>
+                                <span asp-validation-for="@Model.categorymaster.SeoDescription" class="required"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row paddingrf-15">
+                        <div class=" col-md-6 checkright">
+                        </div>
+                        <div class=" col-md-6 right">
+                            <button type="submit" class="clickable-button" asp-page-handler="SEO">Save</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+
+
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#basic";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+
+
+        $(document).ready(function () {
+            $('#categorymaster_Description').summernote();
+        });
+    });
+
+
+
+    $(document).ready(function () {
+        setTimeout(function () {
+            // ITEM TYPE sell, classified, auction, penny auction
+            var sellingTypeId = $('#categorymaster_SellingTypeID').val();
+            if (sellingTypeId) {
+                $('.sellingtype[data-id="' + sellingTypeId + '"]').addClass('selected');
+                handleSellingTypeClick(sellingTypeId);
+            }
+        }, 2000);
+    });
+
+    //-------------------------Listing Type
+    function handleSellingTypeClick(sellingTypeId) 
+    {
+        // Assing selected id to hidden field
+        $("#categorymaster_SellingTypeID").val(sellingTypeId);
+
+       
+
+        // Remove "active" class from all sellingtype elements
+        $('.sellingtype').removeClass('selected');
+
+        // Add "active" class to the clicked element
+        $('.sellingtype[data-id="' + sellingTypeId + '"]').addClass('selected');
+
+        // Make AJAX request to fetch listing types
+        $.ajax
+        (
+            {
+            url: '/controller/product/listingtypetypelist',
+            type: 'GET',
+            data: { sellingtypeid: sellingTypeId },
+            success: function (response) {
+                // Handle the success response here
+                var listingTypes = response;
+
+                // Clear existing listing types
+                $('.listing-types').empty();
+
+                // Append listing types to the container
+                listingTypes.forEach(function (listingType) {
+                    var listingTypeHtml = '<a class="listingtype tooltip-hover" data-id="' + listingType.id + '">' +
+                        listingType.name + '<div class="tooltip-div">' + listingType.description + '</div></a>';
+
+                    var $listingTypeElement = $(listingTypeHtml);
+
+
+                    //click event to assign class and load the category
+                    $listingTypeElement.on('click', function () {
+                        // Remove "selected" class from all listingtype elements
+                        $('.listingtype').removeClass('selected');
+
+                        // Add "selected" class to the clicked element
+                        $(this).addClass('selected');
+                        $("#categorymaster_ListingTypeID").val(listingType.id);
+                       
+                        ///category conditional load
+
+                        $('#firstSelectBox').empty();
+                        parentcategoryload(listingType.id);
+                        // Rest of your click event code for the listingtype element...
+
+
+
+                        
+
+                       
+                    });
+
+                    //if hidden field has value so assign value to class
+                    var listingTypeId = $('#categorymaster_ListingTypeID').val();
+                    if (listingTypeId) {
+
+
+
+
+                        $('.listingtype[data-id="' + listingTypeId + '"]').addClass('selected');
+
+                     
+
+                    };
+
+                    $('.listing-types').append($listingTypeElement);
+                });
+            },
+            error: function (xhr, status, error) {
+                // Handle the error response here
+                console.log(error);
+            }
+        }
+        );
+
+
+
+
+        //----------------------------ON EDIT MODE ONLY Listin TYPE Physical, Digital, Service, Courses--------------------
+
+        var listingTypeId = $('#categorymaster_ListingTypeID').val();
+        if (listingTypeId)
+        {
+            $('.listingtype[data-id="' + listingTypeId + '"]').addClass('selected');
+
+
+
+            ////////Bind Categories
+            //----------------------------CATEGORY ARRAY---------------------------
+
+            //var ListingTypeId = $('#product_ListingType').val();//physical, digital, course, service
+
+            setTimeout(function () {
+            parentcategoryload(listingTypeId);
+
+            }, 4000);
+            var categoryArray = $('#categorymaster_ParentCategoryId').val();
+            if (categoryArray) {
+
+               
+
+
+                setTimeout(function () {
+                    $('#firstSelectBox').val(categoryArray);
+                   
+                }, 5000);
+
+
+
+            }
+
+
+
+        };
+
+    }
+
+    $(document).ready(function () {
+        // Click event handler for sellingtype elements
+        $(document).on('click', '.sellingtype', function () {
+            var sellingTypeId = $(this).data('id');
+            handleSellingTypeClick(sellingTypeId);
+        });
+    });
+    //-------------------------Listing Type
+
+
+    function parentcategoryload(categorytypeid) 
+    {
+        $.ajax({
+            url: '/controller/product/AllCategoryLevels',
+            type: 'GET',
+            data: { categoryTypeId: categorytypeid },
+            success: function (data) {
+                
+                var options = '<option value="0">-- Select Parent Category (Optional) --</option>';
+                var rowCount = data.length;
+
+             
+                // $.each(data, function (index, item) {
+                //     options += '<option value="' + item.categoryId + '">' + item.categoryName  + "-" + item.levelNumber + '</option>';
+                    
+                // });
+               $.each(data, function (index, item) {
+
+                   console.log(item);
+                    // Create separators based on item.LevelNumber
+                    var separators = '>'.repeat(item.levelNumber - 1);
+
+                    // Create spaces based on item.LevelNumber
+                    var spaces = ' '.repeat(item.levelNumber - 1);
+
+                    var cssClass = 'level-' + item.levelNumber;
+
+                    // Check if it's level 3 and add the 'disabled' attribute
+                    var isLevel3 = item.levelNumber === 3;
+                    var disabledAttribute = isLevel3 ? 'disabled' : '';
+
+                 
+
+                    options += '<option class="' + cssClass + '" value="' + item.categoryId + '" ' + disabledAttribute + '>' + separators + ' ' + spaces + item.categoryName + '   L'+ item.levelNumber+ '</option>';
+                
+                });
+
+
+                if (rowCount > 0) {
+                    $('#firstSelectBox').show();
+                    $('#firstSelectBox').html(options);
+                } else {
+                   
+                    options = '<option value="0">-- Select Parent Category (Optional) --</option>';
+                    $('#firstSelectBox').html(options);
+                }
+            }
+        });
+    }
+
+
+    $('#firstSelectBox').change(function () {
+        $('#categorymaster_ParentCategoryId').val("");
+
+        
+        var selectedCategoryId = $(this).val();
+
+        $('#categorymaster_ParentCategoryId').val(selectedCategoryId);
+
+        
+    });
+
+    function uploadFileicon() {
+        var fileInput = $("#fileInputicon")[0];
+        $("#fileProgressicon").show();
+        var progressBar = $("#fileProgressicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenameicon').text("Only jpeg or png files are allowed.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameicon').text("File size must be less than 10 MB.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgicon").attr("src", data.fileLink);
+
+                $('#categorymaster_Icon').val(data.fileLink);
+
+                $("#imgicon").show();
+
+
+                $("#fileProgressicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+    function uploadFilebanner() {
+        var fileInput = $("#fileInputbanner")[0];
+        $("#fileProgressbanner").show();
+        var progressBar = $("#fileProgressbanner")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenamebanner').text("Only jpeg or png files are allowed.");
+            $("#fileProgressbanner").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenamebanner').text("File size must be less than 10 MB.");
+            $("#fileProgressbanner").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgbanner").attr("src", data.fileLink);
+
+                $('#categorymaster_Banner').val(data.fileLink);
+
+                $("#imgbanner").show();
+
+
+                $("#fileProgressbanner").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+</script>
+

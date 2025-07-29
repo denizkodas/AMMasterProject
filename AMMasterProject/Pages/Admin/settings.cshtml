@@ -1,0 +1,1898 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.settingsModel
+@{
+    <title>Configuration Settings</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+    <div class=" white-bg no-padding simple-tab">
+        <div class="row no-margin">
+            <div class="col-md-2 no-padding">
+                <ul class="nav nav-pills mb-3" role="tablist">
+
+
+
+                    @*----tab1------- Register With Email or number btn*@
+                    <li class="nav-item">
+                        <button id="registerTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#registermethod" aria-controls="registermethod" aria-selected="true">
+                            Registration
+                        </button>
+                    </li>
+
+                    @*----tab2------- Language Setup*@
+                    <li class="nav-item">
+                        <button id="languageTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#languagesetup" aria-controls="languagesetup" aria-selected="true">
+                            Language
+                        </button>
+                    </li>
+                    @*----tab3------- Currency Setup*@
+                    <li class="nav-item">
+                        <button id="currencyTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#currencysetup" aria-controls="currencysetup" aria-selected="true">
+                            Currency
+                        </button>
+                    </li>
+                    @*----tab4------- country Setup*@
+                    <li class="nav-item">
+                        <button id="countriesTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#countriessetup" aria-controls="countriessetup" aria-selected="true">
+                            Countries
+                        </button>
+                    </li>
+                    @* ----tab5------- Labeling Settings*@
+                    <li class="nav-item">
+                        <button id="labelingTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#labelingsetup" aria-controls="labelingsetup" aria-selected="true">
+                            Labeling
+                        </button>
+                    </li>
+
+                    @*----tab6-------  seller profile Settings*@
+                    <li class="nav-item">
+                        <button id="sellerprofileTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#sellerprofilesetup" aria-controls="sellerprofilesetup" aria-selected="true">
+                            Seller Profile 
+                        </button>
+                    </li>
+                    @*----tab7-------  Cookie *@
+                    <li class="nav-item">
+                        <button id="cookieTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#cookiesetup" aria-controls="cookiesetup" aria-selected="true">
+                            Cookie
+                        </button>
+                    </li>
+
+                    @*----last tab-------  Global Settings*@
+                    <li class="nav-item">
+                        <button id="globalTabButton" type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#globalsetup" aria-controls="globalsetup" aria-selected="true">
+                            Global
+                        </button>
+                    </li>
+                </ul>
+
+
+
+            </div>
+            <div class="col-md-10 no-padding">
+                <div class="tab-content padding30 form">
+
+
+
+                    @*-----------tab 1--------------*@
+                    @*-----------Register With Email or number-----------------------------------------*@
+                    <div class="tab-pane fade" id="registermethod">
+
+                        <div>
+
+                         
+
+
+                            <div class=" paddingtb-15 row no-margin">
+
+
+                                <div class="row no-margin">
+                                    <div class="col-md-5 no-padding">
+                                        <h5 class="s-bold no-margin line30">
+                                            Registration Settings
+
+                                        </h5>    <p>
+                                            Customize your registration process with our versatile settings, allowing users to register via email or phone number.
+                                            Admins have the flexibility to enable both email and phone registration simultaneously if desired.
+
+                                        </p>
+                                        <br/>
+                                <div class="form-group margintb-15">
+
+                                    <label class="switch">
+                                        <input type="checkbox" asp-for="@Model.registermethod.IsEmail" id="IsEmailSwitchCheckChecked" value="true">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label class="form-check-label black-c bold" for="IsEmailSwitchCheckChecked"> Register With Email </label>
+                                    <p class="form-check-msg">
+                                        Enable with a Right Switch, Disable with a Left Switch:
+                                    </p>
+                                </div>
+                               
+                                        <div class="form-group">
+                                            <label class="switch">
+                                                <input type="checkbox" asp-for="@Model.registermethod.IsPhone" id="IsPhoneSwitchCheckChecked" value="true">
+                                                <span class="slider"></span>
+                                            </label> <label class="form-check-label black-c bold" for="IsPhoneSwitchCheckChecked"> Register With Phone Number </label>
+                                            <p class="form-check-msg">
+                                                Enable with a Right Switch, Disable with a Left Switch:
+                                            </p>
+                                        </div><div class="form-group" id="dvSMSAPISelection">
+                                            <div class="form-group">
+                                                SMS API
+                                                <select asp-for="@Model.registermethod.VerificationPlatform">
+
+
+                                                    <option>Firebase</option>
+                                                    <option>Twilio</option>
+
+                                                </select>
+                                                ( Setup SMS API In <a href="~/admin/smsapi" target="_blank" class="theme-c">SMS API </a> Settings)
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-6">
+                                        <div class="admin-info-box">
+                                            <h5>
+
+                                                How it works ?
+                                            </h5>
+                                            <strong>
+
+                                                Email Registration:
+                                            </strong>
+                                            <ul>
+
+                                          
+                                            <li>
+
+                                          	Activate email registration to enable users to sign up using their email addresses.
+                                                </li>  <li>
+
+                                               	Switch the toggle to the right to enable email registration or to the left to disable it.
+                                                </li>
+                                            </ul>
+                                            <strong>
+
+
+                                                Phone Number Registration:
+                                           </strong>
+                                           <ul>
+                                               <li>
+                                                    Opt for phone number registration to offer users the option to sign up using their phone numbers.
+
+                                                </li>
+                                                <li>
+                                                    Use the toggle switch to enable or disable phone number registration based on your preference.
+
+                                                </li>
+                                          <li>
+                                                    When opting for phone number registration, it's essential to set up the SMS API under sms api settings.
+
+                                                </li>
+                                             </ul>	
+
+                                             <strong>
+
+
+                                                Impact on Frontend:
+                                            </strong>
+                                            <ul>
+                                                <li>
+
+                                           
+                                            	Enabling email registration will display the "Register with Email" button on the registration and login pages.
+                                                </li>
+                                                
+                                                <li>
+
+                                               Similarly, enabling phone registration will show the Register with Phone button on the registration and login pages.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <hr />
+                                @*Social media login System*@
+
+
+                                <div class="socialmedialogin">
+
+                                    <h5 class="s-bold no-margin line30">
+                                        Social Media Login Setup
+
+                                    </h5>
+                                    <p>
+                                        You can integrate various social media platforms (such as Facebook, Twitter, Google, etc.) into the login system of the application or website. This integration allows customers to log in or create accounts using their existing social media credentials.
+                                    </p>
+                                    <br />
+                                    @* google*@
+
+                                    <div class="row  form m-3">
+                                        <div class="col-md-1 center">
+                                            <svg enable-background="new 0 0 128 128" id="Social_Icons" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Google"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128" /><path clip-rule="evenodd" d="M27.585,64c0-4.157,0.69-8.143,1.923-11.881L7.938,35.648    C3.734,44.183,1.366,53.801,1.366,64c0,10.191,2.366,19.802,6.563,28.332l21.558-16.503C28.266,72.108,27.585,68.137,27.585,64" fill="#FBBC05" fill-rule="evenodd" /><path clip-rule="evenodd" d="M65.457,26.182c9.031,0,17.188,3.2,23.597,8.436L107.698,16    C96.337,6.109,81.771,0,65.457,0C40.129,0,18.361,14.484,7.938,35.648l21.569,16.471C34.477,37.033,48.644,26.182,65.457,26.182" fill="#EA4335" fill-rule="evenodd" /><path clip-rule="evenodd" d="M65.457,101.818c-16.812,0-30.979-10.851-35.949-25.937    L7.938,92.349C18.361,113.516,40.129,128,65.457,128c15.632,0,30.557-5.551,41.758-15.951L86.741,96.221    C80.964,99.86,73.689,101.818,65.457,101.818" fill="#34A853" fill-rule="evenodd" /><path clip-rule="evenodd" d="M126.634,64c0-3.782-0.583-7.855-1.457-11.636H65.457v24.727    h34.376c-1.719,8.431-6.397,14.912-13.092,19.13l20.474,15.828C118.981,101.129,126.634,84.861,126.634,64" fill="#4285F4" fill-rule="evenodd" /></g></g></svg>
+                                            Google
+                                        </div>
+
+                                      
+                                        <div id="googleSocialMedia" class="col-md-9">
+
+                                      <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" maxlength="300" asp-for="@Model.registermethod.ClientId" />
+                                                <span asp-validation-for="@Model.registermethod.ClientId" class="required"></span>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="text" maxlength="300" asp-for="@Model.registermethod.ClientSecret" />
+                                                <span asp-validation-for="@Model.registermethod.ClientSecret" class="required"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 padding10">
+                                            <label class="switch">
+                                                <input type="checkbox" asp-for="@Model.registermethod.IsGoogleLogin" id="googleloginSwitchCheck" value="true">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <label class="form-check-label" for="googleloginSwitchCheck"> Enable</label>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    @*  facebook*@
+
+                              
+                                    <div class="row  form m-3">
+                                        <div class="col-md-1 center">
+                                            <svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M374.245,285.825l14.104,-91.961l-88.233,0l0,-59.677c0,-25.159 12.325,-49.682 51.845,-49.682l40.117,0l0,-78.291c0,0 -36.408,-6.214 -71.214,-6.214c-72.67,0 -120.165,44.042 -120.165,123.775l0,70.089l-80.777,0l0,91.961l80.777,0l0,222.31c16.197,2.542 32.798,3.865 49.709,3.865c16.911,0 33.512,-1.323 49.708,-3.865l0,-222.31l74.129,0Z" style="fill:#1877f2;fill-rule:nonzero;" /></svg>
+                                            Facebook
+                                        </div>
+                                        <div id="facebookSocialMedia" class="col-md-9">
+                                       <div class="row">
+
+                                       
+                                            
+                                            <div class="col-md-6">
+                                            <input type="text" maxlength="300" asp-for="@Model.registermethod.AppId" />
+                                            <span asp-validation-for="@Model.registermethod.AppId" class="required"></span>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <input type="text" maxlength="300" asp-for="@Model.registermethod.AppSecret" />
+                                            <span asp-validation-for="@Model.registermethod.AppSecret" class="required"></span>
+                                        </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 padding10">
+                                            <label class="switch">
+                                                <input type="checkbox" asp-for="@Model.registermethod.IsFacebookLogin" id="facebookloginSwitchCheck" value="true">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <label class="form-check-label" for="facebookloginSwitchCheck"> Enable</label>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                
+
+
+                                <hr />
+
+                                @* verification system*@
+                                <div>
+
+                                    <h5 class="s-bold no-margin line30">
+                                        Verification  System
+
+                                    </h5>
+
+
+                                    <p>
+
+
+                                        Effortlessly manage the verification system across your entire website by enabling or disabling the option to send verification codes via email or phone number. Take control of the verification process with ease.
+                                    </p>
+
+                                    <div class=" paddingtb-15 row no-margin">
+
+                                        <div class="col-md-6 no-padding">
+
+                                            <div class="black-c bold">
+
+
+                                                <label class="switch">
+                                                    <input type="checkbox" asp-for="@Model.registermethod.IsRegisterVerification" id="flexSwitchCheckChecked" value="true">
+                                                    <span class="slider"></span>
+                                                </label>
+                                                <label class="form-check-label" for="flexSwitchCheckChecked"> Enable</label>
+
+
+
+                                                <p class="form-check-msg">
+                                                    Enable with a Right Switch, Disable with a Left Switch:
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <hr>
+                                <div>
+                                    <h5 class="s-bold no-margin line30">
+                                        Banners
+
+                                    </h5>
+                                    <p>
+                                        Images for the registration and login pages. <br /> Size Required ( 470 by 650 ).
+                                    </p>
+
+                                    @* login section banner*@
+                                    <div class="row  margintb-15">
+                                        <div class=" col-md-3 no-padding s-bold">
+                                            Login Form Image
+                                        </div>
+                                        <div class="col-md-9 no-padding">
+                                            <div>
+                                                Upload Image
+                                                <br>
+                                                <label class="file-upload">
+                                                    <span class="btn btn-default l-grey-bg">
+                                                        Select File
+                                                    </span>
+                                                    <input type="file" id="fileInputLogin" onchange="uploadFileLogin()" />
+
+                                                    <progress id="fileProgressLogin" class="w-100 margin5" style="display:none"></progress>
+                                                </label>
+                                                <img id="imageLogin" src="@Model.registermethod.LoginImage" class="preview" style="display: @(Model.registermethod.LoginImage == null ? "none" : "block")" />
+
+                                                <input type="hidden" asp-for="@Model.registermethod.LoginImage" />
+                                            </div>
+                                            <label class="validation" id="errorLoginImage"></label>
+                                        </div>
+
+
+                                    </div>
+
+                                    @* register section banner*@
+                                    <div class="row  margintb-15">
+                                        <div class=" col-md-3 no-padding s-bold">
+                                            Register Form Image
+                                        </div>
+                                        <div class="col-md-9 no-padding">
+                                            <div>
+                                                Upload Image
+                                                <br>
+                                                <label class="file-upload">
+                                                    <span class="btn btn-default l-grey-bg">
+                                                        Select File
+                                                    </span>
+                                                    <input type="file" id="fileInputRegister" onchange="uploadFileRegister()" />
+
+                                                    <progress id="fileProgressRegister" class="w-100 margin5" style="display:none"></progress>
+                                                </label>
+
+
+                                                <img id="imageRegister" src="@Model.registermethod.RegisterImage" class="preview" style="display: @(Model.registermethod.RegisterImage == null ? "none" : "block")">
+
+                                                <input type="hidden" asp-for="@Model.registermethod.RegisterImage" />
+                                            </div>
+                                            <label class="validation" id="errorRegisterImage"></label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <hr />
+
+                                <div class="form-group">
+
+
+                                    <button class="clickable-button" asp-page-handler="Register">Update</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    @*-----------tab 2--------------*@
+                    @*------------------language setup--------------------------------------------------*@
+                    <div class="tab-pane fade" id="languagesetup">
+
+                        <div class="">
+
+                            <h5 class="s-bold no-margin line30">
+
+                                Language Settings
+
+                            </h5>
+                            <p>
+                                When implementing a multi-language feature on the website, take into account factors such as the target audience, user preferences, and popular language choices, and then enable a website-wide multi-language option that empowers users to select their preferred language, while leveraging the capabilities of the Google API to facilitate content localization in multiple languages.
+                            </p>
+
+                            <div class="row no-margin paddingtb-15">
+
+                                <div class="col-md-5">
+
+
+                                    <label class="switch">
+                                        <input type="checkbox" asp-for="@Model.languagesetup.IsMultilingual" id="multilingualSwitchCheck" value="true">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <label class="form-check-label" for="multilingualSwitchCheck"> Multi Language Setup</label>
+                                    <p class="form-check-msg">
+                                        Enable with a Right Switch, Disable with a Left Switch:
+                                    </p>
+
+
+                                </div>
+                                <div class="col-md-4  row no-margin">
+                                    <div class="form-group  no-padding">
+                                        Default Language
+                                        <select asp-for="@Model.languagesetup.DefaultLanguage" asp-items="@Model.ListLanguage" class="form-control">
+                                            <option disabled selected>-- Select --</option>
+                                        </select>
+
+                                    </div>
+
+
+                                </div> <div class="form-group col-md-2 padding15">
+                                    <button class="w-100 clickable-button" asp-page-handler="Language">Update</button>
+
+
+
+                                </div>
+                            </div>
+
+                    
+                          
+
+                                <div class="form-group  no-padding margintb-15" id="dvlanguagescript" style="display:none">
+
+
+
+                                    @* <textarea type="text" maxlength="1000" asp-for="@Model.languagesetup.LanguageScript"></textarea>
+                                    <span asp-validation-for="@Model.languagesetup.LanguageScript" class="required"></span>
+                                    *@
+
+
+                                    <div class="table-responsive margintb-15 text-nowrap border ">
+                                        <div class="padding15">
+                                            <h5 class="bold black-c no-margin">Set Languages</h5>
+                                            <p class="no-margin">
+                                                Please select which languages you want to enable
+                                            </p>
+                                        </div>
+                                        <hr class="no-margin" />
+                                        <table class="table " id="ListingLoad" style="width:100%">
+                                            <thead class="table-secondary">
+                                                <tr>
+                                                    <td style="width:100px">Mark As</td>
+                                                    <td>Name</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Listlanguagesetup)
+                                                {
+
+
+                                                    <tr>
+                                                        <td class="link-active">
+
+                                                            @if (item.IsPublish == true)
+                                                            {
+                                                                <a id="@item.Code" class="active" data-languagecode="@item.Code" onclick="updateLanguage(this)">
+                                                                    Active
+                                                                </a>
+                                                            }
+                                                            else
+
+                                                            {
+                                                                <a id="@item.Code" class="inactive" data-languagecode="@item.Code" onclick="updateLanguage(this)">
+                                                                    Inactive
+                                                                </a>
+                                                            }
+
+                                                        </td>
+                                                        <td>@item.Name</td>
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                       
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    @*-----------tab 3--------------*@
+                    @*------------------------Currency setup---------------------------------------------*@
+                    <div class="tab-pane fade" id="currencysetup">
+
+                        <div class="">
+
+                            <h5 class="s-bold no-margin line30">
+
+                                Currency Settings
+
+                            </h5>
+                            <p>
+                                The default currency for the website is set to ensure consistent representation of currency throughout the platform, including prices, transactions, and other financial elements, while also activating a multi-currency option to enable users to select their preferred currency and access content localized in multiple currencies.
+                            </p>
+                            <div class="row no-margin paddingtb-15">
+
+                             @*   <div class="col-md-4">
+                                     <div class="form-group  no-padding">
+                                         Currency API
+                                        <select >
+                                         
+                                        </select>
+                                    </div>
+                                </div>*@
+                                <div class="col-md-5">
+
+
+
+                                    <div class="form-group  no-padding">
+
+
+                                        <label class="switch">
+                                            <input type="checkbox" asp-for="@Model.defaultcurrency.IsMultiCurrency" id="multicurrencySwitchCheck" value="true">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <label class="form-check-label" for="multicurrencySwitchCheck">Enable Multi Currency Setup</label>
+                                        <p class="form-check-msg">
+                                            Enable with a Right Switch, Disable with a Left Switch
+                                        </p>
+
+
+                                    </div>
+
+                                </div>   <div class="col-md-4 ">
+
+
+                                    <div class="form-group  no-padding">
+                                        Default Currency
+                                        <select asp-items="@Model.ListCurrency" item asp-for="@Model.defaultcurrency.BaseCurrency">
+                                            <option disabled selected>-- Select --</option>
+
+                                            
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group col-md-2 padding15">
+                                    <button class="clickable-button" asp-page-handler="Currency">Update</button>
+
+
+
+                                </div>
+                            </div>
+
+                           
+
+                           
+                           
+                            <div class="form-group  margintb-15" id="dvcurrencyList">
+
+                             
+                                <div class="table-responsive margintb-15 text-nowrap border ">
+                                    <div class="padding15">
+                                        <h5 class="bold black-c no-margin">Set Currency</h5>
+                                        <p class="no-margin">
+                                            Please select which Currency you want to enable
+                                        </p>
+                                    </div>
+                                    <hr class="no-margin" />
+                                    <table class="table " id="ListingLoad2" style="width:100%">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <td style="width:100px">Mark As</td>
+                                                <td>Name</td>
+                                                <td>Conversion Rate</td>
+
+                                                    <td>Last Updated Date</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model.ListCurrencies)
+                                            {
+                                                <tr>
+                                                    <td class="link-active">
+                                                        @if (item.IsCurrencyPublish == true)
+                                                        {
+                                                            <a id="@item.ID" class="active" data-currencyid="@item.ID" data-conversionrate="@item.ConversionRate" onclick="updateCurrency(this)">
+                                                                Active
+                                                            </a>
+                                                        }
+                                                        else
+
+                                                        {
+                                                            <a id="@item.ID" class="inactive" data-currencyid="@item.ID" data-conversionrate="@item.ConversionRate" onclick="updateCurrency(this)">
+                                                                Inactive
+                                                            </a>
+                                                        }
+                                                    </td>
+                                                    <td>@item.Name | @item.CurrencyName - @item.CurrencyCode - @item.CurrencySymbol    </td>
+
+                                                    <td>
+                                                       <span id="@item.ID">@item.ConversionRate</span> <br/>
+                                                        <a data-currencyid="@item.ID" class="btn btn-xs blue-bg white-c" onclick="updateCurrentExchangeRate(this)">Get Current Rate</a>
+                                                    </td>
+
+                                                    
+                                                    <td>
+                                                       @item.ConversionDateupdate
+
+
+                                                    
+
+
+
+                                                    </td>
+                                                </tr>
+
+
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    @*-----------tab 4--------------*@
+                    @*------------------------Countries setup---------------------------------------------*@
+                    <div class="tab-pane fade" id="countriessetup">
+                       
+
+
+
+                       
+
+                        <div class="">
+                            <h5 class="s-bold black-c no-margin">Countries</h5>
+                            <p class="no-margin">
+                                Marked countries will now be associated with your website, indicating that it is intended for users from those countries.
+                            </p>
+                        </div>
+
+                      <div class="row margintb-15">
+                            <div class="col-md-5">
+                                <label class="switch">
+                                    <input type="checkbox" asp-for="@Model.globalAppSettings.IsCountrySelectionEnabled" id="multicountrySwitchCheck" value="true">
+                                    <span class="slider"></span>
+                                </label>
+                                <label class="form-check-label" for="multicountrySwitchCheck">Enable Country Selection for user</label>
+                                <p class="form-check-msg">
+                                    Enable with a Right Switch, Disable with a Left Switch
+                                </p>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button class="clickable-button" asp-page-handler="Country">Update</button>
+
+                            </div>
+                      </div>
+                     
+
+                        <div id="dvCountryList">
+                            <div class="table-responsive margintb-15 text-nowrap border ">
+
+                            <hr class="no-margin" />
+                            <table class="table " id="ListingLoad1" style="width:100%">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <td style="width:100px">Mark As</td>
+                                        <td>Name</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.ListCountries)
+                                    {
+                                        <tr>
+                                            <td class="link-active">
+                                                @if (item.IsCountryPublish == true)
+                                                {
+                                                    <a id="@item.ID" class="active" data-countryid="@item.ID" onclick="updateCountry(this)">
+                                                        Active
+                                                    </a>
+                                                }
+                                                else
+
+                                                {
+                                                    <a id="@item.ID" class="inactive" data-countryid="@item.ID"  onclick="updateCountry(this)">
+                                                        Inactive
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td>@item.Name</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+
+                    @*-----------tab 5--------------*@
+                    @*------------------------Labeling setup---------------------------------------------*@
+                    <div class="tab-pane fade" id="labelingsetup">
+
+                        <div class="">
+
+                            <h5 class="s-bold no-margin line30">
+
+                                Labeling Settings
+
+                            </h5>
+                            <p>
+                                It implies the configuration of labels that are used to identify and provide descriptions for various elements or features on the website.
+
+                            </p>
+
+                            <div class="table-responsive text-nowrap border table-form">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:100px">Term</th>
+                                            <th>Change This Term Into</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        <tr>
+                                            <td> <strong>Seller</strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Seller" type="text" />
+                                                <span asp-validation-for="@Model.labelsettings.Seller" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>Buyer</strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Buyer" type="text" />
+
+
+                                                <span asp-validation-for="@Model.labelsettings.Buyer" class="required"></span>
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>  Listing  </strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Listing" type="text" />
+
+                                                <span asp-validation-for="@Model.labelsettings.Listing" class="required"></span>
+                                            </td>
+
+
+                                        </tr>
+
+                                       
+
+                                        <tr>
+                                            <td> <strong>Individual</strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Individual" type="text" />
+
+                                                <span asp-validation-for="@Model.labelsettings.Individual" class="required"></span>
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>Company</strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Company" type="text" />
+
+
+                                                <span asp-validation-for="@Model.labelsettings.Company" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>Address</strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Address" type="text" />
+
+
+                                                <span asp-validation-for="@Model.labelsettings.Company" class="required"></span>
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>Become a Seller</strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.BecomeaSeller" type="text" />
+
+                                                <span asp-validation-for="@Model.labelsettings.BecomeaSeller" class="required"></span>
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong> Identity Proof </strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.IdentityProof" type="text" />
+
+
+                                                <span asp-validation-for="@Model.labelsettings.IdentityProof" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>  Certificate  </strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.Certificate" type="text" />
+
+                                                <span asp-validation-for="@Model.labelsettings.Certificate" class="required"></span>
+
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Post Request  </strong></td>
+                                            <td>
+                                                <input asp-for="@Model.labelsettings.PostRequest" type="text" />
+
+                                                <span asp-validation-for="@Model.labelsettings.PostRequest" class="required"></span>
+
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Logo </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.SellerLogo" />
+                                                <span asp-validation-for="@Model.labelsettings.SellerLogo" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> <strong>  Business </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.SellerBusiness" />
+                                                <span asp-validation-for="@Model.labelsettings.SellerBusiness" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Header Search Placeholder </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.HeaderSearchPlaceHolder" />
+                                                <span asp-validation-for="@Model.labelsettings.HeaderSearchPlaceHolder" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  View Profile/View Store On Item Detail Page </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ViewProfile" />
+                                                <span asp-validation-for="@Model.labelsettings.ViewProfile" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td> <strong>  Shipping-Phone </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ShippingPhone" />
+                                                <span asp-validation-for="@Model.labelsettings.ShippingPhone" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Shipping-State </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ShippingState" />
+                                                <span asp-validation-for="@Model.labelsettings.ShippingState" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Shipping-City </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ShippingCity" />
+                                                <span asp-validation-for="@Model.labelsettings.ShippingCity" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Shipping-Street </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ShippingStreet" />
+                                                <span asp-validation-for="@Model.labelsettings.ShippingStreet" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Shipping-landmark </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ShippingLandmark" />
+                                                <span asp-validation-for="@Model.labelsettings.ShippingLandmark" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> <strong>  Shipping-Zipcode </strong></td>
+                                            <td>
+                                                <input type="text" asp-for="@Model.labelsettings.ShippingZipcode" />
+                                                <span asp-validation-for="@Model.labelsettings.ShippingZipcode" class="required"></span>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+
+                                                <button class="clickable-button" asp-page-handler="LabelSetting">Update</button>
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    @*-----------tab 6--------------*@
+                    @*------------------------seller profile setup---------------------------------------------*@
+                    <div class="tab-pane fade" id="sellerprofilesetup">
+
+                        <div class="">
+
+                            <h5 class="s-bold no-margin line30">
+
+                                Seller Profile Settings
+
+                            </h5>
+                            <p>
+                                By marking these fields as mandatory, it ensures that sellers provide important information required for their profiles. Once the seller has completed these mandatory fields, their profile becomes searchable and accessible to users.
+                            </p>
+
+
+                            <div class="row border-top">
+                                <div class="col-md-10 no-padding">
+                                    <h5 class="margin15">Mark fields as Mandatory</h5>
+
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.Profile" class="form-check-input" type="checkbox" id="SPProfile">
+                                            <label class="form-check-label" for="SPProfile"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Basic Profile Required After Registration</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Business Name</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Image</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Phone Number</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Email</span>
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.BusinessInfo" class="form-check-input" type="checkbox" id="SPBusinessInfo">
+                                            <label class="form-check-label" for="SPBusinessInfo"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Business Info</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Business Type</span>
+                                            <span class="badge rounded-pill bg-label-secondary">About Business</span>
+                                            <span class="badge rounded-pill bg-label-secondary">No of Employee</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Years in Business</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Date of Birth</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Gender</span>
+
+                                        </p>
+                                    </div>
+
+                                    @* <div class="padding15 d-flex">
+                                    <span class="marginrf-15">
+
+
+                                    <input asp-for="@Model.sellerprofilesettings.Logo" class="form-check-input" type="checkbox"  id="SPLogo" >
+                                    <label class="form-check-label" for="SPLogo"> Yes </label>
+                                    </span>
+
+
+                                    <p>
+                                    <strong class="d-block">Logo</strong>
+                                    Includes:
+
+                                    <span class="badge rounded-pill bg-label-secondary">Business Logo</span>
+
+                                    </p>
+                                    </div>*@
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.SecondaryContactDetails" class="form-check-input" type="checkbox" id="SPSecondaryContactDetails">
+                                            <label class="form-check-label" for="SPSecondaryContactDetails"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Secondary Contact Details</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Contact Person Name</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Role</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Phone Number</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Email</span>
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.SecondaryAddress" class="form-check-input" type="checkbox" id="SPSecondaryAddress">
+                                            <label class="form-check-label" for="SPSecondaryAddress"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Secondary Address</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Address</span>
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.IdentityProof" class="form-check-input" type="checkbox" id="SPIdentityProof">
+                                            <label class="form-check-label" for="SPIdentityProof"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Identity Proof</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Identitly File Upload</span>
+                                            <span class="badge rounded-pill bg-label-secondary">ID issuing country </span>
+                                            <span class="badge rounded-pill bg-label-secondary">ID Number  </span>
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.Certificate" class="form-check-input" type="checkbox" id="SPCertificate">
+                                            <label class="form-check-label" for="SPCertificate"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Certificate</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Certificate File Upload</span>
+                                            <span class="badge rounded-pill bg-label-secondary">Institute Name  </span>
+                                            <span class="badge rounded-pill bg-label-secondary">Registration Number   </span>
+                                            <span class="badge rounded-pill bg-label-secondary">Detail   </span>
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.IsVideo" class="form-check-input" type="checkbox" id="SPVideo">
+                                            <label class="form-check-label" for="SPVideo"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Video</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Video URL</span>
+
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.TeamMemmber" class="form-check-input" type="checkbox" id="SPTeamMember">
+                                            <label class="form-check-label" for="SPTeamMember"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Team Member</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Add team members, outsource staff, affiliate members</span>
+
+
+                                        </p>
+                                    </div>
+
+                                    <div class="padding15 d-flex">
+                                        <span class="marginrf-15">
+
+
+                                            <input asp-for="@Model.sellerprofilesettings.SocialMediaLink" class="form-check-input" type="checkbox" id="SPSocialMediaLink">
+                                            <label class="form-check-label" for="SPSocialMediaLink"> Yes </label>
+                                        </span>
+
+
+                                        <p>
+                                            <strong class="d-block">Social Media</strong>
+                                            Includes:
+
+                                            <span class="badge rounded-pill bg-label-secondary">Add multiple social media links</span>
+
+
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <button class="clickable-button" asp-page-handler="SellerProfile">Update</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    @*-----------tab 7--------------*@
+                    @*------------------Cookie setup--------------------------------------------------*@
+                    <div class="tab-pane fade" id="cookiesetup">
+
+                        <div class="">
+
+                            <h5 class="s-bold no-margin line30">
+
+                                Cookie Settings
+
+                            </h5>
+                            <p>
+                                Toggle cookie settings and add custom cookie text for display on the main website.
+                            </p>
+
+                            <div class=" paddingtb-15 row no-margin">
+
+
+                                <div class="col-md-10">
+                                    <div class="form-group row">
+                                        <div class="col-md-9">
+
+
+
+
+
+                                            <label class="switch">
+                                                <input type="checkbox" asp-for="@Model.cookiesetting.IsCookie" id="IsCookieSwitchCheckChecked" value="true">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <label class="form-check-label" for="IsCookie"> Enable</label>
+                                            <p class="form-check-msg">
+                                                Enable with a Right Switch, Disable with a Left Switch:
+                                            </p>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        URL
+                                        <input type="text" asp-for="@Model.cookiesetting.URL" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        Cookie Text
+                                        <textarea type="text" asp-for="@Model.cookiesetting.CookieText"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="clickable-button" asp-page-handler="Cookie">Update</button>
+
+
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    @*-----------Last tab--------------*@
+                    @* global setup*@
+                    <div class="tab-pane fade" id="globalsetup">
+
+                        <div>
+
+                            <h5 class="s-bold no-margin line30">
+                                Date Format
+
+                            </h5>
+                            <p>
+                                You have the ability to select and apply the date format of your choice across the entire website.
+                            </p>
+
+
+                            <div class="  no-margin">
+
+                                <div class="row">
+                                    <div class="col-md-3 ">
+                                        <select asp-for="@Model.dateformat.DateFormat">
+
+
+                                            <option value="dd/MM/yyyy">dd/MM/yyyy</option>
+                                            <option value="dd/MMM/yyyy">dd/MMM/yyyy</option>
+                                            <option value="MMM/dd/yyyy">MMM/dd/yyyy</option>
+                                            <option value="dd-MM-yyyy">dd-MM-yyyy</option>
+                                            <option value="MM-dd-yyyy">MM-dd-yyyy</option>
+                                            <option value="MMM dd, yyyy">MMM dd, yyyy</option>
+                                        </select>
+                                    </div> 
+
+                                    <div class="col-md-3 ">
+                                        <select asp-for="@Model.dateformat.TimeFormat">
+
+
+                                            <option value="hh:mm:ss tt">hh:mm:ss tt (AM PM Format with seconds)</option>
+                                            <option value="hh:mm tt">hh:mm tt (AM PM Format)</option>
+                                            <option value="hh:mm:ss">hh:mm:ss (24 Hours Format with seconds)</option>
+                                            <option value="hh:mm">hh:mm (24 Hours Format)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-3 no-padding">
+                                        <button class="clickable-button" asp-page-handler="DateFormat">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the hash value from the URL
+        var hashValue = window.location.hash;
+
+        // If the hash value exists, activate the corresponding tab
+        if (!hashValue) {
+            hashValue = "#registermethod";
+        }
+
+        var tabButton = document.querySelector('[data-bs-target="' + hashValue + '"]');
+        if (tabButton) {
+            tabButton.classList.add("active");
+            tabButton.setAttribute("aria-selected", "true");
+
+            var tabPane = document.querySelector(hashValue);
+            if (tabPane) {
+                tabPane.classList.add("active", "show");
+            }
+        }
+    });
+
+
+
+
+    function uploadFileRegister() {
+        var fileInput = $("#fileInputRegister")[0];
+        $("#fileProgressRegister").show();
+        var progressBar = $("#fileProgressRegister")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png)/)) {
+            $('#errorRegisterImage').text("Only jpeg or png files are allowed.");
+            $("#fileProgressRegister").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            alert("File size must be less than 10 MB.");
+            $('#errorRegisterImage').text("File size must be less than 10 MB.");
+            $("#fileProgressRegister").hide();
+            return;
+        }
+
+        var image = new Image();
+        image.onload = function () {
+            var width = image.width;
+            var height = image.height;
+            var desiredWidth = 470;
+            var desiredHeight = 650;
+
+            if (width !== desiredWidth || height !== desiredHeight) {
+                $('#errorRegisterImage').text("Image size must be 470 by 650 pixels.");
+                $("#fileProgressRegister").hide();
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            $.ajax({
+                url: "/Controller/Master/Upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+
+                    var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+
+                    $("#imageRegister").attr("src", data.fileLink);
+                    $('#registermethod_RegisterImage').val(data.fileLink);
+                    $("#imageRegister").show();
+
+                    $("#fileProgressRegister").hide();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        };
+
+        image.src = URL.createObjectURL(file);
+    }
+
+
+    function uploadFileLogin() {
+        var fileInput = $("#fileInputLogin")[0];
+        $("#fileProgressLogin").show();
+        var progressBar = $("#fileProgressLogin")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png)/)) {
+            $('#errorLoginImage').text("Only jpeg or png files are allowed.");
+            $("#fileProgressLogin").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#errorLoginImage').text("File size must be less than 10 MB.");
+            $("#fileProgressLogin").hide();
+            return;
+        }
+
+        var image = new Image();
+        image.onload = function () {
+            var width = image.width;
+            var height = image.height;
+            var desiredWidth = 470;
+            var desiredHeight = 650;
+
+            if (width !== desiredWidth || height !== desiredHeight) {
+                $('#errorLoginImage').text("Image size must be 470 by 650 pixels.");
+                $("#fileProgressLogin").hide();
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            $.ajax({
+                url: "/Controller/Master/Upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+
+                    var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+
+                    $("#imageLogin").attr("src", data.fileLink);
+                    $('#registermethod_LoginImage').val(data.fileLink);
+                    $("#imageLogin").show();
+
+                    $("#fileProgressLogin").hide();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        };
+
+        image.src = URL.createObjectURL(file);
+    }
+
+
+
+    ///handle mutli linigual list
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var multilingualSwitch = document.getElementById("multilingualSwitchCheck");
+        var contentDiv = document.getElementById("dvlanguagescript");
+
+        // Initial check for the checkbox on page load
+        if (multilingualSwitch.checked) {
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+
+        // Handle checkbox change event
+        multilingualSwitch.addEventListener("change", function () {
+            if (multilingualSwitch.checked) {
+                contentDiv.style.display = "block";
+            } else {
+                contentDiv.style.display = "none";
+            }
+        });
+
+
+
+
+
+
+    });
+
+
+    //handle is phone enable sms api selection
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var IsPhoneSwitchCheckChecked = document.getElementById("IsPhoneSwitchCheckChecked");
+        var contentDiv = document.getElementById("dvSMSAPISelection");
+
+        // Initial check for the checkbox on page load
+        if (IsPhoneSwitchCheckChecked.checked) {
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+
+        // Handle checkbox change event
+        IsPhoneSwitchCheckChecked.addEventListener("change", function () {
+            if (IsPhoneSwitchCheckChecked.checked) {
+                contentDiv.style.display = "block";
+            } else {
+                contentDiv.style.display = "none";
+            }
+        });
+
+
+
+
+
+
+    });
+
+    ///handle multi currency div
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var multiSwitch = document.getElementById("multicurrencySwitchCheck");
+        var contentDiv = document.getElementById("dvcurrencyList");
+
+        // Initial check for the checkbox on page load
+        if (multiSwitch.checked) {
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+
+
+
+
+        // Handle checkbox change event
+        multiSwitch.addEventListener("change", function () {
+            if (multiSwitch.checked) {
+                contentDiv.style.display = "block";
+            } else {
+                contentDiv.style.display = "none";
+            }
+        });
+
+
+
+
+    });
+
+    ///handle multi country div
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var multiCountry = document.getElementById("multicountrySwitchCheck");
+        var contentDivCountry = document.getElementById("dvcountryList");
+
+        // Initial check for the checkbox on page load
+        if (multiCountry.checked) {
+            contentDivCountry.style.display = "block";
+        } else {
+            contentDivCountry.style.display = "none";
+        }
+
+
+
+
+        // Handle checkbox change event
+        multiCountry.addEventListener("change", function () {
+
+            alert("country");
+            if (multiCountry.checked) {
+                contentDivCountry.style.display = "block";
+            } else {
+                contentDivCountry.style.display = "none";
+            }
+        });
+
+
+
+
+    });
+
+    ///google media enable disable div
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var multiSwitch = document.getElementById("googleloginSwitchCheck");
+        var contentDiv = document.getElementById("googleSocialMedia");
+
+        // Initial check for the checkbox on page load
+        if (multiSwitch.checked) {
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+
+
+
+
+        // Handle checkbox change event
+        multiSwitch.addEventListener("change", function () {
+            if (multiSwitch.checked) {
+                contentDiv.style.display = "block";
+            } else {
+                contentDiv.style.display = "none";
+            }
+        });
+
+
+
+
+    });
+
+
+    ///facebook media enable disable div
+    document.addEventListener("DOMContentLoaded", function () {
+        // On document load
+
+        var multiSwitch = document.getElementById("facebookloginSwitchCheck");
+        var contentDiv = document.getElementById("facebookSocialMedia");
+
+        // Initial check for the checkbox on page load
+        if (multiSwitch.checked) {
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+
+
+
+
+        // Handle checkbox change event
+        multiSwitch.addEventListener("change", function () {
+            if (multiSwitch.checked) {
+                contentDiv.style.display = "block";
+            } else {
+                contentDiv.style.display = "none";
+            }
+        });
+
+
+
+
+    });
+    ///handle language ispublish update
+
+    function updateLanguage(elem) {
+
+
+        var languagecode = $(elem).data('languagecode');
+
+
+
+        $.ajax({
+            url: '/controller/appsetting/updatelanguage',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+
+                languagecode: languagecode,
+
+
+            },
+            success: function (response) {
+                // handle success response
+               
+                $(elem).toggleClass("active inactive");
+
+                if ($(elem).hasClass("active")) {
+                    $(elem).text("Active");
+                } else {
+                    $(elem).text("Inactive");
+                }
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+
+
+
+    ///currency update
+
+    function updateCurrency(elem) {
+
+
+        var currencyid = $(elem).data('currencyid');
+        var conversionrate = $(elem).data('conversionrate');
+
+
+        $.ajax({
+            url: '/controller/appsetting/UpdateCurrency',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+
+                currencyid: currencyid,
+                conversionrate: conversionrate
+
+            },
+            success: function (response) {
+                // handle success response
+
+
+                $(elem).toggleClass("active inactive");
+
+                if ($(elem).hasClass("active")) {
+                    $(elem).text("Active");
+                } else {
+                    $(elem).text("Inactive");
+                }
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+
+
+
+    function updateCountry(elem) {
+
+
+        var countryid = $(elem).data('countryid');
+      
+
+
+        $.ajax({
+            url: '/controller/appsetting/UpdateCountry',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+
+                countryid: countryid,
+               
+
+            },
+            success: function (response) {
+                // handle success response
+
+
+                $(elem).toggleClass("active inactive");
+
+                if ($(elem).hasClass("active")) {
+                    $(elem).text("Active");
+                } else {
+                    $(elem).text("Inactive");
+                }
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+
+
+
+    function updateCurrentExchangeRate(elem) {
+
+
+        var currencyid = $(elem).data('currencyid');
+
+
+
+        $.ajax({
+            url: '/controller/appsetting/currencycurrentrate',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+
+                countryid: currencyid,
+
+
+            },
+            success: function (response) {
+                // handle success response
+
+                window.location = "/admin/settings#currencysetup";
+
+                //$(elem).toggleClass("active inactive");
+
+                //if ($(elem).hasClass("active")) {
+                //    $(elem).text("Active");
+                //} else {
+                //    $(elem).text("Inactive");
+                //}
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+            }
+        });
+    }
+</script>

@@ -1,0 +1,108 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Boost.serviceplanModel
+@{
+    <title>Boost Service Plan</title>
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class="card">
+    <div class="form padding30">
+
+
+
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Auto
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+
+                    <div class="form-group col-md-7">
+                        Deduction Type
+                        <select asp-for="@Model.serviceboost.DeductionType">
+
+                            <option>Both</option>
+                            <option>Credit</option>
+                            <option>Amount</option>
+
+                        </select>
+                        <span asp-validation-for="@Model.serviceboost.DeductionType" class="required"></span>
+                    </div>
+
+                    <div class="form-group col-md-7">
+                        Days
+                        <input type="text" maxlength="100" asp-for="@Model.serviceboost.NoofDays">
+                        <span asp-validation-for="@Model.serviceboost.NoofDays" class="required"></span>
+                    </div>
+
+
+
+                    <div class="form-group col-md-7">
+                        Amount
+                        <input type="text" maxlength="100" asp-for="@Model.serviceboost.Amount">
+                        <span asp-validation-for="@Model.serviceboost.Amount" class="required"></span>
+                    </div>
+
+                    <div class="form-group col-md-7">
+                        Credits
+                        <input type="text" maxlength="100" asp-for="@Model.serviceboost.Credit">
+                        <span asp-validation-for="@Model.serviceboost.Credit" class="required"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="row">
+
+            <div class="col-md-3 s-bold">
+                Customize
+            </div>
+
+            <div class="col-md-9 no-padding">
+                <div class="row">
+                    <div class="row">
+
+
+
+                        <div class="form-group col-md-7">
+                            Per day AD Amount
+                            <input type="text" maxlength="100" asp-for="@Model.serviceboost.CustomAmount">
+                            <span asp-validation-for="@Model.serviceboost.CustomAmount" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-7">
+                            Per day AD Credits
+                            <input type="text" maxlength="100" asp-for="@Model.serviceboost.CustomCredit">
+                            <span asp-validation-for="@Model.serviceboost.CustomCredit" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <hr>     <div class="row paddingrf-15 right">
+                <div class="col-md-6"></div> <div class="col-md-6">    <button class="clickable-button" asp-page-handler="ServiceBoost">Save</button></div>
+
+
+
+        </div>
+    </div>
+</div>
+
+</form>

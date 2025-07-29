@@ -1,0 +1,52 @@
+﻿@using AMMasterProject.ViewModel
+@model List<InboxViewModel>
+
+@{
+    int profileid =  int.Parse(User.FindFirst("USERID")?.Value);
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    @foreach (var item in Model)
+    {
+
+        var statusclass = "messaging-member";
+        if (item.readstatus == "UnRead")
+        {
+            statusclass = " new";
+        }
+        else
+        {
+            statusclass = "messaging-member";
+        }
+        <li id="licontactlist-@item.contactguid" class="@statusclass">
+            <a class="inbox-ainboxcontactselectionID" id="ainboxcontactselection-@item.contactguid" data-chatid="@item.chatid" data-contactid="@item.contactguid" data-messageid="@item.messageid">
+                <div class="messaging-member__wrapper">
+                    <div class="messaging-member__avatar">
+                        @if (item.image != null)
+                        {
+                            <img src="@item.image" alt="@item.fullname" loading="lazy">
+                        }
+                        else
+                        {
+                            <span class="profile-alpha alpha-@item.firstchar">@item.firstchar</span>
+                        }
+                        <div class="user-status"></div>
+                    </div>
+                    <span class="messaging-member__name">@item.fullname</span>
+                    <span class="messaging-member__message">@Html.Raw(item.message)</span>
+                </div>
+            </a>
+        </li>
+
+    }
+}
+else
+{
+    <div class="no-record-found empty-myinboxcontact"></div>
+}
+
+
+<script>
+
+</script>

@@ -1,0 +1,846 @@
+﻿@page "/admin/usermanagement/board/{id}"
+@using Newtonsoft.Json;
+@model AMMasterProject.Pages.Admin.usermanagement.userboardModel
+@{
+
+    <title>User Board</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+
+
+
+
+
+    @*  <script src="~/admin-assets/js/apexcharts-val.min.js"></script>
+    <script src="~/admin-assets/js/apexcharts-val.min.js"></script>
+    <script src="~/admin-assets/js/apexcharts-vue.js"></script>*@
+    @if (Model != null)
+    {
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+
+        var creditModel = Model.BuyerView.CreditPurchaseModel;
+        <div class="chart-svg">
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    @*user basic Details*@
+
+                    <div class="card  grey-c mb-4">
+
+
+
+                        <div class="box-left padding15">
+
+                            @if (Model.BuyerView.Image != null)
+                            {
+                                <img src="@Model.BuyerView.Image" alt="userimage" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png" style="height: 80px;width: 80px;margin: -3px 25px 0px 5px;border-radius: 100px;border: solid 1px #ccc;" class=" " width="80" height="80">
+                            }
+
+                            <div>
+                                <h5 class="card-title no-margin s-bold d-grey-c">
+                                    @Model.BuyerView.FirstName @Model.BuyerView.LastName
+                                </h5>
+                                <p class="blue-c no-margin s-bold">
+                                    @Model.BuyerView.LoginName
+                                    @Model.BuyerView.LoginChannel
+                                </p>
+                                <small class="small grey-c s-bold">@Model.BuyerView.userothermetadata.BuyerLevelName</small>
+                                <p> @Model.BuyerView.About</p>
+                            </div>
+                        </div>
+
+
+                        <hr class="no-margin" />
+                        <div class="padding15">
+                            <p class="">
+                                <span class="s-bold d-grey-c"> Display Name :</span>
+                                <span class="float-end ">@Model.BuyerView.Displayname</span> <br>
+                            </p>
+                            <p class="">
+                                <span class="s-bold d-grey-c"> Member since :</span>
+                                <span class="float-end ">@Model.BuyerView.InsertDate</span> <br>
+                            </p>
+
+                            <p class="">
+                                <span class="s-bold d-grey-c"> Phone Number :</span>
+                                <span class="float-end ">@Model.BuyerView.Contact</span> <br>
+                            </p>
+                            <p class="">
+                                <span class="s-bold d-grey-c"> Email:</span>
+                                <span class="float-end ">@Model.BuyerView.Email</span> <br>
+                            </p>
+                            <p class="">
+                                <span class="s-bold d-grey-c"> Address:</span>
+                                <span class="float-end ">@Model.BuyerView.Address</span> <br>
+                            </p>
+
+                            <div class="padding5 right">
+                               @*  <a class="btn red-bg white-c small">Verify as Buyer</a>
+ *@
+
+                                <button class="btn red-bg white-c small" asp-page-handler="VerifyAsBuyer">Verify as Buyer</button>
+                            </div>
+
+
+                        </div>
+                        <hr class="no-margin" />
+                        @*Action *@
+                        <div class="row paddingtb-15 margin10">
+
+                            <div class="col-md-3">
+                            </div>   <div class="col-md-9 right">
+                                @*Lock Account *@
+                                <a class="grey-bd radius30 small grey-c btn" href="#lockpopup">Lock Account</a>
+                                @*Delete Account *@
+                                <partial name="/pages/shared/setups/_accountdelete.cshtml" />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Credit system Statistics -->
+
+                    <div class="card mb-4 no-margin">
+
+
+
+                        <div class="card-header">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li class="nav-item">
+                                    <button id="creditTabButton" type="button" class="nav-link text-start active" role="tab" data-bs-toggle="tab" data-bs-target="#creditsales" aria-controls="creditpurchase" aria-selected="true">
+
+                                        Credit System
+                                    </button>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div class="card-body px-0">
+                            <div class="tab-content p-0">
+                                <div class="tab-pane fade show active" id="creditsales" role="tabpanel">
+                                    <div class="d-flex p-4 pt-3">
+
+                                        <div>
+                                            <small class="text-muted d-block">Total Credit Purchase</small>
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mb-0 me-1">@creditModel.CreditQTY    </h6>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="paddingrf-15">
+                                            <small class="text-muted d-block">Total Credit Used</small>
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mb-0 me-1">@creditModel.CreditUsed</h6>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="paddingrf-15">
+                                            <small class="text-muted d-block">Total Purchased</small>
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mb-0 me-1">@creditModel.ActualCurrency @creditModel.CreditPurchasedAmount.ToString("N2")</h6>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="appcreditPurchased">
+                                        <div id="chart">
+                                            <apexchart type="area" height="350" :options="chartOptions" :series="series"></apexchart>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subcribtion Overview -->
+
+                    <div class="card mb-4 no-margin">
+
+
+
+                        <div class="card-header">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li class="nav-item">
+                                    <button id="creditTabButton" type="button" class="nav-link text-start active" role="tab" data-bs-toggle="tab" data-bs-target="#creditsales" aria-controls="creditpurchase" aria-selected="true">
+
+                                        Subcription System
+                                    </button>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div class="card-body px-0">
+                            <div class="tab-content p-0">
+                                <div class="tab-pane fade show active" id="Subcription" role="tabpanel">
+                                    <div class="d-flex p-4 pt-3">
+
+                                        <div>
+                                            <small class="text-muted d-block">Total Subcription</small>
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mb-0 me-1">$459.10</h6>
+
+                                            </div>
+                                        </div> <div class="paddingrf-15">
+                                            <small class="text-muted d-block">Subcription Expire</small>
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="mb-0 me-1">$459.10</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="appsubscription">
+                                        <div id="chart">
+                                            <apexchart type="rangeBar" height="350" :options="chartOptions" :series="series"></apexchart>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    @*      Community Statistics *@
+                    <div class="card mb-4 no-margin">
+                        <div class="card-header padding15 d-flex align-items-center justify-content-between pb-0">
+                            <div class="card-title mb-0">
+                                <h5 class="m-0 me-2">Community Statistics</h5>
+
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                                    <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <br />
+                            <ul class="p-0 m-0">
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-secondary">
+                                            <i class='bx bx-chevron-right'></i>
+                                        </span>
+                                    </div>
+
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Forum</h6>
+
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">82.5k</small>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-secondary">
+                                            <i class='bx bx-chevron-right'></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Events</h6>
+
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">23.8k</small>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-secondary">
+                                            <i class='bx bx-chevron-right'></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Donation</h6>
+
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">849k</small>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+
+                    <!-- If Seller -->
+                    @if (Model.SellerView.Type== "Vendor")
+                    {
+
+                        @*    business info*@
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <h5 class="padding15 no-margin">
+                                        <span class="margin5">
+                                            Store Details
+                                        </span>
+                                      
+                                    </h5>
+                                    <hr class="no-margin" />
+
+                                    @* <img src="@Model.SellerCoverImage" alt="userimage" data-app-dark-img="illustrations/man-with-laptop-dark.png" class="margin15 float-end seller-logo" data-app-light-img="illustrations/man-with-laptop-light.png">
+                            *@
+                                    <div class="padding15">
+
+                                    
+                            <div class="box-left ">
+                                        <img src="@Model.SellerView.Image" alt="userimage" data-app-dark-img="illustrations/man-with-laptop-dark.png" class="seller-logo" data-app-light-img="illustrations/man-with-laptop-light.png">
+                                        <h5 class=" margin15">
+                                            @Model.SellerView.BusinessName <br />
+                                            <small class="small grey-c s-bold">@Model.SellerView.userothermetadata.SellerLevelName</small>
+                                         
+                                        </h5>
+
+                                        </div>    
+                                        <p>
+
+                                        @Model.SellerView.BusinessDescription
+
+                                        </p>
+                                       @*  <a class="red-bg f-theme btn small float-end marginrf-15">
+
+                                            Verify as Seller
+                                        </a> *@
+
+
+                                         <button class="red-bg f-theme btn small float-end marginrf-15" asp-page-handler="VerifyAsSeller"> Verify as Seller</button>
+
+                                        <a class="theme-bg f-theme btn small float-end">
+
+                                            Visit Store
+                                        </a>
+                                    </div> @*totals*@
+
+                                    <div class="">
+
+                                        <hr />
+
+                                        @*customers*@
+
+                                        <div class="paddingrf-15">
+                                            <h4 class="card-title float-end mb-2">@Model.SellerView.CustomerTotal</h4>
+
+                                            <div class="card-title box-middle">
+
+
+                                                <span class="badge purple-bg p-2 margin5"><i class="bx bxs-user small white-c no-margin"></i></span>
+
+                                                <div>
+                                                    <span class="fw-semibold d-block mb-1">Customers</span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        @*Listings*@
+                                        <div class="paddingrf-15">
+                                            <h4 class="card-title mb-2 float-end">@Model.SellerView.ProductTotal</h4>
+
+                                            <div class="card-title box-middle">
+                                                <span class="badge orange-bg p-2 margin5 "><i class='bx bx-list-ul white-c no-margin'></i></span>
+
+                                                <div>
+                                                    <span class="fw-semibold d-block mb-1">Listing</span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        @*star rating*@
+                                        <div class="paddingrf-15">
+                                            <h4 class="card-title float-end mb-2"><small class="small">@Model.SellerView.userothermetadata.SellerRating.ToString("0.0") (@Model.SellerView.userothermetadata.TotalReviewsAsSeller )</small> </h4>
+                                            <div class="card-title box-middle">
+                                                <span class="badge yellow-bg p-2 margin5"><i class='bx bxs-star white-c no-margin '></i></span>
+
+                                                <div>
+                                                    <span class="fw-semibold d-block mb-1">Ratings</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        @*followers*@
+                                        <div class="paddingrf-15">
+                                            <h4 class="card-title mb-2 float-end">@Model.SellerView.userothermetadata.Followers</h4> <div class="card-title box-middle">
+                                                <span class="badge blue-bg p-2 margin5">
+                                                    <i class='bx bxs-user-voice no-margin white-c'></i>
+
+                                                </span>
+                                                <div>
+                                                    <span class="fw-semibold d-block mb-1">Followers</span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @* total orders as seller*@
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header padding15 d-flex align-items-center justify-content-between pb-0">
+                                        <div class="card-title mb-0">
+                                            <h5 class="m-0 me-2">Completed Orders as Seller: @Model.SellerView.SalesQtyTotal</h5>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body padding15">
+                                        <div id="appordersall">
+                                            <div id="chart">
+                                                <apexchart type="donut" height="230" :options="chartOptions" :series="series"></apexchart>
+                                            </div>
+                                        </div>
+
+                                        <p>
+                                            <span class="badge rounded-pill" style="background: #eed92d; display: inline-block !important;"></span> Shipped Orders:
+                                            <span class="grey-c float-end">@Model.S_ShippedCount Orders</span>
+                                        </p>
+                                        <p>
+                                            <span class="badge rounded-pill" style="background: #27aae1; display: inline-block !important;"></span> Processing Orders:
+                                            <span class="grey-c float-end">@Model.S_ProcessingCount Orders</span>
+                                        </p>
+                                        <p>
+                                            <span class="badge rounded-pill" style="background: #02d7b9; display: inline-block !important;"></span> Delivered Orders:
+                                            <span class="grey-c float-end">@Model.S_DeliveredCount Orders</span>
+                                        </p>
+
+                                        <p>
+                                            <span class="badge rounded-pill" style="background: #5acb65; display: inline-block !important;"></span> Completed Orders:
+                                            <span class="grey-c float-end">@Model.S_CompletedCount Orders</span>
+                                        </p>
+                                        <p>
+                                            <span class="badge rounded-pill" style="background: #ff4254; display: inline-block !important;"></span> Cancelled Orders:
+                                            <span class="grey-c float-end">@Model.S_CancelledCount Orders</span>
+                                        </p>
+                                        <p>
+                                            <span class="badge rounded-pill" style="background: #ff8708; display: inline-block !important;"></span> Returned Orders:
+                                            <span class="grey-c float-end">@Model.S_ReturnedCount Orders</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+                        @*   Total Sales*@
+                        <div class="card mb-4">
+                            <h5 class="card-header m-0 me-2 pb-3">
+                                Total Sales
+
+
+                                <span class="card-title float-end h3 ">@Model.SellerView.SalesActualCurrency @Model.SellerView.SalesAmountTotal</span>
+                            </h5>
+                            @* Revenue chart *@
+                            <div id="apprevenue">
+                                <div id="revenuechart">
+                                    <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*     <partial id="_pquickview" name="/Pages/Admin/usermanagement/_sellerboard.cshtml" model="@Model.SellerView" /> *@
+                    }
+
+                    <!------------------>
+                    <div class="row ">
+
+
+                        @*Wishlist*@
+                        <div class="col-lg-3 col-md-3 col-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start">
+                                        <div class="avatar flex-shrink-0 margin5">
+                                            <span class="badge purple-bg p-2 "><i class="bx bxs-user white-c no-margin"></i></span>
+                                        </div>
+                                        <div>
+                                            <span class="fw-semibold d-block mb-1">Wishlist </span>
+                                            <h4 class="card-title mb-2">@Model.BuyerView.WishListTotal</h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        @*Coupons Used*@
+                        <div class="col-lg-3 col-md-3 col-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start ">
+                                        <div class="avatar flex-shrink-0 margin5">
+                                            <span class="badge orange-bg p-2 "><i class='bx bx-list-ul white-c no-margin'></i></span>
+                                        </div>
+                                        <div>
+                                            <span class="fw-semibold d-block mb-1">Coupons  </span>
+                                            <h4 class="card-title mb-2">28</h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        @*Posted Request*@
+                        <div class="col-lg-3 col-md-3 col-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start ">
+                                        <div class="avatar flex-shrink-0 margin5">
+                                            <span class="badge blue-bg p-2 ">
+                                                <i class='bx bxs-user-voice no-margin white-c'></i>
+
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="fw-semibold d-block mb-1"> Requests</span>
+                                            <h4 class="card-title mb-2">20</h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        @*followers*@
+                        <div class="col-lg-3 col-md-3 col-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start ">
+                                        <div class="avatar flex-shrink-0 margin5">
+                                            <span class="badge blue-bg p-2 ">
+                                                <i class='bx bxs-user-voice no-margin white-c'></i>
+
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="fw-semibold d-block mb-1">Following </span>
+                                            <h4 class="card-title mb-2">@Model.BuyerView.userothermetadata.Following</h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+                            @*buyer orders Details*@
+
+                            <div class="card mb-4">
+                                <div class="card-header padding15 d-flex align-items-center justify-content-between pb-0">
+                                    <div class="card-title mb-0">
+                                        <h5 class="m-0 me-2">Orders as Buyer: @Model.BuyerView.PurchaseQtyTotal</h5>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body padding15">
+                                    <div id="appordersallBuyer">
+                                        <div id="chart">
+                                            <apexchart type="donut" height="230" :options="chartOptions" :series="series"></apexchart>
+                                        </div>
+                                    </div>
+
+                                    <p>
+                                        <span class="badge rounded-pill" style="background: #eed92d; display: inline-block !important;"></span> Shipped Orders:
+                                        <span class="grey-c float-end">@Model.B_ShippedCount Orders</span>
+                                    </p>
+                                    <p>
+                                        <span class="badge rounded-pill" style="background: #27aae1; display: inline-block !important;"></span> Processing Orders:
+                                        <span class="grey-c float-end">@Model.B_ProcessingCount Orders</span>
+                                    </p>
+                                    <p>
+                                        <span class="badge rounded-pill" style="background: #02d7b9; display: inline-block !important;"></span> Delivered Orders:
+                                        <span class="grey-c float-end">@Model.B_DeliveredCount Orders</span>
+                                    </p>
+
+                                    <p>
+                                        <span class="badge rounded-pill" style="background: #5acb65; display: inline-block !important;"></span> Completed Orders:
+                                        <span class="grey-c float-end">@Model.B_CompletedCount Orders</span>
+                                    </p>
+                                    <p>
+                                        <span class="badge rounded-pill" style="background: #ff4254; display: inline-block !important;"></span> Cancelled Orders:
+                                        <span class="grey-c float-end">@Model.B_CancelledCount Orders</span>
+                                    </p>
+                                    <p>
+                                        <span class="badge rounded-pill" style="background: #ff8708; display: inline-block !important;"></span> Returned Orders:
+                                        <span class="grey-c float-end">@Model.B_ReturnedCount Orders</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @*    Affiliate*@
+                            <div class="card mb-4">
+                                <h5 class="padding15">
+                                    Affiliate Details
+
+                                </h5>
+                                <hr class="no-margin" />
+                                <div class=" padding15 ">
+                                    <h6 class="">
+                                        Your Affiliate Link
+
+                                    </h6>
+                                    <a class="theme-c">link here</a>
+
+                                    <div class="row margintb">
+
+
+
+                                        @*Signup*@
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <div class="">
+                                                    <div class="card-title d-flex align-items-start">
+                                                        <div class="avatar flex-shrink-0 margin5">
+                                                            <span class="badge purple-bg p-2 "><i class="bx bxs-user white-c no-margin"></i></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="fw-semibold d-block mb-1">Signup</span>
+                                                            <h4 class="card-title mb-2">28</h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*Listings*@
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <div class="">
+                                                    <div class="card-title d-flex align-items-start">
+                                                        <div class="avatar flex-shrink-0 margin5">
+                                                            <span class="badge orange-bg p-2 "><i class='bx bx-list-ul white-c no-margin'></i></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="fw-semibold d-block mb-1">Orders</span>
+                                                            <h4 class="card-title mb-2">28</h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        @*Purchase *@
+
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <div class="">
+                                                    <div class="card-title d-flex align-items-start">
+                                                        <div class="avatar flex-shrink-0 margin5">
+                                                            <span class="badge green-bg p-2 "><i class='bx bx-list-check no-margin white-c'></i></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="fw-semibold d-block mb-1">Purchase</span>
+                                                            <h4 class="card-title mb-2">$628</h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @*Earning *@
+
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <div class="">
+                                                    <div class="card-title d-flex align-items-start">
+                                                        <div class="avatar flex-shrink-0 margin5">
+                                                            <span class="badge green-bg p-2 "><i class='bx bx-list-check no-margin white-c'></i></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="fw-semibold d-block mb-1">Earning</span>
+                                                            <h4 class="card-title mb-2">$628</h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*      Total Purchasing*@
+                    <div class="card mb-4">
+                        <h5 class="card-header m-0 me-2 pb-3">
+                            Total Purchasing
+
+
+                            <span class="card-title float-end h3 ">@Model.BuyerView.PurchaseAmountTotal.ToString("N2")</span>
+                        </h5>
+                        @* Revenue chart *@
+                        <div id="apprevenue">
+                            <div id="revenuechart">
+                                <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="~/admin-assets/js/charts.js"></script>
+
+
+        <script>
+            const jsonDataPurchased = @Html.Raw(JsonConvert.SerializeObject(@creditModel.MonthsPurchasedJson));
+            const jsonDataUsed = @Html.Raw(JsonConvert.SerializeObject(@creditModel.MonthsUsedJson));
+
+            initializeChartCreditPurchased(jsonDataPurchased, jsonDataUsed);
+
+
+
+            var transformedData = @Html.Raw(JsonConvert.SerializeObject(Model.BuyerView.SubscriptionPurchaseModel));
+            const chartData = transformedData.map(item => ({
+                x: item.PackageName,
+                y: [
+                    new Date(item.SubscriptionDate).getTime(),
+                    new Date(item.RenewDate).getTime()
+                ]
+            }));
+
+            // console.log(chartData);
+            // Initialize the chart with transformed data
+            initializeChartSubscription(chartData);
+
+
+
+
+            ///seller order status
+            initializeChartOrderSummary(@Model.S_ShippedCount, @Model.S_ProcessingCount, @Model.S_DeliveredCount, @Model.S_CompletedCount, @Model.S_CancelledCount, @Model.S_ReturnedCount);
+
+
+
+
+            ///buyer order status
+            initializeChartOrderSummaryBuyer(@Model.B_ShippedCount, @Model.B_ProcessingCount, @Model.B_DeliveredCount, @Model.B_CompletedCount, @Model.B_CancelledCount, @Model.B_ReturnedCount);
+
+        </script>
+    }
+
+
+    @* <partial id="_pquickview" name="/Pages/Admin/usermanagement/_customerboard.cshtml" model="@Model.BuyerView" />*@
+
+
+
+
+    <div class="overlay" id="lockpopup">
+        <div class="popup popup-small">
+
+            <div class="popup-heading">Lock Account</div>
+            <div class=" padding30">
+
+                <div class="form">
+                    <div class="form-group">
+                        Lock Reason:   <p class="small grey-c no-margin">
+                            Provide a brief explanation for locking the account.
+                        </p>
+                        <textarea maxlength="1000" asp-for="@Model.userlock.Remarks"></textarea>
+
+                        <span asp-validation-for="@Model.userlock.Remarks" class="required"></span>
+                    </div>
+                    <div class="form-group">
+                        Unlock Date
+                        <p class="small grey-c no-margin">Set the date when the account will be automatically unlocked. It ensures that the user's access is reinstated after the specified period.</p>
+                        <input type="date" asp-for="@Model.userlock.UnlockDate">
+                        <span asp-validation-for="@Model.userlock.UnlockDate" class="required"></span>
+                    </div>  <div class="form-group checkright">
+                        Lock Account
+                        <p class="small grey-c no-margin">Check the box to indicate your intention to lock this account.</p>
+
+                        <input type="checkbox" asp-for="@Model.userlock.IsLock" id="userlockSwitchChecked" value="true">
+                        <label class="form-check-label" for="userlockSwitchChecked"> Mark as Lock</label>
+                    </div>
+
+
+                </div>
+            </div>
+            <hr class="no-margin" />
+            <div class="padding15 right">
+                <button class="green-bg btn white-c" asp-page-handler="AccountLock">Save</button>
+                <a class="grey-bg btn white-c  " href="#close"> Cancel </a>
+            </div>
+
+        </div>
+    </div>
+</form>

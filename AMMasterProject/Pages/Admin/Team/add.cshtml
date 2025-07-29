@@ -1,0 +1,253 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Team.addModel
+@{
+    <title>Team</title>
+
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+@* <form method="post" enctype="multipart/form-data">
+    <input asp-for="@Model.team.TeamId type="hidden" /> *@
+
+<div class="row no-margin">
+    <div class="col-md-2">
+        <div class="nav nav-pills flex-column flex-md-row mb-3">
+            <a class="nav-link" href="~/admin/team">
+                <i class="bx bx-list-ul me-1"></i>
+                List
+            </a>
+            <a class="nav-link" href="~/admin/team/add"><i class="bx bx-plus me-1"></i> Add </a>
+          
+        </div>
+    </div>
+    <div class="card col-md-10">
+        <div class="form padding30">
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                     Details
+                </div>
+
+                <div class="col-md-9 no-padding">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            Team Member Name
+                                <input type="text" maxlength="100" asp-for="@Model.team.Name">
+                                <span asp-validation-for="@Model.team.Name" class="required"></span>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            Designation
+                                <input type="text" maxlength="100" asp-for="@Model.team.Designation">
+                                <span asp-validation-for="@Model.team.Designation" class="required"></span>
+                        </div>
+
+
+                        <div class="form-group col-md-5">
+                           Sort #
+                                <input type="number"  asp-for="@Model.team.Sortorder">
+                                <span asp-validation-for="@Model.team.Sortorder" class="required"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+                <div class="row">
+
+                    <div class="col-md-3 s-bold">
+                        Description
+                    </div>
+
+                    <div class="col-md-9 no-padding">
+                        <div class="row">
+
+
+                            <div class="form-group col-md-9">
+                                Summary
+                                <input type="text" maxlength="1000" asp-for="@Model.team.Summary" oninput="updateCharacterCount(this,document.getElementById('characterCountLabelSummary'))">
+                                <span id="characterCountLabelSummary"></span>
+                                <span asp-validation-for="@Model.team.Summary" class="required"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                Description
+                                <input type="text" asp-for="@Model.team.Description">
+                                <span asp-validation-for="@Model.team.Description" class="required"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            <hr>
+
+
+            <div class="row">
+
+                <div class="col-md-3 s-bold">
+                    Image
+                </div>
+
+
+
+
+
+                <div class="form-group col-md-9">
+                    Member Photo
+
+
+
+
+                        <div class="row paddingrf-15 no-margin">
+                            <div class=" col-md-3 s-bold">
+                                Icon
+                            </div>
+                            <div class="col-md-9 no-padding">
+                                Upload Image
+                                <br>
+                                <label class="file-upload">
+                                    <span class="btn btn-default l-grey-bg">
+                                        Select File
+                                    </span>
+                                    <input type="file" id="fileInputicon" onchange="uploadFileicon()" />
+
+                                    <progress id="fileProgressicon" class="w-100 margin5" style="display:none"></progress>
+                                </label>
+                                <img id="imgicon" src="@Model.team.Image" class="preview" style="display: @(Model.team.Image == null ? "none" : "block")">
+
+
+                                <p class="grey-c">
+                                    Allowed JPG, GIF or PNG.  Suggested Pixel 200 by 200. MAX size 10 MB.
+                                </p><br />
+                                <span id="spanfilenameicon" class="required"></span>
+                                <input type="hidden" asp-for="@Model.team.Image" />
+
+                                <span asp-validation-for="@Model.team.Image" class="required"></span>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <hr>
+
+
+
+
+
+            <div class="checkright row">
+
+
+                <div class="col-md-3 s-bold">
+                    Status
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+                            <input type="checkbox" asp-for="@Model.team.IsPublish" checked="@Model.team.IsPublish" />
+                            <label id="ispublish" asp-for="@Model.team.IsPublish">Is Publish</label>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <hr>     <div class="row paddingrf-15 right">
+                    <div class="col-md-6"></div> <div class="col-md-6">    <button class="clickable-button">Save</button></div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@* </form> *@
+
+
+<script>
+
+
+    function uploadFileicon() {
+        var fileInput = $("#fileInputicon")[0];
+        $("#fileProgressicon").show();
+        var progressBar = $("#fileProgressicon")[0];
+        progressBar.value = 60;
+
+        var file = fileInput.files[0];
+
+        if (!file.type.match(/image\/(jpeg|png|jpg)/)) {
+
+
+            $('#spanfilenameicon').text("Only jpeg or png files are allowed.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            $('#spanfilenameicon').text("File size must be less than 10 MB.");
+            $("#fileProgressicon").hide();
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Controller/Master/Upload",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+
+
+                var fileName = file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name;
+                //$('#spanfilename').text(fileName);
+
+                $("#imgicon").attr("src", data.fileLink);
+
+                $('#team_Image').val(data.fileLink);
+
+                $("#imgicon").show();
+
+
+                $("#fileProgressicon").hide();
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+        $(document).ready(function () {
+            $('#team_Description').summernote();
+        });
+    });
+</script>

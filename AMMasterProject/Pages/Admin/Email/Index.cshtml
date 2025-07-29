@@ -1,0 +1,93 @@
+﻿@page
+@model AMMasterProject.Pages.Admin.Email.IndexModel
+@{
+    <title>Email Setup</title>
+
+    Layout = "/Pages/Shared/_layoutAdmin.cshtml";
+}
+
+<form method="post">
+
+
+<div class=" form card padding30 h-600">
+
+
+
+
+    <div class="row form paddingtb-15 justify-content-between">
+
+
+        <div class="col-md-5">
+            <div class="form-group ">
+                Email from
+              
+
+                <input type="text" maxlength="300" asp-for="@Model.emailsetting.FromEmail">
+
+                <span asp-validation-for="@Model.emailsetting.FromEmail" class="required"></span>
+
+
+
+
+            </div>
+            <div class="form-group ">
+                Password
+                    <input type="text" maxlength="300" asp-for="@Model.emailsetting.Password" style="display:none">
+
+                <span asp-validation-for="@Model.emailsetting.Password" class="required"></span>
+
+            </div>
+        <div class="form-group ">
+            SMTP port
+
+                <input type="number" min="0" maxlength="5" asp-for="@Model.emailsetting.Port">
+
+                <span asp-validation-for="@Model.emailsetting.Port" class="required"></span>
+                <span class="small grey-c"> You can get it from your server</span>
+          
+       
+
+
+    </div>
+            <div class="form-group ">
+                SMTP Host
+                <input type="text" maxlength="300" asp-for="@Model.emailsetting.SMTP">
+
+                <span asp-validation-for="@Model.emailsetting.SMTP" class="required"></span>
+                <span class="small grey-c"> You can get it from your server</span>
+            </div>
+            <div class="form-group ">
+                BCC
+                <input type="text" maxlength="500" asp-for="@Model.emailsetting.BCC">
+
+                <span asp-validation-for="@Model.emailsetting.BCC" class="required"></span>
+            </div>   <div class="form-group ">
+                Enable SSL
+                <input  type="checkbox" asp-for="@Model.emailsetting.EnableSSL" id="flexSwitchCheckChecked" value="true">
+                <label class="form-check-label" for="flexSwitchCheckChecked"> Enable</label>
+
+            </div> 
+            
+            
+            <div class="form-group">
+                    <button class="clickable-button" asp-page-handler="Email">Save</button>
+
+            </div>
+        </div>
+
+</div>
+
+                </div>
+
+    <script>
+        $(document).ready(function () {
+            // Toggle between text and password type on document ready
+            var passwordField = $('#emailsetting_Password');
+            passwordField.attr('type', 'password');
+
+
+            passwordField.show();
+        });
+    </script>
+
+</form>
