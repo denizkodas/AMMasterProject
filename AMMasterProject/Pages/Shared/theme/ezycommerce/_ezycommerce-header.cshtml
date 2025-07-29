@@ -47,56 +47,145 @@
 
             <ul class="customer-menu">
 
-                <!-- SIMPLE TEST -->
-                <li style="position: relative;">
+                <!-- DİL SEÇİCİ -->
+                <li style="position: relative; display: inline-block; margin: 0 10px;">
                     <button onclick="
-                        var menu = document.getElementById('testMenu');
+                        var menu = document.getElementById('dilMenu');
                         if(menu.style.display === 'block') {
                             menu.style.display = 'none';
                         } else {
                             menu.style.display = 'block';
                         }
-                    " style="padding: 10px; background: white; border: 1px solid #ccc;">
-                        TEST DİL ▼
+                    " style="
+                        background: white; 
+                        border: 1px solid #ddd; 
+                        padding: 8px 15px; 
+                        cursor: pointer; 
+                        border-radius: 5px;
+                        font-size: 14px;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        🌐 <span id="currentLang">Türkçe</span> ▼
                     </button>
-                    <div id="testMenu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; min-width: 150px; z-index: 9999;">
-                        <a href="#" onclick="alert('Türkçe seçildi')" style="display: block; padding: 10px; text-decoration: none; color: black;">🇹🇷 Türkçe</a>
-                        <a href="#" onclick="alert('İngilizce seçildi')" style="display: block; padding: 10px; text-decoration: none; color: black;">🇺🇸 English</a>
+                    
+                    <div id="dilMenu" style="
+                        display: none; 
+                        position: absolute; 
+                        top: 100%; 
+                        left: 0; 
+                        background: white; 
+                        border: 1px solid #ddd; 
+                        border-radius: 5px;
+                        min-width: 160px; 
+                        z-index: 9999;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        margin-top: 2px;
+                    ">
+                        <a href="#" onclick="
+                            localStorage.setItem('selectedLanguage', 'en');
+                            document.getElementById('currentLang').textContent = 'English';
+                            document.getElementById('dilMenu').style.display = 'none';
+                            document.body.setAttribute('dir', 'ltr');
+                            if(typeof setLanguage === 'function') setLanguage('en');
+                            setTimeout(() => location.reload(), 500);
+                        " style="
+                            display: block; 
+                            padding: 12px 15px; 
+                            text-decoration: none; 
+                            color: #333;
+                            border-bottom: 1px solid #eee;
+                        " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                            🇺🇸 English
+                        </a>
+                        
+                        <a href="#" onclick="
+                            localStorage.setItem('selectedLanguage', 'tr');
+                            document.getElementById('currentLang').textContent = 'Türkçe';
+                            document.getElementById('dilMenu').style.display = 'none';
+                            document.body.setAttribute('dir', 'ltr');
+                            if(typeof setLanguage === 'function') setLanguage('tr');
+                            setTimeout(() => location.reload(), 500);
+                        " style="
+                            display: block; 
+                            padding: 12px 15px; 
+                            text-decoration: none; 
+                            color: #333;
+                            border-bottom: 1px solid #eee;
+                        " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                            🇹🇷 Türkçe
+                        </a>
+                        
+                        <a href="#" onclick="
+                            localStorage.setItem('selectedLanguage', 'ru');
+                            document.getElementById('currentLang').textContent = 'Русский';
+                            document.getElementById('dilMenu').style.display = 'none';
+                            document.body.setAttribute('dir', 'ltr');
+                            if(typeof setLanguage === 'function') setLanguage('ru');
+                            setTimeout(() => location.reload(), 500);
+                        " style="
+                            display: block; 
+                            padding: 12px 15px; 
+                            text-decoration: none; 
+                            color: #333;
+                            border-bottom: 1px solid #eee;
+                        " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                            🇷🇺 Русский
+                        </a>
+                        
+                        <a href="#" onclick="
+                            localStorage.setItem('selectedLanguage', 'ar');
+                            document.getElementById('currentLang').textContent = 'العربية';
+                            document.getElementById('dilMenu').style.display = 'none';
+                            document.body.setAttribute('dir', 'rtl');
+                            document.body.classList.add('rtl');
+                            if(typeof setLanguage === 'function') setLanguage('ar');
+                            setTimeout(() => location.reload(), 500);
+                        " style="
+                            display: block; 
+                            padding: 12px 15px; 
+                            text-decoration: none; 
+                            color: #333;
+                        " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                            🇸🇦 العربية
+                        </a>
                     </div>
                 </li>
 
-                <!-- Language Selector -->
-                <li style="position: relative;">
-                    <button onclick="
-                        console.log('DİL BUTONU TIKLANDI!');
-                        var menu = document.getElementById('langMenu');
-                        if(menu.style.display === 'block') {
-                            menu.style.display = 'none';
-                            console.log('Menu kapatıldı');
-                        } else {
-                            menu.style.display = 'block';
-                            console.log('Menu açıldı');
+                <script>
+                    // Dışarıya tıklayınca dropdown kapat
+                    document.addEventListener('click', function(e) {
+                        var dilMenu = document.getElementById('dilMenu');
+                        var button = e.target.closest('button');
+                        
+                        if (dilMenu && !e.target.closest('li')) {
+                            dilMenu.style.display = 'none';
                         }
-                    " style="padding: 10px; background: white; border: 1px solid #ccc; cursor: pointer;">
-                        🌐 DİL SEÇ ▼
-                    </button>
-                    <div id="langMenu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; min-width: 150px; z-index: 9999;">
-                        <a href="#" onclick="alert('İngilizce seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇺🇸 English</a>
-                        <a href="#" onclick="alert('Türkçe seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇹🇷 Türkçe</a>
-                        <a href="#" onclick="alert('Rusça seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇷🇺 Русский</a>
-                        <a href="#" onclick="alert('Arapça seçildi'); document.getElementById('langMenu').style.display='none';" style="display: block; padding: 10px; text-decoration: none; color: black;">🇸🇦 العربية</a>
-                    </div>
-                </li>
-
-                <style>
-                    #languageSelector a:hover {
-                        background-color: #f8f9fa !important;
-                    }
-                    #languageSelector button:hover {
-                        border-color: #007bff !important;
-                        background-color: #f8f9fa !important;
-                    }
-                </style>
+                    });
+                    
+                    // Sayfa yüklendiğinde kaydedilen dili göster
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var savedLang = localStorage.getItem('selectedLanguage');
+                        var currentLangSpan = document.getElementById('currentLang');
+                        
+                        if (savedLang && currentLangSpan) {
+                            var langNames = {
+                                'en': 'English',
+                                'tr': 'Türkçe', 
+                                'ru': 'Русский',
+                                'ar': 'العربية'
+                            };
+                            currentLangSpan.textContent = langNames[savedLang] || 'Türkçe';
+                            
+                            // RTL için body ayarı
+                            if (savedLang === 'ar') {
+                                document.body.setAttribute('dir', 'rtl');
+                                document.body.classList.add('rtl');
+                            }
+                        }
+                    });
+                </script>
 
                 @if (User.Identity != null && User.Identity.IsAuthenticated)
                 {
