@@ -50,32 +50,61 @@
                 <!-- Language Selector -->
                 <li class="language-selector" id="languageSelector">
                     <button type="button" class="dropdown-toggle" id="languageDropdown" 
-                            onclick="alert('Tıklama çalışıyor!'); document.getElementById('languageSelector').classList.toggle('show');" 
-                            style="background: white; border: 1px solid #ddd; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                        <span class="flag-icon flag-icon-us" id="currentFlag"></span>
-                        <span id="currentLanguage">English</span>
+                            onclick="
+                                console.log('Button clicked!');
+                                var dropdown = document.getElementById('languageSelector');
+                                if(dropdown.classList.contains('show')) {
+                                    dropdown.classList.remove('show');
+                                } else {
+                                    dropdown.classList.add('show');
+                                }
+                            " 
+                            style="background: white; border: 1px solid #ddd; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; border-radius: 4px;">
+                        <span style="width: 20px; height: 15px; background: #007bff; display: inline-block; border-radius: 2px;"></span>
+                        <span>🌐 Dil</span>
                         <span>▼</span>
                     </button>
                     <div class="dropdown-menu">
                         <a href="javascript:void(0);" class="language-option" data-lang="en" 
-                           onclick="console.log('EN clicked'); if(typeof setLanguage === 'function') setLanguage('en'); document.getElementById('languageSelector').classList.remove('show');">
-                            <span class="flag-icon flag-icon-us"></span>
-                            <span>English</span>
+                           onclick="
+                               console.log('EN clicked');
+                               localStorage.setItem('selectedLanguage', 'en');
+                               document.getElementById('languageSelector').classList.remove('show');
+                               alert('İngilizce seçildi! Sayfa yenilenecek.');
+                               location.reload();
+                           ">
+                            🇺🇸 English
                         </a>
                         <a href="javascript:void(0);" class="language-option" data-lang="tr"
-                           onclick="console.log('TR clicked'); if(typeof setLanguage === 'function') setLanguage('tr'); document.getElementById('languageSelector').classList.remove('show');">
-                            <span class="flag-icon flag-icon-tr"></span>
-                            <span>Türkçe</span>
+                           onclick="
+                               console.log('TR clicked');
+                               localStorage.setItem('selectedLanguage', 'tr');
+                               document.getElementById('languageSelector').classList.remove('show');
+                               alert('Türkçe seçildi! Sayfa yenilenecek.');
+                               location.reload();
+                           ">
+                            🇹🇷 Türkçe
                         </a>
                         <a href="javascript:void(0);" class="language-option" data-lang="ru"
-                           onclick="console.log('RU clicked'); if(typeof setLanguage === 'function') setLanguage('ru'); document.getElementById('languageSelector').classList.remove('show');">
-                            <span class="flag-icon flag-icon-ru"></span>
-                            <span>Русский</span>
+                           onclick="
+                               console.log('RU clicked');
+                               localStorage.setItem('selectedLanguage', 'ru');
+                               document.getElementById('languageSelector').classList.remove('show');
+                               alert('Rusça seçildi! Sayfa yenilenecek.');
+                               location.reload();
+                           ">
+                            🇷🇺 Русский
                         </a>
                         <a href="javascript:void(0);" class="language-option" data-lang="ar"
-                           onclick="console.log('AR clicked'); if(typeof setLanguage === 'function') setLanguage('ar'); document.getElementById('languageSelector').classList.remove('show');">
-                            <span class="flag-icon flag-icon-sa"></span>
-                            <span>العربية</span>
+                           onclick="
+                               console.log('AR clicked');
+                               localStorage.setItem('selectedLanguage', 'ar');
+                               document.getElementById('languageSelector').classList.remove('show');
+                               document.body.setAttribute('dir', 'rtl');
+                               alert('Arapça seçildi! Sayfa yenilenecek.');
+                               location.reload();
+                           ">
+                            🇸🇦 العربية
                         </a>
                     </div>
                 </li>
