@@ -1,4 +1,4 @@
-﻿
+
 <script src="~/js/site.js" asp-append-version="true" ></script>
 
 <script src="~/js/google.js" asp-append-version="true"></script>
@@ -8,6 +8,12 @@
 <script src="~/js/register.js" asp-append-version="true"></script>
 <script src="~/js/membership.js" asp-append-version="true"></script>
 <script src="~/js/language.js" asp-append-version="true"></script>
+
+@* Language Test Script - Remove in production *@
+@if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+{
+    <script src="~/js/language-test.js" asp-append-version="true"></script>
+}
 
 
 

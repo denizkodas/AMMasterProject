@@ -1,4 +1,4 @@
-﻿using AMMasterProject.Helpers;
+using AMMasterProject.Helpers;
 using AMMasterProject.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -73,22 +73,44 @@ namespace AMMasterProject.Controllers
         }
         public IActionResult LabelLoads()
         {
-            // Label Setting
-            var _labelSettings = _websettinghelper.GetWebsettingJson("LabelSettings");
-
-            if (_labelSettings != null && !string.IsNullOrEmpty(_labelSettings))
+            try
             {
-                var json = JsonConvert.DeserializeObject<LabelSettingsModel>(_labelSettings);
-
-                if (json != null)
+                // Read the contents of the languages.json file
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "languages.json");
+                
+                if (System.IO.File.Exists(filePath))
                 {
-                    // Return the LabelSettingsModel object as a JSON response
-                    return Json(json);
+                    string json = System.IO.File.ReadAllText(filePath);
+                    
+                    // Parse and return the JSON content
+                    var translations = JsonConvert.DeserializeObject(json);
+                    return Json(translations);
+                }
+                else
+                {
+                    // Fallback: Try to get from websetting helper
+                    var _labelSettings = _websettinghelper.GetWebsettingJson("LabelSettings");
+
+                    if (_labelSettings != null && !string.IsNullOrEmpty(_labelSettings))
+                    {
+                        var labelJson = JsonConvert.DeserializeObject<LabelSettingsModel>(_labelSettings);
+
+                        if (labelJson != null)
+                        {
+                            // Return the LabelSettingsModel object as a JSON response
+                            return Json(labelJson);
+                        }
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                // Log the error (you might want to use a proper logging framework)
+                Console.WriteLine($"Error loading translations: {ex.Message}");
+            }
 
-            // Return an empty JSON response if label settings are not available
-            return Json(new LabelSettingsModel());
+            // Return an empty JSON response if translations are not available
+            return Json(new Dictionary<string, object>());
         }
     }
 }
