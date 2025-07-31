@@ -80,10 +80,20 @@ namespace AMMasterProject.Controllers
                 
                 if (System.IO.File.Exists(filePath))
                 {
+                    // Force refresh - read file directly without cache
                     string json = System.IO.File.ReadAllText(filePath);
+                    
+                    // Log for debugging
+                    Console.WriteLine($"[LabelLoads] Reading languages.json, file size: {json.Length} chars");
                     
                     // Parse and return the JSON content
                     var translations = JsonConvert.DeserializeObject(json);
+                    
+                    // Add cache-busting headers
+                    Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+                    Response.Headers.Add("Pragma", "no-cache");
+                    Response.Headers.Add("Expires", "0");
+                    
                     return Json(translations);
                 }
                 else

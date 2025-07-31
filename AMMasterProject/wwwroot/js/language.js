@@ -91,6 +91,12 @@ function updateTranslations() {
 };
 
 function loadTranslations(callback) {
+    // ALWAYS fetch fresh translations (temporary fix)
+    console.log('🔄 Force fetching fresh translations from server...');
+    fetchTranslations(callback);
+    
+    // TODO: Re-enable caching after confirming Russian translations work
+    /*
     // Check if translations are cached
     var cachedTranslations = localStorage.getItem('translations');
     var cacheTimestamp = localStorage.getItem('translationsTimestamp');
@@ -110,15 +116,33 @@ function loadTranslations(callback) {
         // Load translations from server if not cached
         fetchTranslations(callback);
     }
+    */
 }
 
 function fetchTranslations(callback) {
-    // Load translations from server
+    // Load translations from server with cache busting
+    var cacheBuster = new Date().getTime();
     $.ajax({
-        url: '/controller/Language/LabelLoads', // Update the URL to match your controller and action
+        url: '/controller/Language/LabelLoads?v=' + cacheBuster,
         dataType: 'json',
+        cache: false, // Disable jQuery cache
+        headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        },
         success: function (data) {
             translations = data;
+            console.log('🔄 Fresh translations loaded from server:', Object.keys(data).length, 'keys');
+            
+            // Check if Russian translations exist
+            if (data.login && data.login.ru) {
+                console.log('✅ Russian translations found! login.ru =', data.login.ru);
+            } else {
+                console.warn('❌ Russian translations missing! Available languages for login:', 
+                    data.login ? Object.keys(data.login) : 'login key not found');
+            }
+            
             // Cache translations with timestamp
             localStorage.setItem('translations', JSON.stringify(translations));
             localStorage.setItem('translationsTimestamp', new Date().getTime().toString());
