@@ -346,5 +346,23 @@
     "tr": "RTL Demo",
     "de": "RTL Demo",
     "fr": "Démo RTL"
+  },
+  "baseballcap": {
+    "en": "2022 New Men's Ladies Baseball Cap",
+    "tr": "2022 Yeni Erkek Kadın Beyzbol Şapkası",
+    "de": "2022 Neue Herren Damen Baseballkappe",
+    "fr": "2022 Nouvelle casquette de baseball homme femme"
+  },
+  "turtlenecksweater": {
+    "en": "10 Color Winter Mens Turtleneck Sweaters Warm",
+    "tr": "10 Renk Kış Erkek Balıkçı Yaka Kazak Sıcak",
+    "de": "10 Farben Winter Herren Rollkragenpullover Warm",
+    "fr": "10 couleurs pull col roulé homme hiver chaud"
+  },
+  "frenchretroheels": {
+    "en": "2023 New Summer French Retro High-heeled Lady",
+    "tr": "2023 Yeni Yaz Fransız Retro Yüksek Topuklu Bayan",
+    "de": "2023 Neue Sommer französische Retro High-Heel Dame",
+    "fr": "2023 Nouveau été français rétro talon haut dame"
   }
 }
