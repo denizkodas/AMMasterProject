@@ -802,5 +802,1805 @@
     "tr": "Özel Teklif",
     "de": "Sonderangebot",
     "fr": "Offre spéciale"
+  },
+  "sportsandentertainment": {
+    "en": "Sports & Entertainment",
+    "tr": "Spor ve Eğlence",
+    "de": "Sport & Unterhaltung",
+    "fr": "Sports et divertissement"
+  },
+  "healthandbeauty": {
+    "en": "Health & Beauty",
+    "tr": "Sağlık ve Güzellik",
+    "de": "Gesundheit & Schönheit",
+    "fr": "Santé et beauté"
+  },
+  "womensclothing": {
+    "en": "Women's Clothing",
+    "tr": "Kadın Giyim",
+    "de": "Damenbekleidung",
+    "fr": "Vêtements femme"
+  },
+  "motherandkids": {
+    "en": "Mother & Kids",
+    "tr": "Anne ve Çocuk",
+    "de": "Mutter & Kinder",
+    "fr": "Mère et enfants"
+  },
+  "foodandbeverages": {
+    "en": "Food & Beverages",
+    "tr": "Gıda ve İçecek",
+    "de": "Lebensmittel & Getränke",
+    "fr": "Alimentation et boissons"
+  },
+  "furniture": {
+    "en": "Furniture",
+    "tr": "Mobilya",
+    "de": "Möbel",
+    "fr": "Meubles"
+  },
+  "lightsandlighting": {
+    "en": "Lights & Lighting",
+    "tr": "Işık ve Aydınlatma",
+    "de": "Licht & Beleuchtung",
+    "fr": "Éclairage et luminaires"
+  },
+  "securityandprotection": {
+    "en": "Security & Protection",
+    "tr": "Güvenlik ve Koruma",
+    "de": "Sicherheit & Schutz",
+    "fr": "Sécurité et protection"
+  },
+  "electroniccomponents": {
+    "en": "Electronic Components & Supplies",
+    "tr": "Elektronik Bileşenler ve Malzemeler",
+    "de": "Elektronische Komponenten & Zubehör",
+    "fr": "Composants électroniques et fournitures"
+  },
+  "menshoodies": {
+    "en": "Men's Hoodies",
+    "tr": "Erkek Kapüşonlu",
+    "de": "Herren Kapuzenpullover",
+    "fr": "Sweats à capuche homme"
+  },
+  "womenshoodies": {
+    "en": "Women's Hoodies",
+    "tr": "Kadın Kapüşonlu",
+    "de": "Damen Kapuzenpullover",
+    "fr": "Sweats à capuche femme"
+  },
+  "tshirts": {
+    "en": "T-Shirts",
+    "tr": "T-Shirt",
+    "de": "T-Shirts",
+    "fr": "T-shirts"
+  },
+  "poloshirts": {
+    "en": "Polo Shirts",
+    "tr": "Polo Tişört",
+    "de": "Polo-Shirts",
+    "fr": "Polos"
+  },
+  "dressshirts": {
+    "en": "Dress Shirts",
+    "tr": "Klasik Gömlek",
+    "de": "Hemden",
+    "fr": "Chemises habillées"
+  },
+  "casualshirts": {
+    "en": "Casual Shirts",
+    "tr": "Günlük Gömlek",
+    "de": "Freizeithemden",
+    "fr": "Chemises décontractées"
+  },
+  "tanktops": {
+    "en": "Tank Tops",
+    "tr": "Atlet",
+    "de": "Tank-Tops",
+    "fr": "Débardeurs"
+  },
+  "sweaters": {
+    "en": "Sweaters",
+    "tr": "Kazak",
+    "de": "Pullover",
+    "fr": "Pulls"
+  },
+  "cardigans": {
+    "en": "Cardigans",
+    "tr": "Hırka",
+    "de": "Strickjacken",
+    "fr": "Cardigans"
+  },
+  "jacketsandcoats": {
+    "en": "Jackets & Coats",
+    "tr": "Ceket ve Palto",
+    "de": "Jacken & Mäntel",
+    "fr": "Vestes et manteaux"
+  },
+  "blazers": {
+    "en": "Blazers",
+    "tr": "Blazer",
+    "de": "Blazer",
+    "fr": "Blazers"
+  },
+  "suits": {
+    "en": "Suits",
+    "tr": "Takım Elbise",
+    "de": "Anzüge",
+    "fr": "Costumes"
+  },
+  "jeans": {
+    "en": "Jeans",
+    "tr": "Kot Pantolon",
+    "de": "Jeans",
+    "fr": "Jeans"
+  },
+  "pants": {
+    "en": "Pants",
+    "tr": "Pantolon",
+    "de": "Hosen",
+    "fr": "Pantalons"
+  },
+  "shorts": {
+    "en": "Shorts",
+    "tr": "Şort",
+    "de": "Shorts",
+    "fr": "Shorts"
+  },
+  "underwear": {
+    "en": "Underwear",
+    "tr": "İç Çamaşırı",
+    "de": "Unterwäsche",
+    "fr": "Sous-vêtements"
+  },
+  "sleepwear": {
+    "en": "Sleepwear",
+    "tr": "Pijama",
+    "de": "Nachtwäsche",
+    "fr": "Vêtements de nuit"
+  },
+  "mobilephones": {
+    "en": "Mobile Phones",
+    "tr": "Cep Telefonu",
+    "de": "Mobiltelefone",
+    "fr": "Téléphones mobiles"
+  },
+  "tablets": {
+    "en": "Tablets",
+    "tr": "Tablet",
+    "de": "Tablets",
+    "fr": "Tablettes"
+  },
+  "computersandlaptops": {
+    "en": "Computers & Laptops",
+    "tr": "Bilgisayar ve Laptop",
+    "de": "Computer & Laptops",
+    "fr": "Ordinateurs et portables"
+  },
+  "tvandaudio": {
+    "en": "TV & Audio",
+    "tr": "TV ve Ses",
+    "de": "TV & Audio",
+    "fr": "TV et audio"
+  },
+  "camerasandphoto": {
+    "en": "Cameras & Photo",
+    "tr": "Kamera ve Fotoğraf",
+    "de": "Kameras & Foto",
+    "fr": "Appareils photo et photo"
+  },
+  "videogames": {
+    "en": "Video Games",
+    "tr": "Video Oyunları",
+    "de": "Videospiele",
+    "fr": "Jeux vidéo"
+  },
+  "headphones": {
+    "en": "Headphones",
+    "tr": "Kulaklık",
+    "de": "Kopfhörer",
+    "fr": "Écouteurs"
+  },
+  "speakers": {
+    "en": "Speakers",
+    "tr": "Hoparlör",
+    "de": "Lautsprecher",
+    "fr": "Haut-parleurs"
+  },
+  "chargersandcables": {
+    "en": "Chargers & Cables",
+    "tr": "Şarj Cihazı ve Kablo",
+    "de": "Ladegeräte & Kabel",
+    "fr": "Chargeurs et câbles"
+  },
+  "memorycards": {
+    "en": "Memory Cards",
+    "tr": "Hafıza Kartı",
+    "de": "Speicherkarten",
+    "fr": "Cartes mémoire"
+  },
+  "usbflashdrives": {
+    "en": "USB Flash Drives",
+    "tr": "USB Bellek",
+    "de": "USB-Sticks",
+    "fr": "Clés USB"
+  },
+  "externalharddrives": {
+    "en": "External Hard Drives",
+    "tr": "Harici Sabit Disk",
+    "de": "Externe Festplatten",
+    "fr": "Disques durs externes"
+  },
+  "ssddrives": {
+    "en": "SSD Drives",
+    "tr": "SSD Disk",
+    "de": "SSD-Laufwerke",
+    "fr": "Disques SSD"
+  },
+  "wristwatches": {
+    "en": "Wristwatches",
+    "tr": "Kol Saati",
+    "de": "Armbanduhren",
+    "fr": "Montres-bracelets"
+  },
+  "smartwatches": {
+    "en": "Smart Watches",
+    "tr": "Akıllı Saat",
+    "de": "Smartwatches",
+    "fr": "Montres connectées"
+  },
+  "fashionwatches": {
+    "en": "Fashion Watches",
+    "tr": "Moda Saatleri",
+    "de": "Mode-Uhren",
+    "fr": "Montres de mode"
+  },
+  "sportswatches": {
+    "en": "Sports Watches",
+    "tr": "Spor Saatleri",
+    "de": "Sportuhren",
+    "fr": "Montres de sport"
+  },
+  "luxurywatches": {
+    "en": "Luxury Watches",
+    "tr": "Lüks Saatler",
+    "de": "Luxusuhren",
+    "fr": "Montres de luxe"
+  },
+  "athleticshoes": {
+    "en": "Athletic Shoes",
+    "tr": "Spor Ayakkabı",
+    "de": "Sportschuhe",
+    "fr": "Chaussures de sport"
+  },
+  "runningshoes": {
+    "en": "Running Shoes",
+    "tr": "Koşu Ayakkabısı",
+    "de": "Laufschuhe",
+    "fr": "Chaussures de course"
+  },
+  "basketballshoes": {
+    "en": "Basketball Shoes",
+    "tr": "Basketbol Ayakkabısı",
+    "de": "Basketballschuhe",
+    "fr": "Chaussures de basket"
+  },
+  "footballshoes": {
+    "en": "Football Shoes",
+    "tr": "Futbol Ayakkabısı",
+    "de": "Fußballschuhe",
+    "fr": "Chaussures de football"
+  },
+  "formalshoes": {
+    "en": "Formal Shoes",
+    "tr": "Klasik Ayakkabı",
+    "de": "Formelle Schuhe",
+    "fr": "Chaussures habillées"
+  },
+  "boots": {
+    "en": "Boots",
+    "tr": "Bot",
+    "de": "Stiefel",
+    "fr": "Bottes"
+  },
+  "sandals": {
+    "en": "Sandals",
+    "tr": "Sandalet",
+    "de": "Sandalen",
+    "fr": "Sandales"
+  },
+  "slippers": {
+    "en": "Slippers",
+    "tr": "Terlik",
+    "de": "Hausschuhe",
+    "fr": "Pantoufles"
+  },
+  "highheels": {
+    "en": "High Heels",
+    "tr": "Yüksek Topuk",
+    "de": "High Heels",
+    "fr": "Talons hauts"
+  },
+  "flats": {
+    "en": "Flats",
+    "tr": "Babet",
+    "de": "Ballerinas",
+    "fr": "Ballerines"
+  },
+  "wedges": {
+    "en": "Wedges",
+    "tr": "Dolgu Topuk",
+    "de": "Wedges",
+    "fr": "Compensées"
+  },
+  "actionfigures": {
+    "en": "Action Figures",
+    "tr": "Aksiyon Figürleri",
+    "de": "Actionfiguren",
+    "fr": "Figurines d'action"
+  },
+  "dollsandaccessories": {
+    "en": "Dolls & Accessories",
+    "tr": "Bebek ve Aksesuarlar",
+    "de": "Puppen & Zubehör",
+    "fr": "Poupées et accessoires"
+  },
+  "buildingblocks": {
+    "en": "Building Blocks",
+    "tr": "Yapı Blokları",
+    "de": "Bausteine",
+    "fr": "Blocs de construction"
+  },
+  "puzzles": {
+    "en": "Puzzles",
+    "tr": "Puzzle",
+    "de": "Puzzles",
+    "fr": "Puzzles"
+  },
+  "boardgames": {
+    "en": "Board Games",
+    "tr": "Masa Oyunları",
+    "de": "Brettspiele",
+    "fr": "Jeux de société"
+  },
+  "rctoys": {
+    "en": "RC Toys",
+    "tr": "Uzaktan Kumandalı Oyuncaklar",
+    "de": "RC-Spielzeug",
+    "fr": "Jouets télécommandés"
+  },
+  "educationaltoys": {
+    "en": "Educational Toys",
+    "tr": "Eğitici Oyuncaklar",
+    "de": "Lernspielzeug",
+    "fr": "Jouets éducatifs"
+  },
+  "stuffedanimals": {
+    "en": "Stuffed Animals",
+    "tr": "Peluş Oyuncaklar",
+    "de": "Kuscheltiere",
+    "fr": "Peluches"
+  },
+  "babytoys": {
+    "en": "Baby Toys",
+    "tr": "Bebek Oyuncakları",
+    "de": "Babyspielzeug",
+    "fr": "Jouets pour bébé"
+  },
+  "dresses": {
+    "en": "Dresses",
+    "tr": "Elbise",
+    "de": "Kleider",
+    "fr": "Robes"
+  },
+  "topsandblouses": {
+    "en": "Tops & Blouses",
+    "tr": "Üst ve Bluz",
+    "de": "Tops & Blusen",
+    "fr": "Hauts et chemisiers"
+  },
+  "skirts": {
+    "en": "Skirts",
+    "tr": "Etek",
+    "de": "Röcke",
+    "fr": "Jupes"
+  },
+  "lingerieandsleepwear": {
+    "en": "Lingerie & Sleepwear",
+    "tr": "İç Giyim ve Pijama",
+    "de": "Dessous & Nachtwäsche",
+    "fr": "Lingerie et vêtements de nuit"
+  },
+  "swimwear": {
+    "en": "Swimwear",
+    "tr": "Mayo Bikini",
+    "de": "Bademode",
+    "fr": "Maillots de bain"
+  },
+  "activewear": {
+    "en": "Activewear",
+    "tr": "Spor Giyim",
+    "de": "Sportbekleidung",
+    "fr": "Vêtements de sport"
+  },
+  "maternity": {
+    "en": "Maternity",
+    "tr": "Hamile Giyim",
+    "de": "Umstandsmode",
+    "fr": "Maternité"
+  },
+  "mensclothing": {
+    "en": "Men's Clothing",
+    "tr": "Erkek Giyim",
+    "de": "Herrenbekleidung",
+    "fr": "Vêtements homme"
+  },
+  "mensshoes": {
+    "en": "Men's Shoes",
+    "tr": "Erkek Ayakkabı",
+    "de": "Herrenschuhe",
+    "fr": "Chaussures homme"
+  },
+  "mensaccessories": {
+    "en": "Men's Accessories",
+    "tr": "Erkek Aksesuarları",
+    "de": "Herren-Accessoires",
+    "fr": "Accessoires homme"
+  },
+  "menswatches": {
+    "en": "Men's Watches",
+    "tr": "Erkek Saatleri",
+    "de": "Herrenuhren",
+    "fr": "Montres homme"
+  },
+  "necklaces": {
+    "en": "Necklaces",
+    "tr": "Kolye",
+    "de": "Halsketten",
+    "fr": "Colliers"
+  },
+  "earrings": {
+    "en": "Earrings",
+    "tr": "Küpe",
+    "de": "Ohrringe",
+    "fr": "Boucles d'oreilles"
+  },
+  "bracelets": {
+    "en": "Bracelets",
+    "tr": "Bilezik",
+    "de": "Armbänder",
+    "fr": "Bracelets"
+  },
+  "rings": {
+    "en": "Rings",
+    "tr": "Yüzük",
+    "de": "Ringe",
+    "fr": "Bagues"
+  },
+  "brooches": {
+    "en": "Brooches",
+    "tr": "Broş",
+    "de": "Broschen",
+    "fr": "Broches"
+  },
+  "bodyjewelry": {
+    "en": "Body Jewelry",
+    "tr": "Vücut Takıları",
+    "de": "Körperschmuck",
+    "fr": "Bijoux de corps"
+  },
+  "finejewelry": {
+    "en": "Fine Jewelry",
+    "tr": "Değerli Mücevher",
+    "de": "Edler Schmuck",
+    "fr": "Bijoux fins"
+  },
+  "fashionjewelry": {
+    "en": "Fashion Jewelry",
+    "tr": "Moda Takıları",
+    "de": "Modeschmuck",
+    "fr": "Bijoux fantaisie"
+  },
+  "homedecor": {
+    "en": "Home Decor",
+    "tr": "Ev Dekorasyonu",
+    "de": "Wohndekoration",
+    "fr": "Décoration maison"
+  },
+  "kitchenanddining": {
+    "en": "Kitchen & Dining",
+    "tr": "Mutfak ve Yemek",
+    "de": "Küche & Esszimmer",
+    "fr": "Cuisine et salle à manger"
+  },
+  "bedding": {
+    "en": "Bedding",
+    "tr": "Yatak Takımı",
+    "de": "Bettwäsche",
+    "fr": "Literie"
+  },
+  "bathandshower": {
+    "en": "Bath & Shower",
+    "tr": "Banyo ve Duş",
+    "de": "Bad & Dusche",
+    "fr": "Bain et douche"
+  },
+  "storageandorganization": {
+    "en": "Storage & Organization",
+    "tr": "Depolama ve Organizasyon",
+    "de": "Aufbewahrung & Organisation",
+    "fr": "Rangement et organisation"
+  },
+  "gardenandpatio": {
+    "en": "Garden & Patio",
+    "tr": "Bahçe ve Veranda",
+    "de": "Garten & Terrasse",
+    "fr": "Jardin et patio"
+  },
+  "homeimprovement": {
+    "en": "Home Improvement",
+    "tr": "Ev Geliştirme",
+    "de": "Heimwerken",
+    "fr": "Amélioration de l'habitat"
+  },
+  "appliances": {
+    "en": "Appliances",
+    "tr": "Ev Aletleri",
+    "de": "Haushaltsgeräte",
+    "fr": "Électroménager"
+  },
+  "lighting": {
+    "en": "Lighting",
+    "tr": "Aydınlatma",
+    "de": "Beleuchtung",
+    "fr": "Éclairage"
+  },
+  "exerciseandfitness": {
+    "en": "Exercise & Fitness",
+    "tr": "Egzersiz ve Fitness",
+    "de": "Sport & Fitness",
+    "fr": "Exercice et fitness"
+  },
+  "outdoorrecreation": {
+    "en": "Outdoor Recreation",
+    "tr": "Açık Hava Rekreasyonu",
+    "de": "Outdoor-Freizeit",
+    "fr": "Loisirs de plein air"
+  },
+  "teamsports": {
+    "en": "Team Sports",
+    "tr": "Takım Sporları",
+    "de": "Mannschaftssport",
+    "fr": "Sports d'équipe"
+  },
+  "watersports": {
+    "en": "Water Sports",
+    "tr": "Su Sporları",
+    "de": "Wassersport",
+    "fr": "Sports nautiques"
+  },
+  "wintersports": {
+    "en": "Winter Sports",
+    "tr": "Kış Sporları",
+    "de": "Wintersport",
+    "fr": "Sports d'hiver"
+  },
+  "cycling": {
+    "en": "Cycling",
+    "tr": "Bisiklet",
+    "de": "Radfahren",
+    "fr": "Cyclisme"
+  },
+  "fishing": {
+    "en": "Fishing",
+    "tr": "Balık Tutma",
+    "de": "Angeln",
+    "fr": "Pêche"
+  },
+  "hunting": {
+    "en": "Hunting",
+    "tr": "Avcılık",
+    "de": "Jagd",
+    "fr": "Chasse"
+  },
+  "golf": {
+    "en": "Golf",
+    "tr": "Golf",
+    "de": "Golf",
+    "fr": "Golf"
+  },
+  "tennis": {
+    "en": "Tennis",
+    "tr": "Tenis",
+    "de": "Tennis",
+    "fr": "Tennis"
+  },
+  "basketball": {
+    "en": "Basketball",
+    "tr": "Basketbol",
+    "de": "Basketball",
+    "fr": "Basketball"
+  },
+  "football": {
+    "en": "Football",
+    "tr": "Amerikan Futbolu",
+    "de": "American Football",
+    "fr": "Football américain"
+  },
+  "soccer": {
+    "en": "Soccer",
+    "tr": "Futbol",
+    "de": "Fußball",
+    "fr": "Football"
+  },
+  "petsupplies": {
+    "en": "Pet Supplies",
+    "tr": "Evcil Hayvan Malzemeleri",
+    "de": "Haustierbedarf",
+    "fr": "Fournitures pour animaux"
+  },
+  "dogsupplies": {
+    "en": "Dog Supplies",
+    "tr": "Köpek Malzemeleri",
+    "de": "Hundebedarf",
+    "fr": "Fournitures pour chiens"
+  },
+  "catsupplies": {
+    "en": "Cat Supplies",
+    "tr": "Kedi Malzemeleri",
+    "de": "Katzenbedarf",
+    "fr": "Fournitures pour chats"
+  },
+  "birdsupplies": {
+    "en": "Bird Supplies",
+    "tr": "Kuş Malzemeleri",
+    "de": "Vogelbedarf",
+    "fr": "Fournitures pour oiseaux"
+  },
+  "fishandaquaticpets": {
+    "en": "Fish & Aquatic Pets",
+    "tr": "Balık ve Su Canlıları",
+    "de": "Fische & Wassertiere",
+    "fr": "Poissons et animaux aquatiques"
+  },
+  "smallanimals": {
+    "en": "Small Animals",
+    "tr": "Küçük Hayvanlar",
+    "de": "Kleintiere",
+    "fr": "Petits animaux"
+  },
+  "petfood": {
+    "en": "Pet Food",
+    "tr": "Evcil Hayvan Yemi",
+    "de": "Tierfutter",
+    "fr": "Nourriture pour animaux"
+  },
+  "pettoys": {
+    "en": "Pet Toys",
+    "tr": "Evcil Hayvan Oyuncakları",
+    "de": "Haustierspielzeug",
+    "fr": "Jouets pour animaux"
+  },
+  "petgrooming": {
+    "en": "Pet Grooming",
+    "tr": "Evcil Hayvan Bakımı",
+    "de": "Haustierpflege",
+    "fr": "Toilettage pour animaux"
+  },
+  "pethealth": {
+    "en": "Pet Health",
+    "tr": "Evcil Hayvan Sağlığı",
+    "de": "Tiergesundheit",
+    "fr": "Santé des animaux"
+  },
+  "makeup": {
+    "en": "Makeup",
+    "tr": "Makyaj",
+    "de": "Make-up",
+    "fr": "Maquillage"
+  },
+  "skincare": {
+    "en": "Skincare",
+    "tr": "Cilt Bakımı",
+    "de": "Hautpflege",
+    "fr": "Soins de la peau"
+  },
+  "haircare": {
+    "en": "Hair Care",
+    "tr": "Saç Bakımı",
+    "de": "Haarpflege",
+    "fr": "Soins des cheveux"
+  },
+  "fragrances": {
+    "en": "Fragrances",
+    "tr": "Parfüm",
+    "de": "Düfte",
+    "fr": "Parfums"
+  },
+  "personalcare": {
+    "en": "Personal Care",
+    "tr": "Kişisel Bakım",
+    "de": "Körperpflege",
+    "fr": "Soins personnels"
+  },
+  "healthcare": {
+    "en": "Health Care",
+    "tr": "Sağlık Bakımı",
+    "de": "Gesundheitspflege",
+    "fr": "Soins de santé"
+  },
+  "vitaminsandsupplements": {
+    "en": "Vitamins & Supplements",
+    "tr": "Vitamin ve Takviyeler",
+    "de": "Vitamine & Nahrungsergänzung",
+    "fr": "Vitamines et compléments"
+  },
+  "medicalsupplies": {
+    "en": "Medical Supplies",
+    "tr": "Tıbbi Malzemeler",
+    "de": "Medizinische Artikel",
+    "fr": "Fournitures médicales"
+  },
+  "oralcare": {
+    "en": "Oral Care",
+    "tr": "Ağız Bakımı",
+    "de": "Mundpflege",
+    "fr": "Soins bucco-dentaires"
+  },
+  "visioncare": {
+    "en": "Vision Care",
+    "tr": "Göz Bakımı",
+    "de": "Augenpflege",
+    "fr": "Soins de la vue"
+  },
+  "carelectronics": {
+    "en": "Car Electronics",
+    "tr": "Araç Elektroniği",
+    "de": "Auto-Elektronik",
+    "fr": "Électronique automobile"
+  },
+  "caraccessories": {
+    "en": "Car Accessories",
+    "tr": "Araç Aksesuarları",
+    "de": "Auto-Zubehör",
+    "fr": "Accessoires auto"
+  },
+  "motorcycleaccessories": {
+    "en": "Motorcycle Accessories",
+    "tr": "Motosiklet Aksesuarları",
+    "de": "Motorrad-Zubehör",
+    "fr": "Accessoires moto"
+  },
+  "tiresandwheels": {
+    "en": "Tires & Wheels",
+    "tr": "Lastik ve Jant",
+    "de": "Reifen & Felgen",
+    "fr": "Pneus et jantes"
+  },
+  "carparts": {
+    "en": "Car Parts",
+    "tr": "Araç Parçaları",
+    "de": "Autoteile",
+    "fr": "Pièces auto"
+  },
+  "motorcycleparts": {
+    "en": "Motorcycle Parts",
+    "tr": "Motosiklet Parçaları",
+    "de": "Motorradteile",
+    "fr": "Pièces moto"
+  },
+  "toolsandequipment": {
+    "en": "Tools & Equipment",
+    "tr": "Araç ve Ekipman",
+    "de": "Werkzeuge & Ausrüstung",
+    "fr": "Outils et équipement"
+  },
+  "carcare": {
+    "en": "Car Care",
+    "tr": "Araç Bakımı",
+    "de": "Autopflege",
+    "fr": "Entretien auto"
+  },
+  "oilsandfluids": {
+    "en": "Oils & Fluids",
+    "tr": "Yağ ve Sıvılar",
+    "de": "Öle & Flüssigkeiten",
+    "fr": "Huiles et fluides"
+  },
+  "books": {
+    "en": "Books",
+    "tr": "Kitaplar",
+    "de": "Bücher",
+    "fr": "Livres"
+  },
+  "ebooks": {
+    "en": "E-Books",
+    "tr": "E-Kitaplar",
+    "de": "E-Books",
+    "fr": "Livres électroniques"
+  },
+  "audiobooks": {
+    "en": "Audiobooks",
+    "tr": "Sesli Kitaplar",
+    "de": "Hörbücher",
+    "fr": "Livres audio"
+  },
+  "magazines": {
+    "en": "Magazines",
+    "tr": "Dergiler",
+    "de": "Zeitschriften",
+    "fr": "Magazines"
+  },
+  "comics": {
+    "en": "Comics",
+    "tr": "Çizgi Roman",
+    "de": "Comics",
+    "fr": "Bandes dessinées"
+  },
+  "moviesandtv": {
+    "en": "Movies & TV",
+    "tr": "Film ve TV",
+    "de": "Filme & TV",
+    "fr": "Films et TV"
+  },
+  "musiccds": {
+    "en": "Music CDs",
+    "tr": "Müzik CD'leri",
+    "de": "Musik-CDs",
+    "fr": "CD de musique"
+  },
+  "vinylrecords": {
+    "en": "Vinyl Records",
+    "tr": "Plak",
+    "de": "Schallplatten",
+    "fr": "Disques vinyles"
+  },
+  "officesupplies": {
+    "en": "Office Supplies",
+    "tr": "Ofis Malzemeleri",
+    "de": "Bürobedarf",
+    "fr": "Fournitures de bureau"
+  },
+  "stationery": {
+    "en": "Stationery",
+    "tr": "Kırtasiye",
+    "de": "Schreibwaren",
+    "fr": "Papeterie"
+  },
+  "schoolsupplies": {
+    "en": "School Supplies",
+    "tr": "Okul Malzemeleri",
+    "de": "Schulsachen",
+    "fr": "Fournitures scolaires"
+  },
+  "artsupplies": {
+    "en": "Art Supplies",
+    "tr": "Sanat Malzemeleri",
+    "de": "Kunstbedarf",
+    "fr": "Fournitures artistiques"
+  },
+  "printersandscanners": {
+    "en": "Printers & Scanners",
+    "tr": "Yazıcı ve Tarayıcı",
+    "de": "Drucker & Scanner",
+    "fr": "Imprimantes et scanners"
+  },
+  "officefurniture": {
+    "en": "Office Furniture",
+    "tr": "Ofis Mobilyası",
+    "de": "Büromöbel",
+    "fr": "Mobilier de bureau"
+  },
+  "filingandorganization": {
+    "en": "Filing & Organization",
+    "tr": "Dosyalama ve Organizasyon",
+    "de": "Ablage & Organisation",
+    "fr": "Classement et organisation"
+  },
+  "addtocart": {
+    "en": "Add to Cart",
+    "tr": "Sepete Ekle",
+    "de": "In den Warenkorb",
+    "fr": "Ajouter au panier"
+  },
+  "addtowishlist": {
+    "en": "Add to Wishlist",
+    "tr": "İstek Listesine Ekle",
+    "de": "Zur Wunschliste hinzufügen",
+    "fr": "Ajouter à la liste de souhaits"
+  },
+  "compare": {
+    "en": "Compare",
+    "tr": "Karşılaştır",
+    "de": "Vergleichen",
+    "fr": "Comparer"
+  },
+  "quickview": {
+    "en": "Quick View",
+    "tr": "Hızlı Görünüm",
+    "de": "Schnellansicht",
+    "fr": "Aperçu rapide"
+  },
+  "outofstock": {
+    "en": "Out of Stock",
+    "tr": "Stokta Yok",
+    "de": "Nicht vorrätig",
+    "fr": "Rupture de stock"
+  },
+  "instock": {
+    "en": "In Stock",
+    "tr": "Stokta Var",
+    "de": "Auf Lager",
+    "fr": "En stock"
+  },
+  "lowstock": {
+    "en": "Low Stock",
+    "tr": "Az Stok",
+    "de": "Geringer Bestand",
+    "fr": "Stock faible"
+  },
+  "soldout": {
+    "en": "Sold Out",
+    "tr": "Tükendi",
+    "de": "Ausverkauft",
+    "fr": "Épuisé"
+  },
+  "onsale": {
+    "en": "On Sale",
+    "tr": "İndirimde",
+    "de": "Im Angebot",
+    "fr": "En promotion"
+  },
+  "new": {
+    "en": "New",
+    "tr": "Yeni",
+    "de": "Neu",
+    "fr": "Nouveau"
+  },
+  "used": {
+    "en": "Used",
+    "tr": "Kullanılmış",
+    "de": "Gebraucht",
+    "fr": "Occasion"
+  },
+  "refurbished": {
+    "en": "Refurbished",
+    "tr": "Yenilenmiş",
+    "de": "Generalüberholt",
+    "fr": "Reconditionné"
+  },
+  "digital": {
+    "en": "Digital",
+    "tr": "Dijital",
+    "de": "Digital",
+    "fr": "Numérique"
+  },
+  "physical": {
+    "en": "Physical",
+    "tr": "Fiziksel",
+    "de": "Physisch",
+    "fr": "Physique"
+  },
+  "downloadable": {
+    "en": "Downloadable",
+    "tr": "İndirilebilir",
+    "de": "Herunterladbar",
+    "fr": "Téléchargeable"
+  },
+  "subscription": {
+    "en": "Subscription",
+    "tr": "Abonelik",
+    "de": "Abonnement",
+    "fr": "Abonnement"
+  },
+  "giftcard": {
+    "en": "Gift Card",
+    "tr": "Hediye Kartı",
+    "de": "Geschenkkarte",
+    "fr": "Carte cadeau"
+  },
+  "coupon": {
+    "en": "Coupon",
+    "tr": "Kupon",
+    "de": "Gutschein",
+    "fr": "Coupon"
+  },
+  "promocode": {
+    "en": "Promo Code",
+    "tr": "Promosyon Kodu",
+    "de": "Aktionscode",
+    "fr": "Code promo"
+  },
+  "freetrial": {
+    "en": "Free Trial",
+    "tr": "Ücretsiz Deneme",
+    "de": "Kostenlose Testversion",
+    "fr": "Essai gratuit"
+  },
+  "premium": {
+    "en": "Premium",
+    "tr": "Premium",
+    "de": "Premium",
+    "fr": "Premium"
+  },
+  "basic": {
+    "en": "Basic",
+    "tr": "Temel",
+    "de": "Basic",
+    "fr": "Basique"
+  },
+  "standard": {
+    "en": "Standard",
+    "tr": "Standart",
+    "de": "Standard",
+    "fr": "Standard"
+  },
+  "pro": {
+    "en": "Pro",
+    "tr": "Pro",
+    "de": "Pro",
+    "fr": "Pro"
+  },
+  "enterprise": {
+    "en": "Enterprise",
+    "tr": "Kurumsal",
+    "de": "Unternehmen",
+    "fr": "Entreprise"
+  },
+  "starter": {
+    "en": "Starter",
+    "tr": "Başlangıç",
+    "de": "Starter",
+    "fr": "Débutant"
+  },
+  "advanced": {
+    "en": "Advanced",
+    "tr": "Gelişmiş",
+    "de": "Erweitert",
+    "fr": "Avancé"
+  },
+  "professional": {
+    "en": "Professional",
+    "tr": "Profesyonel",
+    "de": "Professionell",
+    "fr": "Professionnel"
+  },
+  "business": {
+    "en": "Business",
+    "tr": "İş",
+    "de": "Business",
+    "fr": "Entreprise"
+  },
+  "personal": {
+    "en": "Personal",
+    "tr": "Kişisel",
+    "de": "Persönlich",
+    "fr": "Personnel"
+  },
+  "family": {
+    "en": "Family",
+    "tr": "Aile",
+    "de": "Familie",
+    "fr": "Famille"
+  },
+  "student": {
+    "en": "Student",
+    "tr": "Öğrenci",
+    "de": "Student",
+    "fr": "Étudiant"
+  },
+  "senior": {
+    "en": "Senior",
+    "tr": "Yaşlı",
+    "de": "Senior",
+    "fr": "Senior"
+  },
+  "military": {
+    "en": "Military",
+    "tr": "Askeri",
+    "de": "Militär",
+    "fr": "Militaire"
+  },
+  "corporate": {
+    "en": "Corporate",
+    "tr": "Kurumsal",
+    "de": "Unternehmen",
+    "fr": "Entreprise"
+  },
+  "nonprofit": {
+    "en": "Non-Profit",
+    "tr": "Kar Amacı Gütmeyen",
+    "de": "Gemeinnützig",
+    "fr": "À but non lucratif"
+  },
+  "government": {
+    "en": "Government",
+    "tr": "Devlet",
+    "de": "Regierung",
+    "fr": "Gouvernement"
+  },
+  "education": {
+    "en": "Education",
+    "tr": "Eğitim",
+    "de": "Bildung",
+    "fr": "Éducation"
+  },
+  "retail": {
+    "en": "Retail",
+    "tr": "Perakende",
+    "de": "Einzelhandel",
+    "fr": "Vente au détail"
+  },
+  "wholesale": {
+    "en": "Wholesale",
+    "tr": "Toptan",
+    "de": "Großhandel",
+    "fr": "Vente en gros"
+  },
+  "manufacturer": {
+    "en": "Manufacturer",
+    "tr": "Üretici",
+    "de": "Hersteller",
+    "fr": "Fabricant"
+  },
+  "distributor": {
+    "en": "Distributor",
+    "tr": "Distribütör",
+    "de": "Vertrieb",
+    "fr": "Distributeur"
+  },
+  "supplier": {
+    "en": "Supplier",
+    "tr": "Tedarikçi",
+    "de": "Lieferant",
+    "fr": "Fournisseur"
+  },
+  "vendor": {
+    "en": "Vendor",
+    "tr": "Satıcı",
+    "de": "Anbieter",
+    "fr": "Vendeur"
+  },
+  "partner": {
+    "en": "Partner",
+    "tr": "Ortak",
+    "de": "Partner",
+    "fr": "Partenaire"
+  },
+  "affiliate": {
+    "en": "Affiliate",
+    "tr": "Bağlı Kuruluş",
+    "de": "Partner",
+    "fr": "Affilié"
+  },
+  "reseller": {
+    "en": "Reseller",
+    "tr": "Bayi",
+    "de": "Wiederverkäufer",
+    "fr": "Revendeur"
+  },
+  "dealer": {
+    "en": "Dealer",
+    "tr": "Bayi",
+    "de": "Händler",
+    "fr": "Concessionnaire"
+  },
+  "agent": {
+    "en": "Agent",
+    "tr": "Temsilci",
+    "de": "Agent",
+    "fr": "Agent"
+  },
+  "representative": {
+    "en": "Representative",
+    "tr": "Temsilci",
+    "de": "Vertreter",
+    "fr": "Représentant"
+  },
+  "consultant": {
+    "en": "Consultant",
+    "tr": "Danışman",
+    "de": "Berater",
+    "fr": "Consultant"
+  },
+  "advisor": {
+    "en": "Advisor",
+    "tr": "Danışman",
+    "de": "Berater",
+    "fr": "Conseiller"
+  },
+  "expert": {
+    "en": "Expert",
+    "tr": "Uzman",
+    "de": "Experte",
+    "fr": "Expert"
+  },
+  "specialist": {
+    "en": "Specialist",
+    "tr": "Uzman",
+    "de": "Spezialist",
+    "fr": "Spécialiste"
+  },
+  "certified": {
+    "en": "Certified",
+    "tr": "Sertifikalı",
+    "de": "Zertifiziert",
+    "fr": "Certifié"
+  },
+  "licensed": {
+    "en": "Licensed",
+    "tr": "Lisanslı",
+    "de": "Lizenziert",
+    "fr": "Licencié"
+  },
+  "authorized": {
+    "en": "Authorized",
+    "tr": "Yetkili",
+    "de": "Autorisiert",
+    "fr": "Autorisé"
+  },
+  "official": {
+    "en": "Official",
+    "tr": "Resmi",
+    "de": "Offiziell",
+    "fr": "Officiel"
+  },
+  "genuine": {
+    "en": "Genuine",
+    "tr": "Orijinal",
+    "de": "Echt",
+    "fr": "Authentique"
+  },
+  "original": {
+    "en": "Original",
+    "tr": "Orijinal",
+    "de": "Original",
+    "fr": "Original"
+  },
+  "authentic": {
+    "en": "Authentic",
+    "tr": "Otantik",
+    "de": "Authentisch",
+    "fr": "Authentique"
+  },
+  "brandnew": {
+    "en": "Brand New",
+    "tr": "Sıfır",
+    "de": "Brandneu",
+    "fr": "Neuf"
+  },
+  "likenew": {
+    "en": "Like New",
+    "tr": "Sıfır Gibi",
+    "de": "Wie neu",
+    "fr": "Comme neuf"
+  },
+  "verygood": {
+    "en": "Very Good",
+    "tr": "Çok İyi",
+    "de": "Sehr gut",
+    "fr": "Très bon"
+  },
+  "good": {
+    "en": "Good",
+    "tr": "İyi",
+    "de": "Gut",
+    "fr": "Bon"
+  },
+  "acceptable": {
+    "en": "Acceptable",
+    "tr": "Kabul Edilebilir",
+    "de": "Akzeptabel",
+    "fr": "Acceptable"
+  },
+  "poor": {
+    "en": "Poor",
+    "tr": "Kötü",
+    "de": "Schlecht",
+    "fr": "Mauvais"
+  },
+  "damaged": {
+    "en": "Damaged",
+    "tr": "Hasarlı",
+    "de": "Beschädigt",
+    "fr": "Endommagé"
+  },
+  "broken": {
+    "en": "Broken",
+    "tr": "Kırık",
+    "de": "Kaputt",
+    "fr": "Cassé"
+  },
+  "defective": {
+    "en": "Defective",
+    "tr": "Kusurlu",
+    "de": "Defekt",
+    "fr": "Défectueux"
+  },
+  "faulty": {
+    "en": "Faulty",
+    "tr": "Arızalı",
+    "de": "Fehlerhaft",
+    "fr": "Défaillant"
+  },
+  "malfunctioning": {
+    "en": "Malfunctioning",
+    "tr": "Arızalı",
+    "de": "Fehlerhaft",
+    "fr": "Défaillant"
+  },
+  "notworking": {
+    "en": "Not Working",
+    "tr": "Çalışmıyor",
+    "de": "Funktioniert nicht",
+    "fr": "Ne fonctionne pas"
+  },
+  "forparts": {
+    "en": "For Parts",
+    "tr": "Parça İçin",
+    "de": "Für Ersatzteile",
+    "fr": "Pour pièces"
+  },
+  "spareparts": {
+    "en": "Spare Parts",
+    "tr": "Yedek Parça",
+    "de": "Ersatzteile",
+    "fr": "Pièces de rechange"
+  },
+  "replacementparts": {
+    "en": "Replacement Parts",
+    "tr": "Değişim Parçaları",
+    "de": "Ersatzteile",
+    "fr": "Pièces de remplacement"
+  },
+  "accessories": {
+    "en": "Accessories",
+    "tr": "Aksesuarlar",
+    "de": "Zubehör",
+    "fr": "Accessoires"
+  },
+  "addons": {
+    "en": "Add-Ons",
+    "tr": "Eklentiler",
+    "de": "Add-Ons",
+    "fr": "Modules complémentaires"
+  },
+  "extensions": {
+    "en": "Extensions",
+    "tr": "Uzantılar",
+    "de": "Erweiterungen",
+    "fr": "Extensions"
+  },
+  "upgrades": {
+    "en": "Upgrades",
+    "tr": "Yükseltmeler",
+    "de": "Upgrades",
+    "fr": "Mises à niveau"
+  },
+  "updates": {
+    "en": "Updates",
+    "tr": "Güncellemeler",
+    "de": "Updates",
+    "fr": "Mises à jour"
+  },
+  "patches": {
+    "en": "Patches",
+    "tr": "Yamalar",
+    "de": "Patches",
+    "fr": "Correctifs"
+  },
+  "fixes": {
+    "en": "Fixes",
+    "tr": "Düzeltmeler",
+    "de": "Korrekturen",
+    "fr": "Corrections"
+  },
+  "improvements": {
+    "en": "Improvements",
+    "tr": "İyileştirmeler",
+    "de": "Verbesserungen",
+    "fr": "Améliorations"
+  },
+  "enhancements": {
+    "en": "Enhancements",
+    "tr": "Geliştirmeler",
+    "de": "Verbesserungen",
+    "fr": "Améliorations"
+  },
+  "features": {
+    "en": "Features",
+    "tr": "Özellikler",
+    "de": "Funktionen",
+    "fr": "Fonctionnalités"
+  },
+  "benefits": {
+    "en": "Benefits",
+    "tr": "Faydalar",
+    "de": "Vorteile",
+    "fr": "Avantages"
+  },
+  "advantages": {
+    "en": "Advantages",
+    "tr": "Avantajlar",
+    "de": "Vorteile",
+    "fr": "Avantages"
+  },
+  "pros": {
+    "en": "Pros",
+    "tr": "Artılar",
+    "de": "Vorteile",
+    "fr": "Avantages"
+  },
+  "cons": {
+    "en": "Cons",
+    "tr": "Eksiler",
+    "de": "Nachteile",
+    "fr": "Inconvénients"
+  },
+  "reviews": {
+    "en": "Reviews",
+    "tr": "Yorumlar",
+    "de": "Bewertungen",
+    "fr": "Avis"
+  },
+  "ratings": {
+    "en": "Ratings",
+    "tr": "Puanlar",
+    "de": "Bewertungen",
+    "fr": "Notes"
+  },
+  "feedback": {
+    "en": "Feedback",
+    "tr": "Geri Bildirim",
+    "de": "Feedback",
+    "fr": "Commentaires"
+  },
+  "comments": {
+    "en": "Comments",
+    "tr": "Yorumlar",
+    "de": "Kommentare",
+    "fr": "Commentaires"
+  },
+  "testimonials": {
+    "en": "Testimonials",
+    "tr": "Referanslar",
+    "de": "Referenzen",
+    "fr": "Témoignages"
+  },
+  "recommendations": {
+    "en": "Recommendations",
+    "tr": "Öneriler",
+    "de": "Empfehlungen",
+    "fr": "Recommandations"
+  },
+  "suggestions": {
+    "en": "Suggestions",
+    "tr": "Öneriler",
+    "de": "Vorschläge",
+    "fr": "Suggestions"
+  },
+  "tips": {
+    "en": "Tips",
+    "tr": "İpuçları",
+    "de": "Tipps",
+    "fr": "Conseils"
+  },
+  "tricks": {
+    "en": "Tricks",
+    "tr": "Püf Noktaları",
+    "de": "Tricks",
+    "fr": "Astuces"
+  },
+  "hacks": {
+    "en": "Hacks",
+    "tr": "Hileler",
+    "de": "Hacks",
+    "fr": "Astuces"
+  },
+  "shortcuts": {
+    "en": "Shortcuts",
+    "tr": "Kısayollar",
+    "de": "Verknüpfungen",
+    "fr": "Raccourcis"
+  },
+  "guides": {
+    "en": "Guides",
+    "tr": "Kılavuzlar",
+    "de": "Anleitungen",
+    "fr": "Guides"
+  },
+  "tutorials": {
+    "en": "Tutorials",
+    "tr": "Öğreticiler",
+    "de": "Tutorials",
+    "fr": "Tutoriels"
+  },
+  "instructions": {
+    "en": "Instructions",
+    "tr": "Talimatlar",
+    "de": "Anweisungen",
+    "fr": "Instructions"
+  },
+  "manuals": {
+    "en": "Manuals",
+    "tr": "Kılavuzlar",
+    "de": "Handbücher",
+    "fr": "Manuels"
+  },
+  "documentation": {
+    "en": "Documentation",
+    "tr": "Dokümantasyon",
+    "de": "Dokumentation",
+    "fr": "Documentation"
+  },
+  "help": {
+    "en": "Help",
+    "tr": "Yardım",
+    "de": "Hilfe",
+    "fr": "Aide"
+  },
+  "support": {
+    "en": "Support",
+    "tr": "Destek",
+    "de": "Support",
+    "fr": "Support"
+  },
+  "faq": {
+    "en": "FAQ",
+    "tr": "SSS",
+    "de": "FAQ",
+    "fr": "FAQ"
+  },
+  "qanda": {
+    "en": "Q&A",
+    "tr": "S&C",
+    "de": "F&A",
+    "fr": "Q&R"
+  },
+  "questions": {
+    "en": "Questions",
+    "tr": "Sorular",
+    "de": "Fragen",
+    "fr": "Questions"
+  },
+  "answers": {
+    "en": "Answers",
+    "tr": "Cevaplar",
+    "de": "Antworten",
+    "fr": "Réponses"
+  },
+  "solutions": {
+    "en": "Solutions",
+    "tr": "Çözümler",
+    "de": "Lösungen",
+    "fr": "Solutions"
+  },
+  "troubleshooting": {
+    "en": "Troubleshooting",
+    "tr": "Sorun Giderme",
+    "de": "Fehlerbehebung",
+    "fr": "Dépannage"
+  },
+  "problems": {
+    "en": "Problems",
+    "tr": "Sorunlar",
+    "de": "Probleme",
+    "fr": "Problèmes"
+  },
+  "issues": {
+    "en": "Issues",
+    "tr": "Sorunlar",
+    "de": "Probleme",
+    "fr": "Problèmes"
+  },
+  "bugs": {
+    "en": "Bugs",
+    "tr": "Hatalar",
+    "de": "Fehler",
+    "fr": "Bugs"
+  },
+  "errors": {
+    "en": "Errors",
+    "tr": "Hatalar",
+    "de": "Fehler",
+    "fr": "Erreurs"
+  },
+  "warnings": {
+    "en": "Warnings",
+    "tr": "Uyarılar",
+    "de": "Warnungen",
+    "fr": "Avertissements"
+  },
+  "alerts": {
+    "en": "Alerts",
+    "tr": "Uyarılar",
+    "de": "Benachrichtigungen",
+    "fr": "Alertes"
+  },
+  "notifications": {
+    "en": "Notifications",
+    "tr": "Bildirimler",
+    "de": "Benachrichtigungen",
+    "fr": "Notifications"
+  },
+  "messages": {
+    "en": "Messages",
+    "tr": "Mesajlar",
+    "de": "Nachrichten",
+    "fr": "Messages"
+  },
+  "news": {
+    "en": "News",
+    "tr": "Haberler",
+    "de": "Nachrichten",
+    "fr": "Actualités"
+  },
+  "announcements": {
+    "en": "Announcements",
+    "tr": "Duyurular",
+    "de": "Ankündigungen",
+    "fr": "Annonces"
+  },
+  "events": {
+    "en": "Events",
+    "tr": "Etkinlikler",
+    "de": "Veranstaltungen",
+    "fr": "Événements"
+  },
+  "promotions": {
+    "en": "Promotions",
+    "tr": "Promosyonlar",
+    "de": "Aktionen",
+    "fr": "Promotions"
+  },
+  "deals": {
+    "en": "Deals",
+    "tr": "Fırsatlar",
+    "de": "Angebote",
+    "fr": "Offres"
+  },
+  "offers": {
+    "en": "Offers",
+    "tr": "Teklifler",
+    "de": "Angebote",
+    "fr": "Offres"
+  },
+  "specials": {
+    "en": "Specials",
+    "tr": "Özel Teklifler",
+    "de": "Sonderangebote",
+    "fr": "Spéciaux"
+  },
+  "clearance": {
+    "en": "Clearance",
+    "tr": "Tasfiye",
+    "de": "Räumungsverkauf",
+    "fr": "Liquidation"
+  },
+  "closeout": {
+    "en": "Closeout",
+    "tr": "Kapanış",
+    "de": "Ausverkauf",
+    "fr": "Liquidation"
+  },
+  "liquidation": {
+    "en": "Liquidation",
+    "tr": "Tasfiye",
+    "de": "Liquidation",
+    "fr": "Liquidation"
+  },
+  "bankruptcy": {
+    "en": "Bankruptcy",
+    "tr": "İflas",
+    "de": "Konkurs",
+    "fr": "Faillite"
+  },
+  "goingoutofbusiness": {
+    "en": "Going Out of Business",
+    "tr": "İşten Çıkıyor",
+    "de": "Geschäftsaufgabe",
+    "fr": "Fermeture définitive"
+  },
+  "everythingmustgo": {
+    "en": "Everything Must Go",
+    "tr": "Her Şey Gitmeli",
+    "de": "Alles muss raus",
+    "fr": "Tout doit partir"
+  },
+  "finalsale": {
+    "en": "Final Sale",
+    "tr": "Son Satış",
+    "de": "Endverkauf",
+    "fr": "Vente finale"
+  },
+  "noreturns": {
+    "en": "No Returns",
+    "tr": "İade Yok",
+    "de": "Keine Rückgabe",
+    "fr": "Pas de retour"
+  },
+  "allsalesfinal": {
+    "en": "All Sales Final",
+    "tr": "Tüm Satışlar Kesin",
+    "de": "Alle Verkäufe endgültig",
+    "fr": "Toutes les ventes sont finales"
+  },
+  "asis": {
+    "en": "As Is",
+    "tr": "Olduğu Gibi",
+    "de": "Wie besehen",
+    "fr": "Tel quel"
+  },
+  "nowarranty": {
+    "en": "No Warranty",
+    "tr": "Garanti Yok",
+    "de": "Keine Garantie",
+    "fr": "Pas de garantie"
+  },
+  "limitedwarranty": {
+    "en": "Limited Warranty",
+    "tr": "Sınırlı Garanti",
+    "de": "Eingeschränkte Garantie",
+    "fr": "Garantie limitée"
+  },
+  "extendedwarranty": {
+    "en": "Extended Warranty",
+    "tr": "Uzatılmış Garanti",
+    "de": "Erweiterte Garantie",
+    "fr": "Garantie étendue"
+  },
+  "lifetimewarranty": {
+    "en": "Lifetime Warranty",
+    "tr": "Ömür Boyu Garanti",
+    "de": "Lebenslange Garantie",
+    "fr": "Garantie à vie"
+  },
+  "moneybackguarantee": {
+    "en": "Money Back Guarantee",
+    "tr": "Para İade Garantisi",
+    "de": "Geld-zurück-Garantie",
+    "fr": "Garantie de remboursement"
+  },
+  "satisfactionguaranteed": {
+    "en": "Satisfaction Guaranteed",
+    "tr": "Memnuniyet Garantili",
+    "de": "Zufriedenheit garantiert",
+    "fr": "Satisfaction garantie"
+  },
+  "riskfree": {
+    "en": "Risk Free",
+    "tr": "Risksiz",
+    "de": "Risikofrei",
+    "fr": "Sans risque"
+  },
+  "norisk": {
+    "en": "No Risk",
+    "tr": "Risk Yok",
+    "de": "Kein Risiko",
+    "fr": "Aucun risque"
+  },
+  "trybeforeyoubuy": {
+    "en": "Try Before You Buy",
+    "tr": "Satın Almadan Önce Deneyin",
+    "de": "Vor dem Kauf testen",
+    "fr": "Essayez avant d'acheter"
+  },
+  "freereturns": {
+    "en": "Free Returns",
+    "tr": "Ücretsiz İade",
+    "de": "Kostenlose Rückgabe",
+    "fr": "Retours gratuits"
+  },
+  "easyreturns": {
+    "en": "Easy Returns",
+    "tr": "Kolay İade",
+    "de": "Einfache Rückgabe",
+    "fr": "Retours faciles"
+  },
+  "hasslereturns": {
+    "en": "Hassle Free Returns",
+    "tr": "Sorunsuz İade",
+    "de": "Problemlose Rückgabe",
+    "fr": "Retours sans tracas"
   }
 }
