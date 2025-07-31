@@ -150,10 +150,11 @@
                         console.log('🔧 Language header script started');
                         
                         // FORCE CLEAR - Eski cache'i temizle
+                        // FORCE CLEAR ALL - Temiz başlangıç
                         localStorage.removeItem('translations');
                         localStorage.removeItem('translationsTimestamp');
-                        localStorage.removeItem('selectedLanguage'); // FORCE RESET
-                        console.log('🧹 Cleared translation cache and language setting');
+                        localStorage.removeItem('selectedLanguage');
+                        console.log('🧹 FORCED CLEAR: All language data reset');
                         
                         // Dil ayarını kontrol et
                         var savedLang = localStorage.getItem('selectedLanguage');

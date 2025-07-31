@@ -2,595 +2,141 @@
   "languagecode": {
     "en": "English",
     "tr": "Türkçe",
-    "ru": "Русский",
-    "ar": "العربية"
+    "ru": "Русский"
   },
   "FirstName": {
     "en": "First Name",
     "tr": "Ad",
-    "ru": "Имя",
-    "ar": "الاسم الأول"
+    "ru": "Имя"
   },
   "greeting": {
     "en": "Hello, {name}!",
     "tr": "Merhaba, {name}!",
-    "ru": "Привет, {name}!",
-    "ar": "مرحبا، {name}!"
+    "ru": "Привет, {name}!"
   },
   "login": {
     "en": "Login",
     "tr": "Giriş Yap",
-    "ru": "Войти",
-    "ar": "تسجيل الدخول"
+    "ru": "Войти"
   },
   "register": {
     "en": "Register",
     "tr": "Kayıt Ol",
-    "ru": "Регистрация",
-    "ar": "التسجيل"
+    "ru": "Регистрация"
   },
   "credits": {
     "en": "Credits",
     "tr": "Krediler",
-    "ru": "Кредиты",
-    "ar": "الرصيد"
+    "ru": "Кредиты"
   },
   "credit": {
     "en": "Credit",
     "tr": "Kredi",
-    "ru": "Кредит",
-    "ar": "رصيد"
+    "ru": "Кредит"
   },
   "wishlist": {
     "en": "Wishlist",
     "tr": "İstek Listesi",
-    "ru": "Список желаний",
-    "ar": "قائمة الرغبات"
+    "ru": "Список желаний"
   },
   "account": {
     "en": "Account",
     "tr": "Hesap",
-    "ru": "Аккаунт",
-    "ar": "الحساب"
-  },
-  "welcome": {
-    "en": "Welcome to",
-    "tr": "Hoş geldiniz",
-    "ru": "Добро пожаловать в",
-    "ar": "مرحبا بك في"
-  },
-  "overview": {
-    "en": "Overview",
-    "tr": "Genel Bakış",
-    "ru": "Обзор",
-    "ar": "نظرة عامة"
-  },
-  "inbox": {
-    "en": "Inbox",
-    "tr": "Gelen Kutusu",
-    "ru": "Входящие",
-    "ar": "صندوق الوارد"
-  },
-  "my": {
-    "en": "My",
-    "tr": "Benim",
-    "ru": "Мой",
-    "ar": "بلدي"
-  },
-  "profile": {
-    "en": "Profile",
-    "tr": "Profil",
-    "ru": "Профиль",
-    "ar": "الملف الشخصي"
+    "ru": "Аккаунт"
   },
   "myprofile": {
     "en": "My Profile",
     "tr": "Profilim",
-    "ru": "Мой профиль",
-    "ar": "ملفي الشخصي"
-  },
-  "orders": {
-    "en": "Orders",
-    "tr": "Siparişler",
-    "ru": "Заказы",
-    "ar": "الطلبات"
+    "ru": "Мой профиль"
   },
   "myorders": {
     "en": "My Orders",
     "tr": "Siparişlerim",
-    "ru": "Мои заказы",
-    "ar": "طلباتي"
-  },
-  "change": {
-    "en": "Change",
-    "tr": "Değiştir",
-    "ru": "Изменить",
-    "ar": "تغيير"
-  },
-  "password": {
-    "en": "Password",
-    "tr": "Şifre",
-    "ru": "Пароль",
-    "ar": "كلمة المرور"
+    "ru": "Мои заказы"
   },
   "changepassword": {
     "en": "Change Password",
     "tr": "Şifre Değiştir",
-    "ru": "Изменить пароль",
-    "ar": "تغيير كلمة المرور"
-  },
-  "logout": {
-    "en": "Logout",
-    "tr": "Çıkış Yap",
-    "ru": "Выйти",
-    "ar": "تسجيل الخروج"
-  },
-  "home": {
-    "en": "Home",
-    "tr": "Ana Sayfa",
-    "ru": "Главная",
-    "ar": "الرئيسية"
-  },
-  "category": {
-    "en": "Category",
-    "tr": "Kategori",
-    "ru": "Категория",
-    "ar": "الفئة"
+    "ru": "Изменить пароль"
   },
   "categories": {
     "en": "Categories",
     "tr": "Kategoriler",
-    "ru": "Категории",
-    "ar": "الفئات"
-  },
-  "search": {
-    "en": "Search",
-    "tr": "Ara",
-    "ru": "Поиск",
-    "ar": "البحث"
-  },
-  "notification": {
-    "en": "Notification",
-    "tr": "Bildirim",
-    "ru": "Уведомление",
-    "ar": "الإشعار"
-  },
-  "nonotification": {
-    "en": "No Notification Found",
-    "tr": "Bildirim Bulunamadı",
-    "ru": "Уведомлений не найдено",
-    "ar": "لم يتم العثور على إشعارات"
-  },
-  "nomsginbox": {
-    "en": "No Messages Found",
-    "tr": "Mesaj Bulunamadı",
-    "ru": "Сообщений не найдено",
-    "ar": "لم يتم العثور على رسائل"
-  },
-  "billing": {
-    "en": "Billing",
-    "tr": "Faturalandırma",
-    "ru": "Биллинг",
-    "ar": "الفواتير"
-  },
-  "shipping": {
-    "en": "Shipping",
-    "tr": "Kargo",
-    "ru": "Доставка",
-    "ar": "الشحن"
-  },
-  "address": {
-    "en": "Address",
-    "tr": "Adres",
-    "ru": "Адрес",
-    "ar": "العنوان"
-  },
-  "affiliate": {
-    "en": "Affiliate",
-    "tr": "Ortaklık",
-    "ru": "Партнерская программа",
-    "ar": "الشراكة"
-  },
-  "postedrequest": {
-    "en": "Posted Request",
-    "tr": "Yayınlanan İstek",
-    "ru": "Размещенный запрос",
-    "ar": "الطلب المنشور"
-  },
-  "setting": {
-    "en": "Setting",
-    "tr": "Ayar",
-    "ru": "Настройки",
-    "ar": "الإعدادات"
-  },
-  "coupons": {
-    "en": "Coupons",
-    "tr": "Kuponlar",
-    "ru": "Купоны",
-    "ar": "القسائم"
-  },
-  "following": {
-    "en": "Following",
-    "tr": "Takip Edilen",
-    "ru": "Подписки",
-    "ar": "المتابعة"
-  },
-  "subscription": {
-    "en": "Subscription",
-    "tr": "Abonelik",
-    "ru": "Подписка",
-    "ar": "الاشتراك"
-  },
-  "plan": {
-    "en": "Plan",
-    "tr": "Plan",
-    "ru": "План",
-    "ar": "الخطة"
-  },
-  "details": {
-    "en": "Details",
-    "tr": "Detaylar",
-    "ru": "Детали",
-    "ar": "التفاصيل"
-  },
-  "payment": {
-    "en": "Payment",
-    "tr": "Ödeme",
-    "ru": "Платеж",
-    "ar": "الدفع"
-  },
-  "history": {
-    "en": "History",
-    "tr": "Geçmiş",
-    "ru": "История",
-    "ar": "التاريخ"
-  },
-  "buy": {
-    "en": "Buy",
-    "tr": "Satın Al",
-    "ru": "Купить",
-    "ar": "شراء"
-  },
-  "transaction": {
-    "en": "Transaction",
-    "tr": "İşlem",
-    "ru": "Транзакция",
-    "ar": "المعاملة"
-  },
-  "date": {
-    "en": "Date",
-    "tr": "Tarih",
-    "ru": "Дата",
-    "ar": "التاريخ"
-  },
-  "creditusedmsg": {
-    "en": "Your credit has been utilized to access and view the seller's profile",
-    "tr": "Satıcının profilini görüntülemek için krediniz kullanıldı",
-    "ru": "Ваш кредит был использован для доступа к профилю продавца",
-    "ar": "تم استخدام رصيدك للوصول إلى ملف البائع وعرضه"
-  },
-  "creditifexpiry": {
-    "en": "which will remain valid until",
-    "tr": "şu tarihe kadar geçerli olacak:",
-    "ru": "который будет действителен до",
-    "ar": "والتي ستبقى صالحة حتى"
-  },
-  "creditiffree": {
-    "en": "You have received",
-    "tr": "Aldınız",
-    "ru": "Вы получили",
-    "ar": "لقد حصلت على"
-  },
-  "creditiflifetime": {
-    "en": ". It has a lifetime duration.",
-    "tr": ". Ömür boyu geçerlidir.",
-    "ru": ". Он имеет пожизненную продолжительность.",
-    "ar": ". لها مدة مدى الحياة."
-  },
-  "credit-if-p-invoice": {
-    "en": "The invoice with number",
-    "tr": "Numaralı fatura",
-    "ru": "Счет с номером",
-    "ar": "الفاتورة برقم"
-  },
-  "back": {
-    "en": "Back",
-    "tr": "Geri",
-    "ru": "Назад",
-    "ar": "العودة"
+    "ru": "Категории"
   },
   "cart": {
     "en": "Cart",
     "tr": "Sepet",
-    "ru": "Корзина",
-    "ar": "السلة"
+    "ru": "Корзина"
   },
   "frequentlyaskedquestion": {
     "en": "Frequently Asked Questions",
     "tr": "Sık Sorulan Sorular",
-    "ru": "Часто задаваемые вопросы",
-    "ar": "الأسئلة الشائعة"
-  },
-  "about": {
-    "en": "About",
-    "tr": "Hakkında",
-    "ru": "О нас",
-    "ar": "حول"
-  },
-  "from": {
-    "en": "From",
-    "tr": "Kimden",
-    "ru": "От",
-    "ar": "من"
-  },
-  "on": {
-    "en": "On",
-    "tr": "Tarihinde",
-    "ru": "В",
-    "ar": "في"
-  },
-  "ratingasbuyer": {
-    "en": "Rating as Buyer",
-    "tr": "Alıcı Olarak Değerlendirme",
-    "ru": "Рейтинг как покупатель",
-    "ar": "التقييم كمشتري"
-  },
-  "ratingasseller": {
-    "en": "Rating as Seller",
-    "tr": "Satıcı Olarak Değerlendirme",
-    "ru": "Рейтинг как продавец",
-    "ar": "التقييم كبائع"
-  },
-  "followers": {
-    "en": "Followers",
-    "tr": "Takipçiler",
-    "ru": "Подписчики",
-    "ar": "المتابعون"
-  },
-  "lastseen": {
-    "en": "Last Seen",
-    "tr": "Son Görülme",
-    "ru": "Последний раз в сети",
-    "ar": "آخر ظهور"
-  },
-  "listingdetails": {
-    "en": "Listing Details",
-    "tr": "İlan Detayları",
-    "ru": "Детали объявления",
-    "ar": "تفاصيل الإعلان"
-  },
-  "otherfileds": {
-    "en": "Other Fields",
-    "tr": "Diğer Alanlar",
-    "ru": "Другие поля",
-    "ar": "الحقول الأخرى"
-  },
-  "filedsname": {
-    "en": "Field Name",
-    "tr": "Alan Adı",
-    "ru": "Название поля",
-    "ar": "اسم الحقل"
-  },
-  "filedsdata": {
-    "en": "Field Data",
-    "tr": "Alan Verisi",
-    "ru": "Данные поля",
-    "ar": "بيانات الحقل"
+    "ru": "Часто задаваемые вопросы"
   },
   "saveandcontinue": {
     "en": "Save and Continue",
     "tr": "Kaydet ve Devam Et",
-    "ru": "Сохранить и продолжить",
-    "ar": "حفظ ومتابعة"
-  },
-  "action": {
-    "en": "Action",
-    "tr": "Eylem",
-    "ru": "Действие",
-    "ar": "العمل"
-  },
-  "skip": {
-    "en": "Skip",
-    "tr": "Atla",
-    "ru": "Пропустить",
-    "ar": "تخطي"
-  },
-  "discount": {
-    "en": "Discount",
-    "tr": "İndirim",
-    "ru": "Скидка",
-    "ar": "خصم"
-  },
-  "enablediscountasalways": {
-    "en": "Enable Discount Always",
-    "tr": "İndirimi Her Zaman Etkinleştir",
-    "ru": "Всегда включать скидку",
-    "ar": "تمكين الخصم دائما"
-  },
-  "value": {
-    "en": "Value",
-    "tr": "Değer",
-    "ru": "Значение",
-    "ar": "القيمة"
-  },
-  "save": {
-    "en": "Save",
-    "tr": "Kaydet",
-    "ru": "Сохранить",
-    "ar": "حفظ"
-  },
-  "selectcustomdate": {
-    "en": "Select Custom Date",
-    "tr": "Özel Tarih Seç",
-    "ru": "Выбрать пользовательскую дату",
-    "ar": "حدد تاريخ مخصص"
-  },
-  "startdate": {
-    "en": "Start Date",
-    "tr": "Başlangıç Tarihi",
-    "ru": "Дата начала",
-    "ar": "تاريخ البداية"
-  },
-  "enddate": {
-    "en": "End Date",
-    "tr": "Bitiş Tarihi",
-    "ru": "Дата окончания",
-    "ar": "تاريخ الانتهاء"
-  },
-  "type": {
-    "en": "Type",
-    "tr": "Tür",
-    "ru": "Тип",
-    "ar": "النوع"
-  },
-  "percentage": {
-    "en": "Percentage",
-    "tr": "Yüzde",
-    "ru": "Процент",
-    "ar": "النسبة المئوية"
-  },
-  "switchtosellerpanel": {
-    "en": "Switch to Seller Panel",
-    "tr": "Satıcı Paneline Geç",
-    "ru": "Перейти к панели продавца",
-    "ar": "التبديل إلى لوحة البائع"
-  },
-  "switchtoadminpanel": {
-    "en": "Switch to Admin Panel",
-    "tr": "Yönetici Paneline Geç",
-    "ru": "Перейти к панели администратора",
-    "ar": "التبديل إلى لوحة الإدارة"
-  },
-  "yes": {
-    "en": "Yes",
-    "tr": "Evet",
-    "ru": "Да",
-    "ar": "نعم"
-  },
-  "no": {
-    "en": "No",
-    "tr": "Hayır",
-    "ru": "Нет",
-    "ar": "لا"
-  },
-  "delete": {
-    "en": "Delete",
-    "tr": "Sil",
-    "ru": "Удалить",
-    "ar": "حذف"
+    "ru": "Сохранить и продолжить"
   },
   "confirmdelete": {
     "en": "Confirm Delete",
     "tr": "Silmeyi Onayla",
-    "ru": "Подтвердить удаление",
-    "ar": "تأكيد الحذف"
-  },
-  "confirmdeleteque": {
-    "en": "Are you sure you want to delete?",
-    "tr": "Silmek istediğinizden emin misiniz?",
-    "ru": "Вы уверены, что хотите удалить?",
-    "ar": "هل أنت متأكد أنك تريد الحذف؟"
-  },
-  "selectfile": {
-    "en": "Select File",
-    "tr": "Dosya Seç",
-    "ru": "Выбрать файл",
-    "ar": "اختر ملف"
-  },
-  "uploadimages": {
-    "en": "Upload Images",
-    "tr": "Resim Yükle",
-    "ru": "Загрузить изображения",
-    "ar": "تحميل الصور"
-  },
-  "basicinfo": {
-    "en": "Basic Info",
-    "tr": "Temel Bilgiler",
-    "ru": "Основная информация",
-    "ar": "المعلومات الأساسية"
-  },
-  "itemtype": {
-    "en": "Item Type",
-    "tr": "Öğe Türü",
-    "ru": "Тип товара",
-    "ar": "نوع العنصر"
-  },
-  "listingtype": {
-    "en": "Listing Type",
-    "tr": "İlan Türü",
-    "ru": "Тип объявления",
-    "ar": "نوع الإعلان"
+    "ru": "Подтвердить удаление"
   },
   "itemname": {
     "en": "Item Name",
-    "tr": "Öğe Adı",
-    "ru": "Название товара",
-    "ar": "اسم العنصر"
-  },
-  "unit": {
-    "en": "Unit",
-    "tr": "Birim",
-    "ru": "Единица",
-    "ar": "الوحدة"
-  },
-  "ifany": {
-    "en": "(if any)",
-    "tr": "(varsa)",
-    "ru": "(если есть)",
-    "ar": "(إن وجد)"
-  },
-  "brand": {
-    "en": "Brand",
-    "tr": "Marka",
-    "ru": "Бренд",
-    "ar": "العلامة التجارية"
-  },
-  "optional": {
-    "en": "(optional)",
-    "tr": "(isteğe bağlı)",
-    "ru": "(необязательно)",
-    "ar": "(اختياري)"
-  },
-  "brandmsg": {
-    "en": "Select from list or type to create new",
-    "tr": "Listeden seçin veya yeni oluşturmak için yazın",
-    "ru": "Выберите из списка или введите для создания нового",
-    "ar": "اختر من القائمة أو اكتب لإنشاء جديد"
-  },
-  "shortdescription": {
-    "en": "Short Description",
-    "tr": "Kısa Açıklama",
-    "ru": "Краткое описание",
-    "ar": "وصف قصير"
-  },
-  "currency": {
-    "en": "Currency",
-    "tr": "Para Birimi",
-    "ru": "Валюта",
-    "ar": "العملة"
+    "tr": "Ürün Adı",
+    "ru": "Название товара"
   },
   "price": {
     "en": "Price",
     "tr": "Fiyat",
-    "ru": "Цена",
-    "ar": "السعر"
+    "ru": "Цена"
   },
-  "contactdetails": {
-    "en": "Contact Details",
-    "tr": "İletişim Bilgileri",
-    "ru": "Контактные данные",
-    "ar": "تفاصيل الاتصال"
+  "home": {
+    "en": "Home",
+    "tr": "Ana Sayfa",
+    "ru": "Главная"
   },
-  "contactnumber": {
-    "en": "Contact Number",
-    "tr": "İletişim Numarası",
-    "ru": "Контактный номер",
-    "ar": "رقم الاتصال"
+  "search": {
+    "en": "Search",
+    "tr": "Ara",
+    "ru": "Поиск"
+  },
+  "settings": {
+    "en": "Settings",
+    "tr": "Ayarlar",
+    "ru": "Настройки"
+  },
+  "logout": {
+    "en": "Logout",
+    "tr": "Çıkış Yap",
+    "ru": "Выйти"
+  },
+  "welcome": {
+    "en": "Welcome",
+    "tr": "Hoş Geldiniz",
+    "ru": "Добро пожаловать"
+  },
+  "dashboard": {
+    "en": "Dashboard",
+    "tr": "Kontrol Paneli",
+    "ru": "Панель управления"
+  },
+  "profile": {
+    "en": "Profile",
+    "tr": "Profil",
+    "ru": "Профиль"
+  },
+  "orders": {
+    "en": "Orders",
+    "tr": "Siparişler",
+    "ru": "Заказы"
   },
   "email": {
     "en": "Email",
     "tr": "E-posta",
-    "ru": "Электронная почта",
-    "ar": "البريد الإلكتروني"
+    "ru": "Электронная почта"
   }
 }
