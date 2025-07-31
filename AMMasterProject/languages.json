@@ -226,5 +226,101 @@
     "tr": "Navigasyon",
     "de": "Navigation",
     "fr": "Navigation"
+  },
+  "mensfashion": {
+    "en": "Mens Fashion",
+    "tr": "Erkek Modası",
+    "de": "Herrenmode",
+    "fr": "Mode homme"
+  },
+  "phonesandtelecommunications": {
+    "en": "Phones and Telecommunications",
+    "tr": "Telefon ve Telekomünikasyon",
+    "de": "Telefone und Telekommunikation",
+    "fr": "Téléphones et télécommunications"
+  },
+  "computeroffice": {
+    "en": "Computer Office and Security",
+    "tr": "Bilgisayar Ofis ve Güvenlik",
+    "de": "Computer Büro und Sicherheit",
+    "fr": "Bureau informatique et sécurité"
+  },
+  "consumerelectronics": {
+    "en": "Consumer Electronics",
+    "tr": "Tüketici Elektroniği",
+    "de": "Unterhaltungselektronik",
+    "fr": "Électronique grand public"
+  },
+  "jewelryandwatches": {
+    "en": "Jewelry and Watches",
+    "tr": "Mücevher ve Saatler",
+    "de": "Schmuck und Uhren",
+    "fr": "Bijoux et montres"
+  },
+  "homepetappliances": {
+    "en": "Home Pet and Appliances",
+    "tr": "Ev Evcil Hayvan ve Aletler",
+    "de": "Haus Haustier und Geräte",
+    "fr": "Maison animaux et appareils"
+  },
+  "bagsandshoes": {
+    "en": "Bags and Shoes",
+    "tr": "Çanta ve Ayakkabı",
+    "de": "Taschen und Schuhe",
+    "fr": "Sacs et chaussures"
+  },
+  "toyskidsbabies": {
+    "en": "Toys Kids and Babies",
+    "tr": "Oyuncak Çocuk ve Bebekler",
+    "de": "Spielzeug Kinder und Babys",
+    "fr": "Jouets enfants et bébés"
+  },
+  "outdoorfunsports": {
+    "en": "Outdoor Fun and Sports",
+    "tr": "Açık Hava Eğlence ve Spor",
+    "de": "Outdoor Spaß und Sport",
+    "fr": "Plaisir extérieur et sports"
+  },
+  "beautyhealthhair": {
+    "en": "Beauty Health and Hair",
+    "tr": "Güzellik Sağlık ve Saç",
+    "de": "Schönheit Gesundheit und Haar",
+    "fr": "Beauté santé et cheveux"
+  },
+  "automobilesmotorcycles": {
+    "en": "Automobiles and Motorcycles",
+    "tr": "Otomobil ve Motosiklet",
+    "de": "Automobile und Motorräder",
+    "fr": "Automobiles et motos"
+  },
+  "toolshomeimprovement": {
+    "en": "Tools and Home Improvement",
+    "tr": "Araçlar ve Ev Geliştirme",
+    "de": "Werkzeuge und Heimwerken",
+    "fr": "Outils et amélioration de l'habitat"
+  },
+  "music": {
+    "en": "Music",
+    "tr": "Müzik",
+    "de": "Musik",
+    "fr": "Musique"
+  },
+  "kindleebooks": {
+    "en": "Kindle E Readers and Books",
+    "tr": "Kindle E-Okuyucu ve Kitaplar",
+    "de": "Kindle E-Reader und Bücher",
+    "fr": "Kindle E-Readers et livres"
+  },
+  "appstore": {
+    "en": "Appstore for Android",
+    "tr": "Android için Appstore",
+    "de": "Appstore für Android",
+    "fr": "Appstore pour Android"
+  },
+  "summerslipper": {
+    "en": "023 Summer Slippers Men Flip Flops Beach Sandals",
+    "tr": "023 Yaz Terlikleri Erkek Parmak Arası Plaj Sandaletleri",
+    "de": "023 Sommer Hausschuhe Herren Flip Flops Strand Sandalen",
+    "fr": "023 Chaussons d'été hommes tongs sandales de plage"
   }
 }
