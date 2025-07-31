@@ -78,6 +78,11 @@ namespace AMMasterProject.Controllers
                 // Read the contents of the languages.json file
                 string filePath = Path.Combine(Directory.GetCurrentDirectory(), "languages.json");
                 
+                // Debug: Log file path and existence
+                Console.WriteLine($"[LabelLoads] Looking for file at: {filePath}");
+                Console.WriteLine($"[LabelLoads] File exists: {System.IO.File.Exists(filePath)}");
+                Console.WriteLine($"[LabelLoads] Current directory: {Directory.GetCurrentDirectory()}");
+                
                 if (System.IO.File.Exists(filePath))
                 {
                     // Force refresh - read file directly without cache
@@ -85,6 +90,7 @@ namespace AMMasterProject.Controllers
                     
                     // Log for debugging
                     Console.WriteLine($"[LabelLoads] Reading languages.json, file size: {json.Length} chars");
+                    Console.WriteLine($"[LabelLoads] First 200 chars: {json.Substring(0, Math.Min(200, json.Length))}...");
                     
                     // Parse and return the JSON content
                     var translations = JsonConvert.DeserializeObject(json);
@@ -98,6 +104,7 @@ namespace AMMasterProject.Controllers
                 }
                 else
                 {
+                    Console.WriteLine("[LabelLoads] languages.json NOT FOUND - Using fallback websetting helper");
                     // Fallback: Try to get from websetting helper
                     var _labelSettings = _websettinghelper.GetWebsettingJson("LabelSettings");
 
