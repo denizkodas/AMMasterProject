@@ -22,20 +22,69 @@ var databaseContentMap = {
     'Kindle E Readers and Books': 'kindleebooks',
     'Appstore for Android': 'appstore',
     
-    // Product name patterns
+    // Product name patterns - exact matches first
     'Summer Slippers': 'summerslipper',
     '023 Summer Slippers Men Flip Flops Beach Sandals': 'summerslipper',
     '2022 New Men\'s Ladies Baseball Cap': 'baseballcap',
     '10 Color Winter Mens Turtleneck Sweaters Warm': 'turtlenecksweater',
     '2023 New Summer French Retro High-heeled Lady': 'frenchretroheels',
     
-    // Common terms
+    // Hot Sale products
+    'Hot Sale': 'hotsale',
+    'Hot sale': 'hotsale',
+    'HOT SALE': 'hotsale',
+    'HOT SALES': 'hotsales',
+    'Hot Sale Fashion Red Sneakers Men': 'hotsaleredsneakers',
+    'Hot Sale Moccasins Driving Shoe Big Size 38-48': 'hotsalemoccasins',
+    'Hot Sale Masha and Bear Children\'s Plush Doll': 'hotsalemashbear',
+    'New Design Hot Sale gold-color Austria Crystal': 'hotsalecrystal',
+    'Hot sale SD Memory Card 32GB 16GB 8GB SDHC': 'hotsalesdcard',
+    'Video Action Sport Cameras hot sale': 'hotsaleactioncamera',
+    'HOT SALES!!! Women Sexy V Neck Wrap Blouse': 'hotsaleblouse',
+    
+    // Jacket and clothing products
+    'Zipper Girls Boys Jackets Kids Outfits 3-12 Years': 'kidszipper',
+    'Hoodies Sweatshirts': 'hoodiessweatshirts',
+    'Winter Warm Fleece Padded Thick Child Coat': 'winterchildcoat',
+    
+    // Electronics
+    'HONOR 70 5G Mobile Phone Snapdragon': 'honor70phone',
+    'NEW HONOR 70 5G Mobile Phone Snapdragon 778G+': 'honor70phone',
+    
+    // Memory and storage
+    'Mini USB Flash Drive 16GB 32GB PenDrive': 'miniusbdrive',
+    'SD Memory Card 32GB 16GB 8GB SDHC': 'sdmemorycard',
+    
+    // Watches and accessories
+    'New Arrival Cool Rubber Band RPM Speedo meter': 'coolwristwatch',
+    'Digital LED Wrist Watch Gift': 'digitalwristwatch',
+    
+    // Shoes and footwear
+    'Fashion Red Sneakers Men Comfortable High top': 'redsneakers',
+    'Moccasins Driving Shoe Big Size': 'moccasinsshoe',
+    'Comfortable Leather Casual Shoes Men Loafers': 'leathercasualshoes',
+    
+    // Toys and dolls
+    'Masha and Bear Children\'s Plush Doll': 'mashbeardoll',
+    'Cute Russian Princess Doll': 'russianprincessdoll',
+    
+    // Women's clothing
+    'Women Sexy V Neck Wrap Blouse': 'womenvneckblouse',
+    'Solid Color Long Sleeve Slim Ribbed': 'solidcolorblouse',
+    
+    // Common terms and navigation
     'About us': 'about',
     'Contact us': 'contact',
     'Buy Now': 'buynow',
     'Download App': 'downloadapp',
     'Become a Seller': 'becomeseller',
-    'RTL Demo': 'rtldemo'
+    'RTL Demo': 'rtldemo',
+    'All Categories': 'allcategories',
+    'Show More': 'showmore',
+    'Load More': 'loadmore',
+    'View All': 'viewall',
+    'See All': 'seeall',
+    'More': 'more'
 };
 
 // Normalize text for better matching
@@ -97,6 +146,12 @@ function translateAllContent() {
     
     // 5. Translate header links
     translateHeaderLinks();
+    
+    // 6. Start dynamic content observer (only once)
+    if (!window.dynamicContentObserverStarted) {
+        translateDynamicContent();
+        window.dynamicContentObserverStarted = true;
+    }
     
     console.log('✅ Translation completed for:', currentLanguage);
 }
@@ -184,29 +239,87 @@ function translateProductTitles() {
             var translationKey = databaseContentMap[productText];
             var translation = getTranslation(translationKey, currentLanguage);
             if (translation !== translationKey) {
-                console.log(`✅ Translating product: "${productText}" → "${translation}"`);
+                console.log(`✅ Translating product (exact): "${productText}" → "${translation}"`);
+                $this.text(translation);
+                return; // Found exact match, skip partial matching
+            }
+        }
+        
+        // Check for partial matches - look for longest match first
+        var bestMatch = null;
+        var bestMatchLength = 0;
+        
+        for (var pattern in databaseContentMap) {
+            // Skip exact matches as we already checked them
+            if (pattern === productText) continue;
+            
+            // Check if product text contains this pattern
+            if (productText.toLowerCase().includes(pattern.toLowerCase())) {
+                if (pattern.length > bestMatchLength) {
+                    bestMatch = pattern;
+                    bestMatchLength = pattern.length;
+                }
+            }
+        }
+        
+        if (bestMatch) {
+            var translationKey = databaseContentMap[bestMatch];
+            var translation = getTranslation(translationKey, currentLanguage);
+            if (translation !== translationKey) {
+                console.log(`✅ Translating product (partial "${bestMatch}"): "${productText}" → "${translation}"`);
                 $this.text(translation);
             }
         } else {
-            // Check for partial matches
-            var found = false;
-            for (var pattern in databaseContentMap) {
-                if (productText.includes(pattern)) {
-                    var translationKey = databaseContentMap[pattern];
-                    var translation = getTranslation(translationKey, currentLanguage);
-                    if (translation !== translationKey) {
-                        console.log(`✅ Translating product (partial): "${productText}" → "${translation}"`);
-                        $this.text(translation);
-                        found = true;
-                        break;
+            console.log(`❌ No mapping found for product: "${productText}"`);
+        }
+    });
+}
+
+// Function to handle dynamically loaded content
+function translateDynamicContent() {
+    console.log('🔄 Translating dynamically loaded content...');
+    
+    // Use MutationObserver to watch for new content
+    var observer = new MutationObserver(function(mutations) {
+        var shouldTranslate = false;
+        
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Check if any new nodes contain translatable content
+                for (var i = 0; i < mutation.addedNodes.length; i++) {
+                    var node = mutation.addedNodes[i];
+                    if (node.nodeType === 1) { // Element node
+                        var $node = $(node);
+                        if ($node.find('.p-title, .first-level-a, .second-level-a, .third-level-a').length > 0 ||
+                            $node.hasClass('p-title') || 
+                            $node.hasClass('first-level-a') || 
+                            $node.hasClass('second-level-a') || 
+                            $node.hasClass('third-level-a')) {
+                            shouldTranslate = true;
+                            break;
+                        }
                     }
                 }
             }
-            if (!found) {
-                console.log(`❌ No mapping found for product: "${productText}"`);
-            }
+        });
+        
+        if (shouldTranslate) {
+            console.log('🔄 New translatable content detected, translating...');
+            // Delay translation slightly to ensure content is fully rendered
+            setTimeout(function() {
+                translateCategories();
+                translateProductTitles();
+            }, 100);
         }
     });
+    
+    // Start observing
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    console.log('👁️ Dynamic content observer started');
 }
 
 function translateHeaderLinks() {
@@ -456,10 +569,61 @@ function translateDynamicProducts() {
     translateProductTitles();
 }
 
+// Force refresh all translations (useful for debugging or after content updates)
+function forceTranslationRefresh() {
+    console.log('🔄 Force refreshing all translations...');
+    
+    if (!translations) {
+        console.log('📥 Loading translations first...');
+        loadTranslations(function() {
+            translateAllContent();
+        });
+    } else {
+        translateAllContent();
+    }
+}
+
+// Enhanced event handlers for various content loading scenarios
+$(document).ready(function() {
+    // Handle AJAX content loading
+    $(document).ajaxComplete(function(event, xhr, settings) {
+        // Only translate if the request was successful and might contain translatable content
+        if (xhr.status === 200 && settings.url) {
+            console.log('🌐 AJAX request completed:', settings.url);
+            setTimeout(function() {
+                translateCategories();
+                translateProductTitles();
+            }, 200);
+        }
+    });
+    
+    // Handle common dynamic content triggers
+    $(document).on('click', '.load-more, .show-more, .pagination a, .category-link', function() {
+        console.log('🔄 Content loading trigger detected');
+        setTimeout(function() {
+            translateCategories();
+            translateProductTitles();
+        }, 500);
+    });
+    
+    // Handle tab switches and modal opens
+    $(document).on('shown.bs.tab shown.bs.modal', function() {
+        console.log('🔄 Tab/Modal content shown');
+        setTimeout(function() {
+            translateCategories();
+            translateProductTitles();
+        }, 100);
+    });
+});
+
 // Initialize language on page load
 document.addEventListener("DOMContentLoaded", function () {
     initializeLanguage();
     updateTranslations();
+    
+    // Make forceTranslationRefresh available globally for debugging
+    window.forceTranslationRefresh = forceTranslationRefresh;
+    console.log('🌍 Language system initialized. Use forceTranslationRefresh() to manually refresh translations.');
 });
 
 $(document).on('click', '.open-popup-button', function () {

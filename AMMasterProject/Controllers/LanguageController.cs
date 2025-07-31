@@ -92,13 +92,25 @@ namespace AMMasterProject.Controllers
                     Console.WriteLine($"[LabelLoads] Reading languages.json, file size: {json.Length} chars");
                     Console.WriteLine($"[LabelLoads] First 200 chars: {json.Substring(0, Math.Min(200, json.Length))}...");
                     
+                    // Check if new translations exist
+                    if (json.Contains("hotsale") && json.Contains("kidszipper"))
+                    {
+                        Console.WriteLine("[LabelLoads] ✅ New translations found in file!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("[LabelLoads] ⚠️ New translations NOT found in file!");
+                    }
+                    
                     // Return raw JSON content directly
                     Console.WriteLine($"[LabelLoads] Returning raw JSON content");
                     
-                    // Add cache-busting headers
-                    Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+                    // Add aggressive cache-busting headers
+                    Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
                     Response.Headers.Add("Pragma", "no-cache");
-                    Response.Headers.Add("Expires", "0");
+                    Response.Headers.Add("Expires", "Thu, 01 Jan 1970 00:00:00 GMT");
+                    Response.Headers.Add("Last-Modified", DateTime.UtcNow.ToString("R"));
+                    Response.Headers.Add("ETag", Guid.NewGuid().ToString());
                     
                     // Return raw JSON string
                     return Content(json, "application/json");
