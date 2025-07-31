@@ -1,7 +1,6 @@
 var translations = null;
 var currentLanguage = 'en'; // Set default language
-var supportedLanguages = ['en', 'tr', 'ru', 'ar']; // Supported languages
-var rtlLanguages = ['ar']; // RTL languages
+var supportedLanguages = ['en', 'tr', 'ru']; // Supported languages
 
 // Initialize language from localStorage or default to 'en'
 function initializeLanguage() {
@@ -12,16 +11,12 @@ function initializeLanguage() {
         currentLanguage = 'en';
         localStorage.setItem('selectedLanguage', currentLanguage);
     }
-    
-    // Set RTL direction
-    updateTextDirection();
 }
 
 function setLanguage(language) {
     if (supportedLanguages.includes(language)) {
         currentLanguage = language;
         localStorage.setItem('selectedLanguage', language);
-        updateTextDirection();
         updateTranslations();
         
         // Update language selector UI
@@ -29,21 +24,7 @@ function setLanguage(language) {
     }
 }
 
-// Update text direction based on language
-function updateTextDirection() {
-    var isRTL = rtlLanguages.includes(currentLanguage);
-    var body = document.getElementById('mybody') || document.body;
-    
-    if (isRTL) {
-        body.setAttribute('dir', 'rtl');
-        body.classList.add('rtl');
-        localStorage.setItem('isRTL', 'true');
-    } else {
-        body.setAttribute('dir', 'ltr');
-        body.classList.remove('rtl');
-        localStorage.setItem('isRTL', 'false');
-    }
-}
+
 
 // Update language selector UI
 function updateLanguageSelectorUI() {
@@ -54,8 +35,7 @@ function updateLanguageSelectorUI() {
         var languageNames = {
             'en': 'English',
             'tr': 'Türkçe', 
-            'ru': 'Русский',
-            'ar': 'العربية'
+            'ru': 'Русский'
         };
         currentLangElement.textContent = languageNames[currentLanguage] || 'English';
     }
@@ -80,8 +60,7 @@ function getFlagCode(langCode) {
     var flagCodes = {
         'en': 'us',
         'tr': 'tr',
-        'ru': 'ru', 
-        'ar': 'sa'
+        'ru': 'ru'
     };
     return flagCodes[langCode] || 'us';
 }

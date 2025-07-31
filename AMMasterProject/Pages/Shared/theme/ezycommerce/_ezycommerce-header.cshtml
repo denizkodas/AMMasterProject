@@ -87,7 +87,6 @@
                             localStorage.setItem('selectedLanguage', 'en');
                             document.getElementById('currentLang').textContent = 'English';
                             document.getElementById('dilMenu').style.display = 'none';
-                            document.body.setAttribute('dir', 'ltr');
                             if(typeof setLanguage === 'function') setLanguage('en');
                             setTimeout(() => location.reload(), 500);
                         " style="
@@ -104,7 +103,6 @@
                             localStorage.setItem('selectedLanguage', 'tr');
                             document.getElementById('currentLang').textContent = 'Türkçe';
                             document.getElementById('dilMenu').style.display = 'none';
-                            document.body.setAttribute('dir', 'ltr');
                             if(typeof setLanguage === 'function') setLanguage('tr');
                             setTimeout(() => location.reload(), 500);
                         " style="
@@ -121,7 +119,6 @@
                             localStorage.setItem('selectedLanguage', 'ru');
                             document.getElementById('currentLang').textContent = 'Русский';
                             document.getElementById('dilMenu').style.display = 'none';
-                            document.body.setAttribute('dir', 'ltr');
                             if(typeof setLanguage === 'function') setLanguage('ru');
                             setTimeout(() => location.reload(), 500);
                         " style="
@@ -129,26 +126,8 @@
                             padding: 12px 15px; 
                             text-decoration: none; 
                             color: #333;
-                            border-bottom: 1px solid #eee;
                         " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
                             🇷🇺 Русский
-                        </a>
-                        
-                        <a href="#" onclick="
-                            localStorage.setItem('selectedLanguage', 'ar');
-                            document.getElementById('currentLang').textContent = 'العربية';
-                            document.getElementById('dilMenu').style.display = 'none';
-                            document.body.setAttribute('dir', 'rtl');
-                            document.body.classList.add('rtl');
-                            if(typeof setLanguage === 'function') setLanguage('ar');
-                            setTimeout(() => location.reload(), 500);
-                        " style="
-                            display: block; 
-                            padding: 12px 15px; 
-                            text-decoration: none; 
-                            color: #333;
-                        " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
-                            🇸🇦 العربية
                         </a>
                     </div>
                 </li>
