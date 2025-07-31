@@ -443,6 +443,66 @@
     "de": "HONOR 70 5G Mobiltelefon Snapdragon",
     "fr": "HONOR 70 5G Téléphone mobile Snapdragon"
   },
+  "androidphone": {
+    "en": "Smartphone Android Mobile Phone",
+    "tr": "Akıllı Telefon Android Cep Telefonu",
+    "de": "Smartphone Android Mobiltelefon",
+    "fr": "Smartphone Android téléphone mobile"
+  },
+  "bluetoothearphones": {
+    "en": "Wireless Bluetooth Earphones Headset",
+    "tr": "Kablosuz Bluetooth Kulaklık Kulaküstü",
+    "de": "Kabellose Bluetooth Kopfhörer Headset",
+    "fr": "Écouteurs sans fil Bluetooth casque"
+  },
+  "powerbank": {
+    "en": "Power Bank Portable Charger",
+    "tr": "Taşınabilir Şarj Cihazı Power Bank",
+    "de": "Power Bank Tragbares Ladegerät",
+    "fr": "Chargeur portable Power Bank"
+  },
+  "usbcable": {
+    "en": "USB Cable Fast Charging",
+    "tr": "USB Kablo Hızlı Şarj",
+    "de": "USB Kabel Schnellladung",
+    "fr": "Câble USB charge rapide"
+  },
+  "phonecase": {
+    "en": "Phone Case Cover Protection",
+    "tr": "Telefon Kılıfı Kapak Koruma",
+    "de": "Handyhülle Schutz Cover",
+    "fr": "Coque téléphone protection étui"
+  },
+  "androidtablet": {
+    "en": "Tablet PC Android WiFi",
+    "tr": "Tablet PC Android WiFi",
+    "de": "Tablet PC Android WiFi",
+    "fr": "Tablette PC Android WiFi"
+  },
+  "smartwatch": {
+    "en": "Smart Watch Fitness Tracker",
+    "tr": "Akıllı Saat Fitness Takip Cihazı",
+    "de": "Smartwatch Fitness Tracker",
+    "fr": "Montre connectée tracker fitness"
+  },
+  "laptop": {
+    "en": "Laptop Computer Notebook",
+    "tr": "Dizüstü Bilgisayar Notebook",
+    "de": "Laptop Computer Notebook",
+    "fr": "Ordinateur portable laptop"
+  },
+  "gamingmouse": {
+    "en": "Gaming Mouse Wireless",
+    "tr": "Oyuncu Mouse Kablosuz",
+    "de": "Gaming Maus Kabellos",
+    "fr": "Souris gaming sans fil"
+  },
+  "mechanicalkeyboard": {
+    "en": "Keyboard Mechanical RGB",
+    "tr": "Klavye Mekanik RGB",
+    "de": "Tastatur Mechanisch RGB",
+    "fr": "Clavier mécanique RGB"
+  },
   "miniusbdrive": {
     "en": "Mini USB Flash Drive 16GB 32GB PenDrive",
     "tr": "Mini USB Flash Bellek 16GB 32GB PenDrive",
@@ -538,5 +598,209 @@
     "tr": "Daha Fazla",
     "de": "Mehr",
     "fr": "Plus"
+  },
+  "casualsneakers": {
+    "en": "Men Casual Shoes Breathable Walking Sneakers",
+    "tr": "Erkek Günlük Ayakkabı Nefes Alabilir Yürüyüş Spor Ayakkabı",
+    "de": "Herren Freizeitschuhe Atmungsaktive Walking Sneakers",
+    "fr": "Chaussures décontractées homme baskets de marche respirantes"
+  },
+  "womenhighheels": {
+    "en": "Women High Heels Platform Sandals Summer",
+    "tr": "Kadın Yüksek Topuk Platform Sandalet Yaz",
+    "de": "Damen High Heels Platform Sandalen Sommer",
+    "fr": "Sandales à talons hauts plateforme femme été"
+  },
+  "woodenpuzzle": {
+    "en": "Educational Wooden Puzzle Toys for Kids",
+    "tr": "Çocuklar için Eğitici Ahşap Puzzle Oyuncakları",
+    "de": "Pädagogische Holzpuzzle Spielzeug für Kinder",
+    "fr": "Jouets puzzle en bois éducatifs pour enfants"
+  },
+  "rccar": {
+    "en": "Remote Control Racing Car Toy",
+    "tr": "Uzaktan Kumandalı Yarış Arabası Oyuncak",
+    "de": "Ferngesteuerte Rennwagen Spielzeug",
+    "fr": "Jouet voiture de course télécommandée"
+  },
+  "summerdress": {
+    "en": "Women Summer Dress Casual Short Sleeve",
+    "tr": "Kadın Yaz Elbise Günlük Kısa Kollu",
+    "de": "Damen Sommerkleid Casual Kurzarm",
+    "fr": "Robe d'été femme décontractée manches courtes"
+  },
+  "fashionhandbag": {
+    "en": "Ladies Fashion Handbag Shoulder Bag",
+    "tr": "Bayan Moda El Çantası Omuz Çantası",
+    "de": "Damen Mode Handtasche Schultertasche",
+    "fr": "Sac à main mode femme sac à bandoulière"
+  },
+  "mentshirt": {
+    "en": "Men Cotton T-Shirt Short Sleeve Casual",
+    "tr": "Erkek Pamuk T-Shirt Kısa Kollu Günlük",
+    "de": "Herren Baumwolle T-Shirt Kurzarm Casual",
+    "fr": "T-shirt homme coton manches courtes décontracté"
+  },
+  "menformalshirt": {
+    "en": "Men Business Formal Shirt Long Sleeve",
+    "tr": "Erkek İş Resmi Gömlek Uzun Kollu",
+    "de": "Herren Business Formelles Hemd Langarm",
+    "fr": "Chemise homme business formelle manches longues"
+  },
+  "menwinterjacket": {
+    "en": "Men Winter Jacket Warm Thick Coat",
+    "tr": "Erkek Kış Ceket Sıcak Kalın Palto",
+    "de": "Herren Winterjacke Warm Dicker Mantel",
+    "fr": "Veste d'hiver homme manteau chaud épais"
+  },
+  "goldnecklace": {
+    "en": "Fashion Gold Chain Necklace Women",
+    "tr": "Moda Altın Zincir Kolye Kadın",
+    "de": "Mode Gold Kette Halskette Damen",
+    "fr": "Collier chaîne en or mode femme"
+  },
+  "silverring": {
+    "en": "Silver Ring Adjustable Size Crystal",
+    "tr": "Gümüş Yüzük Ayarlanabilir Boyut Kristal",
+    "de": "Silber Ring Verstellbare Größe Kristall",
+    "fr": "Bague argent taille ajustable cristal"
+  },
+  "luxurywatch": {
+    "en": "Luxury Watch Men Automatic Mechanical",
+    "tr": "Lüks Saat Erkek Otomatik Mekanik",
+    "de": "Luxus Uhr Herren Automatik Mechanisch",
+    "fr": "Montre de luxe homme automatique mécanique"
+  },
+  "kitchentools": {
+    "en": "Kitchen Utensils Cooking Tools Set",
+    "tr": "Mutfak Gereçleri Pişirme Araçları Seti",
+    "de": "Küchenutensilien Kochgeschirr Set",
+    "fr": "Ustensiles de cuisine ensemble d'outils de cuisson"
+  },
+  "ledstringlights": {
+    "en": "LED String Lights Decoration Indoor",
+    "tr": "LED Dizi Işıklar Dekorasyon İç Mekan",
+    "de": "LED Lichterkette Dekoration Innenbereich",
+    "fr": "Guirlande lumineuse LED décoration intérieure"
+  },
+  "bathroomaccessories": {
+    "en": "Bathroom Accessories Set Soap Dispenser",
+    "tr": "Banyo Aksesuarları Seti Sabun Dispenseri",
+    "de": "Badezimmer Zubehör Set Seifenspender",
+    "fr": "Ensemble d'accessoires de salle de bain distributeur de savon"
+  },
+  "resistancebands": {
+    "en": "Fitness Resistance Bands Exercise Set",
+    "tr": "Fitness Direnç Bantları Egzersiz Seti",
+    "de": "Fitness Widerstandsbänder Übungsset",
+    "fr": "Bandes de résistance fitness ensemble d'exercice"
+  },
+  "campingtent": {
+    "en": "Camping Tent Waterproof 2-4 Person",
+    "tr": "Kamp Çadırı Su Geçirmez 2-4 Kişi",
+    "de": "Campingzelt Wasserdicht 2-4 Person",
+    "fr": "Tente de camping imperméable 2-4 personnes"
+  },
+  "bicyclehelmet": {
+    "en": "Bicycle Accessories Safety Helmet",
+    "tr": "Bisiklet Aksesuarları Güvenlik Kaskı",
+    "de": "Fahrrad Zubehör Sicherheitshelm",
+    "fr": "Accessoires vélo casque de sécurité"
+  },
+  "dogcollar": {
+    "en": "Dog Collar Adjustable Comfortable",
+    "tr": "Köpek Tasması Ayarlanabilir Rahat",
+    "de": "Hundehalsband Verstellbar Bequem",
+    "fr": "Collier de chien ajustable confortable"
+  },
+  "cattoy": {
+    "en": "Cat Toy Interactive Playing Ball",
+    "tr": "Kedi Oyuncağı Etkileşimli Oyun Topu",
+    "de": "Katzenspielzeug Interaktiver Spielball",
+    "fr": "Jouet pour chat balle de jeu interactive"
+  },
+  "petfoodbowl": {
+    "en": "Pet Food Bowl Stainless Steel",
+    "tr": "Evcil Hayvan Yemek Kabı Paslanmaz Çelik",
+    "de": "Haustierfutterschale Edelstahl",
+    "fr": "Bol de nourriture pour animaux acier inoxydable"
+  },
+  "facemask": {
+    "en": "Face Mask Moisturizing Anti-Aging",
+    "tr": "Yüz Maskesi Nemlendirici Yaşlanma Karşıtı",
+    "de": "Gesichtsmaske Feuchtigkeitsspendend Anti-Aging",
+    "fr": "Masque visage hydratant anti-âge"
+  },
+  "hairshampoo": {
+    "en": "Hair Care Shampoo Natural Organic",
+    "tr": "Saç Bakım Şampuanı Doğal Organik",
+    "de": "Haarpflege Shampoo Natürlich Organisch",
+    "fr": "Shampooing soin des cheveux naturel bio"
+  },
+  "makeupbrushset": {
+    "en": "Makeup Brush Set Professional",
+    "tr": "Makyaj Fırça Seti Profesyonel",
+    "de": "Make-up Pinsel Set Professionell",
+    "fr": "Ensemble de pinceaux de maquillage professionnel"
+  },
+  "bestseller": {
+    "en": "Best Seller",
+    "tr": "En Çok Satan",
+    "de": "Bestseller",
+    "fr": "Meilleure vente"
+  },
+  "newarrival": {
+    "en": "New Arrival",
+    "tr": "Yeni Gelenler",
+    "de": "Neuankömmling",
+    "fr": "Nouvelle arrivée"
+  },
+  "featured": {
+    "en": "Featured",
+    "tr": "Öne Çıkan",
+    "de": "Vorgestellt",
+    "fr": "En vedette"
+  },
+  "popular": {
+    "en": "Popular",
+    "tr": "Popüler",
+    "de": "Beliebt",
+    "fr": "Populaire"
+  },
+  "trending": {
+    "en": "Trending",
+    "tr": "Trend",
+    "de": "Im Trend",
+    "fr": "Tendance"
+  },
+  "sale": {
+    "en": "Sale",
+    "tr": "İndirim",
+    "de": "Verkauf",
+    "fr": "Solde"
+  },
+  "discount": {
+    "en": "Discount",
+    "tr": "İndirim",
+    "de": "Rabatt",
+    "fr": "Remise"
+  },
+  "freeshipping": {
+    "en": "Free Shipping",
+    "tr": "Ücretsiz Kargo",
+    "de": "Kostenloser Versand",
+    "fr": "Livraison gratuite"
+  },
+  "limitedtime": {
+    "en": "Limited Time",
+    "tr": "Sınırlı Süre",
+    "de": "Begrenzte Zeit",
+    "fr": "Temps limité"
+  },
+  "specialoffer": {
+    "en": "Special Offer",
+    "tr": "Özel Teklif",
+    "de": "Sonderangebot",
+    "fr": "Offre spéciale"
   }
 }

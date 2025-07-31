@@ -29,7 +29,7 @@ var databaseContentMap = {
     '10 Color Winter Mens Turtleneck Sweaters Warm': 'turtlenecksweater',
     '2023 New Summer French Retro High-heeled Lady': 'frenchretroheels',
     
-    // Hot Sale products
+    // Hot Sale products - all variations
     'Hot Sale': 'hotsale',
     'Hot sale': 'hotsale',
     'HOT SALE': 'hotsale',
@@ -47,9 +47,20 @@ var databaseContentMap = {
     'Hoodies Sweatshirts': 'hoodiessweatshirts',
     'Winter Warm Fleece Padded Thick Child Coat': 'winterchildcoat',
     
-    // Electronics
+    // Electronics - expanded
     'HONOR 70 5G Mobile Phone Snapdragon': 'honor70phone',
     'NEW HONOR 70 5G Mobile Phone Snapdragon 778G+': 'honor70phone',
+    'HONOR 70 5G Mobile Phone Snapdragon 778G+ Octa': 'honor70phone',
+    'Smartphone Android Mobile Phone': 'androidphone',
+    'Wireless Bluetooth Earphones Headset': 'bluetoothearphones',
+    'Power Bank Portable Charger': 'powerbank',
+    'USB Cable Fast Charging': 'usbcable',
+    'Phone Case Cover Protection': 'phonecase',
+    'Tablet PC Android WiFi': 'androidtablet',
+    'Smart Watch Fitness Tracker': 'smartwatch',
+    'Laptop Computer Notebook': 'laptop',
+    'Gaming Mouse Wireless': 'gamingmouse',
+    'Keyboard Mechanical RGB': 'mechanicalkeyboard',
     
     // Memory and storage
     'Mini USB Flash Drive 16GB 32GB PenDrive': 'miniusbdrive',
@@ -59,18 +70,54 @@ var databaseContentMap = {
     'New Arrival Cool Rubber Band RPM Speedo meter': 'coolwristwatch',
     'Digital LED Wrist Watch Gift': 'digitalwristwatch',
     
-    // Shoes and footwear
+    // Shoes and footwear - expanded
     'Fashion Red Sneakers Men Comfortable High top': 'redsneakers',
     'Moccasins Driving Shoe Big Size': 'moccasinsshoe',
     'Comfortable Leather Casual Shoes Men Loafers': 'leathercasualshoes',
+    'Men Casual Shoes Breathable Walking Sneakers': 'casualsneakers',
+    'Women High Heels Platform Sandals Summer': 'womenhighheels',
     
     // Toys and dolls
     'Masha and Bear Children\'s Plush Doll': 'mashbeardoll',
     'Cute Russian Princess Doll': 'russianprincessdoll',
+    'Educational Wooden Puzzle Toys for Kids': 'woodenpuzzle',
+    'Remote Control Racing Car Toy': 'rccar',
     
-    // Women's clothing
+    // Women's clothing - expanded  
     'Women Sexy V Neck Wrap Blouse': 'womenvneckblouse',
     'Solid Color Long Sleeve Slim Ribbed': 'solidcolorblouse',
+    'Women Summer Dress Casual Short Sleeve': 'summerdress',
+    'Ladies Fashion Handbag Shoulder Bag': 'fashionhandbag',
+    
+    // Men's clothing - expanded
+    'Men Cotton T-Shirt Short Sleeve Casual': 'mentshirt',
+    'Men Business Formal Shirt Long Sleeve': 'menformalshirt',
+    'Men Winter Jacket Warm Thick Coat': 'menwinterjacket',
+    
+    // Jewelry and accessories
+    'Fashion Gold Chain Necklace Women': 'goldnecklace',
+    'Silver Ring Adjustable Size Crystal': 'silverring',
+    'Luxury Watch Men Automatic Mechanical': 'luxurywatch',
+    
+    // Home and garden
+    'Kitchen Utensils Cooking Tools Set': 'kitchentools',
+    'LED String Lights Decoration Indoor': 'ledstringlights',
+    'Bathroom Accessories Set Soap Dispenser': 'bathroomaccessories',
+    
+    // Sports and outdoor
+    'Fitness Resistance Bands Exercise Set': 'resistancebands',
+    'Camping Tent Waterproof 2-4 Person': 'campingtent',
+    'Bicycle Accessories Safety Helmet': 'bicyclehelmet',
+    
+    // Pet supplies
+    'Dog Collar Adjustable Comfortable': 'dogcollar',
+    'Cat Toy Interactive Playing Ball': 'cattoy',
+    'Pet Food Bowl Stainless Steel': 'petfoodbowl',
+    
+    // Beauty and health
+    'Face Mask Moisturizing Anti-Aging': 'facemask',
+    'Hair Care Shampoo Natural Organic': 'hairshampoo',
+    'Makeup Brush Set Professional': 'makeupbrushset',
     
     // Common terms and navigation
     'About us': 'about',
@@ -84,12 +131,72 @@ var databaseContentMap = {
     'Load More': 'loadmore',
     'View All': 'viewall',
     'See All': 'seeall',
-    'More': 'more'
+    'More': 'more',
+    'Best Seller': 'bestseller',
+    'New Arrival': 'newarrival',
+    'Featured': 'featured',
+    'Popular': 'popular',
+    'Trending': 'trending',
+    'Sale': 'sale',
+    'Discount': 'discount',
+    'Free Shipping': 'freeshipping',
+    'Limited Time': 'limitedtime',
+    'Special Offer': 'specialoffer'
 };
 
 // Normalize text for better matching
 function normalizeText(text) {
-    return text.replace(/\s+/g, ' ').trim(); // Replace multiple spaces with single space
+    if (!text) return '';
+    
+    return text
+        .replace(/\s+/g, ' ')           // Replace multiple spaces with single space
+        .replace(/['']/g, "'")          // Normalize apostrophes
+        .replace(/[""]/g, '"')          // Normalize quotes
+        .replace(/[–—]/g, '-')          // Normalize dashes
+        .trim();                        // Remove leading/trailing spaces
+}
+
+// Enhanced pattern matching for product variations
+function findBestProductMatch(productText) {
+    if (!productText || productText.length < 3) return null;
+    
+    var normalizedProduct = productText.toLowerCase();
+    var bestMatch = null;
+    var bestScore = 0;
+    
+    // First try exact matches
+    if (databaseContentMap[productText]) {
+        return { key: databaseContentMap[productText], type: 'exact' };
+    }
+    
+    // Try case-insensitive exact matches
+    for (var pattern in databaseContentMap) {
+        if (pattern.toLowerCase() === normalizedProduct) {
+            return { key: databaseContentMap[pattern], type: 'case-insensitive' };
+        }
+    }
+    
+    // Try partial matches - prioritize longer patterns
+    for (var pattern in databaseContentMap) {
+        var normalizedPattern = pattern.toLowerCase();
+        
+        // Skip very short patterns for partial matching
+        if (normalizedPattern.length < 5) continue;
+        
+        if (normalizedProduct.includes(normalizedPattern)) {
+            // Score based on pattern length and position
+            var score = normalizedPattern.length;
+            if (normalizedProduct.startsWith(normalizedPattern)) {
+                score += 10; // Bonus for starting match
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = { key: databaseContentMap[pattern], type: 'partial', pattern: pattern };
+            }
+        }
+    }
+    
+    return bestMatch;
 }
 
 // Initialize language from localStorage or default to 'en'
@@ -194,19 +301,25 @@ function translateDatabaseContent() {
 function translateCategories() {
     console.log('🔄 Translating categories...');
     
+    // Track translations for summary
+    var translatedCount = 0;
+    var totalCount = 0;
+    var unmappedCategories = [];
+    
     // Target category links specifically
     $('.first-level-a, .second-level-a, .third-level-a').each(function() {
         var $this = $(this);
         var categoryText = normalizeText($this.text());
+        totalCount++;
         
-        console.log(`🔍 Checking category: "${categoryText}"`);
+        if (!categoryText || categoryText.length < 2) {
+            return; // Skip very short or empty text
+        }
         
         if (databaseContentMap[categoryText]) {
             var translationKey = databaseContentMap[categoryText];
             var translation = getTranslation(translationKey, currentLanguage);
             if (translation !== translationKey) {
-                console.log(`✅ Translating category: "${categoryText}" → "${translation}"`);
-                
                 // Get the icon element if it exists
                 var $icon = $this.find('.first-level-icon, .second-level-icon, .third-level-icon');
                 
@@ -217,62 +330,67 @@ function translateCategories() {
                     // No icon, just replace text
                     $this.text(translation);
                 }
+                translatedCount++;
             }
         } else {
-            console.log(`❌ No mapping found for: "${categoryText}"`);
+            // Only log unmapped categories if they're meaningful
+            if (categoryText.length > 3 && !categoryText.match(/^[0-9\s\-_]+$/)) {
+                unmappedCategories.push(categoryText);
+            }
         }
     });
+    
+    // Summary logging
+    console.log(`✅ Category translation complete: ${translatedCount}/${totalCount} translated`);
+    
+    // Show unmapped categories (they're usually fewer than products)
+    if (unmappedCategories.length > 0) {
+        console.log(`❌ ${unmappedCategories.length} unmapped categories:`, unmappedCategories);
+    }
 }
 
 function translateProductTitles() {
     console.log('🔄 Translating product titles...');
     
+    // Track translations for summary
+    var translatedCount = 0;
+    var totalCount = 0;
+    var unmappedProducts = [];
+    
     // Translate product titles in various containers
     $('.p-title').each(function() {
         var $this = $(this);
         var productText = normalizeText($this.text());
+        totalCount++;
         
-        console.log(`🔍 Checking product: "${productText}"`);
-        
-        // Check for exact matches first
-        if (databaseContentMap[productText]) {
-            var translationKey = databaseContentMap[productText];
-            var translation = getTranslation(translationKey, currentLanguage);
-            if (translation !== translationKey) {
-                console.log(`✅ Translating product (exact): "${productText}" → "${translation}"`);
-                $this.text(translation);
-                return; // Found exact match, skip partial matching
-            }
+        if (!productText || productText.length < 3) {
+            return; // Skip very short or empty text
         }
         
-        // Check for partial matches - look for longest match first
-        var bestMatch = null;
-        var bestMatchLength = 0;
+        // Use enhanced pattern matching
+        var match = findBestProductMatch(productText);
         
-        for (var pattern in databaseContentMap) {
-            // Skip exact matches as we already checked them
-            if (pattern === productText) continue;
-            
-            // Check if product text contains this pattern
-            if (productText.toLowerCase().includes(pattern.toLowerCase())) {
-                if (pattern.length > bestMatchLength) {
-                    bestMatch = pattern;
-                    bestMatchLength = pattern.length;
-                }
-            }
-        }
-        
-        if (bestMatch) {
-            var translationKey = databaseContentMap[bestMatch];
-            var translation = getTranslation(translationKey, currentLanguage);
-            if (translation !== translationKey) {
-                console.log(`✅ Translating product (partial "${bestMatch}"): "${productText}" → "${translation}"`);
+        if (match) {
+            var translation = getTranslation(match.key, currentLanguage);
+            if (translation !== match.key) {
                 $this.text(translation);
+                translatedCount++;
             }
         } else {
-            console.log(`❌ No mapping found for product: "${productText}"`);
+            // Only log unmapped products if they're not too generic
+            if (productText.length > 10 && !productText.match(/^[0-9\s\-_]+$/)) {
+                unmappedProducts.push(productText);
+            }
         }
     });
+    
+    // Summary logging
+    console.log(`✅ Product translation complete: ${translatedCount}/${totalCount} translated`);
+    
+    // Show sample of unmapped products (max 10)
+    if (unmappedProducts.length > 0) {
+        console.log(`❌ ${unmappedProducts.length} unmapped products. Sample:`, unmappedProducts.slice(0, 10));
+    }
 }
 
 // Function to handle dynamically loaded content
@@ -583,6 +701,119 @@ function forceTranslationRefresh() {
     }
 }
 
+// Comprehensive translation testing function
+function testAllTranslations() {
+    console.log('🧪 Starting comprehensive translation test...');
+    
+    var languages = ['en', 'tr', 'de', 'fr'];
+    var testResults = {
+        categories: {},
+        products: {},
+        coverage: {}
+    };
+    
+    // Test each language
+    languages.forEach(function(lang) {
+        console.log(`\n🌍 Testing ${lang.toUpperCase()} translations...`);
+        
+        var originalLang = currentLanguage;
+        currentLanguage = lang;
+        
+        // Test categories
+        var categoryCount = 0;
+        var categoryTranslated = 0;
+        
+        $('.first-level-a, .second-level-a, .third-level-a').each(function() {
+            var categoryText = normalizeText($(this).text());
+            if (categoryText && categoryText.length > 2) {
+                categoryCount++;
+                if (databaseContentMap[categoryText]) {
+                    var translationKey = databaseContentMap[categoryText];
+                    var translation = getTranslation(translationKey, lang);
+                    if (translation !== translationKey) {
+                        categoryTranslated++;
+                    }
+                }
+            }
+        });
+        
+        // Test products
+        var productCount = 0;
+        var productTranslated = 0;
+        
+        $('.p-title').each(function() {
+            var productText = normalizeText($(this).text());
+            if (productText && productText.length > 3) {
+                productCount++;
+                var match = findBestProductMatch(productText);
+                if (match) {
+                    var translation = getTranslation(match.key, lang);
+                    if (translation !== match.key) {
+                        productTranslated++;
+                    }
+                }
+            }
+        });
+        
+        testResults.categories[lang] = {
+            total: categoryCount,
+            translated: categoryTranslated,
+            coverage: categoryCount > 0 ? Math.round((categoryTranslated / categoryCount) * 100) : 0
+        };
+        
+        testResults.products[lang] = {
+            total: productCount,
+            translated: productTranslated,
+            coverage: productCount > 0 ? Math.round((productTranslated / productCount) * 100) : 0
+        };
+        
+        console.log(`📊 ${lang.toUpperCase()} Results:`);
+        console.log(`   Categories: ${categoryTranslated}/${categoryCount} (${testResults.categories[lang].coverage}%)`);
+        console.log(`   Products: ${productTranslated}/${productCount} (${testResults.products[lang].coverage}%)`);
+        
+        // Restore original language
+        currentLanguage = originalLang;
+    });
+    
+    // Overall summary
+    console.log('\n📈 TRANSLATION COVERAGE SUMMARY:');
+    console.log('=====================================');
+    
+    languages.forEach(function(lang) {
+        console.log(`${lang.toUpperCase()}: Categories ${testResults.categories[lang].coverage}%, Products ${testResults.products[lang].coverage}%`);
+    });
+    
+    // Calculate averages
+    var avgCategoryContent = languages.reduce((sum, lang) => sum + testResults.categories[lang].coverage, 0) / languages.length;
+    var avgProductCoverage = languages.reduce((sum, lang) => sum + testResults.products[lang].coverage, 0) / languages.length;
+    
+    console.log(`\n🎯 Average Coverage: Categories ${Math.round(avgCategoryContent)}%, Products ${Math.round(avgProductCoverage)}%`);
+    
+    return testResults;
+}
+
+// Quick language switch test
+function testLanguageSwitching() {
+    console.log('🔄 Testing language switching...');
+    
+    var languages = ['en', 'tr', 'de', 'fr'];
+    var originalLang = currentLanguage;
+    
+    languages.forEach(function(lang, index) {
+        setTimeout(function() {
+            console.log(`🌍 Switching to ${lang.toUpperCase()}...`);
+            setLanguage(lang);
+            
+            if (index === languages.length - 1) {
+                setTimeout(function() {
+                    console.log('✅ Language switching test completed');
+                    setLanguage(originalLang); // Restore original
+                }, 1000);
+            }
+        }, index * 2000);
+    });
+}
+
 // Enhanced event handlers for various content loading scenarios
 $(document).ready(function() {
     // Handle AJAX content loading
@@ -621,9 +852,18 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeLanguage();
     updateTranslations();
     
-    // Make forceTranslationRefresh available globally for debugging
+    // Make debugging functions available globally
     window.forceTranslationRefresh = forceTranslationRefresh;
-    console.log('🌍 Language system initialized. Use forceTranslationRefresh() to manually refresh translations.');
+    window.testAllTranslations = testAllTranslations;
+    window.testLanguageSwitching = testLanguageSwitching;
+    window.findBestProductMatch = findBestProductMatch;
+    
+    console.log('🌍 Language system initialized.');
+    console.log('🧪 Debug functions available:');
+    console.log('   - forceTranslationRefresh() - Manually refresh all translations');
+    console.log('   - testAllTranslations() - Test translation coverage for all languages');
+    console.log('   - testLanguageSwitching() - Test automatic language switching');
+    console.log('   - findBestProductMatch("text") - Test product matching for specific text');
 });
 
 $(document).on('click', '.open-popup-button', function () {
