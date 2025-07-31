@@ -67,7 +67,7 @@
                         align-items: center;
                         gap: 8px;
                     ">
-                        🌐 <span id="currentLang">Türkçe</span> ▼
+                        🌐 <span id="currentLang">English</span> ▼
                     </button>
                     
                     <div id="dilMenu" style="
@@ -87,8 +87,12 @@
                             localStorage.setItem('selectedLanguage', 'en');
                             document.getElementById('currentLang').textContent = 'English';
                             document.getElementById('dilMenu').style.display = 'none';
-                            if(typeof setLanguage === 'function') setLanguage('en');
-                            setTimeout(() => location.reload(), 500);
+                            if(typeof setLanguage === 'function') {
+                                setLanguage('en');
+                            } else {
+                                console.log('setLanguage function not found, reloading page...');
+                                setTimeout(() => location.reload(), 500);
+                            }
                         " style="
                             display: block; 
                             padding: 12px 15px; 
@@ -103,8 +107,12 @@
                             localStorage.setItem('selectedLanguage', 'tr');
                             document.getElementById('currentLang').textContent = 'Türkçe';
                             document.getElementById('dilMenu').style.display = 'none';
-                            if(typeof setLanguage === 'function') setLanguage('tr');
-                            setTimeout(() => location.reload(), 500);
+                            if(typeof setLanguage === 'function') {
+                                setLanguage('tr');
+                            } else {
+                                console.log('setLanguage function not found, reloading page...');
+                                setTimeout(() => location.reload(), 500);
+                            }
                         " style="
                             display: block; 
                             padding: 12px 15px; 
@@ -119,8 +127,12 @@
                             localStorage.setItem('selectedLanguage', 'ru');
                             document.getElementById('currentLang').textContent = 'Русский';
                             document.getElementById('dilMenu').style.display = 'none';
-                            if(typeof setLanguage === 'function') setLanguage('ru');
-                            setTimeout(() => location.reload(), 500);
+                            if(typeof setLanguage === 'function') {
+                                setLanguage('ru');
+                            } else {
+                                console.log('setLanguage function not found, reloading page...');
+                                setTimeout(() => location.reload(), 500);
+                            }
                         " style="
                             display: block; 
                             padding: 12px 15px; 
@@ -129,10 +141,35 @@
                         " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
                             🇷🇺 Русский
                         </a>
-                    </div>
+                                        </div>
                 </li>
 
+                <script>
+                    // Sayfa yüklendiğinde doğru dili göster
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var savedLang = localStorage.getItem('selectedLanguage') || 'en';
+                        var currentLangSpan = document.getElementById('currentLang');
+                        
+                        var langNames = {
+                            'en': 'English',
+                            'tr': 'Türkçe', 
+                            'ru': 'Русский'
+                        };
+                        
+                        if (currentLangSpan) {
+                            currentLangSpan.textContent = langNames[savedLang] || 'English';
+                        }
+                        
+                        // Dil fonksiyonu varsa ve kaydedilen dil varsa uygula
+                        if (typeof setLanguage === 'function' && savedLang !== 'en') {
+                            setTimeout(function() {
+                                setLanguage(savedLang);
+                            }, 1000);
+                        }
+                    });
+                </script>
 
+ 
 
                 @if (User.Identity != null && User.Identity.IsAuthenticated)
                 {
