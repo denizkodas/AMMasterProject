@@ -322,5 +322,29 @@
     "tr": "023 Yaz Terlikleri Erkek Parmak Arası Plaj Sandaletleri",
     "de": "023 Sommer Hausschuhe Herren Flip Flops Strand Sandalen",
     "fr": "023 Chaussons d'été hommes tongs sandales de plage"
+  },
+  "buynow": {
+    "en": "Buy Now",
+    "tr": "Şimdi Satın Al",
+    "de": "Jetzt kaufen",
+    "fr": "Acheter maintenant"
+  },
+  "downloadapp": {
+    "en": "Download App",
+    "tr": "Uygulamayı İndir",
+    "de": "App herunterladen",
+    "fr": "Télécharger l'app"
+  },
+  "becomeseller": {
+    "en": "Become a Seller",
+    "tr": "Satıcı Ol",
+    "de": "Verkäufer werden",
+    "fr": "Devenir vendeur"
+  },
+  "rtldemo": {
+    "en": "RTL Demo",
+    "tr": "RTL Demo",
+    "de": "RTL Demo",
+    "fr": "Démo RTL"
   }
 }

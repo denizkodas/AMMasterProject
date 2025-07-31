@@ -2,6 +2,38 @@ var translations = null;
 var currentLanguage = 'en'; // Set default language
 var supportedLanguages = ['en', 'tr', 'de', 'fr']; // Supported languages
 
+// Database content mapping for translation
+var databaseContentMap = {
+    // Category mappings
+    'Mens Fashion': 'mensfashion',
+    'Phones and Telecommunications': 'phonesandtelecommunications', 
+    'Computer Office and Security': 'computeroffice',
+    'Consumer Electronics': 'consumerelectronics',
+    'Jewelry and Watches': 'jewelryandwatches',
+    'Home Pet and Appliances': 'homepetappliances',
+    'Bags and Shoes': 'bagsandshoes',
+    'Toys Kids and Babies': 'toyskidsbabies',
+    'Outdoor Fun and Sports': 'outdoorfunsports',
+    'Beauty Health and Hair': 'beautyhealthhair',
+    'Automobiles and Motorcycles': 'automobilesmotorcycles',
+    'Tools and Home Improvement': 'toolshomeimprovement',
+    'Music': 'music',
+    'Kindle E Readers and Books': 'kindleebooks',
+    'Appstore for Android': 'appstore',
+    
+    // Product name patterns
+    'Summer Slippers': 'summerslipper',
+    '023 Summer Slippers Men Flip Flops Beach Sandals': 'summerslipper',
+    
+    // Common terms
+    'About us': 'about',
+    'Contact us': 'contact',
+    'Buy Now': 'buynow',
+    'Download App': 'downloadapp',
+    'Become a Seller': 'becomeseller',
+    'RTL Demo': 'rtldemo'
+};
+
 // Initialize language from localStorage or default to 'en'
 function initializeLanguage() {
     var savedLanguage = localStorage.getItem('selectedLanguage');
@@ -17,14 +49,143 @@ function setLanguage(language) {
     if (supportedLanguages.includes(language)) {
         currentLanguage = language;
         localStorage.setItem('selectedLanguage', language);
-        updateTranslations();
         
-        // Update language selector UI
-        updateLanguageSelectorUI();
+        console.log('🔄 Language changed to:', language);
+        
+        // Load translations first, then translate
+        if (!translations) {
+            loadTranslations(function() {
+                translateAllContent();
+                updateLanguageSelectorUI();
+            });
+        } else {
+            translateAllContent();
+            updateLanguageSelectorUI();
+        }
     }
 }
 
+// Master translation function - translates everything
+function translateAllContent() {
+    console.log('🌍 Starting translation to:', currentLanguage);
+    
+    if (!translations) {
+        console.warn('⚠️ Translations not loaded yet');
+        return;
+    }
+    
+    // 1. Translate static elements with data-translate
+    translateStaticElements();
+    
+    // 2. Translate database-driven content
+    translateDatabaseContent();
+    
+    // 3. Translate dynamic categories
+    translateCategories();
+    
+    // 4. Translate product titles
+    translateProductTitles();
+    
+    // 5. Translate header links
+    translateHeaderLinks();
+    
+    console.log('✅ Translation completed for:', currentLanguage);
+}
 
+function translateStaticElements() {
+    $('[data-translate]').each(function () {
+        var key = $(this).attr('data-translate');
+        var translation = getTranslation(key, currentLanguage);
+        
+        // Handle dynamic content with placeholders
+        if ($(this).attr('data-params')) {
+            var params = JSON.parse($(this).attr('data-params'));
+            for (var param in params) {
+                translation = translation.replace(`{${param}}`, params[param]);
+            }
+        }
+        $(this).text(translation);
+    });
+}
+
+function translateDatabaseContent() {
+    // Translate all text content that matches database mappings
+    $('*').contents().filter(function() {
+        return this.nodeType === 3; // Text nodes only
+    }).each(function() {
+        var text = $(this).text().trim();
+        if (text && databaseContentMap[text]) {
+            var translationKey = databaseContentMap[text];
+            var translation = getTranslation(translationKey, currentLanguage);
+            if (translation !== translationKey) {
+                $(this).replaceWith(translation);
+            }
+        }
+    });
+}
+
+function translateCategories() {
+    // Target category links specifically
+    $('.first-level-a, .second-level-a, .third-level-a').each(function() {
+        var $this = $(this);
+        var categoryText = $this.clone().children().remove().end().text().trim();
+        
+        if (databaseContentMap[categoryText]) {
+            var translationKey = databaseContentMap[categoryText];
+            var translation = getTranslation(translationKey, currentLanguage);
+            if (translation !== translationKey) {
+                // Replace only the text, keep the icon
+                var $icon = $this.find('.first-level-icon, .second-level-icon, .third-level-icon');
+                $this.html('').append($icon).append(' ' + translation);
+            }
+        }
+    });
+}
+
+function translateProductTitles() {
+    // Translate product titles in various containers
+    $('.p-title').each(function() {
+        var $this = $(this);
+        var productText = $this.text().trim();
+        
+        // Check for exact matches first
+        if (databaseContentMap[productText]) {
+            var translationKey = databaseContentMap[productText];
+            var translation = getTranslation(translationKey, currentLanguage);
+            if (translation !== translationKey) {
+                $this.text(translation);
+            }
+        } else {
+            // Check for partial matches
+            for (var pattern in databaseContentMap) {
+                if (productText.includes(pattern)) {
+                    var translationKey = databaseContentMap[pattern];
+                    var translation = getTranslation(translationKey, currentLanguage);
+                    if (translation !== translationKey) {
+                        $this.text(translation);
+                        break;
+                    }
+                }
+            }
+        }
+    });
+}
+
+function translateHeaderLinks() {
+    // Translate header navigation links
+    $('#dvheaderlinks a, .header-pages a').each(function() {
+        var $this = $(this);
+        var linkText = $this.text().trim();
+        
+        if (databaseContentMap[linkText]) {
+            var translationKey = databaseContentMap[linkText];
+            var translation = getTranslation(translationKey, currentLanguage);
+            if (translation !== translationKey) {
+                $this.text(translation);
+            }
+        }
+    });
+}
 
 // Update language selector UI
 function updateLanguageSelectorUI() {
@@ -83,11 +244,11 @@ function getCookie(name) {
 function updateTranslations() {
     // Check if translations are already loaded
     if (translations) {
-        translateElements();
+        translateAllContent();
     } else {
        /*  Load translations from cache or server*/
         loadTranslations(function () {
-            translateElements();
+            translateAllContent();
         });
     }
 };
@@ -97,7 +258,7 @@ function loadTranslations(callback) {
     console.log('🔄 Force fetching fresh translations from server...');
     fetchTranslations(callback);
     
-    // TODO: Re-enable caching after confirming Russian translations work
+    // TODO: Re-enable caching after confirming translations work
     /*
     // Check if translations are cached
     var cachedTranslations = localStorage.getItem('translations');
@@ -137,11 +298,13 @@ function fetchTranslations(callback) {
             translations = data;
             console.log('🔄 Fresh translations loaded from server:', Object.keys(data).length, 'keys');
             
-            // Check if Russian translations exist
-            if (data.login && data.login.ru) {
-                console.log('✅ Russian translations found! login.ru =', data.login.ru);
+            // Check if German and French translations exist
+            if (data.login && data.login.de && data.login.fr) {
+                console.log('✅ German & French translations found!');
+                console.log('🇩🇪 German login:', data.login.de);
+                console.log('🇫🇷 French login:', data.login.fr);
             } else {
-                console.warn('❌ Russian translations missing! Available languages for login:', 
+                console.warn('❌ German/French translations missing! Available languages for login:', 
                     data.login ? Object.keys(data.login) : 'login key not found');
             }
             
@@ -183,88 +346,17 @@ function getTranslation(key, language) {
     return key;
 }
 
-function translateElementsv1() {
-    $('[data-translate]').each(function () {
-        var key = $(this).attr('data-translate');
-       
-        var translation = getTranslation(key, currentLanguage);
-        
-        // Handle dynamic content with placeholders
-        if ($(this).attr('data-params')) {
-            var params = JSON.parse($(this).attr('data-params'));
-            for (var param in params) {
-                translation = translation.replace(`{${param}}`, params[param]);
-            }
-        }
-        $(this).text(translation);
-    });
-};
-
+// BACKWARD COMPATIBILITY - Keep old function names
 function translateElements() {
-    // Translate static elements with data-translate
-    $('[data-translate]').each(function () {
-        var key = $(this).attr('data-translate');
-
-        var translation = getTranslation(key, currentLanguage);
-        
-        // Handle dynamic content with placeholders
-        if ($(this).attr('data-params')) {
-            var params = JSON.parse($(this).attr('data-params'));
-            for (var param in params) {
-                translation = translation.replace(`{${param}}`, params[param]);
-            }
-        }
-        $(this).text(translation);
-    });
-    
-    // Translate dynamic category names
-    translateDynamicCategories();
-    
-    // Translate dynamic product titles (if needed)
-    translateDynamicProducts();
+    translateAllContent();
 }
 
 function translateDynamicCategories() {
-    // Map of category names to translation keys
-    var categoryMap = {
-        'Mens Fashion': 'mensfashion',
-        'Phones and Telecommunications': 'phonesandtelecommunications',
-        'Computer Office and Security': 'computeroffice',
-        'Consumer Electronics': 'consumerelectronics',
-        'Jewelry and Watches': 'jewelryandwatches',
-        'Home Pet and Appliances': 'homepetappliances',
-        'Bags and Shoes': 'bagsandshoes',
-        'Toys Kids and Babies': 'toyskidsbabies',
-        'Outdoor Fun and Sports': 'outdoorfunsports',
-        'Beauty Health and Hair': 'beautyhealthhair',
-        'Automobiles and Motorcycles': 'automobilesmotorcycles',
-        'Tools and Home Improvement': 'toolshomeimprovement',
-        'Music': 'music',
-        'Kindle E Readers and Books': 'kindleebooks',
-        'Appstore for Android': 'appstore'
-    };
-    
-    // Find and translate category names
-    $('.first-level-a').each(function() {
-        var categoryText = $(this).text().trim();
-        if (categoryMap[categoryText]) {
-            var translation = getTranslation(categoryMap[categoryText], currentLanguage);
-            $(this).find('span:not(.first-level-icon)').text(translation);
-        }
-    });
+    translateCategories();
 }
 
 function translateDynamicProducts() {
-    // Handle specific product names if needed
-    $('[data-translate-dynamic]').each(function() {
-        var originalText = $(this).attr('data-translate-dynamic');
-        
-        // Special case for summer slipper
-        if (originalText && originalText.includes('Summer Slippers')) {
-            var translation = getTranslation('summerslipper', currentLanguage);
-            $(this).text(translation);
-        }
-    });
+    translateProductTitles();
 }
 
 // Initialize language on page load
