@@ -153,39 +153,7 @@
                     </div>
                 </li>
 
-                <script>
-                    // Dışarıya tıklayınca dropdown kapat
-                    document.addEventListener('click', function(e) {
-                        var dilMenu = document.getElementById('dilMenu');
-                        var button = e.target.closest('button');
-                        
-                        if (dilMenu && !e.target.closest('li')) {
-                            dilMenu.style.display = 'none';
-                        }
-                    });
-                    
-                    // Sayfa yüklendiğinde kaydedilen dili göster
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var savedLang = localStorage.getItem('selectedLanguage');
-                        var currentLangSpan = document.getElementById('currentLang');
-                        
-                        if (savedLang && currentLangSpan) {
-                            var langNames = {
-                                'en': 'English',
-                                'tr': 'Türkçe', 
-                                'ru': 'Русский',
-                                'ar': 'العربية'
-                            };
-                            currentLangSpan.textContent = langNames[savedLang] || 'Türkçe';
-                            
-                            // RTL için body ayarı
-                            if (savedLang === 'ar') {
-                                document.body.setAttribute('dir', 'rtl');
-                                document.body.classList.add('rtl');
-                            }
-                        }
-                    });
-                </script>
+
 
                 @if (User.Identity != null && User.Identity.IsAuthenticated)
                 {
