@@ -201,6 +201,7 @@ function translateElementsv1() {
 };
 
 function translateElements() {
+    // Translate static elements with data-translate
     $('[data-translate]').each(function () {
         var key = $(this).attr('data-translate');
 
@@ -214,6 +215,55 @@ function translateElements() {
             }
         }
         $(this).text(translation);
+    });
+    
+    // Translate dynamic category names
+    translateDynamicCategories();
+    
+    // Translate dynamic product titles (if needed)
+    translateDynamicProducts();
+}
+
+function translateDynamicCategories() {
+    // Map of category names to translation keys
+    var categoryMap = {
+        'Mens Fashion': 'mensfashion',
+        'Phones and Telecommunications': 'phonesandtelecommunications',
+        'Computer Office and Security': 'computeroffice',
+        'Consumer Electronics': 'consumerelectronics',
+        'Jewelry and Watches': 'jewelryandwatches',
+        'Home Pet and Appliances': 'homepetappliances',
+        'Bags and Shoes': 'bagsandshoes',
+        'Toys Kids and Babies': 'toyskidsbabies',
+        'Outdoor Fun and Sports': 'outdoorfunsports',
+        'Beauty Health and Hair': 'beautyhealthhair',
+        'Automobiles and Motorcycles': 'automobilesmotorcycles',
+        'Tools and Home Improvement': 'toolshomeimprovement',
+        'Music': 'music',
+        'Kindle E Readers and Books': 'kindleebooks',
+        'Appstore for Android': 'appstore'
+    };
+    
+    // Find and translate category names
+    $('.first-level-a').each(function() {
+        var categoryText = $(this).text().trim();
+        if (categoryMap[categoryText]) {
+            var translation = getTranslation(categoryMap[categoryText], currentLanguage);
+            $(this).find('span:not(.first-level-icon)').text(translation);
+        }
+    });
+}
+
+function translateDynamicProducts() {
+    // Handle specific product names if needed
+    $('[data-translate-dynamic]').each(function() {
+        var originalText = $(this).attr('data-translate-dynamic');
+        
+        // Special case for summer slipper
+        if (originalText && originalText.includes('Summer Slippers')) {
+            var translation = getTranslation('summerslipper', currentLanguage);
+            $(this).text(translation);
+        }
     });
 }
 

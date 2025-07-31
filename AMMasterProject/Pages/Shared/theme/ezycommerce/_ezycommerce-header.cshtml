@@ -170,10 +170,16 @@
                         
                         // FORCE CLEAR - Eski cache'i temizle
                         // FORCE CLEAR ALL - Temiz başlangıç
-                        localStorage.removeItem('translations');
-                        localStorage.removeItem('translationsTimestamp');
-                        localStorage.removeItem('selectedLanguage');
-                        console.log('🧹 FORCED CLEAR: All language data reset');
+                        // DISABLE FORCE CLEAR - Only clear once on first load
+                        if (!sessionStorage.getItem('languageCacheCleared')) {
+                            localStorage.removeItem('translations');
+                            localStorage.removeItem('translationsTimestamp');
+                            localStorage.removeItem('selectedLanguage');
+                            sessionStorage.setItem('languageCacheCleared', 'true');
+                            console.log('🧹 CLEARED: Translation cache reset');
+                        } else {
+                            console.log('🔄 Cache already cleared this session');
+                        }
                         
                         // Dil ayarını kontrol et
                         var savedLang = localStorage.getItem('selectedLanguage');

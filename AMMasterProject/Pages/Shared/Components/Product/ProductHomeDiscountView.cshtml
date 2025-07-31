@@ -1,4 +1,4 @@
-﻿@using AMMasterProject.ViewModel
+@using AMMasterProject.ViewModel
 
 @model List<ProductViewModel>
   @* Repeat*@
@@ -34,9 +34,9 @@
 
                             <div class="p-data">
 
-                                <div class="p-title">
-                                    @product.ProductName
-                                </div>
+                                                            <div class="p-title" data-translate-dynamic="@product.ProductName">
+                                @product.ProductName
+                            </div>
 
                                 <div class="p-price">
                                    @product.Currency  @product.Price.ToString("N2")
