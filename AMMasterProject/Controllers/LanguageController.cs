@@ -92,15 +92,16 @@ namespace AMMasterProject.Controllers
                     Console.WriteLine($"[LabelLoads] Reading languages.json, file size: {json.Length} chars");
                     Console.WriteLine($"[LabelLoads] First 200 chars: {json.Substring(0, Math.Min(200, json.Length))}...");
                     
-                    // Parse and return the JSON content
-                    var translations = JsonConvert.DeserializeObject(json);
+                    // Return raw JSON content directly
+                    Console.WriteLine($"[LabelLoads] Returning raw JSON content");
                     
                     // Add cache-busting headers
                     Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
                     Response.Headers.Add("Pragma", "no-cache");
                     Response.Headers.Add("Expires", "0");
                     
-                    return Json(translations);
+                    // Return raw JSON string
+                    return Content(json, "application/json");
                 }
                 else
                 {
