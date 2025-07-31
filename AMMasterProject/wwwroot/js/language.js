@@ -314,11 +314,70 @@ function fetchTranslations(callback) {
             callback();
         },
         error: function (xhr, status, error) {
-            console.error('Error loading translations:', error);
-            // Handle the error condition
-            // For example, you can display an error message to the user or fallback to default translations
+            console.error('❌ Server endpoint failed:', error);
+            console.log('🔄 Trying fallback: loading from static JSON...');
+            
+            // Fallback: Load from static JSON file
+            $.ajax({
+                url: '/languages.json?v=' + cacheBuster,
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+                    translations = data;
+                    console.log('✅ Fallback successful! Loaded from static JSON:', Object.keys(data).length, 'keys');
+                    
+                    // Cache translations
+                    localStorage.setItem('translations', JSON.stringify(translations));
+                    localStorage.setItem('translationsTimestamp', new Date().getTime().toString());
+                    callback();
+                },
+                error: function(xhr2, status2, error2) {
+                    console.error('❌ Both server and static JSON failed!', error2);
+                    
+                    // Last resort: Create minimal translations
+                    translations = createMinimalTranslations();
+                    console.log('⚠️ Using minimal fallback translations');
+                    callback();
+                }
+            });
         }
     });
+}
+
+// Create minimal translations as last resort
+function createMinimalTranslations() {
+    return {
+        "mensfashion": {
+            "en": "Mens Fashion",
+            "tr": "Erkek Modası",
+            "de": "Herrenmode",
+            "fr": "Mode homme"
+        },
+        "phonesandtelecommunications": {
+            "en": "Phones and Telecommunications",
+            "tr": "Telefon ve Telekomünikasyon",
+            "de": "Telefone und Telekommunikation",
+            "fr": "Téléphones et télécommunications"
+        },
+        "categories": {
+            "en": "Categories",
+            "tr": "Kategoriler", 
+            "de": "Kategorien",
+            "fr": "Catégories"
+        },
+        "login": {
+            "en": "Login",
+            "tr": "Giriş Yap",
+            "de": "Anmelden",
+            "fr": "Connexion"
+        },
+        "buynow": {
+            "en": "Buy Now",
+            "tr": "Şimdi Satın Al",
+            "de": "Jetzt kaufen",
+            "fr": "Acheter maintenant"
+        }
+    };
 }
 
 // Get translation with fallback mechanism

@@ -1,0 +1,350 @@
+{
+  "languagecode": {
+    "en": "English",
+    "tr": "Türkçe",
+    "de": "Deutsch",
+    "fr": "Français"
+  },
+  "FirstName": {
+    "en": "First Name",
+    "tr": "Ad",
+    "de": "Vorname",
+    "fr": "Prénom"
+  },
+  "greeting": {
+    "en": "Hello, {name}!",
+    "tr": "Merhaba, {name}!",
+    "de": "Hallo, {name}!",
+    "fr": "Bonjour, {name}!"
+  },
+  "login": {
+    "en": "Login",
+    "tr": "Giriş Yap",
+    "de": "Anmelden",
+    "fr": "Connexion"
+  },
+  "register": {
+    "en": "Register",
+    "tr": "Kayıt Ol",
+    "de": "Registrieren",
+    "fr": "S'inscrire"
+  },
+  "credits": {
+    "en": "Credits",
+    "tr": "Krediler",
+    "de": "Kredite",
+    "fr": "Crédits"
+  },
+  "credit": {
+    "en": "Credit",
+    "tr": "Kredi",
+    "de": "Kredit",
+    "fr": "Crédit"
+  },
+  "wishlist": {
+    "en": "Wishlist",
+    "tr": "İstek Listesi",
+    "de": "Wunschliste",
+    "fr": "Liste de souhaits"
+  },
+  "account": {
+    "en": "Account",
+    "tr": "Hesap",
+    "de": "Konto",
+    "fr": "Compte"
+  },
+  "myprofile": {
+    "en": "My Profile",
+    "tr": "Profilim",
+    "de": "Mein Profil",
+    "fr": "Mon profil"
+  },
+  "myorders": {
+    "en": "My Orders",
+    "tr": "Siparişlerim",
+    "de": "Meine Bestellungen",
+    "fr": "Mes commandes"
+  },
+  "changepassword": {
+    "en": "Change Password",
+    "tr": "Şifre Değiştir",
+    "de": "Passwort ändern",
+    "fr": "Changer le mot de passe"
+  },
+  "categories": {
+    "en": "Categories",
+    "tr": "Kategoriler",
+    "de": "Kategorien",
+    "fr": "Catégories"
+  },
+  "cart": {
+    "en": "Cart",
+    "tr": "Sepet",
+    "de": "Warenkorb",
+    "fr": "Panier"
+  },
+  "frequentlyaskedquestion": {
+    "en": "Frequently Asked Questions",
+    "tr": "Sık Sorulan Sorular",
+    "de": "Häufig gestellte Fragen",
+    "fr": "Questions fréquemment posées"
+  },
+  "saveandcontinue": {
+    "en": "Save and Continue",
+    "tr": "Kaydet ve Devam Et",
+    "de": "Speichern und fortfahren",
+    "fr": "Enregistrer et continuer"
+  },
+  "confirmdelete": {
+    "en": "Confirm Delete",
+    "tr": "Silmeyi Onayla",
+    "de": "Löschen bestätigen",
+    "fr": "Confirmer la suppression"
+  },
+  "itemname": {
+    "en": "Item Name",
+    "tr": "Ürün Adı",
+    "de": "Artikelname",
+    "fr": "Nom de l'article"
+  },
+  "price": {
+    "en": "Price",
+    "tr": "Fiyat",
+    "de": "Preis",
+    "fr": "Prix"
+  },
+  "home": {
+    "en": "Home",
+    "tr": "Ana Sayfa",
+    "de": "Startseite",
+    "fr": "Accueil"
+  },
+  "search": {
+    "en": "Search",
+    "tr": "Ara",
+    "de": "Suchen",
+    "fr": "Rechercher"
+  },
+  "settings": {
+    "en": "Settings",
+    "tr": "Ayarlar",
+    "de": "Einstellungen",
+    "fr": "Paramètres"
+  },
+  "logout": {
+    "en": "Logout",
+    "tr": "Çıkış Yap",
+    "de": "Abmelden",
+    "fr": "Déconnexion"
+  },
+  "welcome": {
+    "en": "Welcome",
+    "tr": "Hoş Geldiniz",
+    "de": "Willkommen",
+    "fr": "Bienvenue"
+  },
+  "dashboard": {
+    "en": "Dashboard",
+    "tr": "Kontrol Paneli",
+    "de": "Dashboard",
+    "fr": "Tableau de bord"
+  },
+  "profile": {
+    "en": "Profile",
+    "tr": "Profil",
+    "de": "Profil",
+    "fr": "Profil"
+  },
+  "orders": {
+    "en": "Orders",
+    "tr": "Siparişler",
+    "de": "Bestellungen",
+    "fr": "Commandes"
+  },
+  "email": {
+    "en": "Email",
+    "tr": "E-posta",
+    "de": "E-Mail",
+    "fr": "E-mail"
+  },
+  "navbar": {
+    "en": "Navigation",
+    "tr": "Navigasyon",
+    "de": "Navigation",
+    "fr": "Navigation"
+  },
+  "categorylist": {
+    "en": "Category List",
+    "tr": "Kategori Listesi",
+    "de": "Kategorienliste",
+    "fr": "Liste des catégories"
+  },
+  "ptitle": {
+    "en": "Product Title",
+    "tr": "Ürün Başlığı",
+    "de": "Produkttitel",
+    "fr": "Titre du produit"
+  },
+  "allcategories": {
+    "en": "All Categories",
+    "tr": "Tüm Kategoriler",
+    "de": "Alle Kategorien",
+    "fr": "Toutes les catégories"
+  },
+  "products": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "de": "Produkte",
+    "fr": "Produits"
+  },
+  "services": {
+    "en": "Services",
+    "tr": "Hizmetler",
+    "de": "Dienstleistungen",
+    "fr": "Services"
+  },
+  "about": {
+    "en": "About",
+    "tr": "Hakkında",
+    "de": "Über uns",
+    "fr": "À propos"
+  },
+  "contact": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "de": "Kontakt",
+    "fr": "Contact"
+  },
+  "menu": {
+    "en": "Menu",
+    "tr": "Menü",
+    "de": "Menü",
+    "fr": "Menu"
+  },
+  "navigation": {
+    "en": "Navigation",
+    "tr": "Navigasyon",
+    "de": "Navigation",
+    "fr": "Navigation"
+  },
+  "mensfashion": {
+    "en": "Mens Fashion",
+    "tr": "Erkek Modası",
+    "de": "Herrenmode",
+    "fr": "Mode homme"
+  },
+  "phonesandtelecommunications": {
+    "en": "Phones and Telecommunications",
+    "tr": "Telefon ve Telekomünikasyon",
+    "de": "Telefone und Telekommunikation",
+    "fr": "Téléphones et télécommunications"
+  },
+  "computeroffice": {
+    "en": "Computer Office and Security",
+    "tr": "Bilgisayar Ofis ve Güvenlik",
+    "de": "Computer Büro und Sicherheit",
+    "fr": "Bureau informatique et sécurité"
+  },
+  "consumerelectronics": {
+    "en": "Consumer Electronics",
+    "tr": "Tüketici Elektroniği",
+    "de": "Unterhaltungselektronik",
+    "fr": "Électronique grand public"
+  },
+  "jewelryandwatches": {
+    "en": "Jewelry and Watches",
+    "tr": "Mücevher ve Saatler",
+    "de": "Schmuck und Uhren",
+    "fr": "Bijoux et montres"
+  },
+  "homepetappliances": {
+    "en": "Home Pet and Appliances",
+    "tr": "Ev Evcil Hayvan ve Aletler",
+    "de": "Haus Haustier und Geräte",
+    "fr": "Maison animaux et appareils"
+  },
+  "bagsandshoes": {
+    "en": "Bags and Shoes",
+    "tr": "Çanta ve Ayakkabı",
+    "de": "Taschen und Schuhe",
+    "fr": "Sacs et chaussures"
+  },
+  "toyskidsbabies": {
+    "en": "Toys Kids and Babies",
+    "tr": "Oyuncak Çocuk ve Bebekler",
+    "de": "Spielzeug Kinder und Babys",
+    "fr": "Jouets enfants et bébés"
+  },
+  "outdoorfunsports": {
+    "en": "Outdoor Fun and Sports",
+    "tr": "Açık Hava Eğlence ve Spor",
+    "de": "Outdoor Spaß und Sport",
+    "fr": "Plaisir extérieur et sports"
+  },
+  "beautyhealthhair": {
+    "en": "Beauty Health and Hair",
+    "tr": "Güzellik Sağlık ve Saç",
+    "de": "Schönheit Gesundheit und Haar",
+    "fr": "Beauté santé et cheveux"
+  },
+  "automobilesmotorcycles": {
+    "en": "Automobiles and Motorcycles",
+    "tr": "Otomobil ve Motosiklet",
+    "de": "Automobile und Motorräder",
+    "fr": "Automobiles et motos"
+  },
+  "toolshomeimprovement": {
+    "en": "Tools and Home Improvement",
+    "tr": "Araçlar ve Ev Geliştirme",
+    "de": "Werkzeuge und Heimwerken",
+    "fr": "Outils et amélioration de l'habitat"
+  },
+  "music": {
+    "en": "Music",
+    "tr": "Müzik",
+    "de": "Musik",
+    "fr": "Musique"
+  },
+  "kindleebooks": {
+    "en": "Kindle E Readers and Books",
+    "tr": "Kindle E-Okuyucu ve Kitaplar",
+    "de": "Kindle E-Reader und Bücher",
+    "fr": "Kindle E-Readers et livres"
+  },
+  "appstore": {
+    "en": "Appstore for Android",
+    "tr": "Android için Appstore",
+    "de": "Appstore für Android",
+    "fr": "Appstore pour Android"
+  },
+  "summerslipper": {
+    "en": "023 Summer Slippers Men Flip Flops Beach Sandals",
+    "tr": "023 Yaz Terlikleri Erkek Parmak Arası Plaj Sandaletleri",
+    "de": "023 Sommer Hausschuhe Herren Flip Flops Strand Sandalen",
+    "fr": "023 Chaussons d'été hommes tongs sandales de plage"
+  },
+  "buynow": {
+    "en": "Buy Now",
+    "tr": "Şimdi Satın Al",
+    "de": "Jetzt kaufen",
+    "fr": "Acheter maintenant"
+  },
+  "downloadapp": {
+    "en": "Download App",
+    "tr": "Uygulamayı İndir",
+    "de": "App herunterladen",
+    "fr": "Télécharger l'app"
+  },
+  "becomeseller": {
+    "en": "Become a Seller",
+    "tr": "Satıcı Ol",
+    "de": "Verkäufer werden",
+    "fr": "Devenir vendeur"
+  },
+  "rtldemo": {
+    "en": "RTL Demo",
+    "tr": "RTL Demo",
+    "de": "RTL Demo",
+    "fr": "Démo RTL"
+  }
+}
