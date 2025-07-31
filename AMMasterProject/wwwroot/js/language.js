@@ -1,6 +1,6 @@
 var translations = null;
 var currentLanguage = 'en'; // Set default language
-var supportedLanguages = ['en', 'tr', 'ru']; // Supported languages
+var supportedLanguages = ['en', 'tr', 'de', 'fr']; // Supported languages
 
 // Initialize language from localStorage or default to 'en'
 function initializeLanguage() {
@@ -35,7 +35,8 @@ function updateLanguageSelectorUI() {
         var languageNames = {
             'en': 'English',
             'tr': 'Türkçe', 
-            'ru': 'Русский'
+            'de': 'Deutsch',
+            'fr': 'Français'
         };
         currentLangElement.textContent = languageNames[currentLanguage] || 'English';
     }
@@ -60,7 +61,8 @@ function getFlagCode(langCode) {
     var flagCodes = {
         'en': 'us',
         'tr': 'tr',
-        'ru': 'ru'
+        'de': 'de',
+        'fr': 'fr'
     };
     return flagCodes[langCode] || 'us';
 }

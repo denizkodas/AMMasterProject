@@ -124,11 +124,11 @@
                         </a>
                         
                         <a href="#" onclick="
-                            localStorage.setItem('selectedLanguage', 'ru');
-                            document.getElementById('currentLang').textContent = 'Русский';
+                            localStorage.setItem('selectedLanguage', 'de');
+                            document.getElementById('currentLang').textContent = 'Deutsch';
                             document.getElementById('dilMenu').style.display = 'none';
                             if(typeof setLanguage === 'function') {
-                                setLanguage('ru');
+                                setLanguage('de');
                             } else {
                                 console.log('setLanguage function not found, reloading page...');
                                 setTimeout(() => location.reload(), 500);
@@ -139,7 +139,26 @@
                             text-decoration: none; 
                             color: #333;
                         " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
-                            🇷🇺 Русский
+                            🇩🇪 Deutsch
+                        </a>
+                        
+                        <a href="#" onclick="
+                            localStorage.setItem('selectedLanguage', 'fr');
+                            document.getElementById('currentLang').textContent = 'Français';
+                            document.getElementById('dilMenu').style.display = 'none';
+                            if(typeof setLanguage === 'function') {
+                                setLanguage('fr');
+                            } else {
+                                console.log('setLanguage function not found, reloading page...');
+                                setTimeout(() => location.reload(), 500);
+                            }
+                        " style="
+                            display: block; 
+                            padding: 12px 15px; 
+                            text-decoration: none; 
+                            color: #333;
+                        " onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='white'">
+                            🇫🇷 Français
                         </a>
                                         </div>
                 </li>
@@ -161,7 +180,7 @@
                         console.log('📖 Saved language from localStorage:', savedLang);
                         
                         // Eğer kaydedilen dil yoksa veya geçersizse English yap
-                        if (!savedLang || !['en', 'tr', 'ru'].includes(savedLang)) {
+                        if (!savedLang || !['en', 'tr', 'de', 'fr'].includes(savedLang)) {
                             savedLang = 'en';
                             localStorage.setItem('selectedLanguage', 'en');
                             console.log('✅ Set default language to English');
@@ -171,7 +190,8 @@
                         var langNames = {
                             'en': 'English',
                             'tr': 'Türkçe', 
-                            'ru': 'Русский'
+                            'de': 'Deutsch',
+                            'fr': 'Français'
                         };
                         
                         if (currentLangSpan) {

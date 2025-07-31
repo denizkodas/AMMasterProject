@@ -2,141 +2,229 @@
   "languagecode": {
     "en": "English",
     "tr": "Türkçe",
-    "ru": "Русский"
+    "de": "Deutsch",
+    "fr": "Français"
   },
   "FirstName": {
     "en": "First Name",
     "tr": "Ad",
-    "ru": "Имя"
+    "de": "Vorname",
+    "fr": "Prénom"
   },
   "greeting": {
     "en": "Hello, {name}!",
     "tr": "Merhaba, {name}!",
-    "ru": "Привет, {name}!"
+    "de": "Hallo, {name}!",
+    "fr": "Bonjour, {name}!"
   },
   "login": {
     "en": "Login",
     "tr": "Giriş Yap",
-    "ru": "Войти"
+    "de": "Anmelden",
+    "fr": "Connexion"
   },
   "register": {
     "en": "Register",
     "tr": "Kayıt Ol",
-    "ru": "Регистрация"
+    "de": "Registrieren",
+    "fr": "S'inscrire"
   },
   "credits": {
     "en": "Credits",
     "tr": "Krediler",
-    "ru": "Кредиты"
+    "de": "Kredite",
+    "fr": "Crédits"
   },
   "credit": {
     "en": "Credit",
     "tr": "Kredi",
-    "ru": "Кредит"
+    "de": "Kredit",
+    "fr": "Crédit"
   },
   "wishlist": {
     "en": "Wishlist",
     "tr": "İstek Listesi",
-    "ru": "Список желаний"
+    "de": "Wunschliste",
+    "fr": "Liste de souhaits"
   },
   "account": {
     "en": "Account",
     "tr": "Hesap",
-    "ru": "Аккаунт"
+    "de": "Konto",
+    "fr": "Compte"
   },
   "myprofile": {
     "en": "My Profile",
     "tr": "Profilim",
-    "ru": "Мой профиль"
+    "de": "Mein Profil",
+    "fr": "Mon profil"
   },
   "myorders": {
     "en": "My Orders",
     "tr": "Siparişlerim",
-    "ru": "Мои заказы"
+    "de": "Meine Bestellungen",
+    "fr": "Mes commandes"
   },
   "changepassword": {
     "en": "Change Password",
     "tr": "Şifre Değiştir",
-    "ru": "Изменить пароль"
+    "de": "Passwort ändern",
+    "fr": "Changer le mot de passe"
   },
   "categories": {
     "en": "Categories",
     "tr": "Kategoriler",
-    "ru": "Категории"
+    "de": "Kategorien",
+    "fr": "Catégories"
   },
   "cart": {
     "en": "Cart",
     "tr": "Sepet",
-    "ru": "Корзина"
+    "de": "Warenkorb",
+    "fr": "Panier"
   },
   "frequentlyaskedquestion": {
     "en": "Frequently Asked Questions",
     "tr": "Sık Sorulan Sorular",
-    "ru": "Часто задаваемые вопросы"
+    "de": "Häufig gestellte Fragen",
+    "fr": "Questions fréquemment posées"
   },
   "saveandcontinue": {
     "en": "Save and Continue",
     "tr": "Kaydet ve Devam Et",
-    "ru": "Сохранить и продолжить"
+    "de": "Speichern und fortfahren",
+    "fr": "Enregistrer et continuer"
   },
   "confirmdelete": {
     "en": "Confirm Delete",
     "tr": "Silmeyi Onayla",
-    "ru": "Подтвердить удаление"
+    "de": "Löschen bestätigen",
+    "fr": "Confirmer la suppression"
   },
   "itemname": {
     "en": "Item Name",
     "tr": "Ürün Adı",
-    "ru": "Название товара"
+    "de": "Artikelname",
+    "fr": "Nom de l'article"
   },
   "price": {
     "en": "Price",
     "tr": "Fiyat",
-    "ru": "Цена"
+    "de": "Preis",
+    "fr": "Prix"
   },
   "home": {
     "en": "Home",
     "tr": "Ana Sayfa",
-    "ru": "Главная"
+    "de": "Startseite",
+    "fr": "Accueil"
   },
   "search": {
     "en": "Search",
     "tr": "Ara",
-    "ru": "Поиск"
+    "de": "Suchen",
+    "fr": "Rechercher"
   },
   "settings": {
     "en": "Settings",
     "tr": "Ayarlar",
-    "ru": "Настройки"
+    "de": "Einstellungen",
+    "fr": "Paramètres"
   },
   "logout": {
     "en": "Logout",
     "tr": "Çıkış Yap",
-    "ru": "Выйти"
+    "de": "Abmelden",
+    "fr": "Déconnexion"
   },
   "welcome": {
     "en": "Welcome",
     "tr": "Hoş Geldiniz",
-    "ru": "Добро пожаловать"
+    "de": "Willkommen",
+    "fr": "Bienvenue"
   },
   "dashboard": {
     "en": "Dashboard",
     "tr": "Kontrol Paneli",
-    "ru": "Панель управления"
+    "de": "Dashboard",
+    "fr": "Tableau de bord"
   },
   "profile": {
     "en": "Profile",
     "tr": "Profil",
-    "ru": "Профиль"
+    "de": "Profil",
+    "fr": "Profil"
   },
   "orders": {
     "en": "Orders",
     "tr": "Siparişler",
-    "ru": "Заказы"
+    "de": "Bestellungen",
+    "fr": "Commandes"
   },
   "email": {
     "en": "Email",
     "tr": "E-posta",
-    "ru": "Электронная почта"
+    "de": "E-Mail",
+    "fr": "E-mail"
+  },
+  "navbar": {
+    "en": "Navigation",
+    "tr": "Navigasyon",
+    "de": "Navigation",
+    "fr": "Navigation"
+  },
+  "categorylist": {
+    "en": "Category List",
+    "tr": "Kategori Listesi",
+    "de": "Kategorienliste",
+    "fr": "Liste des catégories"
+  },
+  "ptitle": {
+    "en": "Product Title",
+    "tr": "Ürün Başlığı",
+    "de": "Produkttitel",
+    "fr": "Titre du produit"
+  },
+  "allcategories": {
+    "en": "All Categories",
+    "tr": "Tüm Kategoriler",
+    "de": "Alle Kategorien",
+    "fr": "Toutes les catégories"
+  },
+  "products": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "de": "Produkte",
+    "fr": "Produits"
+  },
+  "services": {
+    "en": "Services",
+    "tr": "Hizmetler",
+    "de": "Dienstleistungen",
+    "fr": "Services"
+  },
+  "about": {
+    "en": "About",
+    "tr": "Hakkında",
+    "de": "Über uns",
+    "fr": "À propos"
+  },
+  "contact": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "de": "Kontakt",
+    "fr": "Contact"
+  },
+  "menu": {
+    "en": "Menu",
+    "tr": "Menü",
+    "de": "Menü",
+    "fr": "Menu"
+  },
+  "navigation": {
+    "en": "Navigation",
+    "tr": "Navigasyon",
+    "de": "Navigation",
+    "fr": "Navigation"
   }
 }
