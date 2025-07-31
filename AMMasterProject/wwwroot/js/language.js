@@ -135,22 +135,25 @@ function fetchTranslations(callback) {
 // Get translation with fallback mechanism
 function getTranslation(key, language) {
     if (!translations || !translations[key]) {
+        console.warn('Translation missing for key:', key, 'in language:', language);
         return key; // Return key if translation not found
     }
     
     var translationObj = translations[key];
     
     // Try to get translation for requested language
-    if (translationObj[language]) {
+    if (translationObj && translationObj[language]) {
         return translationObj[language];
     }
     
     // Fallback to English if translation not available
-    if (translationObj['en']) {
+    if (translationObj && translationObj['en']) {
+        console.warn('Using English fallback for key:', key, 'requested language:', language);
         return translationObj['en'];
     }
     
     // Return key if no translation found
+    console.warn('No translation found for key:', key);
     return key;
 }
 

@@ -147,9 +147,26 @@
                 <script>
                     // Sayfa yüklendiğinde doğru dili göster
                     document.addEventListener('DOMContentLoaded', function() {
-                        var savedLang = localStorage.getItem('selectedLanguage') || 'en';
-                        var currentLangSpan = document.getElementById('currentLang');
+                        console.log('🔧 Language header script started');
                         
+                        // FORCE CLEAR - Eski cache'i temizle
+                        localStorage.removeItem('translations');
+                        localStorage.removeItem('translationsTimestamp');
+                        localStorage.removeItem('selectedLanguage'); // FORCE RESET
+                        console.log('🧹 Cleared translation cache and language setting');
+                        
+                        // Dil ayarını kontrol et
+                        var savedLang = localStorage.getItem('selectedLanguage');
+                        console.log('📖 Saved language from localStorage:', savedLang);
+                        
+                        // Eğer kaydedilen dil yoksa veya geçersizse English yap
+                        if (!savedLang || !['en', 'tr', 'ru'].includes(savedLang)) {
+                            savedLang = 'en';
+                            localStorage.setItem('selectedLanguage', 'en');
+                            console.log('✅ Set default language to English');
+                        }
+                        
+                        var currentLangSpan = document.getElementById('currentLang');
                         var langNames = {
                             'en': 'English',
                             'tr': 'Türkçe', 
@@ -158,13 +175,17 @@
                         
                         if (currentLangSpan) {
                             currentLangSpan.textContent = langNames[savedLang] || 'English';
+                            console.log('🏷️ Updated language display to:', langNames[savedLang]);
                         }
                         
-                        // Dil fonksiyonu varsa ve kaydedilen dil varsa uygula
+                        // Sadece English değilse dil değiştir
                         if (typeof setLanguage === 'function' && savedLang !== 'en') {
+                            console.log('🔄 Applying saved language:', savedLang);
                             setTimeout(function() {
                                 setLanguage(savedLang);
-                            }, 1000);
+                            }, 2000);
+                        } else {
+                            console.log('🏠 Staying with English default');
                         }
                     });
                 </script>
